@@ -9,7 +9,7 @@ const navigation = [
     href: '#',
     current: false,
     subItems: [
-      { name: 'About San Vicente', href: '#', current: false },
+      { name: 'San Vicente', href: '#', current: false },
       { name: 'Municipality Profile', href: '#', current: false },
       { name: 'Municipality Programs', href: '#', current: false },
       { name: 'Elected Officials', href: '#', current: false },
