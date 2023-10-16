@@ -1,6 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export default function SignIn() {
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [userAccount, setUserAccount] = useState();
+    function checkCredentials(e){
+        e.preventDefault();
+        const promise = axios.get("http://localhost:8080/accounts/"+email);
+        const dataPromise = promise.then((response) => response.data)
+        dataPromise.then(data => {
+            if (data == null){
+                console.log("Sign in failed: Email not found.")
+            } else {
+                if (data.password == password){
+                    console.log("Sign in success!");
+                    setUserAccount(data);
+                } else {
+                    console.log("Sign in failed: Password does not match.");
+                }
+            }
+        })
+    }
   return (
     <div
         className="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center"
@@ -19,9 +40,12 @@ export default function SignIn() {
             <h1
                 className='text-white w-full my-20'
                 >
-                Sign Up
+                Sign In
             </h1>
-            <div className="w-full h-fit items-center justify-center">
+            <form
+                className="w-full h-fit items-center justify-center"
+                onSubmit={checkCredentials}
+            >
                 <div className='flex justify-center'>
                     <div className="relative w-3/5 mb-6">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
@@ -35,7 +59,11 @@ export default function SignIn() {
                             id="account-email"
                             className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5"
                             placeholder="Email"
-                            autocomplete='email'/>
+                            autocomplete='email'
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value)
+                            }}/>
                     </div>
                 </div>
                 <div className='flex justify-center'>
@@ -51,16 +79,19 @@ export default function SignIn() {
                             id="account-email"
                             className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5"
                             placeholder="Password"
-                            autocomplete='password'/>
+                            autocomplete='password'
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value)
+                            }}/>
                     </div>
                 </div>
                 <button
-                    type="button"
                     className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 mt-28"
                     >
                     Sign In
                 </button>
-            </div>
+            </form>
             <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
                 Don't have an account? &nbsp;
                 <a
