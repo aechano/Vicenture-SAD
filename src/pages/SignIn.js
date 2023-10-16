@@ -61,7 +61,7 @@ export default function SignIn() {
                     Sign In
                 </button>
             </div>
-            <div className='absolute bottom-0 right-0 mr-5 mb-5'>
+            <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
                 Don't have an account? &nbsp;
                 <a
                     href='#'
