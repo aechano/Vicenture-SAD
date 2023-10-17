@@ -49,11 +49,11 @@ export default function Header() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-green-700">
+    <Disclosure as="nav" className="bg-lgu-green">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+            <div className="relative flex h-20 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
                 <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -69,11 +69,11 @@ export default function Header() {
               <div className="flex flex-1 items-center justify-between">
                 <div className="flex flex-shrink-0 items-center">
                   <img
-                    className="h-8 w-auto"
+                    className="h-12 w-auto"
                     src="https://github.com/aechano/firstReactApp/blob/main/src/385409182_764034482084351_781871156510420035_n.png?raw=true"
                     alt="Your Company"
                   />
-                   <span className="text-green-300 text-lg ml-2 font-bold">LGU San Vicente</span>
+                   <span className="text-lgu-lime text-lg ml-2 font-bold">LGU San Vicente</span>
                 </div>
                 <div className="hidden sm:block">
                   <div className="flex space-x-4 mr-10">
@@ -83,7 +83,7 @@ export default function Header() {
                             <button
                               onClick={() => handleDropdown(item.name)}
                               className={classNames(
-                                item.current ? 'text-green-300 hover:text-white'  : 'text-green-300 hover:text-white',
+                                item.current ? 'text-lgu-lime hover:text-white'  : 'text-lgu-lime hover:text-white',
                                 'relative rounded-md px-3 py-2 text-sm font-medium group inline-flex'
                               )}
                             >
@@ -91,17 +91,17 @@ export default function Header() {
                               <ChevronDownIcon
                                 className={classNames(
                                   openDropdown === item.name ? 'transform rotate-180' : '',
-                                  'w-au h-5 ml-2 text-green-300 hover:text-white inline-flex  '
+                                  'w-au h-5 ml-2 text-lgu-lime hover:text-white inline-flex  '
                                 )}
                               />
                             </button>
                             {openDropdown === item.name && (
-                              <div className="py-2 bg-green-700 absolute right-0 rounded-md">
+                              <div className="py-2 bg-lgu-green absolute right-0 rounded-md">
                                 {item.subItems.map((subItem) => (
                                   <a
                                     key={subItem.name}
                                     href={subItem.href}
-                                    className="block px-4 py-2 text-sm text-green-300 hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis"
+                                    className="block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis"
                                   >
                                     {subItem.name}
                                   </a>
@@ -114,7 +114,7 @@ export default function Header() {
                             key={item.name}
                             href={item.href}
                             className={classNames(
-                              item.current ? 'text-green-300 hover:text-white' : 'text-green-300 hover:text-white',
+                              item.current ? 'text-lgu-lime hover:text-white' : 'text-lgu-lime hover:text-white',
                               'rounded-md px-3 py-2 text-sm font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
@@ -129,7 +129,7 @@ export default function Header() {
               <div className="flex items-center">
                 <button
                   type="button"
-                  className="relative p-1 text-green-300 hover:text-white"
+                  className="relative p-1 text-lgu-lime hover:text-white"
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View notifications</span>
@@ -143,7 +143,7 @@ export default function Header() {
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <img
-                        className="h-8 w-8 rounded-full"
+                        className="h-10 w-auto rounded-full"
                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOj12MDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                         alt=""
                       />
@@ -213,7 +213,7 @@ export default function Header() {
                     as="a"
                     href={item.href}
                     className={classNames(
-                      item.current ? 'text-green-500 hover:text-white' : 'text-green-500 hover:text-white',
+                      item.current ? 'text-lgu-lime hover:text-white' : 'text-lgu-lime hover:text-white',
                       'block rounded-md px-3 py-2 text-base font-medium'
                     )}
                     aria-current={item.current ? 'page' : undefined}
