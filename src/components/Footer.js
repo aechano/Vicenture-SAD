@@ -79,13 +79,11 @@ function Footer() {
                 </a>            
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
 
-      <div class="  p-4 text-center bg-lgu-green text-white text-sm">
+      <div class="  p-4 text-center bg-lgu-green text-lgu-lime text-sm">
         <span>© 2023 Copyright</span>
       </div>      
     </div>
