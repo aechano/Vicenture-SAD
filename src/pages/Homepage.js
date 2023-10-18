@@ -7,20 +7,6 @@ function Homepage() {
   const overlayRef = useRef(null);
   const [overlayHeight, setOverlayHeight] = useState("auto");
 
-  useEffect(() => {
-    function handleResize() {
-      if (overlayRef.current) {
-        setOverlayHeight(`${overlayRef.current.previousSibling.clientHeight}px`);
-      }
-    }
-
-    handleResize(); // Initial setup
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const containerStyle = {
     position: "relative",
   };
@@ -35,8 +21,6 @@ function Homepage() {
     top: "0",
     left: "0",
     width: "100%",
-    height: overlayHeight,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -50,7 +34,7 @@ function Homepage() {
   return (
     <div style={containerStyle} className="relative flex items-center justify-center">
       <div className="h-full w-full relative overflow-hidden">
-        <img style={imageStyle} src={imageSrc} alt={imageAlt} className="h-screen lg:h-auto" />
+        <img style={imageStyle} src={imageSrc} alt={imageAlt} className="h-screen lg:h-auto brightness-50" />
         <div ref={overlayRef} style={overlayStyle}>
           <h1 className={`lg:text-6xl font-bold p-2 ${isSmallScreen ? "text-2xl" : "text-4xl"}`}>
             WELCOME TO SAN VICENTE,
