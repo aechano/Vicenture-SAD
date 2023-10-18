@@ -30,7 +30,7 @@ const navigation = [
   { name: 'Transparency', href: '/transparency'},
   { name: 'Contact Us', href: '/contacts'},
 ];
-
+    
 export default function Header(props) {
   const [openDropdown, setOpenDropdown] = useState(null);
 
