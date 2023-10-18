@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [userAccount, setUserAccount] = useState();
+    const navigate = useNavigate();
+
     function checkCredentials(e){
         e.preventDefault();
         const promise = axios.get("http://localhost:8080/accounts/"+email);
@@ -16,7 +18,12 @@ export default function SignIn() {
             } else {
                 if (data.password === password){
                     console.log("Sign in success!");
+                    data.lastActiveDate = Date.now();
+                    console.log(Date.now());
                     setUserAccount(data);
+                    console.log(userAccount);
+                    axios.post("http://localhost:8080/accounts", data);
+                    navigate("/");
                 } else {
                     console.log("Sign in failed: Password does not match.");
                 }

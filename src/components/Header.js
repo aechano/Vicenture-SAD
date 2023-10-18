@@ -46,7 +46,7 @@ export default function Header(props) {
 
   return (
     <>
-        {!["/sign-in", "/sign-up"].includes(window.location.pathname) ?
+        {!["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"].includes(window.location.pathname) ?
             <>
                 <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20">
                 {({ open }) => (
@@ -227,7 +227,7 @@ export default function Header(props) {
         :
             null}
         {props.children}
-        {!["/sign-in", "/sign-up"].includes(window.location.pathname) ? <Footer/> : null}
+        {!["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"].includes(window.location.pathname) ? null : null}
     </>
-  )
+  )//<Footer/>
 }

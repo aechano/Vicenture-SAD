@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
     const [email, setEmail] = useState();
@@ -9,22 +10,19 @@ export default function SignUp() {
     const [confirmPassword, setConfirmPassword] = useState();
     const [role, setRole] = useState();
     const [userAccount, setUserAccount] = useState();
+    const [button, setButton] = useState("Create Account");
+    const navigate = useNavigate();
+
     function evaluateAnswers(e){
         e.preventDefault();
 
         var validInputs = true;
-        if (String(email)
-            .toLowerCase()
-            .match('/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,}$/i')){
-            console.log("This is a valid email!")
-        } else {
+        if (!String(email).toLowerCase().match('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$')) { // checks if the email input is valid
             console.log("Not a valid email.");
             validInputs = false;
         }
-        if (String(username)
-            .match('^[A-Za-z0-9_]{6,}$')){
-            console.log("This is a valid username!")
-        } else {
+        if (!String(username)
+            .match('^[A-Za-z0-9_]{6,}$')) { // checks if the username input is valid
             if (String(username).length < 6){
                 console.log("Username needs to be 6 characters and above.")
             } else {
@@ -32,37 +30,47 @@ export default function SignUp() {
             }
             validInputs = false;
         }
-        if (String(password).match("")){
-            if (String(password) === String(confirmPassword)){
-                console.log("Passwords match.")
-            } else {
-                console.log("Password does not match.")
-                validInputs = false;
-            }
+        if (String(password) !== String(confirmPassword)) {
+            console.log("Password does not match.")
+            validInputs = false;
         }
-        if (role !== "" && role !== null){
-            console.log("Role chosen: "+role);
-        } else {
+        if (role === "" || role === null) {
             console.log("Roles are not chosen!")
             validInputs = false;
         }
         
         if (!validInputs) return;
+
         /*
         now that input is valid, let's store it in the database.
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
-
-        setUserAccount({
-            "email":email,
-            "password":password,
-            "username":username,
-            "accountType":role,
-            "lastActiveDate":Date.now(),
-            "accountCreationDate":Date.now()
-        });
-        
-        axios.post("http://localhost:8080/accounts", userAccount);
+        if (button === "Create Account") { //if this is a citizen or tourist account
+            setUserAccount({
+                "email":email,
+                "password":password,
+                "username":username,
+                "accountType":role,
+                "lastActiveDate":Date.now(),
+                "accountCreationDate":Date.now()
+            });
+            
+            axios.post("http://localhost:8080/accounts", userAccount);
+        } else { //if this is an investor or lgu account
+            var currentData = {
+                email:email,
+                password:password,
+                username:username,
+                role:role,
+                lastActiveDate:Date.now(),
+                accountCreationDate:Date.now()
+            }
+            if (role==="2") {
+                navigate("/sign-up/investor", {state:currentData});
+            } else {
+                navigate("/sign-up/lgu", {state:currentData});
+            }
+        }
     }
   return (
     <div
@@ -108,7 +116,7 @@ export default function SignUp() {
                             value={email}
                             onChange={(e) => {
                                 setEmail(e.target.value)
-                            }}/>
+                            }} required/>
                     </div>
                 </div>
                 <div className='flex justify-center'>
@@ -131,7 +139,7 @@ export default function SignUp() {
                             value={username}
                             onChange={(e) => {
                                 setUsername(e.target.value)
-                            }}/>
+                            }} required/>
                     </div>
                 </div>
                 <div className='flex justify-center'>
@@ -153,7 +161,7 @@ export default function SignUp() {
                             value={password}
                             onChange={(e) => {
                                 setPassword(e.target.value)
-                            }}/>
+                            }} required/>
                     </div>
                 </div>
                 <div className='flex justify-center'>
@@ -174,7 +182,7 @@ export default function SignUp() {
                             value={confirmPassword}
                             onChange={(e) => {
                                 setConfirmPassword(e.target.value)
-                            }}/>
+                            }} required/>
                     </div>
                 </div>
                 <div className="flex justify-center">
@@ -193,9 +201,13 @@ export default function SignUp() {
                     </div>
                     <select
                         value={role}
-                        onChange={(e) => setRole(e.target.value)}
+                        onChange={(e) => {
+                            setRole(e.target.value);
+                            setButton(e.target.value==="2"||e.target.value==="3"?"Continue":"Create Account");
+                        }}
                         className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-2.5"
-                    >
+                        required
+                        >
                         <option value="" hidden>Select Role</option>
                         <option value="0">San Vicente Citizens</option>
                         <option value="1">Tourists</option>
@@ -207,7 +219,7 @@ export default function SignUp() {
                 <button
                     className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 mt-16"
                     >
-                    Create Account
+                    {button}
                 </button>
             </form>
             <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
