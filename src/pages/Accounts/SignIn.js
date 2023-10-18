@@ -23,7 +23,7 @@ export default function SignIn() {
                     setUserAccount(data);
                     console.log(userAccount);
                     axios.post("http://localhost:8080/accounts", data);
-                    navigate("/");
+                    window.location.href = "/";
                 } else {
                     console.log("Sign in failed: Password does not match.");
                 }

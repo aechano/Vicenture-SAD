@@ -56,6 +56,7 @@ export default function SignUp() {
             });
             
             axios.post("http://localhost:8080/accounts", userAccount);
+            window.location.href = "/";
         } else { //if this is an investor or lgu account
             var currentData = {
                 email:email,
