@@ -19,8 +19,8 @@ export default function SignUpLGU() {
     const [middleInitial, setMiddleInitial] = useState();
     const [lastName, setLastName] = useState();
     const [nameExt, setNameExt] = useState();
-    const [office, setOffice] = useState();
-    const [position, setPosition] = useState();
+    const [businessSector, setBusinessSector] = useState();
+    const [company, setCompany] = useState();
 
     function evaluateAnswers(e){
         e.preventDefault();
@@ -32,13 +32,13 @@ export default function SignUpLGU() {
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
             
-        axios.post("http://localhost:8080/accounts/lgu", {
+        axios.post("http://localhost:8080/accounts/investor", {
             "lastName":lastName,
             "firstName":firstName,
             "middleName":middleInitial,
             "nameExtension":nameExt,
-            "office":office,
-            "position":position,
+            "businessSector":businessSector,
+            "company":company,
             "accounts" : {
                 "email":data.email,
                 "password":data.password,
@@ -78,7 +78,7 @@ export default function SignUpLGU() {
                 <h1
                     className='text-white w-full my-20'
                     >
-                    LGU Account
+                    Investor Account
                 </h1>
                 <form
                     className="w-full h-fit items-center justify-center"
@@ -137,10 +137,10 @@ export default function SignUpLGU() {
                             <input
                                 type="text"
                                 className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-                                placeholder="Office"
-                                value={office}
+                                placeholder="Business Sector"
+                                value={businessSector}
                                 onChange={(e) => {
-                                    setOffice(e.target.value)
+                                    setBusinessSector(e.target.value)
                                 }} required/>
                         </div>
                     </div>
@@ -149,10 +149,10 @@ export default function SignUpLGU() {
                             <input
                                 type="text"
                                 className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-                                placeholder="Position"
-                                value={position}
+                                placeholder="Company"
+                                value={company}
                                 onChange={(e) => {
-                                    setPosition(e.target.value)
+                                    setCompany(e.target.value)
                                 }} required/>
                         </div>
                     </div>
