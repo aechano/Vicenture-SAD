@@ -11,6 +11,10 @@ module.exports = {
         'lgu-lime'  :'#B5F8B6',
         'lgu-yellow':'#FFE77B',
       },
+      backgroundColor: {
+        'emergency': 'red', // Define the 'success' background color as green
+        'event': 'green'
+      },
     },
   },
   plugins: [],
