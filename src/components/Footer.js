@@ -1,15 +1,8 @@
 import React from "react";
 
 function Footer() {
-  const footerStyle = {
-    position: "fixed",
-    bottom: 0,
-    width: "100%",
-    backgroundColor: "#2D5F2E", // Replace with your desired background color
-  };
-
   return (
-    <div style={footerStyle}>
+    <div className="w-full bg-lgu-green">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative items-center justify-between">
           <div className="flex flex-wrap py-3 items-start justify-between"> {/* Reduced vertical padding */}
