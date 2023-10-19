@@ -227,7 +227,7 @@ export default function Header(props) {
         :
             null}
         {props.children}
-        {!["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"].includes(window.location.pathname) ? null : null}
+        {!["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"].includes(window.location.pathname) ?  <Footer/> : null}
     </>
   )//<Footer/>
 }
