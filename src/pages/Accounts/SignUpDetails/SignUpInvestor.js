@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { InputBoxAccount } from '../../../components/InputBox';
 
 export default function SignUpLGU() {
 
@@ -83,19 +84,15 @@ export default function SignUpLGU() {
                 <form
                     className="w-full h-fit items-center justify-center"
                     onSubmit={evaluateAnswers}
-                >
-                    <div className='flex justify-center'>
-                        <div className="relative w-3/5 mb-6">
-                            <input
-                                type="text"
-                                className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-                                placeholder="First Name"
-                                value={firstName}
-                                onChange={(e) => {
-                                    setFirstName(e.target.value)
-                                }} required/>
-                        </div>
-                    </div>
+                    >
+                    <InputBoxAccount
+                        placeholder="First Name"
+                        value={firstName}
+                        onChange={(e) => {
+                            setFirstName(e.target.value)
+                        }}
+                        required={true}
+                    />
                     <div className='flex justify-center'>
                         <div className='relative w-3/5 mb-6'>
                             <div className="w-2/5 float-left">
@@ -120,44 +117,30 @@ export default function SignUpLGU() {
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-center'>
-                        <div className="relative w-3/5 mb-6">
-                            <input
-                                type="text"
-                                className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-                                placeholder="Last Name"
-                                value={lastName}
-                                onChange={(e) => {
-                                    setLastName(e.target.value)
-                                }} required/>
-                        </div>
-                    </div>
-                    <div className='flex justify-center'>
-                        <div className="relative w-3/5 mb-6">
-                            <input
-                                type="text"
-                                className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-                                placeholder="Business Sector"
-                                value={businessSector}
-                                onChange={(e) => {
-                                    setBusinessSector(e.target.value)
-                                }} required/>
-                        </div>
-                    </div>
-                    <div className='flex justify-center'>
-                        <div className="relative w-3/5 mb-6">
-                            <input
-                                type="text"
-                                className="bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5"
-                                placeholder="Company"
-                                value={company}
-                                onChange={(e) => {
-                                    setCompany(e.target.value)
-                                }} required/>
-                        </div>
-                    </div>
-                    <div className="flex justify-center">
-                </div>
+                    <InputBoxAccount
+                        placeholder="Last Name"
+                        value={lastName}
+                        onChange={(e) => {
+                            setLastName(e.target.value)
+                        }}
+                        required={true}
+                    />
+                    <InputBoxAccount
+                        placeholder="Business Sector"
+                        value={businessSector}
+                        onChange={(e) => {
+                            setBusinessSector(e.target.value)
+                        }}
+                        required={true}
+                    />
+                    <InputBoxAccount
+                        placeholder="Company"
+                        value={company}
+                        onChange={(e) => {
+                            setCompany(e.target.value)
+                        }}
+                        required={true}
+                    />
                     <button
                         className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 mt-16"
                         >
