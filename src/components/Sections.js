@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default function Sections() {
     /**
@@ -9,6 +10,7 @@ export default function Sections() {
      * - alt (def: "")
      * - button (def:undefined <no button>)
      * - arrow (def:false)
+     * - href (def:"/" <home page>)
      * This tag will also take textual childs, just like a <p> tag. The default is an empty string.
      */
     var props = {
@@ -52,14 +54,15 @@ export default function Sections() {
                                 {props.children !== undefined ? props.children : ""}
                             </p>
                             {props.button !== undefined ?
-                                <button className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " + 
-                                                    (props.left?"float-right":"float-left")}>
+                                <NavLink
+                                    className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " + 
+                                                    (props.left?"float-right":"float-left")}
+                                    to={props.href!==undefined?props.href:"/"}>
                                     {props.button}
                                     {props.arrow ?
                                         <svg
                                             className="w-3.5 h-3.5 ml-2"
                                             aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
                                             viewBox="0 0 14 10"
                                         >
@@ -73,7 +76,7 @@ export default function Sections() {
                                         </svg>
                                         :
                                         null}
-                                </button>
+                                </NavLink>
                                 :
                                 null
                             }
