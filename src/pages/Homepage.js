@@ -1,4 +1,6 @@
 import React from "react";
+import Sections from "../components/Sections";
+
 
 function Homepage() {
     return (
@@ -135,180 +137,59 @@ function Homepage() {
 
             {/* About San Vicente */}
 
-            <div className=" mt-10 pb-4 bg-lgu-green">
-                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                    <div className="flex items-center pt-5">
-                        <div className="flex-grow border-b-4 border-lgu-lime"></div>
-                        <h1 className="text-lgu-lime lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">
-                            Discover San Vicente
-                        </h1>
-                    </div>
-
-                    <div className="relative">
-                        <div className="flex flex-col md:flex-row items-start">
-                            <img
-                                className="h-72 w-auto p-5"
-                                src={require("./../res/img/logo.png")}
-                                alt="Your Company"
-                            />
-                            <p className="text-lgu-lime text-left h-72 w-auto p-10">
-                                San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.
-                            </p>
-                        </div>
-                        <div className="absolute right-0 bottom-0 m-5">
-                            <button className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                                About San Vicente
-                                <svg
-                                    className="w-3.5 h-3.5 ml-2"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 14 10"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Sections
+                left={true}
+                title="Discover San Vicente"
+                src={require("./../res/img/logo.png")}
+                alt="San Vicente Logo"
+                button="About San Vicente"
+                arrow={true}
+                href="/">
+                San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.
+            </Sections>
 
             {/* Tourism Section */}
 
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 pb-4">
-                <div className="flex items-center">
-                    <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">Your Tourism Escape</h1>
-                    <div className="flex-grow border-b-4 border-gray-900"></div>
-                </div>
-
-                <div className="flex relative ">
-                    <div className="flex flex-col md:flex-row items-start">
-                        <p className="text-black text-right pt-5 pr-5 relative">
-                            We cordially extend an invitation to experience the serene and captivating beauty of San Vicente, a remarkable destination that promises a rejuvenating departure from the everyday routine.
-                            Tucked away in the embrace of nature, this tranquil paradise calls out to wanderers, urging them to pause, explore, and become one with a realm of stunning natural vistas, a rich tapestry of local culture,
-                            and indelible memories waiting to be etched in your heart. Whether your heart craves adventure or craves serenity, San Vicente stands ready to offer you the quintessential escape, a portal to a world where
-                            the very essence of tourism blends harmoniously with your blissful journey.
-                        </p>
-                        <div>
-                            <img className="w-auto h-auto rounded-xl" src={require("./../res/img/waterfalls.jpg")} alt="waterfall" />
-                            <p className="pt-2 text-black font-bold text-center">Mananap Falls</p>
-                        </div>
-                    </div>
-                    <div className="absolute left-0 bottom-0 m-5">
-                        <button className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                            View more details
-                            <svg
-                                className="w-3.5 h-3.5 ml-2"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 14 10"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <Sections
+                title="Your Tourism Escape"
+                src={require("./../res/img/waterfalls.jpg")}
+                alt="Mananap Falls"
+                button="View more details"
+                arrow={true}
+                href="/">
+                We cordially extend an invitation to experience the serene and captivating beauty of San Vicente, a remarkable destination that promises a rejuvenating departure from the everyday routine.
+                Tucked away in the embrace of nature, this tranquil paradise calls out to wanderers, urging them to pause, explore, and become one with a realm of stunning natural vistas, a rich tapestry of local culture,
+                and indelible memories waiting to be etched in your heart. Whether your heart craves adventure or craves serenity, San Vicente stands ready to offer you the quintessential escape, a portal to a world where
+                the very essence of tourism blends harmoniously with your blissful journey.
+            </Sections>
 
             {/* Invest Section */}
 
-            <div className="mt-5 pb-4 bg-lgu-green">
-                <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                    <div className="flex items-center pt-5">
-                        <div className="flex-grow border-b-4 border-lgu-lime"></div>
-                        <h1 className="text-lgu-lime lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">
-                            Invest Now
-                        </h1>
-                    </div>
-
-                    <div className="flex relative">
-                        <div className="flex flex-col md:flex-row items-start">
-                            <img className="w-auto h-auto p-10" src={require("./../res/img/capital_investment.png")} alt="invest_money" />
-                            <p className="text-lgu-lime text-left w-auto p-10">
-                                Investing in the tourism potential of San Vicente, Camarines Norte, is like planting the seeds of opportunity in a flourishing garden of natural beauty.
-                                As this captivating destination continues to reveal its hidden gems, your investment not only promises growth and prosperity but also contributes to the sustainable development of a place destined
-                                to become a sought-after haven for travelers seeking unique and authentic experiences. By investing in San Vicente's tourism, you're nurturing a brighter future for both the community and the
-                                discerning adventurers who will soon call it their ultimate getaway.
-                            </p>
-                        </div>
-                        <div className="absolute right-0 bottom-0 m-5">
-                            <button className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                                Sign Up as Investors
-                                <svg
-                                    className="w-3.5 h-3.5 ml-2"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 14 10"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                                    />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Sections
+                left={true}
+                title="Invest Now"
+                src={require("./../res/img/capital_investment.png")}
+                alt="Vector image of a hand holding a coin with the peso sign on it."
+                button="Sign Up as an Investor"
+                arrow={true}
+                href="/sign-up">
+                Investing in the tourism potential of San Vicente, Camarines Norte, is like planting the seeds of opportunity in a flourishing garden of natural beauty.
+                As this captivating destination continues to reveal its hidden gems, your investment not only promises growth and prosperity but also contributes to the sustainable development of a place destined
+                to become a sought-after haven for travelers seeking unique and authentic experiences. By investing in San Vicente's tourism, you're nurturing a brighter future for both the community and the
+                discerning adventurers who will soon call it their ultimate getaway.
+            </Sections>
 
             {/* Forum Section */}
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 pb-4">
-                <div className="flex items-center">
-                    <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">Join the Discussions</h1>
-                    <div className="flex-grow border-b-4 border-gray-900"></div>
-                </div>
 
-                <div className="flex relative ">
-                    <div className="flex flex-col md:flex-row items-start">
-                        <p className="text-black text-right pt-16 relative">
-                            Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
-                        </p>
-                        <img className="w-auto h-auto rounded-xl pl-5" src={require("./../res/img/Group.png")} alt="forum_group" />
-                    </div>
-                    <div className="absolute left-0 bottom-0 m-5">
-                        <button className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                            Read Forums and Discussions
-                            <svg
-                                className="w-3.5 h-3.5 ml-2"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 14 10"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                                />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-
-
-
+            <Sections
+                title="Join the Discussions"
+                src={require("./../res/img/Group.png")}
+                alt="Vector image of a group of people talking."
+                button="Read Forums and Discussions"
+                arrow={true}
+                href="/">
+                Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
+            </Sections>
         </div>
 
     );
