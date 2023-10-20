@@ -15,6 +15,9 @@ module.exports = {
         'emergency': 'red', // Define the 'success' background color as green
         'event': 'green'
       },
+      screens: {
+        'lg': '1169px',
+      },
     },
   },
   plugins: [],

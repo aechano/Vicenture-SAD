@@ -82,7 +82,7 @@ function Homepage() {
                         </div>
                     </div>
                     <div className=" border-b-2 border-gray-900"></div>
-                    <div className="flex mt-5 justify-between">
+                    <div className="flex flex-col md:flex-row justify-between mt-5">
                         <div className="py-8 px-8 max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
@@ -124,7 +124,7 @@ function Homepage() {
                                         More San Vicente Article
                                     </p>
                                     <a href="#">
-                                        <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                                         </svg>
                                     </a>
@@ -152,7 +152,7 @@ function Homepage() {
 
             <Sections
                 title="Your Tourism Escape"
-                src={require("./../res/img/waterfalls.jpg")}
+                src={require("./../res/img/waterfalls.png")}
                 alt="Mananap Falls"
                 altDisplay="Mananap Falls"
                 button="View more details"
@@ -169,7 +169,7 @@ function Homepage() {
             <Sections
                 left={true}
                 title="Invest Now"
-                src={require("./../res/img/capital_investment.png")}
+                src={require("./../res/img/invest.png")}
                 alt="Vector image of a hand holding a coin with the peso sign on it."
                 button="Sign Up as an Investor"
                 arrow={true}
@@ -184,7 +184,7 @@ function Homepage() {
 
             <Sections
                 title="Join the Discussions"
-                src={require("./../res/img/Group.png")}
+                src={require("./../res/img/forUm.png")}
                 alt="Vector image of a group of people talking."
                 button="Read Forums and Discussions"
                 arrow={true}

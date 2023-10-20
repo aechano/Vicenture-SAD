@@ -2,14 +2,19 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="w-full bg-lgu-green">
-      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div className="w-full bg-lgu-green pt-8">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 pb-5">
         <div className="relative items-center justify-between">
           <div className="flex flex-wrap py-3 items-start justify-between"> {/* Reduced vertical padding */}
             <div className="flex items-center">
               <img
-                className="h-12 w-auto mt-5"
+                className="h-12 w-auto mt-5 pr-2"
                 src={require('./../res/img/logo.png')}
+                alt="Your Company"
+              />
+              <img
+                className="h-12 w-auto mt-5"
+                src={require('./../res/img/transparency_seal.png')}
                 alt="Your Company"
               />
               <div className="text-white ml-4 mt-5"> {/* Reduced left margin */}
@@ -76,8 +81,8 @@ function Footer() {
         </div>
       </div>
 
-      <div class="  p-4 text-center bg-lgu-green text-lgu-lime text-sm">
-        <span>© 2023 Copyright</span>
+      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 text-left p-4 bg-lgu-green text-lgu-lime text-sm  border-t-2 border-lgu-lime border-opacity-50">
+        <span>Copyright Ⓒ 2023. Municipal Government of San Vicente, Camarines Norte | All Rights Reserved.</span>
       </div>      
     </div>
   );

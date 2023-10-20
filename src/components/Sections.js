@@ -15,7 +15,7 @@ export default function Sections(props) {
      */
     return (
         <div className={"mt-10 pb-4 " + (props.left ? "bg-lgu-green" : "")}>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
                 <div className="flex items-center pt-5">
                     {props.left ?
                         <div className="flex-grow h-1 rounded-full bg-lgu-lime" />
@@ -37,7 +37,7 @@ export default function Sections(props) {
                             <div className=''>
                                 <img
                                     className="h-72 w-auto p-5 rounded-xl"
-                                    src={props.src !== undefined ? props.src : ""}
+                                    srcSet={props.src !== undefined ? props.src : ""}
                                     alt={props.alt !== undefined ? props.alt : ""}
                                 />
                                 {props.altDisplay !== undefined ?
@@ -50,7 +50,7 @@ export default function Sections(props) {
                             null
                         }
                         <div className='h-auto w-9/12 align-middle'>
-                            <p className={"m-auto w-auto p-10 " + (props.left ? "text-lgu-lime text-left" : "text-black text-right")}>
+                            <p className={"m-auto w-auto p-7 leading-7 " + (props.left ? "text-lgu-lime text-left" : "text-black text-right")}>
                                 {props.children !== undefined ? props.children : ""}
                             </p>
                             {props.button !== undefined ?
