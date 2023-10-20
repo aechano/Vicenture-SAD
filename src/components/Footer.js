@@ -9,7 +9,7 @@ function Footer() {
             <div className="flex items-center">
               <img
                 className="h-12 w-auto mt-5"
-                src="https://github.com/aechano/firstReactApp/blob/main/src/385409182_764034482084351_781871156510420035_n.png?raw=true"
+                src={require('./../res/img/logo.png')}
                 alt="Your Company"
               />
               <div className="text-white ml-4 mt-5"> {/* Reduced left margin */}
@@ -55,19 +55,19 @@ function Footer() {
                 <a href="#">
                   <img
                     className="w-auto h-7 px-2 "
-                    src="https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/x.png?raw=true"
+                    src={require('./../res/img/x.png')}
                   />
                 </a>
                 <a href="#">
                   <img
                     className="w-auto h-7 px-2"
-                    src="https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/facebook.png?raw=true"
+                    src={require('./../res/img/facebook.png')}
                   />
                 </a>
                 <a href="#">
                   <img
                     className="w-auto h-7 px-2"
-                    src="https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/instagram.png?raw=true"
+                    src={require('./../res/img/instagram.png')}
                   />
                 </a>            
               </div>

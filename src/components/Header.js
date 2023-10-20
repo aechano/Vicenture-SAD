@@ -69,7 +69,7 @@ export default function Header(props) {
                             <div className="flex flex-shrink-0 items-center">
                             <img
                                 className="h-12 w-auto"
-                                src="https://github.com/aechano/firstReactApp/blob/main/src/385409182_764034482084351_781871156510420035_n.png?raw=true"
+                                src={require('./../res/img/logo.png')}
                                 alt="Your Company"
                             />
                             <span className="text-lgu-lime text-lg ml-2 font-bold">LGU San Vicente</span>
