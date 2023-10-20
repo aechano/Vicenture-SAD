@@ -7,23 +7,26 @@ import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
+import Sections from './components/Sections';
 
 function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Header>
-          <Routes>
-            <Route path='/' element={<Homepage/>}/>
-            <Route path='/sign-in' element={<SignIn/>}/>
-            <Route path='/sign-up' element={<SignUp/>}/>
-            <Route path='/sign-up/lgu' element={<SignUpLGU/>}/>
-            <Route path='/sign-up/investor' element={<SignUpInvestor/>}/>
-          </Routes>
-        </Header>
-      </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Header>
+                    <Routes>
+                        <Route path='/' element={<Homepage />} />
+                        <Route path='/sign-in' element={<SignIn />} />
+                        <Route path='/sign-up' element={<SignUp />} />
+                        <Route path='/sign-up/lgu' element={<SignUpLGU />} />
+                        <Route path='/sign-up/investor' element={<SignUpInvestor />} />
+
+                        <Route path='/debug' element={<Sections />} />
+                    </Routes>
+                </Header>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
