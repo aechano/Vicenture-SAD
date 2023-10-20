@@ -21,7 +21,7 @@ export default function Sections() {
         arrow: true
     }
     return (
-        <div className={"mt-10 " + (props.left ? "bg-lgu-green" : "")}>
+        <div className={"mt-10 pb-4 " + (props.left ? "bg-lgu-green" : "")}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className="flex items-center pt-5">
                     {props.left ?
