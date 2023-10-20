@@ -154,6 +154,7 @@ function Homepage() {
                 title="Your Tourism Escape"
                 src={require("./../res/img/waterfalls.jpg")}
                 alt="Mananap Falls"
+                altDisplay="Mananap Falls"
                 button="View more details"
                 arrow={true}
                 href="/">

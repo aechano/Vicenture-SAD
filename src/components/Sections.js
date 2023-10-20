@@ -34,23 +34,30 @@ export default function Sections(props) {
                 <div className="relative h-full">
                     <div className="flex flex-col md:flex-row items-start">
                         {props.left ?
-                            <img
-                                className="h-72 w-auto p-5"
-                                src={props.src !== undefined ? props.src : ""}
-                                alt={props.alt !== undefined ? props.alt : ""}
-                            />
+                            <div className=''>
+                                <img
+                                    className="h-72 w-auto p-5 rounded-xl"
+                                    src={props.src !== undefined ? props.src : ""}
+                                    alt={props.alt !== undefined ? props.alt : ""}
+                                />
+                                {props.altDisplay !== undefined ?
+                                    <p className="pt-2 text-black font-bold text-center">{props.altDisplay}</p>
+                                    :
+                                    null
+                                }
+                            </div>
                             :
                             null
                         }
-                        <div className='h-auto m-auto align-middle'>
-                            <p className={"m-auto text-left w-auto p-10 " + (props.left?"text-lgu-lime":"text-black")}>
+                        <div className='h-auto w-9/12 align-middle'>
+                            <p className={"m-auto w-auto p-10 " + (props.left ? "text-lgu-lime text-left" : "text-black text-right")}>
                                 {props.children !== undefined ? props.children : ""}
                             </p>
                             {props.button !== undefined ?
                                 <NavLink
-                                    className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " + 
-                                                    (props.left?"float-right":"float-left")}
-                                    to={props.href!==undefined?props.href:"/"}>
+                                    className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " +
+                                        (props.left ? "float-right" : "float-left")}
+                                    to={props.href !== undefined ? props.href : "/"}>
                                     {props.button}
                                     {props.arrow ?
                                         <svg
@@ -75,11 +82,18 @@ export default function Sections(props) {
                             }
                         </div>
                         {!props.left ?
-                            <img
-                                className="h-72 w-auto p-5"
-                                src={props.src}
-                                alt={props.alt !== undefined ? props.alt : ""}
-                            />
+                            <div className=''>
+                                <img
+                                    className="h-72 w-auto p-5 rounded-xl"
+                                    src={props.src !== undefined ? props.src : ""}
+                                    alt={props.alt !== undefined ? props.alt : ""}
+                                />
+                                {props.altDisplay !== undefined ?
+                                    <p className="pt-2 text-black font-bold text-center">{props.altDisplay}</p>
+                                    :
+                                    null
+                                }
+                            </div>
                             :
                             null
                         }
