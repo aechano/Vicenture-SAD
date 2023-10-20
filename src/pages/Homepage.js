@@ -10,7 +10,7 @@ function Homepage() {
                         alt="Mananap Falls"
                         className="h-screen lg:h-auto w-full object-cover"
                     />
-                    <div ref={overlayRef} className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-center justify-center text-white">
+                    <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-center justify-center text-white">
                         <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
                             Welcome to San Vicente,
                         </h1>
