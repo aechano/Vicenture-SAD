@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React from "react";
 
 function Homepage() {
     return (
@@ -6,7 +6,7 @@ function Homepage() {
             <div className="relative flex items-center justify-center">
                 <div className="h-full w-full relative overflow-hidden">
                     <img
-                        src={require("https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/LGU-PERS.jpg?raw=true")}
+                        src={require("./../res/img/LGU-PERS.jpg")}
                         alt="Mananap Falls"
                         className="h-screen lg:h-auto w-full object-cover"
                     />
