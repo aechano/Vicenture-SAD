@@ -3,6 +3,7 @@ import React from "react";
 function Homepage() {
     return (
         <div>
+            {/* Hero Section */}
             <div className="relative flex items-center justify-center">
                 <div className="h-full w-full relative overflow-hidden">
                     <img
@@ -32,6 +33,8 @@ function Homepage() {
                     </div>
                 </div>
             </div>
+
+            {/* Event Section */}
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div>
@@ -130,7 +133,9 @@ function Homepage() {
                 </div>
             </div>
 
-            <div className=" mt-10 bg-lgu-green">
+            {/* About San Vicente */}
+
+            <div className=" mt-10 pb-4 bg-lgu-green">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                     <div className="flex items-center pt-5">
                         <div className="flex-grow border-b-4 border-lgu-lime"></div>
@@ -143,7 +148,7 @@ function Homepage() {
                         <div className="flex flex-col md:flex-row items-start">
                             <img
                                 className="h-72 w-auto p-5"
-                                src="https://github.com/aechano/firstReactApp/blob/main/src/385409182_764034482084351_781871156510420035_n.png?raw=true"
+                                src={require("./../res/img/logo.png")}
                                 alt="Your Company"
                             />
                             <p className="text-lgu-lime text-left h-72 w-auto p-10">
@@ -174,7 +179,9 @@ function Homepage() {
                 </div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+            {/* Tourism Section */}
+
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 pb-4">
                 <div className="flex items-center">
                     <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">Your Tourism Escape</h1>
                     <div className="flex-grow border-b-4 border-gray-900"></div>
@@ -189,7 +196,7 @@ function Homepage() {
                             the very essence of tourism blends harmoniously with your blissful journey.
                         </p>
                         <div>
-                            <img className="w-auto h-auto rounded-xl" src="https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/waterfalls.jpg?raw=true" alt="waterfall" />
+                            <img className="w-auto h-auto rounded-xl" src={require("./../res/img/waterfalls.jpg")} alt="waterfall" />
                             <p className="pt-2 text-black font-bold text-center">Mananap Falls</p>
                         </div>
                     </div>
@@ -216,7 +223,9 @@ function Homepage() {
                 </div>
             </div>
 
-            <div className="mt-5 bg-lgu-green">
+            {/* Invest Section */}
+
+            <div className="mt-5 pb-4 bg-lgu-green">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                     <div className="flex items-center pt-5">
                         <div className="flex-grow border-b-4 border-lgu-lime"></div>
@@ -227,7 +236,7 @@ function Homepage() {
 
                     <div className="flex relative">
                         <div className="flex flex-col md:flex-row items-start">
-                            <img className="w-auto h-auto p-10" src="https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/capital_investment%201.png?raw=true" alt="invest_money" />
+                            <img className="w-auto h-auto p-10" src={require("./../res/img/capital_investment.png")} alt="invest_money" />
                             <p className="text-lgu-lime text-left w-auto p-10">
                                 Investing in the tourism potential of San Vicente, Camarines Norte, is like planting the seeds of opportunity in a flourishing garden of natural beauty.
                                 As this captivating destination continues to reveal its hidden gems, your investment not only promises growth and prosperity but also contributes to the sustainable development of a place destined
@@ -258,7 +267,9 @@ function Homepage() {
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+
+            {/* Forum Section */}
+            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 pb-4">
                 <div className="flex items-center">
                     <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">Join the Discussions</h1>
                     <div className="flex-grow border-b-4 border-gray-900"></div>
@@ -269,7 +280,7 @@ function Homepage() {
                         <p className="text-black text-right pt-16 relative">
                             Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
                         </p>
-                        <img className="w-auto h-auto rounded-xl pl-5" src="https://github.com/aechano/Vicenture-SAD/blob/main/src/res/img/Group.png?raw=true" alt="forum_group" />
+                        <img className="w-auto h-auto rounded-xl pl-5" src={require("./../res/img/Group.png")} alt="forum_group" />
                     </div>
                     <div className="absolute left-0 bottom-0 m-5">
                         <button className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
