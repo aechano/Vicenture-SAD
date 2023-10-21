@@ -31,7 +31,7 @@ function Homepage() {
                         <div className="sm:flex-grow sm:border-b-4 sm:border-gray-900"></div>
                     </div>
                     <div className="lg:flex">
-                        <div className="lg:w-[18rem] lg:p-4 mt-5">
+                        <div className="md:flex lg:block lg:w-[18rem] lg:p-4 mt-5">
                             <div className="p-4 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                                 <div className="border-b-2 border-[#0000002d] rounded-t-xl bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold">
                                     Emergency
@@ -46,7 +46,7 @@ function Homepage() {
                                 </div>
                             </div>
 
-                            <div className="p-4 mt-5 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                            <div className="p-4 rounded-2xl lg:mt-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                                 <div className="border-b-2 border-[#0000002d] rounded-t-xl bg-event px-6 py-3 text-white dark:text-neutral-50 font-bold">
                                     September
                                 </div>

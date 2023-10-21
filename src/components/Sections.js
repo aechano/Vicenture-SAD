@@ -41,7 +41,7 @@ export default function Sections(props) {
                 <div className="relative h-full">
                     <div className="sm:flex sm:flex-col sm:items-start lg:flex-row">
                         {props.left || width < 1169 ?
-                            <div className='pt-5 sm:pt-0 sm:w-full'>
+                            <div className='pt-5 sm:pt-0 w-full lg:w-auto'>
                                 <img
                                     className="p-5 rounded-xl sm:h-72 mx-auto"
                                     srcSet={props.src !== undefined ? props.src : ""}
@@ -63,7 +63,7 @@ export default function Sections(props) {
                             {props.button !== undefined ?
                                 <NavLink
                                     className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " +
-                                        (props.left ? "mt-5 sm:mx-7 md:float-right" : "mt-5 sm:mx-7 md:float-left")}
+                                        (props.left ? "mt-5 sm:mx-7 md:items-center lg:float-right" : "mt-5 sm:mx-7 md:float-left")}
                                     to={props.href !== undefined ? props.href : "/"}>
                                     {props.button}
                                     {props.arrow ?
@@ -89,7 +89,7 @@ export default function Sections(props) {
                             }
                         </div>
                         {!props.left && width >= 1169 ?
-                            <div className='pt-5 sm:pt-0 sm:w-full '>
+                            <div className='pt-5 sm:pt-0 w-full lg:w-auto '>
                                 <img
                                     className="sm:h-72 lg:w-auto p-5 rounded-xl mx:auto"
                                     src={props.src !== undefined ? props.src : ""}
