@@ -80,23 +80,23 @@ export default function Sections(props) {
                                 :
                                 null
                             }
-                        </div>  
+                        </div>
                         {!props.left ?
-                                <div className='pt-5 sm:pt-0 sm:w-full '>
-                                    <img
-                                        className="sm:h-72 lg:w-auto p-5 rounded-xl mx:auto"
-                                        src={props.src !== undefined ? props.src : ""}
-                                        alt={props.alt !== undefined ? props.alt : ""}
-                                    />
-                                    {props.altDisplay !== undefined ?
-                                        <p className="pb-3 sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
-                                        :
-                                        null
-                                    }
-                                </div>
-                                :
-                                null
-                        }               
+                            <div className='pt-5 sm:pt-0 sm:w-full '>
+                                <img
+                                    className="sm:h-72 lg:w-auto p-5 rounded-xl mx:auto"
+                                    src={props.src !== undefined ? props.src : ""}
+                                    alt={props.alt !== undefined ? props.alt : ""}
+                                />
+                                {props.altDisplay !== undefined ?
+                                    <p className="pb-3 sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
+                                    :
+                                    null
+                                }
+                            </div>
+                            :
+                            null
+                        }
                     </div>
                 </div>
             </div>
