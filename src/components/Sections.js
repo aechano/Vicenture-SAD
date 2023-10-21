@@ -16,32 +16,32 @@ export default function Sections(props) {
     return (
         <div className={"mt-10 pb-4 " + (props.left ? "bg-lgu-green" : "")}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
-                <div className="flex items-center pt-5">
+                <div className="sm:flex items-center pt-5">
                     {props.left ?
-                        <div className="flex-grow h-1 rounded-full bg-lgu-lime" />
+                        <div className="sm:flex-grow sm:h-1 sm:rounded-full sm:bg-lgu-lime" />
                         :
                         null
                     }
-                    <h1 className={"lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0 " + (props.left ? "text-lgu-lime" : "text-black")}>
+                    <h1 className={"lg:text-3xl md:p-2 font-bold p-0 text-2xl mb-0 mt-0 text-center " + (props.left ? "text-lgu-lime" : "text-black")}>
                         {props.title !== undefined ? props.title : "No Title"}
                     </h1>
                     {!props.left ?
-                        <div className="flex-grow h-1 rounded-full bg-black" />
+                        <div className="sm:flex-grow sm:h-1 sm:rounded-full sm:bg-black" />
                         :
                         null
                     }
                 </div>
                 <div className="relative h-full">
-                    <div className="flex flex-col md:flex-row items-start">
+                    <div className="sm:flex sm:flex-col sm:items-start lg:flex-row">
                         {props.left ?
-                            <div className=''>
+                            <div className='pt-5 sm:pt-0 sm:w-full'>
                                 <img
-                                    className="h-72 w-auto p-5 rounded-xl"
+                                    className="p-5 rounded-xl sm:h-72 mx-auto"
                                     srcSet={props.src !== undefined ? props.src : ""}
                                     alt={props.alt !== undefined ? props.alt : ""}
                                 />
                                 {props.altDisplay !== undefined ?
-                                    <p className="pt-2 text-black font-bold text-center">{props.altDisplay}</p>
+                                    <p className="sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
                                     :
                                     null
                                 }
@@ -49,14 +49,14 @@ export default function Sections(props) {
                             :
                             null
                         }
-                        <div className='h-auto w-9/12 align-middle'>
-                            <p className={"m-auto w-auto p-7 leading-7 " + (props.left ? "text-lgu-lime text-left" : "text-black text-right")}>
+                        <div className='h-auto lg:w-9/12 align-middle'>
+                            <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 " + (props.left ? "text-lgu-lime text-justify lg:text-left" : "text-justify text-black lg:text-right")}>
                                 {props.children !== undefined ? props.children : ""}
                             </p>
                             {props.button !== undefined ?
                                 <NavLink
                                     className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " +
-                                        (props.left ? "float-right" : "float-left")}
+                                        (props.left ? "mt-5 sm:mx-7 md:float-right" : "mt-5 sm:mx-7 md:float-left")}
                                     to={props.href !== undefined ? props.href : "/"}>
                                     {props.button}
                                     {props.arrow ?
@@ -80,23 +80,23 @@ export default function Sections(props) {
                                 :
                                 null
                             }
-                        </div>
+                        </div>  
                         {!props.left ?
-                            <div className=''>
-                                <img
-                                    className="h-72 w-auto p-5 rounded-xl"
-                                    src={props.src !== undefined ? props.src : ""}
-                                    alt={props.alt !== undefined ? props.alt : ""}
-                                />
-                                {props.altDisplay !== undefined ?
-                                    <p className="pt-2 text-black font-bold text-center">{props.altDisplay}</p>
-                                    :
-                                    null
-                                }
-                            </div>
-                            :
-                            null
-                        }
+                                <div className='pt-5 sm:pt-0 sm:w-full '>
+                                    <img
+                                        className="sm:h-72 lg:w-auto p-5 rounded-xl mx:auto"
+                                        src={props.src !== undefined ? props.src : ""}
+                                        alt={props.alt !== undefined ? props.alt : ""}
+                                    />
+                                    {props.altDisplay !== undefined ?
+                                        <p className="pb-3 sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
+                                        :
+                                        null
+                                    }
+                                </div>
+                                :
+                                null
+                        }               
                     </div>
                 </div>
             </div>

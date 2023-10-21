@@ -26,12 +26,12 @@ function Homepage() {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div>
-                    <div className="flex items-center">
-                        <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">What's Happening?</h1>
-                        <div className="flex-grow border-b-4 border-gray-900"></div>
+                    <div className="sm:flex items-center">
+                        <h1 className="text-center font-bold p-0 text-2xl mb-0 mt-0 lg:text-3xl md:p-2">What's Happening?</h1>
+                        <div className="sm:flex-grow sm:border-b-4 sm:border-gray-900"></div>
                     </div>
-                    <div className="flex">
-                        <div className="w-[18rem] p-4 mt-5">
+                    <div className="lg:flex">
+                        <div className="lg:w-[18rem] lg:p-4 mt-5">
                             <div className="p-4 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                                 <div className="border-b-2 border-[#0000002d] rounded-t-xl bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold">
                                     Emergency
@@ -61,18 +61,18 @@ function Homepage() {
                             </div>
                         </div>
 
-                        <div className="flex-1 pt-4 pb-4 pr-4 pl-4">
+                        <div className="lg:flex-1 pt-4 pb-4 pr-4 pl-4">
                             <video class="w-full h-full rounded-2xl shadow-lg p-4" autoplay loop controls muted>
                                 <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
                             </video>
                         </div>
                     </div>
-                    <div className=" border-b-2 border-gray-900"></div>
-                    <div className="flex flex-col md:flex-row justify-between mt-5">
-                        <div className="py-8 px-8 max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                    <div className="border-b-2 border-gray-900"></div>
+                    <div className="flex flex-col mt-5 space-y-4 lg:space-y-0 lg:justify-between lg:flex-row">
+                        <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
-                                    <p className="text-lg text-black font-semibold">
+                                    <p className="text-lg text-black font-semibold"> 
                                         Article Title
                                     </p>
                                     <p className="text-xs text-slate-500">
@@ -86,7 +86,7 @@ function Homepage() {
                             </div>
                         </div>
 
-                        <div className="py-8 px-8 max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                        <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
                                     <p className="text-lg text-black font-semibold">
