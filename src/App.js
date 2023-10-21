@@ -7,7 +7,7 @@ import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
-import Sections from './components/Sections';
+import Banner from './components/Banner';
 
 function App() {
     return (
@@ -21,7 +21,7 @@ function App() {
                         <Route path='/sign-up/lgu' element={<SignUpLGU />} />
                         <Route path='/sign-up/investor' element={<SignUpInvestor />} />
 
-                        <Route path='/debug' element={<Sections />} />
+                        <Route path='/debug' element={<Banner />} />
                     </Routes>
                 </Header>
             </BrowserRouter>
