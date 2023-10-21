@@ -13,6 +13,7 @@ export default function Sections(props) {
      * - href (def:"/" <home page>)
      * This tag will also take textual childs, just like a <p> tag. The default is an empty string.
      */
+    console.log(window.innerWidth);
     return (
         <div className={"mt-10 pb-4 " + (props.left ? "bg-lgu-green" : "")}>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
@@ -33,7 +34,7 @@ export default function Sections(props) {
                 </div>
                 <div className="relative h-full">
                     <div className="sm:flex sm:flex-col sm:items-start lg:flex-row">
-                        {props.left ?
+                        {props.left || window.innerWidth<1169?
                             <div className='pt-5 sm:pt-0 sm:w-full'>
                                 <img
                                     className="p-5 rounded-xl sm:h-72 mx-auto"
@@ -81,7 +82,7 @@ export default function Sections(props) {
                                 null
                             }
                         </div>
-                        {!props.left ?
+                        {!props.left && window.innerWidth>=1169?
                             <div className='pt-5 sm:pt-0 sm:w-full '>
                                 <img
                                     className="sm:h-72 lg:w-auto p-5 rounded-xl mx:auto"
