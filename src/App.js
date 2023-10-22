@@ -10,6 +10,7 @@ import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import Banner from './components/Banner';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
+import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
 
 function App() {
     return (
@@ -25,6 +26,8 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
                         
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
+
+                        <Route path={PATH_NAME.MunicipalityProfile} element={<MunicipalityProfile/>} />
 
                         <Route path='/debug' element={<Banner />} />
                     </Routes>
