@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
+import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 
 export default function SignIn() {
     const [email, setEmail] = useState();
@@ -11,7 +12,7 @@ export default function SignIn() {
 
     function checkCredentials(e){
         e.preventDefault();
-        const promise = axios.get("http://localhost:8080/accounts/"+email);
+        const promise = axios.get(API.SignIn+email);
         const dataPromise = promise.then((response) => response.data)
         dataPromise.then(data => {
             if (data == null){
@@ -23,8 +24,8 @@ export default function SignIn() {
                     console.log(Date.now());
                     setUserAccount(data);
                     console.log(userAccount);
-                    axios.post("http://localhost:8080/accounts", data);
-                    window.location.href = "/";
+                    axios.post(API.SignUp.Other, data);
+                    window.location.href = PATH_NAME.Home;
                 } else {
                     console.log("Sign in failed: Password does not match.");
                 }
@@ -47,7 +48,7 @@ export default function SignIn() {
                 backgroundColor: "#2D5F2ECC"
             }}>
             <a
-                href='/'
+                href={PATH_NAME.Home}
                 className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
             </a>
@@ -96,7 +97,7 @@ export default function SignIn() {
             <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
                 Don't have an account? &nbsp;
                 <NavLink
-                    to='/sign-up'
+                    to={PATH_NAME.Accounts.SignUp.SignUp}
                     className='text-lgu-lime bold'>
                     Sign Up
                 </NavLink>

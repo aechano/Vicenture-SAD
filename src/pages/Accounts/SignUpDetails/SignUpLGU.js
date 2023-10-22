@@ -3,6 +3,8 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { InputBoxAccount } from '../../../components/InputBox';
+import { API, PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+
 
 export default function SignUpLGU() {
 
@@ -12,7 +14,7 @@ export default function SignUpLGU() {
     const data = location.state;
 
     useEffect(() => {
-        if (data === null) navigate("/sign-up");
+        if (data === null) navigate(PATH_NAME.Accounts.SignUp.SignUp);
         else console.log(data);
     }, []);
 
@@ -33,7 +35,7 @@ export default function SignUpLGU() {
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
             
-        axios.post("http://localhost:8080/accounts/lgu", {
+        axios.post(API.SignUp.LGU, {
             "lastName":lastName,
             "firstName":firstName,
             "middleName":middleInitial,
@@ -49,7 +51,7 @@ export default function SignUpLGU() {
                 "accountCreationDate":data.accountCreationDate
             }
         });
-        window.location.href = "/";
+        window.location.href = PATH_NAME.Home;
     }
     return (
         <div
@@ -67,12 +69,12 @@ export default function SignUpLGU() {
                     backgroundColor: "#2D5F2ECC"
                 }}>
                 <a
-                    href='/'
+                    href={PATH_NAME.Home}
                     className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                         Not Now
                 </a>
                 <NavLink
-                    to='/sign-up'
+                    to={PATH_NAME.Accounts.SignUp.SignUp}
                     className='float-left text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                         Back
                 </NavLink>
@@ -150,7 +152,7 @@ export default function SignUpLGU() {
                 <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
                     Already have an account? &nbsp;
                     <NavLink
-                        to='/sign-in'
+                        to={PATH_NAME.Accounts.SignIn}
                         className='text-lgu-lime bold'>
                         Sign In
                     </NavLink>

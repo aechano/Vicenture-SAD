@@ -29,5 +29,13 @@ const PATH_NAME = {
     Messages:"/message",
     PrivacyPolicy:"/privacy-policy"
 }
+const API = {
+    SignUp: {
+        LGU: "http://localhost:8080/accounts/lgu",
+        Investor:"http://localhost:8080/accounts/investor",
+        Other: "http://localhost:8080/accounts"
+    },
+    SignIn: "http://localhost:8080/accounts/",
+}
 
-export { PATH_NAME }
+export { PATH_NAME, API };

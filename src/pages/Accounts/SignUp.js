@@ -3,6 +3,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
+import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 
 export default function SignUp() {
     const [email, setEmail] = useState();
@@ -56,8 +57,8 @@ export default function SignUp() {
                 "accountCreationDate":Date.now()
             });
             
-            axios.post("http://localhost:8080/accounts", userAccount);
-            window.location.href = "/";
+            axios.post(API.SignUp.Other, userAccount);
+            window.location.href = PATH_NAME.Home;
         } else { //if this is an investor or lgu account
             var currentData = {
                 email:email,
@@ -68,9 +69,9 @@ export default function SignUp() {
                 accountCreationDate:Date.now()
             }
             if (role==="2") {
-                navigate("/sign-up/investor", {state:currentData});
+                navigate(PATH_NAME.Accounts.SignUp.INVESTOR, {state:currentData});
             } else {
-                navigate("/sign-up/lgu", {state:currentData});
+                navigate(PATH_NAME.Accounts.SignUp.LGU, {state:currentData});
             }
         }
     }
@@ -90,7 +91,7 @@ export default function SignUp() {
                 backgroundColor: "#2D5F2ECC"
             }}>
             <a
-                href='/'
+                href={PATH_NAME.Home}
                 className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
             </a>
@@ -209,7 +210,7 @@ export default function SignUp() {
             <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
                 Already have an account? &nbsp;
                 <NavLink
-                    to='/sign-in'
+                    to={PATH_NAME.Accounts.SignIn}
                     className='text-lgu-lime bold'>
                     Sign In
                 </NavLink>
