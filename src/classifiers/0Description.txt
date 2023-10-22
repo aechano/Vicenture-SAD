@@ -1,0 +1,11 @@
+CLASSIFIERS
+
+The classes specified in this directory are essentially standard <div> tags.
+They are given different names to enhance code readability. For instance,
+<Body> is used solely for categorization purposes, indicating the primary
+content area of the webpage.
+
+Body.js
+<Body></Body>
+    - This tag serves the purpose of classifying the main content section of
+      the webpage.

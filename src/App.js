@@ -8,6 +8,7 @@ import Homepage from './pages/Homepage';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import Banner from './components/Banner';
+import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 
 function App() {
     return (
@@ -16,10 +17,13 @@ function App() {
                 <Header>
                     <Routes>
                         <Route path='/' element={<Homepage />} />
+
                         <Route path='/sign-in' element={<SignIn />} />
                         <Route path='/sign-up' element={<SignUp />} />
                         <Route path='/sign-up/lgu' element={<SignUpLGU />} />
                         <Route path='/sign-up/investor' element={<SignUpInvestor />} />
+                        
+                        <Route path='/forums' element={<ForumsAndDiscussions />} />
 
                         <Route path='/debug' element={<Banner />} />
                     </Routes>
