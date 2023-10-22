@@ -27,7 +27,7 @@ function App() {
                         
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
 
-                        <Route path={PATH_NAME.MunicipalityProfile} element={<MunicipalityProfile/>} />
+                        <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
 
                         <Route path='/debug' element={<Banner />} />
                     </Routes>
