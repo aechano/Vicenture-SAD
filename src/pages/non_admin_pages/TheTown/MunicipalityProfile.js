@@ -6,7 +6,7 @@ export default function MunicipalityProfile() {
     <>
       <div>
         <Banner>
-          <p className='text-lgu-lime'>Forums and Discussions</p>
+          <p className='text-lgu-lime'>Municipality Profile</p>
         </Banner>
       </div>
     </>
