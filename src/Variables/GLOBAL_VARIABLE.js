@@ -27,7 +27,8 @@ const PATH_NAME = {
     ContactUs: "/contacts",
     Profile:"/user/profile",
     Messages:"/message",
-    PrivacyPolicy:"/privacy-policy"
+    PrivacyPolicy:"/privacy-policy",
+    ForumsAndDiscussions:"/forums"
 }
 const API = {
     SignUp: {

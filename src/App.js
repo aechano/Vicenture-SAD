@@ -9,6 +9,7 @@ import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import Banner from './components/Banner';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
+import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
 
 function App() {
     return (
@@ -16,14 +17,14 @@ function App() {
             <BrowserRouter>
                 <Header>
                     <Routes>
-                        <Route path='/' element={<Homepage />} />
+                        <Route path={PATH_NAME.Home} element={<Homepage />} />
 
-                        <Route path='/sign-in' element={<SignIn />} />
-                        <Route path='/sign-up' element={<SignUp />} />
-                        <Route path='/sign-up/lgu' element={<SignUpLGU />} />
-                        <Route path='/sign-up/investor' element={<SignUpInvestor />} />
+                        <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
+                        <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
+                        <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
+                        <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
                         
-                        <Route path='/forums' element={<ForumsAndDiscussions />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
 
                         <Route path='/debug' element={<Banner />} />
                     </Routes>
