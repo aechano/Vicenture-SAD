@@ -8,7 +8,7 @@ function Footer() {
 
           <footer>
             <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-              <div class="md:flex md:justify-between">
+              <div class="lg:flex lg:justify-between">
                 <div class="mb-6 md:mb-0">
                   <a href="https://flowbite.com/" class="flex items-center">
                     <img src={require('./../res/img/logo.png')} class="h-12 w-auto mt-5 pr-2" alt="FlowBite Logo" />
@@ -26,8 +26,8 @@ function Footer() {
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                   <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-lgu-lime">Quick Links</h2>
-                    <ul class="text-gray-500 dark:text-lgu-lime font-medium">
+                    <h2 class="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Quick Links</h2>
+                    <ul class="text-lgu-lime dark:text-lgu-lime font-medium">
                       <li class="mb-2">
                         <a href="https://flowbite.com/" class="hover:underline">The Town</a>
                       </li>
@@ -40,8 +40,8 @@ function Footer() {
                     </ul>
                   </div>
                   <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-lgu-lime">Feedbacks</h2>
-                    <ul class="text-gray-500 dark:text-lgu-lime font-medium">
+                    <h2 class="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Feedbacks</h2>
+                    <ul class="text-lgu-lime dark:text-lgu-lime font-medium">
                       <li class="mb-2">
                         <a href="https://github.com/themesberg/flowbite" class="hover:underline ">Contact Us</a>
                       </li>
@@ -54,8 +54,8 @@ function Footer() {
                     </ul>
                   </div>
                   <div>
-                    <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-lgu-lime">Contacts</h2>
-                    <ul class="text-gray-500 dark:text-lgu-lime font-medium">
+                    <h2 class="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Contacts</h2>
+                    <ul class="text-lgu-lime dark:text-lgu-lime font-medium">
                       <li class="mb-2">
                         <p>0912-345-6789</p>
                       </li>
@@ -67,26 +67,25 @@ function Footer() {
                 </div>
               </div>
               <hr class="my-6 border-gray-200 sm:mx-auto dark:border-lgu-lime lg:my-8" />
-              <div class="sm:flex sm:items-center sm:justify-between">
-                <span class="text-sm text-gray-500 sm:text-center dark:text-lgu-lime">Copyright Ⓒ 2023. Municipal Government of San Vicente, Camarines Norte | All Rights Reserved.
+              <div class="lg:flex lg:items-center lg:justify-between">
+                <span class="text-sm text-lgu-lime sm:text-center dark:text-lgu-lime">Copyright Ⓒ 2023. Municipal Government of San Vicente, Camarines Norte | All Rights Reserved.
                 </span>
-                <div class="flex mt-4 sm:justify-center sm:mt-0">
-                  <h1 className="text-sm text-gray-500 sm:text-center dark:text-lgu-lime m-2">Contact Us</h1>
-                  <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+                <div class="flex mt-4 sm:justify-start lg:mt-0">
+                  <a href="#" class="text-lgu-lime hover:text-gray-900 dark:hover:text-white">
                     <img
-                      className="w-auto h-7 px-2 "
+                      className="w-auto h-7 pr-2 "
                       src={require('./../res/img/x.png')}
                     />
                   </a>
                   <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                     <img
-                      className="w-auto h-7 px-2"
+                      className="w-auto h-7 pr-2"
                       src={require('./../res/img/facebook.png')}
                     />
                   </a>
                   <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
                     <img
-                      className="w-auto h-7 px-2"
+                      className="w-auto h-7 pr-2"
                       src={require('./../res/img/instagram.png')}
                     />
                   </a>
