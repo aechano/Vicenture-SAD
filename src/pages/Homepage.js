@@ -11,15 +11,13 @@ function Homepage() {
                 src={require("./../res/img/LGU-PERS.jpg")}
                 alt="Image of San Vicente LGU Municipal Building"
                 searchBar={true}
-                >
-                <div className="text-white justify-center items-center text-center">
-                    <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-                        Welcome to San Vicente,
-                    </h1>
-                    <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mt-0">
-                        Camarines Norte
-                    </h1>
-                </div>
+            >
+                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
+                    Welcome to San Vicente,
+                </h1>
+                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mt-0">
+                    Camarines Norte
+                </h1>
             </Banner>
 
             {/* Event Section */}
@@ -72,7 +70,7 @@ function Homepage() {
                         <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
-                                    <p className="text-lg text-black font-semibold"> 
+                                    <p className="text-lg text-black font-semibold">
                                         Article Title
                                     </p>
                                     <p className="text-xs text-slate-500">
