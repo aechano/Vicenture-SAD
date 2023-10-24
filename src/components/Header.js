@@ -1,9 +1,9 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Footer from './Footer';
-import { PATH_NAME } from './../Variables/GLOBAL_VARIABLE';
+import { NO_HEADER, PATH_NAME } from './../Variables/GLOBAL_VARIABLE';
 
 const navigation = [
     { name: 'Home', href: PATH_NAME.Home },
@@ -33,6 +33,9 @@ const navigation = [
 ];
 
 export default function Header(props) {
+
+    const location = useLocation();
+    const [show, setShow] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
 
     const handleDropdown = (name) => {
@@ -44,10 +47,15 @@ export default function Header(props) {
             setOpenDropdown(name);
         }
     };
+    
+    useEffect(() => {
+        setShow(!NO_HEADER.includes(location.pathname));
+        console.log("currently in: "+location.pathname);
+    }, [location]);
 
     return (
         <>
-            {!PATH_NAME.Accounts.list.includes(window.location.pathname) ?
+            {show ?
                 <>
                     <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20">
                         {({ open }) => (
@@ -191,12 +199,12 @@ export default function Header(props) {
                                                         </Menu.Item>
                                                         <Menu.Item>
                                                             {({ active }) => (
-                                                                <a
-                                                                    href={PATH_NAME.Accounts.SignIn}
+                                                                <NavLink
+                                                                    to={PATH_NAME.Accounts.SignIn}
                                                                     className='block px-4 py-2 text-sm text-gray-700'
                                                                 >
                                                                     Sign out
-                                                                </a>
+                                                                </NavLink>
                                                             )}
                                                         </Menu.Item>
                                                     </Menu.Items>
@@ -225,9 +233,10 @@ export default function Header(props) {
                     <div className='mt-20' />
                 </>
                 :
-                null}
+                null
+            }
             {props.children}
-            {!PATH_NAME.Accounts.list.includes(window.location.pathname) ? <Footer /> : null}
+            <Footer />
         </>
     )//<Footer/>
 }

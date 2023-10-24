@@ -13,7 +13,7 @@ export default function SignIn() {
     function checkCredentials(e){
         e.preventDefault();
         const promise = axios.get(API.SignIn+email);
-        const dataPromise = promise.then((response) => response.data)
+        const dataPromise = promise.then((response) => response.data);
         dataPromise.then(data => {
             if (data == null){
                 console.log("Sign in failed: Email not found.")
@@ -25,7 +25,7 @@ export default function SignIn() {
                     setUserAccount(data);
                     console.log(userAccount);
                     axios.post(API.SignUp.Other, data);
-                    window.location.href = PATH_NAME.Home;
+                    navigate(PATH_NAME.Home);
                 } else {
                     console.log("Sign in failed: Password does not match.");
                 }
@@ -47,11 +47,11 @@ export default function SignIn() {
             style={{
                 backgroundColor: "#2D5F2ECC"
             }}>
-            <a
-                href={PATH_NAME.Home}
+            <NavLink
+                to={PATH_NAME.Home}
                 className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
-            </a>
+            </NavLink>
             <h1
                 className='text-white w-full my-20'
                 >

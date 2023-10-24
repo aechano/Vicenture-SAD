@@ -50,7 +50,7 @@ export default function SignUpLGU() {
                 "accountCreationDate":data.accountCreationDate
             }
         });
-        window.location.href = PATH_NAME.Home;
+        navigate(PATH_NAME.Home);
     }
     return (
         <div
@@ -67,11 +67,11 @@ export default function SignUpLGU() {
                 style={{
                     backgroundColor: "#2D5F2ECC"
                 }}>
-                <a
-                    href={PATH_NAME.Home}
+                <NavLink
+                    to={PATH_NAME.Home}
                     className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                         Not Now
-                </a>
+                </NavLink>
                 <NavLink
                     to={PATH_NAME.Accounts.SignUp.SignUp}
                     className='float-left text-lgu-lime p-5 w-fit mr-0 ml-auto'>

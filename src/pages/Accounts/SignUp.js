@@ -58,7 +58,7 @@ export default function SignUp() {
             });
             
             axios.post(API.SignUp.Other, userAccount);
-            window.location.href = PATH_NAME.Home;
+            navigate(PATH_NAME.Home);
         } else { //if this is an investor or lgu account
             var currentData = {
                 email:email,
@@ -90,11 +90,11 @@ export default function SignUp() {
             style={{
                 backgroundColor: "#2D5F2ECC"
             }}>
-            <a
-                href={PATH_NAME.Home}
+            <NavLink
+                to={PATH_NAME.Home}
                 className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
-            </a>
+            </NavLink>
             <h1
                 className='text-white w-full my-20'
                 >
