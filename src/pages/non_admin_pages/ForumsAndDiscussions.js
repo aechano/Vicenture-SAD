@@ -37,36 +37,22 @@ export default function ForumsAndDiscussions() {
       <Banner bottomLeft={true} searchBar={true}>
         <h1>Forums and Discussions</h1>
       </Banner>
-      <Body className="mx-5">
-        <WebpagePath previous={[{ title: "Home", to: "/" },]} className="pt-5"> Forums and Discussions </WebpagePath>
-        <div className='w-fit rounded-full ms-5 my-10'>
-          <NavLink className='bg-lgu-yellow text-black w-fit p-3 rounded-full'>
-            +&nbsp;&nbsp;&nbsp;Create A Post
-          </NavLink>
+      <div className='flex'>
+        <div className='w-80 drop-shadow-md bg-white h-screen'>
+
         </div>
-        {
-          contents.map((content, index) => (
-            <div key={content.contentID} className='flex h-60 bg-gray-100 rounded-3xl my-5 drop-shadow-md hover:brightness-95'>
-              {content.images ?
-                <img
-                  src={content.images[0].src}
-                  alt={content.images[0].alt}
-                  className='h-full w-60 rounded-l-3xl' />
-                :
-                null
-              }
-              <div className='flex-initial w-full ms-5 mt-5'>
-                <h1 className='font-bold'>
-                  {content.title}
-                </h1>
-                <p>
-                  {content.body}
-                </p>
-              </div>
-            </div>
-          ))
-        }
-      </Body>
+        <Body className="mx-5">
+          <WebpagePath previous={[{ title: "Home", to: "/" },]} className="pt-5"> Forums and Discussions </WebpagePath>
+          <div className='w-fit rounded-full ms-5 my-10'>
+            <NavLink className='bg-lgu-yellow text-black w-fit p-3 rounded-full'>
+              +&nbsp;&nbsp;&nbsp;Create A Post
+            </NavLink>
+          </div>
+          <div>
+
+          </div>
+        </Body>
+      </div>
     </>
   )
 }
