@@ -13,11 +13,11 @@ export default function Banner(props) {
 
     return (
         <div className="relative flex items-center justify-center">
-            <div className={"w-full relative overflow-hidden "+(props.bottomLeft?"h-40":"h-full")}>
+            <div className={"w-full relative overflow-hidden "+(props.bottomLeft?"h-80":"h-full")}>
                 <img
                     src={props.src !== undefined ? props.src : require("./../res/img/LGU-PERS.jpg")}
                     alt={props.alt !== undefined ? props.alt : "Banner Image"}
-                    className={"w-full object-cover "+(props.bottomLeft?"h-40":"h-screen lg:h-auto")}
+                    className={"w-full object-cover "+(props.bottomLeft?"h-80":"h-screen lg:h-auto")}
                 />
                 <div className='bg-opacity-50 bg-black inset-0 absolute flex flex-col justify-center items-center my-auto'>
                     {props.bottomLeft !== undefined && props.bottomLeft ?
