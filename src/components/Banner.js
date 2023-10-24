@@ -14,6 +14,8 @@ export default function Banner(props) {
     src (Optional) - path to local storage of the image. Note: Use `require()` function.
     alt (Conditional Required) - alternate text for the image. Must use when using a
                     non-default image to make alt text accurate.
+
+    This takes a children component where it can be an <h1> tag of what text to pass onto here.
     */
 
     const [search, setSearch] = useState('');
