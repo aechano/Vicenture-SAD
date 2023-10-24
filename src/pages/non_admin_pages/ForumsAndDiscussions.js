@@ -35,7 +35,7 @@ export default function ForumsAndDiscussions() {
   ]
   return (
     <>
-      <Banner bottomLeft={true} searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home },]}>
+      <Banner bottomLeft={true} searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home },{title:"The Town"}]}>
         <h1>Forums and Discussions</h1>
       </Banner>
       <div className='flex'>
