@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { PATH_NAME } from '../Variables/GLOBAL_VARIABLE';
+import WebpagePath from './WebpagePath';
 
 export default function Banner(props) {
     const [search, setSearch] = useState('');
@@ -13,11 +15,11 @@ export default function Banner(props) {
 
     return (
         <div className="relative flex items-center justify-center">
-            <div className={"w-full relative overflow-hidden "+(props.bottomLeft?"h-80":"h-full")}>
+            <div className={"w-full relative overflow-hidden " + (props.bottomLeft ? "h-80" : "h-full")}>
                 <img
                     src={props.src !== undefined ? props.src : require("./../res/img/LGU-PERS.jpg")}
                     alt={props.alt !== undefined ? props.alt : "Banner Image"}
-                    className={"w-full object-cover "+(props.bottomLeft?"h-80":"h-screen lg:h-auto")}
+                    className={"w-full object-cover " + (props.bottomLeft ? "h-80" : "h-screen lg:h-auto")}
                 />
                 <div className='bg-opacity-50 bg-black inset-0 absolute flex flex-col justify-center items-center my-auto'>
                     {props.bottomLeft !== undefined && props.bottomLeft ?
@@ -28,7 +30,7 @@ export default function Banner(props) {
                         </div>
                     }
                     {props.searchBar ?
-                        <form className={"w-7/12 lg:w-5/12 "+(props.bottomLeft?"my-auto":"mt-5")}>
+                        <form className={"w-7/12 lg:w-5/12 " + (props.bottomLeft ? "my-auto" : "mt-5")}>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -52,9 +54,16 @@ export default function Banner(props) {
                         null
                     }
                     {props.bottomLeft !== undefined && props.bottomLeft ?
-                        <div className="text-lgu-lime text-left mt-auto w-full text-5xl mb-5 pl-5 ">
-                            {props.children}
-                        </div>
+                        <>
+                            <div className="text-lgu-lime text-left mt-auto w-full text-5xl mb-5 pl-5 ">
+                                {props.breadcrumbs != undefined ?
+                                    <WebpagePath previous={props.breadcrumbs} className="text-base" />
+                                    :
+                                    null
+                                }
+                                {props.children}
+                            </div>
+                        </>
                         :
                         null
                     }

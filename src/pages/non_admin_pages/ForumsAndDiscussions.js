@@ -35,7 +35,7 @@ export default function ForumsAndDiscussions() {
   ]
   return (
     <>
-      <Banner bottomLeft={true} searchBar={true}>
+      <Banner bottomLeft={true} searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home },]}>
         <h1>Forums and Discussions</h1>
       </Banner>
       <div className='flex'>
@@ -43,7 +43,6 @@ export default function ForumsAndDiscussions() {
 
         </div>
         <Body className="mx-5">
-          <WebpagePath previous={[{ title: "Home", to: PATH_NAME.Home },]} className="pt-5"> Forums and Discussions </WebpagePath>
           <div className='w-fit rounded-full ms-5 my-10'>
             <NavLink className='bg-lgu-yellow text-black w-fit p-3 rounded-full'>
               +&nbsp;&nbsp;&nbsp;Create A Post
