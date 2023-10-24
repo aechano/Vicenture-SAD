@@ -11,6 +11,7 @@ function Homepage() {
                 src={require("./../res/img/LGU-PERS.jpg")}
                 alt="Image of San Vicente LGU Municipal Building"
                 searchBar={true}
+                bannerType="special"
             >
                 <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
                     Welcome to San Vicente,
