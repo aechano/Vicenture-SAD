@@ -28,7 +28,8 @@ const PATH_NAME = {
     Profile:"/user/profile",
     Messages:"/message",
     PrivacyPolicy:"/privacy-policy",
-    ForumsAndDiscussions:"/forums"
+    ForumsAndDiscussions:"/forums",
+    Survey:"/surveys"
 }
 const API = {
     SignUp: {
