@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { PATH_NAME } from '../Variables/GLOBAL_VARIABLE';
 import WebpagePath from './WebpagePath';
 
 export default function Banner(props) {
@@ -15,7 +14,7 @@ export default function Banner(props) {
     alt (Conditional Required) - alternate text for the image. Must use when using a
                     non-default image to make alt text accurate.
 
-    This takes a children component where it can be an <h1> tag of what text to pass onto here.
+    This takes a children component where it can be a <p> tag of what text to pass onto here.
     */
 
     const [search, setSearch] = useState('');
@@ -90,9 +89,9 @@ export default function Banner(props) {
                     {/*Bottom-left text for common-type banners*/}
                     {isCommonBanner ?
                         <>
-                            <div className="text-lgu-lime text-left mt-auto w-full text-5xl mb-5 pl-5 ">
+                            <div className="text-lgu-lime text-left mt-auto w-full text-5xl mb-5 pl-5">
                                 {/*If common-type banners has a breadcrumb attribute, include that breadcrumb using <WebpagePath> component*/}
-                                {props.breadcrumbs != undefined ?
+                                {props.breadcrumbs !== undefined ?
                                     <WebpagePath previous={props.breadcrumbs} className="text-base" />
                                     :
                                     null

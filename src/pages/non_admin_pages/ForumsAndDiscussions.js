@@ -1,6 +1,5 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import WebpagePath from '../../components/WebpagePath'
 import Banner from '../../components/Banner'
 import Body from '../../classifiers/Body'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
@@ -36,7 +35,7 @@ export default function ForumsAndDiscussions() {
   return (
     <>
       <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
-        <h1>Forums and Discussions</h1>
+        <p>Forums and Discussions</p>
       </Banner>
       <div className='flex'>
         <div className='w-80 drop-shadow-md bg-white h-screen'>
