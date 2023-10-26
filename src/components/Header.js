@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/reac
 import { NavLink, useLocation } from 'react-router-dom';
 import Footer from './Footer';
 import { NO_HEADER, PATH_NAME } from './../Variables/GLOBAL_VARIABLE';
-
+import 'tailwindcss/tailwind.css'; 
 const navigation = [
     { name: 'Home', href: PATH_NAME.Home },
     {
@@ -64,24 +64,24 @@ export default function Header(props) {
                                     <div className="relative flex h-20 items-center justify-between">
                                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                             {/* Mobile menu button*/}
-                                            <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                            <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-lgu-lime">
                                                 <span className="absolute -inset-0.5" />
                                                 <span className="sr-only">Open main menu</span>
                                                 {open ? (
                                                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
                                                 ) : (
-                                                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                                                    <Bars3Icon className="block h-6 w-6 sm:hidden" aria-hidden="true" />
                                                 )}
                                             </Disclosure.Button>
                                         </div>
                                         <div className="flex flex-1 items-center justify-between">
                                             <div className="flex flex-shrink-0 items-center">
                                                 <img
-                                                    className="h-12 w-auto"
+                                                    className="h-12 w-auto hidden sm:block"
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="text-lgu-lime text-lg ml-2 font-bold">LGU San Vicente</span>
+                                                <span className="text-lgu-lime text-lg ml-10 sm:ml-2 font-bold">LGU San Vicente</span>
                                             </div>
                                             <div className="hidden sm:block">
                                                 <div className="flex space-x-4 mr-10">
