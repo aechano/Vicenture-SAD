@@ -11,6 +11,7 @@ import Banner from './components/Banner';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
+import ContactUs from './pages/non_admin_pages/ContactUs';
 
 function App() {
     return (
@@ -28,6 +29,8 @@ function App() {
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
 
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
+
+                        <Route path={PATH_NAME.ContactUs} element={<ContactUs/>} />
 
                         <Route path='/debug' element={<Banner />} />
                     </Routes>
