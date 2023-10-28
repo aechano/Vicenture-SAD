@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/reac
 import { NavLink, useLocation } from 'react-router-dom';
 import Footer from './Footer';
 import { NO_HEADER, PATH_NAME } from './../Variables/GLOBAL_VARIABLE';
-import 'tailwindcss/tailwind.css'; 
+import 'tailwindcss/tailwind.css';
 const navigation = [
     { name: 'Home', href: PATH_NAME.Home },
     {
@@ -28,6 +28,7 @@ const navigation = [
             { name: 'Activities', href: PATH_NAME.Tourism.Activities }
         ],
     },
+    { name: 'Services', href: "#" },
     { name: 'Transparency', href: PATH_NAME.Transparency },
     { name: 'Contact Us', href: PATH_NAME.ContactUs },
 ];
@@ -37,6 +38,7 @@ export default function Header(props) {
     const location = useLocation();
     const [show, setShow] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
+    const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
 
     const handleDropdown = (name) => {
         if (openDropdown === name) {
@@ -47,10 +49,10 @@ export default function Header(props) {
             setOpenDropdown(name);
         }
     };
-    
+
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
-        console.log("currently in: "+location.pathname);
+        console.log("currently in: " + location.pathname);
     }, [location]);
 
     return (
@@ -62,28 +64,28 @@ export default function Header(props) {
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                                     <div className="relative flex h-20 items-center justify-between">
-                                        <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                                        <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                                             {/* Mobile menu button*/}
                                             <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-lgu-lime">
                                                 <span className="absolute -inset-0.5" />
                                                 <span className="sr-only">Open main menu</span>
                                                 {open ? (
-                                                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                                                    <XMarkIcon className="block h-6 w-6 lg:hidden" aria-hidden="true" />
                                                 ) : (
-                                                    <Bars3Icon className="block h-6 w-6 sm:hidden" aria-hidden="true" />
+                                                    <Bars3Icon className="block h-6 w-6 lg:hidden" aria-hidden="true" />
                                                 )}
                                             </Disclosure.Button>
                                         </div>
                                         <div className="flex flex-1 items-center justify-between">
                                             <div className="flex flex-shrink-0 items-center">
                                                 <img
-                                                    className="h-12 w-auto hidden sm:block"
+                                                    className="h-12 w-auto hidden lg:block"
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="text-lgu-lime text-lg ml-10 sm:ml-2 font-bold">LGU San Vicente</span>
+                                                <span className="hidden sm:block text-lgu-lime text-lg ml-10 lg:ml-2 font-bold">LGU San Vicente</span>
                                             </div>
-                                            <div className="hidden sm:block">
+                                            <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-10">
                                                     {navigation.map((item) =>
                                                         item.subItems ? ( // Check if it's a dropdown item
@@ -213,18 +215,56 @@ export default function Header(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <Disclosure.Panel className="sm:hidden">
-                                    <div>
-                                        {navigation.map((item) => (
-                                            <div key={item.name} className="group">
-                                                <NavLink
-                                                    to={item.href}
-                                                    className={'block rounded-md px-3 py-2 text-base font-medium text-lgu-lime hover:text-white'}
-                                                >
-                                                    {item.name}
-                                                </NavLink>
-                                            </div>
-                                        ))}
+                                <Disclosure.Panel>
+                                    <div className="block">
+                                        <div className="flex flex-col mr-10">
+                                            {navigation.map((item) =>
+                                                item.subItems ? ( // Check if it's a dropdown item
+                                                    <div key={item.name} className="group">
+                                                        <button
+                                                            onClick={() => handleDropdown(item.name)}
+                                                            className='relative rounded-md px-3 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
+                                                        >
+                                                            {item.name}
+                                                            <ChevronDownIcon
+                                                                className={
+                                                                    'w-au h-5 ml-2 text-lgu-lime hover:text-white inline-flex ' +
+                                                                    (openDropdown === item.name ? 'transform rotate-180' : '')
+                                                                }
+                                                            />
+                                                        </button>
+                                                        {openDropdown === item.name && (
+                                                            <div className="py-2 bg-lgu-green absolute right-0 rounded-md">
+                                                                {item.subItems.map((subItem) => (
+                                                                    <NavLink
+                                                                        key={subItem.name}
+                                                                        to={subItem.href}
+                                                                        className={({ isActive }) => {
+                                                                            return "block rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
+                                                                                (isActive ? "font-medium" : "")
+                                                                        }}
+                                                                    >
+                                                                        {subItem.name}
+                                                                    </NavLink>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ) : (
+                                                    <NavLink
+                                                        key={item.name}
+                                                        to={item.href}
+                                                        className={({ isActive }) => {
+                                                            return 'block rounded-md px-3 py-2 text-sm text-lgu-lime  hover:text-white' +
+                                                                (isActive ? 'font-medium' : '')
+                                                        }}
+
+                                                    >
+                                                        {item.name}
+                                                    </NavLink>
+                                                )
+                                            )}
+                                        </div>
                                     </div>
                                 </Disclosure.Panel>
                             </>
