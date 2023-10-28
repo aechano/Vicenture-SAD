@@ -101,7 +101,7 @@ export default function AboutSanVicente() {
       {/* Cards Section */}
       <div className="w-full p-2 flex flex-wrap justify-center">
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other_info">
+          <Link to="/other-info">
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
@@ -120,7 +120,7 @@ export default function AboutSanVicente() {
         </div>
 
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other_info">
+          <Link to="/other-info">
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
@@ -141,7 +141,7 @@ export default function AboutSanVicente() {
 
       <div className="w-full p-2 flex flex-wrap justify-center mt-1">
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other_info">
+          <Link to="/other-info">
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
@@ -160,7 +160,7 @@ export default function AboutSanVicente() {
         </div>
 
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other_info">
+          <Link to="/other-info">
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img

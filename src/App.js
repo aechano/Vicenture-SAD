@@ -15,6 +15,7 @@ import ContactUs from './pages/non_admin_pages/ContactUs';
 import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
 import MunicipalityPrograms from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
 import History from './pages/non_admin_pages/TheTown/History';
+import OtherInfo from './pages/non_admin_pages/TheTown/OtherInfo';
 
 function App() {
     return (
@@ -33,6 +34,7 @@ function App() {
 
                         <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
                         <Route path={PATH_NAME.TheTown.History} element={<History/>} />
+                        <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo/>} />
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs/>} />
