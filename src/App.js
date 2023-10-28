@@ -7,10 +7,10 @@ import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
-import Banner from './components/Banner';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
+import Sidebar from './components/Sidebar';
 
 function App() {
     return (
@@ -29,7 +29,7 @@ function App() {
 
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
 
-                        <Route path='/debug' element={<Banner />} />
+                        <Route path='/debug' element={<Sidebar />} />
                     </Routes>
                 </Header>
             </BrowserRouter>
