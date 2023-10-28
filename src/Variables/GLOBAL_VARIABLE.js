@@ -17,6 +17,7 @@ const PATH_NAME = {
         ElectedOfficials:"/the-town/officials",
         Offices:"/the-town/offices",
         Citizen:"/the-town/citizens-charter",
+        History: "/history",
     },
     Tourism: {
         Tourism: "/tourism",

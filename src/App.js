@@ -1,4 +1,3 @@
-
 import './index.css';
 import Header from './components/Header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -10,7 +9,10 @@ import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
-import Sidebar from './components/Sidebar';
+import ContactUs from './pages/non_admin_pages/ContactUs';
+import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
+import MunicipalityPrograms from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
+import History from './pages/non_admin_pages/TheTown/History';
 
 function App() {
     return (
@@ -27,9 +29,11 @@ function App() {
                         
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
 
+                        <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
+                        <Route path={PATH_NAME.TheTown.History} element={<History/>} />
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
-
-                        <Route path='/debug' element={<Sidebar />} />
+                        <Route path={PATH_NAME.ContactUs} element={<ContactUs/>} />
+                        <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
                     </Routes>
                 </Header>
             </BrowserRouter>
