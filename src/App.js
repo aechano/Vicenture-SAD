@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignUp from './pages/Accounts/SignUp';
 import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
+import Banner from './components/Banner';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
@@ -13,6 +14,7 @@ import ContactUs from './pages/non_admin_pages/ContactUs';
 import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
 import MunicipalityPrograms from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
 import History from './pages/non_admin_pages/TheTown/History';
+import PlacesToVisit from './pages/non_admin_pages/Tourism/PlacesToVisit';
 
 function App() {
     return (
@@ -34,6 +36,11 @@ function App() {
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs/>} />
                         <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit/>} />
+                        
+                        
+
+                        <Route path='/debug' element={<Banner />} />
                     </Routes>
                 </Header>
             </BrowserRouter>
