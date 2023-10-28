@@ -80,13 +80,22 @@ export default function ForumsAndDiscussions() {
       title: "Nahire Ako Bilang Isang Coach ng LGU Sports Team!",
       body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
     },
+    {
+      username: "Th3Skyler08",
+      userPFP: require("./../../res/debug_img/userpfp5.png"),
+      uploadTimestamp: Date.now() - 3 * 4 * 7 * 24 * 60 * 60 * 1000, // 1 second: 1000
+      topic: "Resorts",
+      title: "Check Out My Resort Here in San Vicente; Check In Now!",
+      body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
+    },
   ]
   return (
     <>
-      <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen pt-10 ps-10 mt-20'>
+      <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen pt-10 ps-10 mt-20'> {/** This is the sidebar */}
         <h1 className='text-lgu-green text-xl'>
           Topics
           {category.map((category) => {
+            {/** iterate through category list and display each category using the DropDown component */ }
             return (
               <DropDown
                 key={category.id}
@@ -99,25 +108,27 @@ export default function ForumsAndDiscussions() {
             )
           }
           )}
-          <div className='w-11/12 h-1 bg-lgu-green rounded-full mt-5' />
+          <div className='w-11/12 h-1 bg-lgu-green rounded-full mt-5' /> {/** just a line below all the categories */}
         </h1>
       </div>
-      <div className='flex'>
+      <div className='flex'> {/** This is the contents beside the sidebar */}
         <div className='grow overflow-y-auto ml-80'>
           <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
             <p>Forums and Discussions</p>
           </Banner>
           <Body className="mx-5">
             <div className='w-fit rounded-full ms-5 my-10'>
-              <NavLink className='bg-lgu-yellow text-black w-fit p-3 rounded-full'>
+              <NavLink className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
                 +&nbsp;&nbsp;&nbsp;Create A Post
               </NavLink>
             </div>
             <div>
               {
-                contents.map((content, index)=>(
-                  <Post key={index} content={content}/>
-                ))
+                contents.map((content, index) => {  {/** Iterate through the contents and use Post component to display it */}
+                  return (
+                    <Post key={index} content={content} />
+                  )
+                })
               }
             </div>
           </Body>
@@ -160,19 +171,24 @@ function DropDown({ show, setShow, category, items, icon }) {
 }
 
 function Post({ content }) {
+  /**
+   * This is a component used to display contents specific only to Forums and Discussions.
+   * Attributes:
+      * Contents
+   */
   return (
     <div className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5">
       <table className="table-auto select-none">
         <tbody>
           <tr className=''>
-            <td className='w-16 h-16'>
+            <td className='w-16 h-16'> {/** Display the user pfp in the upperleft-most cell */}
               <img
                 src={content.userPFP}
                 alt={"Profile picture of " + content.username}
                 className='rounded-full w-10/12 h-10/12 mx-auto my-auto'
               />
             </td>
-            <td>
+            <td> {/** Display upload information beside the image such as: username, upload timestamp, and the topic */}
               <div className='mb-2'>
                 <p><span>{content.username}</span>&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(content.uploadTimestamp)}</span></p>
                 <p>{content.topic}</p>
@@ -180,12 +196,12 @@ function Post({ content }) {
             </td>
           </tr>
           <tr>
-            <td></td>
-            <td>{content.title}</td>
+            <td></td> {/** Keep the cells below the image empty */}
+            <td>{content.title}</td> {/** Display the title of the content */}
           </tr>
           <tr>
-            <td></td>
-            <td>{content.body.substring(0, 400).trim() + "..."}</td>
+            <td></td> {/** Keep the cells below the image empty */}
+            <td>{content.body.substring(0, 400).trim() + "..."}</td> {/** Display the first 400 characters of the body, trim it if it ends with a space, and add an ellipsis */}
           </tr>
         </tbody>
       </table>
@@ -194,6 +210,9 @@ function Post({ content }) {
 }
 
 function timeAgo(timestamp) {
+  /**
+   * This is a function to convert timestamps into human-readable text
+   */
   const date = new Date(timestamp);
   const currentTime = new Date().getTime();
   const timestampTime = date.getTime();
