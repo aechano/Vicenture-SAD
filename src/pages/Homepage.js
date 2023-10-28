@@ -1,6 +1,7 @@
 import React from "react";
 import Sections from "../components/Sections";
 import Banner from "../components/Banner";
+import BackToTop from "../components/BackToTop";
 
 
 function Homepage() {
