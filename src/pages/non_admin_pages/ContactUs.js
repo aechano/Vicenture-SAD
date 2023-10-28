@@ -36,7 +36,7 @@ export default function ContactUs() {
     }
   }
 
-  const contacts = [
+  var contacts = [
     {
       key: 1,
       offices: "Municipal Treasurer's Office",

@@ -5,7 +5,7 @@ import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
 
 
-export default function PlacesToVisit() {
+export default function Activities() {
     const [search, setSearch] = useState('');
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -17,49 +17,47 @@ export default function PlacesToVisit() {
 
     var contents = [
         {
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/mapIcon.png"),
+            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             rate: "4.7",
             vote: "213",
             comments: "16",
         },
         {
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/mapIcon.png"),
+            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             rate: "4.7",
             vote: "213",
             comments: "16",
         },
         {
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/mapIcon.png"),
+            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             rate: "4.7",
             vote: "213",
             comments: "16",
         },
         {
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
+            pic: require("../../../res/img/mapIcon.png"),
+            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             vote: "213",
             comments: "16",
         },
         {
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
+            pic: require("../../../res/img/mapIcon.png"),
+            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             vote: "213",
             comments: "16",
         },
         {
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/mapIcon.png"),
+            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             rate: "4.7",
             vote: "213",
             comments: "16",
@@ -69,7 +67,7 @@ export default function PlacesToVisit() {
     return (
         <>
             <Banner bannerType="common" src={require("../../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }]}>
-                <p>Places to Visit</p>
+                <p>Activities</p>
             </Banner>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='flex items-center justify-center'>
