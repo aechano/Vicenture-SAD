@@ -31,7 +31,8 @@ const PATH_NAME = {
     PrivacyPolicy:"/privacy-policy",
     ForumsAndDiscussions:"/forums",
     Survey:"/surveys",
-    Debug:"/debug"
+    Debug:"/debug",
+    Articles:"/articles"
 }
 const API = {
     SignUp: {
