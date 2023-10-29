@@ -49,6 +49,7 @@ export default function ForumsAndDiscussions() {
      */
     var contents = [
         {
+            contentID: 1002,
             username: "Ghe3lo_",
             userPFP: require("./../../res/debug_img/userpfp1.png"),
             uploadTimestamp: Date.now() - 2 * 60 * 1000, // 1 second: 1000
@@ -58,6 +59,7 @@ export default function ForumsAndDiscussions() {
             bodyImgs: []
         },
         {
+            contentID: 1001,
             username: "X3_nia",
             userPFP: require("./../../res/debug_img/userpfp2.png"),
             uploadTimestamp: Date.now() - 23 * 60 * 60 * 1000, // 1 second: 1000
@@ -67,6 +69,7 @@ export default function ForumsAndDiscussions() {
             bodyImgs: [require("./../../res/debug_img/xenia_content_imgs1.png"), require("./../../res/debug_img/xenia_content_imgs3.png"), require("./../../res/debug_img/xenia_content_imgs2.png"), require("./../../res/debug_img/xenia_content_imgs1.png"), require("./../../res/debug_img/xenia_content_imgs3.png"), require("./../../res/debug_img/xenia_content_imgs3.png")]
         },
         {
+            contentID: 1000,
             username: "J0si3x_x",
             userPFP: require("./../../res/debug_img/userpfp4.png"),
             uploadTimestamp: Date.now() - 24 * 60 * 60 * 1000, // 1 second: 1000
@@ -76,6 +79,7 @@ export default function ForumsAndDiscussions() {
             bodyImgs: []
         },
         {
+            contentID: 999,
             username: "Fr4ncyyy",
             userPFP: require("./../../res/debug_img/userpfp3.png"),
             uploadTimestamp: Date.now() - 7 * 24 * 60 * 60 * 1000, // 1 second: 1000
@@ -85,6 +89,7 @@ export default function ForumsAndDiscussions() {
             bodyImgs: []
         },
         {
+            contentID: 998,
             username: "Th3Skyler08",
             userPFP: require("./../../res/debug_img/userpfp5.png"),
             uploadTimestamp: Date.now() - 3 * 4 * 7 * 24 * 60 * 60 * 1000, // 1 second: 1000
@@ -183,7 +188,7 @@ function Post({ content }) {
         * Contents
      */
     return (
-        <div className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5">
+        <div className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5" onClick={()=>(console.log("Clicked: "+content.contentID))}>
             <table className="table-auto select-none">
                 <tbody>
                     <tr className=''>
