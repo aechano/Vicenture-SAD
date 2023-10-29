@@ -36,7 +36,7 @@ export default function ContactUs() {
     }
   }
 
-  const contacts = [
+  var contacts = [
     {
       key: 1,
       offices: "Municipal Treasurer's Office",
@@ -190,7 +190,7 @@ export default function ContactUs() {
 
           <div className='place-items-center'>
             {contacts.map((data, index) => {
-              return <AccordionItem key={index} open={index == open} offices={data.offices} head={data.head} email={data.email} number={data.number} location={data.location} toggle={() => toggle(index)} />;
+              return <AccordionItem key={index} open={index == open} data={data} toggle={() => toggle(index)} />;
             })}
           </div>
         </div>

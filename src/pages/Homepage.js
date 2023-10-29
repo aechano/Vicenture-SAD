@@ -2,7 +2,8 @@ import React from "react";
 import Sections from "../components/Sections";
 import Banner from "../components/Banner";
 import BackToTop from "../components/BackToTop";
-
+import { NavLink } from "react-router-dom";
+import { PATH_NAME } from "../Variables/GLOBAL_VARIABLE";
 
 function Homepage() {
     return (
@@ -103,20 +104,20 @@ function Homepage() {
                             </div>
                         </div>
 
-                        <div className="py-8 px-8 max-w-sm bg-lgu-yellow rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                        <NavLink to={PATH_NAME.Articles} className="py-8 px-8 max-w-sm bg-lgu-yellow rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-center space-y-2 sm:text-left">
                                 <div className="space-y-0.5 flex">
                                     <p className="text-lg text-black font-semibold mr-5">
                                         More San Vicente Article
                                     </p>
-                                    <a href="#">
+                                    <div>
                                         <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
                                         </svg>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </NavLink>
                     </div>
                 </div>
             </div>
