@@ -108,6 +108,7 @@ export default function Header(props) {
                                                                             <NavLink
                                                                                 key={subItem.name}
                                                                                 to={subItem.href}
+                                                                                onClick={() => handleDropdown(item.name)}
                                                                                 className={({ isActive }) => {
                                                                                     return "block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                         (isActive ? "font-medium" : "")
