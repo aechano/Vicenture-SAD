@@ -9,7 +9,7 @@ export default function OtherInfo(){
             {/* Hero Section */}
             <Banner
                 src={require("../../../res/img/mananap_falls.png")}
-                alt="Mananap Falls"
+                alt="Mananap Fallsssss"
                 searchBar={true}
             >
                 <div className="text-white justify-center items-center text-center">
