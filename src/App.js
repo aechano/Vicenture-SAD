@@ -19,6 +19,7 @@ import Activities from './pages/non_admin_pages/Tourism/Activities';
 import Survey from './pages/non_admin_pages/Survey';
 import Articles from './pages/non_admin_pages/Articles';
 import ForumsAndDiscussionsPost from './pages/non_admin_pages/ForumsAndDiscussionsPost';
+import Offices from './pages/non_admin_pages/TheTown/Offices';
 import OtherInfo from './pages/non_admin_pages/TheTown/OtherInfo';
 import InvestmentOpportunities from './pages/non_admin_pages/Invest/InvestmentOpportunities';
 import ReasonToInvest from './pages/non_admin_pages/Invest/ReasonsToInvest';
@@ -41,6 +42,7 @@ function App() {
                         <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo/>} />
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
                         <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
+                        <Route path={PATH_NAME.TheTown.Offices} element={<Offices/>} />
 
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit/>} />
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities/>} />
