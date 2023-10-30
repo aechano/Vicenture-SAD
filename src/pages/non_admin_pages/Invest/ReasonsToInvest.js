@@ -1,21 +1,21 @@
 import React from 'react';
-import Banner from '../../../components/Banner';
 import Sections from '../../../components/Sections';
+import Banner from '../../../components/Banner';
 import BackToTop from '../../../components/BackToTop';
 
-export default function InvestmentOpportunities() {
-  return (
-    <div>
-      <Banner
-        src={require("../../../res/img/mananap_falls.png")}
-        alt="Mananap Falls"
-        searchBar={true}>
-        <div className="text-white justify-center items-center text-center">
-          <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-            Investment Opportunities
-          </h1>
-        </div>
-      </Banner>
+export default function ReasonToInvest(){
+    return (
+        <div>
+            <Banner
+                src={require("../../../res/img/mananap_falls.png")}
+                alt="Mananap Falls"
+                searchBar={true}>
+                <div className="text-white justify-center items-center text-center">
+                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
+                    Reasons To Invest
+                </h1>
+                </div>
+            </Banner>
 
         {/* Agriculture */}
         <Sections
@@ -55,7 +55,8 @@ export default function InvestmentOpportunities() {
           San Vicente is a picturesque municipality in Camarines Norte, Philippines. Nestled amidst lush greenery, it offers a harmonious blend of natural beauty and cultural richness. It takes pride in its commitment to eco and agri-tourism adventures. The town's pristine environment and fertile lands provide a perfect backdrop for a wide range of activities catering to diverse interests.
       </Sections>
 
-    <BackToTop />
+
+    <BackToTop />  
     </div>
-  )
+    )
 }

@@ -39,25 +39,26 @@ export default function MunicipalityPrograms() {
             </Sections>
 
 
-            <Sections title="Sport Activities" arrow={true}>
-                <div className="flex justify-center"> {/* Center the cards horizontally */}
-                    <div className="w-1/2 p-5">
-                        <div className="flex flex-col justify-between h-full">
-                            <Link to="/activities" className="block flex-1 p-8 bg-lgu-green border border-gray-200 rounded-lg shadow hover:bg-zinc-500 dark:bg-gray-800 dark:border-gray-700 dark:hover-bg-zinc-500">
-                            <h5 className="mb-2 text-2xl font-bold tracking-tight text-lgu-lime text-center dark:text-white">Sport Activity</h5>
-                            <p className="font-normal text-lgu-lime text-center dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                            </Link>
+                <Sections title="Sport Activities" arrow={true}>
+                    <div className="flex justify-center items-center">
+                        <div className="w-1/2 p-10">
+                            <div className="flex flex-col justify-between h-full">
+                                <Link to="/activities" className="block flex-1 p-8 bg-lgu-green border rounded-lg shadow">
+                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-lgu-lime text-center dark:text-white">Sport Activity</h5>
+                                <p className="font-normal text-lgu-lime text-center dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                                </Link>
+                            </div>
+                        </div>
+
+                        <div className="w-1/2 p-10">
+                            <div className="flex flex-col justify-between h-full">
+                                <Link to="/activities" className="block flex-1 p-8 bg-lgu-yellow border rounded-lg shadow">
+                                <h5 className="mb-2 text-2xl font-bold text-black text-center tracking-tight">Sport Activity</h5>
+                                <p className="font-normal text-black text-center">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="w-1/2 p-5">
-                        <div className="flex flex-col justify-between h-full">
-                            <Link to="/activities" className="block flex-1 p-8 bg-lgu-yellow border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover-bg-gray-700">
-                            <h5 className="mb-2 text-2xl font-bold text-black text-center tracking-tight">Sport Activity</h5>
-                            <p className="font-normal text-black text-center">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
                 </Sections>
 
 

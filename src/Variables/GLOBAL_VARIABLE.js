@@ -25,6 +25,13 @@ const PATH_NAME = {
         PlacesToVisit: "/tourism/places-to-visit",
         Activities: "/tourism/activities",
     },
+
+    Invest : {
+        Invest: "/invest",
+        InvestmentOpportunities: "/invest/investment-opportunities",
+        ReasonsToInvest: "/invest/reasons-to-invest",
+    },
+
     Transparency: "/transparency",
     ContactUs: "/contacts",
     Profile:"/user/profile",
