@@ -38,7 +38,9 @@ const PATH_NAME = {
     Messages:"/message",
     PrivacyPolicy:"/privacy-policy",
     ForumsAndDiscussions:"/forums",
-    Survey:"/surveys"
+    Survey:"/surveys",
+    Debug:"/debug",
+    Articles:"/articles"
 }
 const API = {
     SignUp: {
@@ -48,7 +50,7 @@ const API = {
     },
     SignIn: "http://localhost:8080/accounts/",
 }
-const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, ...PATH_NAME.Accounts.list];
-const NO_HEADER = PATH_NAME.Accounts.list;
+const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
+const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
 
 export { PATH_NAME, API, NO_FOOTER, NO_HEADER};

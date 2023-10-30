@@ -36,7 +36,7 @@ export default function ContactUs() {
     }
   }
 
-  const contacts = [
+  var contacts = [
     {
       key: 1,
       offices: "Municipal Treasurer's Office",
@@ -177,7 +177,7 @@ export default function ContactUs() {
 
   return (
     <>
-      <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+      <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
         <p>Contact Us</p>
       </Banner>
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
@@ -190,7 +190,7 @@ export default function ContactUs() {
 
           <div className='place-items-center'>
             {contacts.map((data, index) => {
-              return <AccordionItem key={index} open={index == open} offices={data.offices} head={data.head} email={data.email} number={data.number} location={data.location} toggle={() => toggle(index)} />;
+              return <AccordionItem key={index} open={index == open} data={data} toggle={() => toggle(index)} />;
             })}
           </div>
         </div>
