@@ -1,20 +1,13 @@
 import React from 'react';
 import Banner from '../../../components/Banner';
+import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import BackToTop from '../../../components/BackToTop';
 
 export default function History() {
     return (
         <div>
-             {/* Hero Section */}
-            <Banner
-                src={require("../../../res/img/mananap_falls.png")}
-                alt="Mananap Falls"
-                searchBar={true}
-            >
-                <div className="text-white justify-center items-center text-center">
-                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-                    History Unveiling: San Vicente
-                </h1>
-                </div>
+            <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+                <p>History Unveiling: San Vicente</p>
             </Banner>
 
                 {/* San Vicente, Camarines Norte */}
@@ -38,7 +31,7 @@ export default function History() {
 
 
 
-
+        <BackToTop />
         </div>
 
 

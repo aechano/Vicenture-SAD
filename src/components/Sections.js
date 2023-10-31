@@ -71,7 +71,7 @@ export default function Sections(props) {
                             {props.button !== undefined ?
                                 <NavLink
                                     className={"text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300 " +
-                                        (props.left ? "mt-5 sm:mx-7 md:items-center lg:float-right" : "mt-5 sm:mx-7 md:float-left")}
+                                        (props.left ? "mt-5 sm:mx-7 md:items-center lg:float-right" : "mt-5 sm:mx-7 md:float-left")} onClick={props.onClick} // ito pi yung nadagdag huehue
                                     to={props.href !== undefined ? props.href : "/"}>
                                     {props.button}
                                     {props.arrow ?

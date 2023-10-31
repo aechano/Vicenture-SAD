@@ -3,22 +3,15 @@ import { Link } from 'react-router-dom';
 import Banner from '../../../components/Banner';
 import Sections from '../../../components/Sections';
 import BackToTop from '../../../components/BackToTop';
+import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+
 
 export default function AboutSanVicente() {
   return (
     <div>
-      {/* Hero Section */}
-      <Banner
-        src={require("../../../res/img/mananap_falls.png")}
-        alt="Mananap Falls"
-        searchBar={true}
-      >
-        <div className="text-white justify-center items-center text-center">
-          <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-            Get to Know San Vicente!
-          </h1>
-        </div>
-      </Banner>
+        <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+            <p>Get to Know San Vicente!</p>
+        </Banner>
 
       {/* San Vicente, Camarines Norte */}
       <div className="flex flex-row">
@@ -43,7 +36,7 @@ export default function AboutSanVicente() {
         alt="Mananap Falls"
         button="Read More"
         arrow={true}
-        href="/history">
+        href={PATH_NAME.TheTown.History} onClick={() => window.scrollTo({top: 0, left:0, behavior: "smooth"})}>
         San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.
       </Sections>
 
@@ -101,7 +94,7 @@ export default function AboutSanVicente() {
       {/* Cards Section */}
       <div className="w-full p-2 flex flex-wrap justify-center">
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other-info">
+          <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
@@ -120,7 +113,7 @@ export default function AboutSanVicente() {
         </div>
 
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other-info">
+          <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
@@ -141,7 +134,7 @@ export default function AboutSanVicente() {
 
       <div className="w-full p-2 flex flex-wrap justify-center mt-1">
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other-info">
+          <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
@@ -160,7 +153,7 @@ export default function AboutSanVicente() {
         </div>
 
         <div className="w-1/2 sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 mx-5 my-5">
-          <Link to="/other-info">
+          <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
