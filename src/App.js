@@ -26,6 +26,7 @@ import Offices from './pages/non_admin_pages/TheTown/Offices';
 import SanVicenteTourism from './pages/non_admin_pages/Tourism/SanVicenteTourism';
     import InvestmentOpportunitiesContent from './pages/non_admin_pages/Invest/InvestmentOpportunitiesContent';
     import ReasonsToInvestContent from './pages/non_admin_pages/Invest/ReasonsToInvestContent';
+import OnlineForm from './pages/non_admin_pages/OnlineForm';
 
     function App() {
         return (
@@ -47,9 +48,10 @@ import SanVicenteTourism from './pages/non_admin_pages/Tourism/SanVicenteTourism
                             <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
                         <Route path={PATH_NAME.TheTown.Offices} element={<Offices/>} />
 
-                        <Route path={PATH_NAME.Tourism.Tourism} element={<SanVicenteTourism/>} />
-                            <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit/>} />
-                            <Route path={PATH_NAME.Tourism.Activities} element={<Activities/>} />
+                        <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism/>} />
+                        <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm/>} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit/>} />
+                        <Route path={PATH_NAME.Tourism.Activities} element={<Activities/>} />
 
                             <Route path={PATH_NAME.ContactUs} element={<ContactUs/>} />
 

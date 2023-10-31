@@ -23,7 +23,7 @@ const navigation = [
         name: 'Tourism',
         href: PATH_NAME.Tourism.Tourism,
         subItems: [
-            { name: 'San Vicente Tourism', href: PATH_NAME.Tourism.Tourism },
+            { name: 'San Vicente Tourism', href: PATH_NAME.Tourism.SanVicente },
             { name: 'Places to Visit', href: PATH_NAME.Tourism.PlacesToVisit },
             { name: 'Activities', href: PATH_NAME.Tourism.Activities }
         ],

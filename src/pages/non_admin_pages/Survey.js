@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../../components/Banner";
 import { NavLink } from "react-router-dom";
+import { Collapse } from "react-collapse";
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
 
 export default function Survey() {
+
+    const [open, setOpen] = useState(false);
+    const toggle = (index) => {
+        if (open === index) {
+            setOpen(null);
+        } else {
+            setOpen(index);
+        }
+    }
 
     var contents = [
         {
@@ -28,10 +39,20 @@ export default function Survey() {
         },
     ];
 
-    var questions = [{
-        quest: "How long will my response will be stored?",
-        ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
-    }]
+    var questions = [
+        {
+            quest: "How long will my response will be stored?",
+            ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
+        },
+        {
+            quest: "How long will my response will be stored?",
+            ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
+        },
+        {
+            quest: "How long will my response will be stored?",
+            ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
+        },
+    ]
 
     return (
         <>
@@ -57,10 +78,15 @@ export default function Survey() {
 
                 <div className="text-center m-5">
                     <h2 className="font-bold text-lg pb-5">Frequently Ask Questions</h2>
+                    <div className='place-items-center'>
+                        {questions.map((data, index) => {
+                            return <FAQs key={index} open={index == open} data={data} toggle={() => toggle(index)} />;
+                        })}
+                    </div>
 
                 </div>
 
-                    
+
             </div>
         </>
     );
@@ -77,8 +103,31 @@ function Content({ content }) {
                 </div>
             </NavLink>
         </div>
+    );
+}
 
 
+function FAQs({ open, toggle, data }) {
+    return (
+        <div className="pt-3">
+            <div className="bg-lgu-green py-2 px-16 flex justify-between item-center cursor-pointer rounded-xl" onClick={toggle}>
+                <p className="text-md text-white font-semibold">{data.quest}</p>
+                <div className="text-3xl text-white ">
+                    {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+
+                </div>
+
+            </div>
+
+            <Collapse isOpened={open}>
+
+                <div className="bg-lgu-lime px-16 pb-10 pt-5 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl">
+                    <p>{data.ans}</p>
+
+                </div>
+
+            </Collapse>
+        </div>
     );
 
 }
