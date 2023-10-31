@@ -28,6 +28,7 @@ import InvestmentOpportunitiesContent from './pages/non_admin_pages/Invest/Inves
 import ReasonsToInvestContent from './pages/non_admin_pages/Invest/ReasonsToInvestContent';
 import OnlineForm from './pages/non_admin_pages/OnlineForm';
 import Messaging from './pages/non_admin_pages/Messaging';
+import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 
 function App() {
     return (
@@ -42,12 +43,13 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
 
-                        <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />
-                        <Route path={PATH_NAME.TheTown.History} element={<History />} />
-                        <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo />} />
-                        <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile />} />
-                        <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms />} />
-                        <Route path={PATH_NAME.TheTown.Offices} element={<Offices />} />
+                            <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
+                            <Route path={PATH_NAME.TheTown.History} element={<History/>} />
+                            <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo/>} />
+                            <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
+                            <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
+                        <Route path={PATH_NAME.TheTown.Offices} element={<Offices/>} />
+                        <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen/>} />
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm />} />

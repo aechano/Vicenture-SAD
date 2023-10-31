@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "typeRoots": ["src/typings"],
+      "forceConsistentCasingInFileNames": true,
+      "strict": true
+    }
+  }
+  
