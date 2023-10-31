@@ -61,7 +61,7 @@ const Citizen = () => {
       </Banner>
 
       <div className="w-3/4 pr-4 border border-black p-4 mt-20 ml-48 mb-20">
-        <canvas ref={canvasRef} width="100%" height="1000" title="PDF Viewer" />
+        <canvas ref={canvasRef} width="100%" height="600" title="PDF Viewer" />
       </div>
     </>
   );
