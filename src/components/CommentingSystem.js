@@ -49,9 +49,7 @@ export default function CommentingSystem({ forumID }) {
     ]
 
     useEffect(() => {
-        comments.map((comment) => {
-            modifyRevealedReplies(comment.commentID, 1);
-        })
+        comments.map((comment) => modifyRevealedReplies(comment.commentID, 1))
     }, [])
 
     return (
@@ -196,7 +194,7 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
                                                     <p className='my-auto ml-2'>{comment.replies.length - revealReplies[comment.commentID]} more...</p>
                                                 </div>
                                             );
-                                        }
+                                        } else return null;
                                     })
                                 }
                                 {

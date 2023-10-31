@@ -41,9 +41,7 @@ export default function ForumsAndDiscussions() {
         setShow((prevState) => ({ ...prevState, [category]: value }));
     };
     useEffect(() => {
-        category.map((category) => {
-            showChange(category.id, true);
-        });
+        category.map((category) => showChange(category.id, true));
     }, []);
     /**
      * contents from users
@@ -107,16 +105,14 @@ export default function ForumsAndDiscussions() {
                     Topics
                     {category.map((category) => {
                         {/** iterate through category list and display each category using the DropDown component */ }
-                        return (
-                            <DropDown
-                                key={category.id}
-                                show={show[category.id]}
-                                setShow={() => showChange(category.id, !show[category.id])}
-                                category={category.category}
-                                icon={category.icon}
-                                items={category.items}
-                            />
-                        )
+                        return <DropDown
+                            key={category.id}
+                            show={show[category.id]}
+                            setShow={() => showChange(category.id, !show[category.id])}
+                            category={category.category}
+                            icon={category.icon}
+                            items={category.items}
+                        />
                     }
                     )}
                     <div className='w-11/12 h-1 bg-lgu-green rounded-full mt-5' /> {/** just a line below all the categories */}
@@ -137,9 +133,7 @@ export default function ForumsAndDiscussions() {
                             {
                                 contents.map((content, index) => {
                                     {/** Iterate through the contents and use Post component to display it */ }
-                                    return (
-                                        <Post key={index} content={content} />
-                                    )
+                                    return <Post key={index} content={content} />
                                 })
                             }
                         </div>
@@ -232,6 +226,7 @@ function Post({ content }) {
                                                 <img
                                                     key={index}
                                                     src={src}
+                                                    alt={'content images from '+content.username}
                                                     className='w-40 h-40 m-2 shadow-md'
                                                 />
                                             )
@@ -243,12 +238,13 @@ function Post({ content }) {
                                                     <img
                                                         key={index}
                                                         src={src}
+                                                        alt={'content images from '+content.username}
                                                         className='w-40 h-40 m-2 brightness-50 absolute shadow-md'
                                                     />
                                                 </div>
 
                                             )
-                                        }
+                                        } else return null;
                                     })
                                     :
                                     null

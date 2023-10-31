@@ -9,6 +9,7 @@ export default function ForumsAndDiscussionsPost() {
     let { forumID } = useParams();
     const [content, setContent] = useState({});
 
+    /** Sample contents to use useParams on */
     var contents = [
         {
             contentID: 1002,
@@ -62,10 +63,10 @@ export default function ForumsAndDiscussionsPost() {
         },
     ]
 
-
+    /** Retrieve content depending on (useParams) forumID value */
     useEffect(() => {
         for (let contentsItem of contents) {
-            if (contentsItem.contentID == forumID) {
+            if (contentsItem.contentID === forumID) {
                 setContent(contentsItem);
                 break;
             }
@@ -112,6 +113,7 @@ export default function ForumsAndDiscussionsPost() {
                                                 <img
                                                     key={index}
                                                     src={src}
+                                                    alt={'Content images from '+content.username}
                                                     className='w-96 h-auto mx-auto my-5 shadow-md justify-self mx-auto'
                                                 />
                                             )
