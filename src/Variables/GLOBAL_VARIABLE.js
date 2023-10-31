@@ -22,6 +22,8 @@ const PATH_NAME = {
     },
     Tourism: {
         Tourism: "/tourism",
+        SanVicente: "/tourism/san-vicente-tourism",
+        OnlineForm: "/tourism/san-vicente-tourism/online-form",
         PlacesToVisit: "/tourism/places-to-visit",
         Activities: "/tourism/activities",
     },
@@ -41,6 +43,7 @@ const PATH_NAME = {
     Survey:"/surveys",
     Debug:"/debug",
     Articles:"/articles"
+    
 }
 const API = {
     SignUp: {

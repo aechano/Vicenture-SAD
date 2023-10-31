@@ -3,21 +3,13 @@ import Banner from "../../../components/Banner";
 import Sections from "../../../components/Sections";
 import { Link } from "react-router-dom/dist";
 import BackToTop from "../../../components/BackToTop";
+import { PATH_NAME } from "../../../Variables/GLOBAL_VARIABLE";
 
 export default function MunicipalityPrograms() {
     return (
         <div>
-            {/* Hero Section */}
-            <Banner
-                src={require("../../../res/img/mananap_falls.png")}
-                alt="Mananap Falls"
-                searchBar={true}
-            >
-                <div className="text-white justify-center items-center text-center">
-                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-                    Municipality Programs
-                </h1>
-                </div>
+            <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+                <p>Municipality Programs</p>
             </Banner>
 
 

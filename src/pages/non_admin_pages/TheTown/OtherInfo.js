@@ -2,21 +2,13 @@ import React from 'react';
 import Banner from '../../../components/Banner';
 import Sections from '../../../components/Sections';
 import BackToTop from '../../../components/BackToTop';
+import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 
 export default function OtherInfo(){
     return (
         <div>
-            {/* Hero Section */}
-            <Banner
-                src={require("../../../res/img/mananap_falls.png")}
-                alt="Mananap Fallsssss"
-                searchBar={true}
-            >
-                <div className="text-white justify-center items-center text-center">
-                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-                    Get to Know San Vicente!
-                </h1>
-                </div>
+            <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+                <p>Get to Know San Vicente!</p>
             </Banner>
 
             <Sections
