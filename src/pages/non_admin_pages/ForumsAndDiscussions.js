@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import Banner from '../../components/Banner'
 import Body from '../../classifiers/Body'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
@@ -188,8 +188,14 @@ function Post({ content }) {
      * Attributes:
         * Contents
      */
+    const navigate = useNavigate();
     return (
-        <div className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5" onClick={()=>(console.log("Clicked: "+content.contentID))}>
+        <div
+            className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5"
+            onClick={() => {
+                navigate(PATH_NAME.ForumsAndDiscussions + "/" + String(content.contentID));
+                window.scrollTo({ top: 0, left: 0 });
+            }}>
             <table className="table-auto select-none">
                 <tbody>
                     <tr className=''>
