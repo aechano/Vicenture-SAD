@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { Document, Page, pdfjs } from 'react-pdf';
-import {RiArrowLeftCircleFill, RiArrowRightCircleFill} from 'react-icons/ri';
+import { RiArrowLeftCircleFill, RiArrowRightCircleFill } from 'react-icons/ri';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -41,6 +41,8 @@ export default function MunicipalityProfile() {
 
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  const [pdfWidth, setPdfWidth] = useState(1000); // used to set the width of the canvas (pdf file) within the <Page/>
+  const pdfRef = useRef(null); // used to keep track of the outer div of pdf's width (used for setting pdfWidth)
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -59,6 +61,20 @@ export default function MunicipalityProfile() {
     changePage(+1)
   }
 
+  useEffect(() => {
+    function handleResize() {
+      if (pdfRef.current) {
+        setPdfWidth(pdfRef.current.offsetWidth);
+      }
+    }
+
+    handleResize(); // Initial setup
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []); // set width attribute to target its inner canvas's width
+
   return (
     <>
       <style>
@@ -74,7 +90,7 @@ export default function MunicipalityProfile() {
 
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
         <div className='block md:flex space-x-5'>
-          <div className="w-full bg-lgu-yellow p-4">
+          <div className="w-full bg-lgu-yellow p-4 md:w-1/3"> {/** added `md:w-1/3` to maintain its width for medium screens and up */}
             <ul>
               {view.map((data, index) => (
                 <li
@@ -92,13 +108,13 @@ export default function MunicipalityProfile() {
             </ul>
 
           </div>
-          <div className='block'>
+          <div className='block grow'> {/** dunno if this `grow` className that I put actually does something. ehe~ */}
             {selectedContent && (
-              <>
+              <div>
                 <h1 className='text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
-                <div className='flex justify-end'>
-                  <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full max-h-[1000px] w-auto h-full">
-                    <Page pageNumber={pageNumber} renderTextLayer={false} />
+                <div className='flex justify-end w-full' ref={pdfRef}> {/** added pdfRef for keeping track of outer div's width */}
+                  <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto"> {/** simplified this className to what's (I think) necessary */}
+                    <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} /> {/** set width attribute to target its inner canvas's width (which was the problem) */}
                   </Document>
                 </div>
                 <div className='flex justify-end border w-full mt-5 p-2'>
@@ -111,7 +127,7 @@ export default function MunicipalityProfile() {
                     disabled={pageNumber === 1}
                     className={`cursor-pointer pr-3 ${pageNumber === 1 ? 'text-gray-400' : ''}`}
                   >
-                    <span className='text-2xl'><RiArrowLeftCircleFill/></span>
+                    <span className='text-2xl'><RiArrowLeftCircleFill /></span>
                   </button>
                   <button
                     onClick={(e) => {
@@ -121,10 +137,10 @@ export default function MunicipalityProfile() {
                     disabled={pageNumber === numPages}
                     className={`cursor-pointer ${pageNumber === numPages ? 'text-gray-400' : ''}`}
                   >
-                    <span className='text-2xl'><RiArrowRightCircleFill/></span>
+                    <span className='text-2xl'><RiArrowRightCircleFill /></span>
                   </button>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>
