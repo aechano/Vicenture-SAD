@@ -79,7 +79,7 @@ export default function SignUp() {
     <div
         className="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center"
         style={{
-            backgroundImage: "url("+require('./../../res/img/account_signing_bg.png')+")",
+            backgroundImage: "url("+require('./../../res/img/try.jpg')+")",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center bottom 0%",
             height: "100vh",
@@ -88,15 +88,20 @@ export default function SignUp() {
         <div
             className="absolute bottom-0 right-0 top-0 min-h-screen w-1/2 overflow-hidden bg-fixed"
             style={{
-                backgroundColor: "#2D5F2ECC"
+                backgroundColor: "rgba(45, 95, 46, 0.6)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px",
+                border: "none", // Add this line to remove the border
+                outline: "none", // Add this line to remove the outline
             }}>
             <NavLink
                 to={PATH_NAME.Home}
                 className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
             </NavLink>
+            
             <h1
-                className='text-white w-full my-20'
+                className='text-white w-full my-7 text-3xl font-bold pt-32'
                 >
                 Sign Up
             </h1>

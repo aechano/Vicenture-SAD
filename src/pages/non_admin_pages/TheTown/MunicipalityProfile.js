@@ -38,10 +38,9 @@ export default function MunicipalityProfile() {
     }
   };
 
-
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [pdfWidth, setPdfWidth] = useState(1000); // used to set the width of the canvas (pdf file) within the <Page/>
+  const [pdfWidth, setPdfWidth] = useState(800); // used to set the width of the canvas (pdf file) within the <Page/>
   const pdfRef = useRef(null); // used to keep track of the outer div of pdf's width (used for setting pdfWidth)
 
   function onDocumentLoadSuccess({ numPages }) {
