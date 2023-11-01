@@ -27,6 +27,7 @@ import SanVicenteTourism from './pages/non_admin_pages/Tourism/SanVicenteTourism
 import InvestmentOpportunitiesContent from './pages/non_admin_pages/Invest/InvestmentOpportunitiesContent';
 import ReasonsToInvestContent from './pages/non_admin_pages/Invest/ReasonsToInvestContent';
 import OnlineForm from './pages/non_admin_pages/OnlineForm';
+import Profile from './pages/non_admin_pages/Profile';
 import Messaging from './pages/non_admin_pages/Messaging';
 import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
@@ -50,7 +51,7 @@ function App() {
                             <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
                             <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
                             <Route path={PATH_NAME.TheTown.Offices} element={<Offices/>} />
-                        <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen/>} />
+                            <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen/>} />
                             <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials/>} />
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
@@ -66,6 +67,8 @@ function App() {
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
                         <Route path={PATH_NAME.Messages + "/:user/:conversationID"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Profile} element={<Profile />} />
+                        
 
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities />} />
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent />} />

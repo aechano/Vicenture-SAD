@@ -9,11 +9,12 @@ export default function ElectedOfficials() {
                 <p>Elected Officials</p>
             </Banner>
 
-            <div className="my-4 flex justify-center items-center"> {/* Add margin to create space below the banner */}
-                <div className="block w-[18rem] h-[22rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
-                    <div className="relative overflow-hidden">
+            <div className="my-4 flex justify-center items-center">
+                {/* Container 1 */}
+                <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+                    <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                         <img
-                            className="rounded-t-lg object-cover h-1/2 w-full" // Set a fixed height and use object-cover
+                            className="rounded-t-lg object-cover"
                             src={require("../../../res/img/kai.png")}
                             alt="Mayor"
                         />
@@ -30,10 +31,11 @@ export default function ElectedOfficials() {
             </div>
 
             <div className="flex justify-center items-center">
-                <div className="block w-[18rem] h-[22rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 my-2">
-                    <div className="relative overflow-hidden">
+                {/* Container 3 */}
+                <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark-bg-neutral-700 my-2">
+                    <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                         <img
-                            className="rounded-t-lg object-cover h-1/2 w-full" // Set a fixed height and use object-cover
+                            className="rounded-t-lg object-cover"
                             src={require("../../../res/img/angelo.png")}
                             alt=""
                         />
@@ -49,58 +51,61 @@ export default function ElectedOfficials() {
                 </div>
             </div>
 
-            <div className="my-4 flex justify-center items-center"> {/* Add margin to create space above the three cards */}
-                <div className="block w-[18rem] h-[22rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-2"> {/* Add mx-2 to create spacing between the three cards */}
-                    <div className="relative overflow-hidden">
-                        <img
-                            className="rounded-t-lg object-cover h-1/2 w-full" // Set a fixed height and use object-cover
-                            src={require("../../../res/img/francy.png")}
-                            alt=""
-                        />
+            <div className="flex justify-center items-center">
+                {/* Containers 4, 5, and 6 (Horizontally aligned) */}
+                <div className="flex">
+                    <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark-bg-neutral-700 mx-2">
+                        <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                            <img
+                                className="rounded-t-lg object-cover"
+                                src={require("../../../res/img/angelo.png")}
+                                alt=""
+                            />
+                        </div>
+                        <div className="p-6">
+                            <p className="text-lg text-neutral-600 dark:text-neutral-200 text-center font-bold">
+                                Angelo M. Echano
+                            </p>
+                            <p className="text-sm text-neutral-400 dark:text-neutral-300 text-center font-bold">
+                                Vice Mayor
+                            </p>
+                        </div>
                     </div>
-                    <div className="p-6">
-                        <p className="text-lg text-neutral-600 dark:text-neutral-200 text-center font-bold">
-                            Francyvelle C. Sy
-                        </p>
-                        <p className="text-sm text-neutral-400 dark:text-neutral-300 text-center font-bold">
-                            Vice Mayor
-                        </p>
-                    </div>
-                </div>
 
-                <div className="block w-[18rem] h-[22rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-2">
-                    <div className="relative overflow-hidden">
-                        <img
-                            className="rounded-t-lg object-cover h-1/2 w-full" // Set a fixed height and use object-cover
-                            src={require("../../../res/img/xenia.png")}
-                            alt=""
-                        />
+                    <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark-bg-neutral-700 mx-2">
+                        <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                            <img
+                                className="rounded-t-lg object-cover"
+                                src={require("../../../res/img/angelo.png")}
+                                alt=""
+                            />
+                        </div>
+                        <div className="p-6">
+                            <p className="text-lg text-neutral-600 dark:text-neutral-200 text-center font-bold">
+                                Angelo M. Echano
+                            </p>
+                            <p className="text-sm text-neutral-400 dark:text-neutral-300 text-center font-bold">
+                                Vice Mayor
+                            </p>
+                        </div>
                     </div>
-                    <div className="p-6">
-                        <p className="text-lg text-neutral-600 dark:text-neutral-200 text-center font-bold">
-                            Xenia Angelica D. Velacruz
-                        </p>
-                        <p className="text-sm text-neutral-400 dark:text-neutral-300 text-center font-bold">
-                            Vice Mayor
-                        </p>
-                    </div>
-                </div>
 
-                <div className="block w-[18rem] h-[22rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 mx-2">
-                    <div className="relative overflow-hidden">
-                        <img
-                            className="rounded-t-lg object-cover h-1/2 w-full" // Set a fixed height and use object-cover
-                            src={require("../../../res/img/josevhel.png")}
-                            alt=""
-                        />
-                    </div>
-                    <div className="p-6">
-                        <p className="text-lg text-neutral-600 dark:text-neutral-200 text-center font-bold">
-                            Josevhel A. Sancho
-                        </p>
-                        <p className="text-sm text-neutral-400 dark:text-neutral-300 text-center font-bold">
-                            Vice Mayor
-                        </p>
+                    <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark-bg-neutral-700 mx-2">
+                        <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                            <img
+                                className="rounded-t-lg object-cover"
+                                src={require("../../../res/img/angelo.png")}
+                                alt=""
+                            />
+                        </div>
+                        <div className="p-6">
+                            <p className="text-lg text-neutral-600 dark:text-neutral-200 text-center font-bold">
+                                Angelo M. Echano
+                            </p>
+                            <p className="text-sm text-neutral-400 dark:text-neutral-300 text-center font-bold">
+                                Vice Mayor
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
