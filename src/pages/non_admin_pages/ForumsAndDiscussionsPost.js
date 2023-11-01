@@ -29,7 +29,14 @@ export default function ForumsAndDiscussionsPost() {
             topic: "Peer-to-peer Helping",
             title: "Sharing My Notes When I Was in College Pt.2",
             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: [require("./../../res/debug_img/xenia_content_imgs1.png"), require("./../../res/debug_img/xenia_content_imgs2.png"), require("./../../res/debug_img/xenia_content_imgs1.png"), require("./../../res/debug_img/xenia_content_imgs3.png"), require("./../../res/debug_img/xenia_content_imgs3.png")]
+            bodyImgs: [
+                {src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt:"notes 1"},
+                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 2"},
+                {src: require("./../../res/debug_img/xenia_content_imgs2.png"), alt:"notes 3"},
+                {src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt:"notes 4"},
+                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 5"},
+                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 6"}
+            ]
         },
         {
             contentID: 1000,
@@ -108,12 +115,12 @@ export default function ForumsAndDiscussionsPost() {
                             <td>
                                 <div className='w-full justify-center p-10 flex flex-wrap'>
                                     {content.bodyImgs !== undefined ?
-                                        content.bodyImgs.map((src, index) => {
+                                        content.bodyImgs.map((img, index) => {
                                             return (
                                                 <img
                                                     key={index}
-                                                    src={src}
-                                                    alt={'Content images from '+content.username}
+                                                    src={img.src}
+                                                    alt={img.alt}
                                                     className='w-96 h-auto mx-auto my-5 shadow-md justify-self mx-auto'
                                                 />
                                             )
