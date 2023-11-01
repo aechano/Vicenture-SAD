@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Banner from '../../../components/Banner';
+import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 
 export default function Offices() {
   const officeData = [
@@ -53,7 +54,10 @@ export default function Offices() {
   return (
     <div className="flex flex-col">
       {/* Banner */}
-      <Banner searchBar={true}>
+      <Banner
+        bannerType="common"
+        searchBar={true}
+        breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
         <h1 className="lg:text-6xl text-lgu-lime font-regular font-open sans p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
           Offices
         </h1>

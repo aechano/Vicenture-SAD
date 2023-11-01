@@ -65,7 +65,14 @@ export default function ForumsAndDiscussions() {
             topic: "Peer-to-peer Helping",
             title: "Sharing My Notes When I Was in College Pt.2",
             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: [require("./../../res/debug_img/xenia_content_imgs1.png"), require("./../../res/debug_img/xenia_content_imgs3.png"), require("./../../res/debug_img/xenia_content_imgs2.png"), require("./../../res/debug_img/xenia_content_imgs1.png"), require("./../../res/debug_img/xenia_content_imgs3.png"), require("./../../res/debug_img/xenia_content_imgs3.png")]
+            bodyImgs: [
+                {src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt:"notes 1"},
+                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 2"},
+                {src: require("./../../res/debug_img/xenia_content_imgs2.png"), alt:"notes 3"},
+                {src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt:"notes 4"},
+                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 5"},
+                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 6"}
+            ]
         },
         {
             contentID: 1000,
@@ -220,13 +227,13 @@ function Post({ content }) {
                         <td>
                             <div className='flex w-full justify-center'>
                                 {content.bodyImgs !== undefined ?
-                                    content.bodyImgs.map((src, index) => {
+                                    content.bodyImgs.map((img, index) => {
                                         if (index < 3) {
                                             return (
                                                 <img
                                                     key={index}
-                                                    src={src}
-                                                    alt={'content images from '+content.username}
+                                                    src={img.src}
+                                                    alt={img.alt}
                                                     className='w-40 h-40 m-2 shadow-md'
                                                 />
                                             )
@@ -237,8 +244,8 @@ function Post({ content }) {
                                                     <p className='absolute z-40 text-3xl m-2 text-white w-40 text-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>+{qty}</p>
                                                     <img
                                                         key={index}
-                                                        src={src}
-                                                        alt={'content images from '+content.username}
+                                                        src={img.src}
+                                                        alt={img.alt}
                                                         className='w-40 h-40 m-2 brightness-50 absolute shadow-md'
                                                     />
                                                 </div>

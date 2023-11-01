@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { timeAgo } from '../functionHelpers/Time';
 
-export default function CommentingSystem({ forumID }) {
-    /** Add a comment */
-    const [addComment, setAddComment] = useState(false);
-    const [comment, setComment] = useState();
-    const [revealReplies, setRevealReplies] = useState({});
+export default function CommentingSystem({ contentID }) {
+    /** 
+     * This component is used for content commenting systems.
+     * Attribute:
+     * contentID - used for finding corresponding comments for that content.
+     */
+    const [addComment, setAddComment] = useState(false); //used for revealing the comment box
+    const [comment, setComment] = useState(); // comment box contents
+    const [revealReplies, setRevealReplies] = useState({}); //used to reveal certain amount of replies to a comment
 
-    const modifyRevealedReplies = (commentID, value) => {
+    const modifyRevealedReplies = (commentID, value) => { //handler of multiple states (dictionary in useState)
         setRevealReplies((prevState) => ({ ...prevState, [commentID]: value }));
     };
 
+    // sample comments
     var comments = [
         {
-            commentID: forumID + "-1",
+            commentID: contentID + "-1",
             username: "Th3Skyler08",
             userPFP: require("./../res/debug_img/userpfp5.png"),
             comment: "Coolio~!",
@@ -21,7 +26,7 @@ export default function CommentingSystem({ forumID }) {
             timestamp: Date.now() - 30 * 1000,
             replies: [
                 {
-                    replyID: forumID + "-1-1",
+                    replyID: contentID + "-1-1",
                     username: "Fr4ncyyy",
                     userPFP: require("./../res/debug_img/userpfp3.png"),
                     reply: "True!",
@@ -29,7 +34,7 @@ export default function CommentingSystem({ forumID }) {
                     timestamp: Date.now() - 15 * 1000
                 },
                 {
-                    replyID: forumID + "-1-2",
+                    replyID: contentID + "-1-2",
                     username: "Ghe3lo_",
                     userPFP: require("./../res/debug_img/userpfp1.png"),
                     reply: "I Agree!",
@@ -37,7 +42,7 @@ export default function CommentingSystem({ forumID }) {
                     timestamp: Date.now() - 10 * 1000
                 },
                 {
-                    replyID: forumID + "-1-3",
+                    replyID: contentID + "-1-3",
                     username: "X3_nia",
                     userPFP: require("./../res/debug_img/userpfp2.png"),
                     reply: "nahh... nah...",
@@ -48,12 +53,14 @@ export default function CommentingSystem({ forumID }) {
         }
     ]
 
+    // create initial contents for revealReplies
     useEffect(() => {
         comments.map((comment) => modifyRevealedReplies(comment.commentID, 1))
     }, [])
 
     return (
         <>
+            {/** add comment button */}
             <div
                 className='flex bg-lgu-yellow w-fit p-2 mt-10 rounded-full select-none cursor-pointer hover:brightness-95'
                 onClick={() => setAddComment(!addComment)}>
@@ -61,12 +68,14 @@ export default function CommentingSystem({ forumID }) {
             </div>
             {addComment ?
                 <div>
+                    {/** comment box */}
                     <div className='bg-gray-200 h-40 w-11/12 rounded-3xl mt-10'>
                         <textarea className='w-full h-full rounded-3xl p-3'
                             placeholder='Comment...'
                             value={comment}
                             onChange={(e) => setComment(e.target.value)} />
                     </div>
+                    {/** Buttons (cancel and comment) */}
                     <div className='flex mt-3'>
                         <div className='p-2 outline outline-2 outline-lgu-yellow rounded-full select-none cursor-pointer' onClick={() => setAddComment(false)}>Cancel</div>
                         <div className='p-2 ml-3 bg-lgu-yellow rounded-full select-none cursor-pointer'
@@ -81,6 +90,7 @@ export default function CommentingSystem({ forumID }) {
                 null
             }
             <p className='text-gray-700 mt-10'>Comments</p>
+            {/** display comments */}
             <div className='px-10 mt-5'>
                 {
                     comments.map((comment, index) => {
@@ -94,8 +104,10 @@ export default function CommentingSystem({ forumID }) {
     )
 }
 function Comment({ comment, revealReplies, setRevealReplies }) {
-    const [replyBox, setReplyBox] = useState(false);
-    const [reply, setReply] = useState()
+    const [replyBox, setReplyBox] = useState(false); // used for revealing the reply box
+    const [reply, setReply] = useState() // reply box contents
+    const [report, setReport] = useState(false) // used for revealing report box
+
     return (
         <div>
             <table className="table-auto select-none mb-5 w-10/12">
@@ -108,10 +120,32 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
                                 className='rounded-full w-10/12 h-10/12 mx-auto my-auto'
                             />
                         </td>
-                        <td> {/** Display upload information beside the image such as: username, upload timestamp, and the topic */}
+                        <td className='flex'> {/** Display upload information beside the image such as: username, upload timestamp, and the topic */}
                             <div className='h-full align-contents-middle'>
                                 <p className='text-sm h-full'>{comment.username}&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(comment.timestamp)}</span></p>
                             </div>
+                            <div
+                                className='ml-32 select-none cursor-pointer hover:brightness-95'
+                                onClick={() => setReport(!report)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                    fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1" />
+                                    <circle cx="19" cy="12" r="1" />
+                                    <circle cx="5" cy="12" r="1" />
+                                </svg>
+                            </div>
+                            {report ?
+                                <div className='flex ml-2 select-none cursor-pointer hover:brightness-95'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                        fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                        <line x1="4" y1="22" x2="4" y2="15" />
+                                    </svg>
+                                    <p>Report</p>
+                                </div>
+                                :
+                                null
+                            }
                         </td>
                     </tr>
                     <tr>
@@ -222,6 +256,7 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
     );
 }
 function Reply({ reply, className }) {
+    const [report, setReport] = useState(false) // used for revealing report box
     return (
         <div>
             <table className={"table-auto select-none mb-5 " + className}>
@@ -234,10 +269,32 @@ function Reply({ reply, className }) {
                                 className='rounded-full w-10/12 h-10/12 mx-auto my-auto'
                             />
                         </td>
-                        <td> {/** Display upload information beside the image such as: username, upload timestamp, and the topic */}
+                        <td className='flex'> {/** Display upload information beside the image such as: username, upload timestamp, and the topic */}
                             <div className='h-full align-contents-middle'>
                                 <p className='text-sm h-full'>{reply.username}&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(reply.timestamp)}</span></p>
                             </div>
+                            <div
+                                className='ml-32 select-none cursor-pointer hover:brightness-95'
+                                onClick={() => setReport(!report)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                    fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="1" />
+                                    <circle cx="19" cy="12" r="1" />
+                                    <circle cx="5" cy="12" r="1" />
+                                </svg>
+                            </div>
+                            {report ?
+                                <div className='flex ml-2 select-none cursor-pointer hover:brightness-95'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                        fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                        <line x1="4" y1="22" x2="4" y2="15" />
+                                    </svg>
+                                    <p>Report</p>
+                                </div>
+                                :
+                                null
+                            }
                         </td>
                     </tr>
                     <tr>
