@@ -97,8 +97,8 @@ export default function MunicipalityProfile() {
               <>
                 <h1 className='text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
                 <div className='flex justify-end'>
-                  <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="border max-h-full">
-                    <Page height={1000} pageNumber={pageNumber} renderTextLayer={false} />
+                  <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full max-h-[1000px] w-auto h-full">
+                    <Page pageNumber={pageNumber} renderTextLayer={false} />
                   </Document>
                 </div>
                 <div className='flex justify-end border w-full mt-5 p-2'>
