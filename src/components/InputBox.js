@@ -5,6 +5,7 @@ function InputBoxAccount(props) {
   <InputBoxAccount> has the following attributes:
   width (Required) - The width of the whole component
   marginBottom (Required) - bottom margin of the component
+  className (Optional) - add classnames
 
   This component also handles the following <input> attribute:
   type, placeholder, autocomplete, value, onChange, required
@@ -12,7 +13,7 @@ function InputBoxAccount(props) {
   This takes a children component where it can be an icon (Optional) at the start of the inputbox.
   */
   return (
-    <div className='flex justify-center'>
+    <div className={'flex justify-center '+props.className}>
         <div className={"relative " + (props.width!==undefined?props.width:"w-3/5 ") + (props.marginBottom!==undefined?props.marginBottom:"mb-6")}>
             {/*The children here is the icon used for the input box if needed.*/}
             {
