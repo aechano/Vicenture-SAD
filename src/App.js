@@ -31,6 +31,7 @@ import Profile from './pages/non_admin_pages/Profile';
 import Messaging from './pages/non_admin_pages/Messaging';
 import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
+import Transparency from './pages/non_admin_pages/Transparency';
 
 function App() {
     return (
@@ -60,6 +61,8 @@ function App() {
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs />} />
+
+                        <Route path={PATH_NAME.Transparency} element={<Transparency />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
                         <Route path={PATH_NAME.Articles} element={<Articles />} />
