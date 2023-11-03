@@ -31,6 +31,7 @@ import Profile from './pages/non_admin_pages/Profile';
 import Messaging from './pages/non_admin_pages/Messaging';
 import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
+import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
 
 function App() {
     return (
@@ -62,6 +63,7 @@ function App() {
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
+                        <Route path={PATH_NAME.SampleSurvey} element={<SampleSurvey />} />
                         <Route path={PATH_NAME.Articles} element={<Articles />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />

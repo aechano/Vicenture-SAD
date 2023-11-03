@@ -41,6 +41,7 @@ const PATH_NAME = {
     PrivacyPolicy:"/privacy-policy",
     ForumsAndDiscussions:"/forums",
     Survey:"/surveys",
+    SampleSurvey:"/sample-survey",
     Debug:"/debug",
     Articles:"/articles"
     
