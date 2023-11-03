@@ -6,7 +6,14 @@ function Footer() {
     const location = useLocation();
     const [show, setShow] = useState(true);
     useEffect(() => {
-        setShow(!NO_FOOTER.includes(location.pathname));
+        setShow(true);
+        NO_FOOTER.every(path => {
+            if (path === location.pathname || (path.endsWith("/*") && location.pathname.startsWith(path.replace("/*", "", 1)))) {
+                setShow(false);
+                return false;
+            }
+            return true;
+        });
     }, [location]);
 
     return (
