@@ -20,6 +20,7 @@ export default function ContactUs() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [sendCopy, setSendCopy] = useState(false);
+
   // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -258,40 +259,33 @@ export default function ContactUs() {
                             <a href="#" className="block px-4 py-2 hover:bg-gray-700 dark:hover:bg-gray-400 dark:hover:text-white">
                               Website Bug/ Issue Report
                             </a>
-                          </li>                  
+                          </li>
                         </ul>
                       </div>
                     )}
                   </div>
 
-                  <div class="relative mb-6 mt-5" data-te-input-wrapper-init>
+                  <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
                     <input
+                      required
                       type="text"
-                      class="peer block min-h-[auto] rounded border border-1 w-full  bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-black dark:placeholder:text-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                      className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                       id="exampleInput8"
-                      placeholder="subject"
+                      placeholder="Subject"
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)} />
-                    <label
-                      for="exampleInput8"
-                      class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-lgu-green transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-lgu-green dark:peer-focus:text-primary"
-                    >Subject
-                    </label>
                   </div>
 
-                  <div class="relative mb-6" data-te-input-wrapper-init>
+
+                  <div className="relative mb-6" data-te-input-wrapper-init>
                     <textarea
-                      class="peer block min-h-[auto] w-full rounded border border-1 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-black dark:placeholder:text-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                      required
+                      className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                       id="exampleFormControlTextarea13"
                       rows="3"
                       placeholder="Message"
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}></textarea>
-                    <label
-                      for="exampleFormControlTextarea13"
-                      class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-lgu-green transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-lgu-green dark:peer-focus:text-primary"
-                    >Message
-                    </label>
                   </div>
 
                   <div className="mb-6 flex min-h-[1.5rem] items-center justify-center pl-[1.5rem]">
