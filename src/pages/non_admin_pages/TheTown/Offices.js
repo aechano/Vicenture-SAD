@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 
+
 export default function Offices() {
   const officeData = [
     {
@@ -241,9 +242,9 @@ export default function Offices() {
                 style={{
                   marginBottom: '1.5vw',
                   cursor: 'pointer',
-                  textDecoration: office === selectedContentIndex  ? 'underline' : 'none', // Add underline here
+                  textDecoration: index === selectedContentIndex ? 'underline' : 'none', // Add underline here
                 }}
-                onClick={() => handleContentClick(office)}
+                onClick={() => handleContentClick(office, index)}
               >
                 {office.name}
               </li>

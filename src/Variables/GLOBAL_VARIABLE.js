@@ -41,10 +41,11 @@ const PATH_NAME = {
     PrivacyPolicy:"/privacy-policy",
     ForumsAndDiscussions:"/forums",
     Survey:"/surveys",
+    SampleSurvey:"/sample-survey",
     Debug:"/debug",
-    Articles:"/articles"
-    
-}
+    Articles:"/articles",
+    ArticleContent: "/articles/:articleID",
+    }
 const API = {
     SignUp: {
         LGU: "http://localhost:8080/accounts/lgu",

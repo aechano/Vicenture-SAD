@@ -13,7 +13,7 @@ function InputBoxAccount(props) {
   This takes a children component where it can be an icon (Optional) at the start of the inputbox.
   */
   return (
-    <div className={'flex justify-center '+props.className}>
+    <div className={'flex justify-center '}>
         <div className={"relative " + (props.width!==undefined?props.width:"w-3/5 ") + (props.marginBottom!==undefined?props.marginBottom:"mb-6")}>
             {/*The children here is the icon used for the input box if needed.*/}
             {
@@ -27,7 +27,7 @@ function InputBoxAccount(props) {
             {/*This is the input box where each attribute is passed onto the actual <input> tag*/}
             <input
                 type={props.type!==undefined?props.type:"text"}
-                className={"bg-white border border-white text-black text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 " + (props.children!==undefined?"pl-10":"")}
+                className={"bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4 " + (props.children!==undefined?"pl-10":"")}
                 placeholder={props.placeholder!==undefined?props.placeholder:""}
                 autocomplete={props.autocomplete!==undefined?'email':null}
                 value={props.value!==undefined?props.value:""}

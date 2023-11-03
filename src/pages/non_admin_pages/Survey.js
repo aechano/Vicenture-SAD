@@ -95,7 +95,7 @@ export default function Survey() {
 function Content({ content }) {
     return (
         <div className="m-3">
-            <NavLink to={PATH_NAME.Home} className="flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200">
+            <NavLink to={PATH_NAME.SampleSurvey} className="flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200" onClick={() => window.scrollTo({top: 0, left:0, behavior: "smooth"})}>
                 <img className="object-cover w-full h-96 md:h-auto md:w-48 rounded-sm m-3" src={content.image} alt="" />
                 <div className="flex flex-col justify-between p-4 leading-normal border-l-2 border-gray-500">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-black text-left">{content.title}</h5>
