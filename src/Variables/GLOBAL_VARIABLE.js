@@ -42,9 +42,9 @@ const PATH_NAME = {
     ForumsAndDiscussions:"/forums",
     Survey:"/surveys",
     Debug:"/debug",
-    Articles:"/articles"
-    
-}
+    Articles:"/articles",
+    ArticleContent: "/articles/:articleID",
+    }
 const API = {
     SignUp: {
         LGU: "http://localhost:8080/accounts/lgu",

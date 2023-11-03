@@ -17,7 +17,7 @@ import History from './pages/non_admin_pages/TheTown/History';
 import PlacesToVisit from './pages/non_admin_pages/Tourism/PlacesToVisit';
 import Activities from './pages/non_admin_pages/Tourism/Activities';
 import Survey from './pages/non_admin_pages/Survey';
-import Articles from './pages/non_admin_pages/Articles';
+import Articles, { ArticleContent } from './pages/non_admin_pages/Articles';
 import ForumsAndDiscussionsPost from './pages/non_admin_pages/ForumsAndDiscussionsPost';
 import Offices from './pages/non_admin_pages/TheTown/Offices';
 import OtherInfo from './pages/non_admin_pages/TheTown/OtherInfo';
@@ -65,7 +65,9 @@ function App() {
                         <Route path={PATH_NAME.Transparency} element={<Transparency />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
-                        <Route path={PATH_NAME.Articles} element={<Articles />} />
+                        <Route path="/articles" element={<Articles />} />
+                        <Route path="/article/:articleID" element={<ArticleContent/>} /> 
+
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
