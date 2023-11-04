@@ -33,6 +33,7 @@ import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
 import Transparency from './pages/non_admin_pages/Transparency';
 import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
+import PlacesToVisit_Add from './pages/lgu_sv_access/PlacesToVisit_Add';
 
 function App() {
     return (
@@ -81,6 +82,9 @@ function App() {
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent />} />
                         <Route path={PATH_NAME.Invest.ReasonsToInvest} element={<ReasonsToInvest />} />
                         <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:contentID"} element={<ReasonsToInvestContent />} />
+
+
+                        <Route path={PATH_NAME.AddPlacesToVisit} element={<PlacesToVisit_Add />} />
 
 
 

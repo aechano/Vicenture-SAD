@@ -45,6 +45,10 @@ const PATH_NAME = {
     Debug:"/debug",
     Articles:"/articles",
     ArticleContent: "/articles/:articleID",
+
+
+    AddPlacesToVisit: "/tourism/places-to-visit/add-places-to-visit"
+
     }
 const API = {
     SignUp: {
