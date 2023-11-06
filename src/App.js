@@ -61,7 +61,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm />} />
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit />} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit+"/:postID"} element={<PlacesToVisitPost />} /> {/** Try only */}
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit+"/:contentID"} element={<PlacesToVisitPost />} /> {/** Try only */}
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs />} />
