@@ -19,58 +19,58 @@ export default function PlacesToVisit() {
 
     var contents = [
         {
-            id:1,
+            id: 1,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
-            vote: "213",
-            comments: "16",
+            rate: 3.8,
+            vote: 200,
+            comments: 42,
         },
         {
-            id:2,
+            id: 2,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
-            vote: "213",
-            comments: "16",
+            rate: 2.6,
+            vote: 175,
+            comments: 74,
         },
         {
-            id:3,
+            id: 3,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
-            vote: "213",
-            comments: "16",
+            rate: 4.2,
+            vote: 531,
+            comments: 63,
         },
         {
-            id:4,
+            id: 4,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
-            vote: "213",
-            comments: "16",
+            rate: 4.7,
+            vote: 213,
+            comments: 16,
         },
         {
-            id:5,
+            id: 5,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
-            vote: "213",
-            comments: "16",
+            rate: 3.0,
+            vote: 213,
+            comments: 16,
         },
         {
-            id:6,
+            id: 6,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: "4.7",
-            vote: "213",
-            comments: "16",
+            rate: 4.0,
+            vote: 213,
+            comments: 16,
         },
     ];
 
@@ -119,10 +119,16 @@ export default function PlacesToVisit() {
                         <FaFilter />
                     </div>
                 </div>
-                
+
                 <div className='pt-12'>
                     {contents.map((content, index) => {
-                        return <TourismCards key={index} content={content} onClick={()=>navigate(PATH_NAME.Tourism+"/"+String(content.id))}/>;
+                        return <TourismCards
+                            key={index}
+                            content={content}
+                            onClick={() => {
+                                navigate(PATH_NAME.Tourism.PlacesToVisit + "/" + content.id);
+                                window.scrollTo({ top: 0, left: 0 });}}
+                        />;
                     })}
                 </div>
 
