@@ -25,6 +25,7 @@ const PATH_NAME = {
         SanVicente: "/tourism/san-vicente-tourism",
         OnlineForm: "/tourism/san-vicente-tourism/online-form",
         PlacesToVisit: "/tourism/places-to-visit",
+        PlacesToVisitPost: "/tourism/places-to-visit-post", // Try only
         Activities: "/tourism/activities",
     },
 

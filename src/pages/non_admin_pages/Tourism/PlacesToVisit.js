@@ -3,10 +3,12 @@ import Banner from '../../../components/Banner'
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
+import { useNavigate } from 'react-router';
 
 
 export default function PlacesToVisit() {
     const [search, setSearch] = useState('');
+    const navigate = useNavigate();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -17,6 +19,7 @@ export default function PlacesToVisit() {
 
     var contents = [
         {
+            id:1,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
@@ -25,6 +28,7 @@ export default function PlacesToVisit() {
             comments: "16",
         },
         {
+            id:2,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
@@ -33,6 +37,7 @@ export default function PlacesToVisit() {
             comments: "16",
         },
         {
+            id:3,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
@@ -41,6 +46,7 @@ export default function PlacesToVisit() {
             comments: "16",
         },
         {
+            id:4,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
@@ -49,6 +55,7 @@ export default function PlacesToVisit() {
             comments: "16",
         },
         {
+            id:5,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
@@ -57,6 +64,7 @@ export default function PlacesToVisit() {
             comments: "16",
         },
         {
+            id:6,
             pic: require("../../../res/img/mananap.jpg"),
             title: "Mananap Falls",
             body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
@@ -114,7 +122,7 @@ export default function PlacesToVisit() {
                 
                 <div className='pt-12'>
                     {contents.map((content, index) => {
-                        return <TourismCards key={index} content={content} />;
+                        return <TourismCards key={index} content={content} onClick={()=>navigate(PATH_NAME.Tourism+"/"+String(content.id))}/>;
                     })}
                 </div>
 

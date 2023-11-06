@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { PATH_NAME } from '../Variables/GLOBAL_VARIABLE';
 
 
-export default function TourismCards({ content }) {
+export default function TourismCards({ content, onClick }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Function to toggle the dropdown
@@ -19,7 +19,7 @@ export default function TourismCards({ content }) {
     };
     return (
         <>
-            <div className="m-3 flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200">
+            <div className="m-3 flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200" onClick={onClick}>
                 <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-sm m-3" src={content.pic} alt="Mananap Falls" />
                 <div className="flex flex-col justify-between p-4 leading-normal">
                     <div className='flex justify-between'>

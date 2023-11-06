@@ -33,6 +33,7 @@ import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
 import Transparency from './pages/non_admin_pages/Transparency';
 import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
+import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 
 function App() {
     return (
@@ -59,6 +60,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm />} />
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit+"/:postID"} element={<PlacesToVisitPost />} /> {/** Try only */}
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs />} />
