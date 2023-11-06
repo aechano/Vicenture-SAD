@@ -200,28 +200,28 @@ export default function ContactUs() {
           <h1 className='font-bold text-center text-4xl'>Get in Touch with Us</h1>
           <p className='font-semibold text-center text-md'>Do you need more information? Please contact us to find more about San Vicente</p>
 
-          <div className='grid grid-cols-2 pt-10'>
-            <div className='text-right px-10 space-y-4 my-14'>
+          <div className='md:grid md:grid-cols-2 pt-10'>
+            <div className='text-center md:text-right px-10 space-y-4 md:my-6 lg:my-14 pb-5 md:pb-0'>
               <p className='font-semibold text-2xl'>San Vicente, Camarines Norte,</p>
               <p className='font-semibold text-2xl'>Philippines</p>
-              <div className='flex justify-end items-center space-x-2'>
-                <IoLocation />
+              <div className='flex justify-center md:justify-end items-center space-x-2'>
+                <IoLocation className='hidden lg:flex' />
                 <p className='font-normal text-xl'>4V4F+J6F, San Vicente, Camarines Norte</p>
               </div>
-              <div className='flex justify-end items-center space-x-2'>
-                <BsFillTelephoneFill />
+              <div className='flex justify-center md:justify-end items-center space-x-2'>
+                <BsFillTelephoneFill className='hidden lg:flex' />
                 <p className='font-normal text-xl'>+63 9985470485</p>
               </div>
-              <div className='flex justify-end items-center space-x-2'>
-                <MdEmail />
+              <div className='flex justify-center md:justify-end items-center space-x-2'>
+                <MdEmail className='hidden lg:flex' />
                 <p className='font-normal text-xl'>lgusanvicente4609@yahoo.com</p>
               </div>
-              <div className='flex justify-end items-center space-x-2'>
-                <MdFacebook />
+              <div className='flex justify-center md:justify-end items-center space-x-2'>
+                <MdFacebook className='hidden lg:flex' />
                 <p className='font-normal text-xl flex-col'>http://bit.ly/3FxCrbU</p>
               </div>
             </div>
-            <div>
+            <div className='flex justify-center md:block'>
               <div className="block max-w-md rounded-lg border-2 border-black p-4">
                 <form onSubmit={handleSubmit}>
 
