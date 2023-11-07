@@ -77,14 +77,14 @@ export default function Header(props) {
                                             </Disclosure.Button>
                                         </div>
                                         <div className="flex flex-1 items-center justify-between">
-                                            <div className="flex flex-shrink-0 items-center">
+                                            <NavLink to={PATH_NAME.Home} className="flex flex-shrink-0 items-center">
                                                 <img
                                                     className="h-12 w-auto hidden lg:block"
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
                                                 <span className="hidden sm:block text-lgu-lime text-lg ml-10 lg:ml-2 font-bold">LGU San Vicente</span>
-                                            </div>
+                                            </NavLink>
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-10">
                                                     {navigation.map((item) =>

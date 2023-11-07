@@ -60,7 +60,7 @@ export default function Offices() {
       vision: 'To follow',
       orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
       contactNumbers: ['Contact Number: To follow',],
-    },    {
+    }, {
       name: 'Human Resource Management Office',
       mandate: 'To follow',
       vision: 'To follow',
@@ -77,7 +77,7 @@ export default function Offices() {
           <ul>
             <li>To implement the standard internal control for a transparent local government financial operation.</li><br></br>
             <li>To prepare financial records and statements in compliance with the new government accounting system.
-</li>
+            </li>
           </ul>
         </div>
       ),
@@ -91,7 +91,7 @@ export default function Offices() {
       mission: 'To help and empower the farming and fishing communities and the private sector to produce enough, accessible for every Filipino income for all.',
       orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
       contactNumbers: ['Contact Number: To follow'],
-    }, 
+    },
     {
       name: "Municipal Assessor's Office",
       mandate: "To follow",
@@ -108,7 +108,7 @@ export default function Offices() {
       orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
       contactNumbers: ['Contact Number: To follow'],
     },
-        
+
     {
       name: "Municipal Civil Registrar",
       mandate: "To follow",
@@ -124,9 +124,9 @@ export default function Offices() {
       mission: 'Ensure effective disaster preparedness, emergency response, and climate change adaptation to enhance the safety of the citizens.',
       orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
       contactNumbers: ['MDRRMO: 0998-577-3706',
-      'SV-PNP: 0998-598-5962',
-      'SV-BFP: 0985-471-2169',
-      'MTPSO: 0920-488-0734'],
+        'SV-PNP: 0998-598-5962',
+        'SV-BFP: 0985-471-2169',
+        'MTPSO: 0920-488-0734'],
     },
     {
       name: 'Municipal Engineering Office',
@@ -174,7 +174,7 @@ export default function Offices() {
       mission: 'To lessen the crime and accident within the vicinity of San Vicente through conducting on duty personnel 24 hours a day and visibility patrolling and to attain a peaceful and safe community within the municipality.',
       orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
       contactNumbers: ['MTPSO Hotline: 0985-403-2655', 'Email Address: sanvicentemtpso@gmail.com',
-      'Facebook Page: Mun. Traffic and Public Safety Office-San Vicente'],
+        'Facebook Page: Mun. Traffic and Public Safety Office-San Vicente'],
     },
     {
       name: "Municipal Treasurer's Office",
@@ -232,85 +232,88 @@ export default function Offices() {
         </h1>
       </Banner>
 
-      {/* Sidebar */}
-      <div className="flex flex-row mt-20 mb-20">
-        <div className="w-1/4 bg-lgu-yellow p-4 mt-10 ml-20 mb-20 mr-6" style={{ maxHeight: '800px', overflowY: 'auto' }}>
-          <ul>
-            {officeData.map((office, index) => (
-              <li
-                key={index}
-                style={{
-                  marginBottom: '1.5vw',
-                  cursor: 'pointer',
-                  textDecoration: index === selectedContentIndex ? 'underline' : 'none', // Add underline here
-                }}
-                onClick={() => handleContentClick(office, index)}
-              >
-                {office.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-
-        {/* Main Content with Scrollable Border */}
-        <div className="w-3/4 pr-4 border border-black p-4" ref={contentRef}>
-          <div>
-            {selectedContent && (
-              <>
-                <div className='font-bold font-open sans text-3xl'>
-                  <h2>{selectedContent.name}</h2>
-                </div>
-              </>
-            )}
-            
-            <div>
-            {/* Content here */}
-            <div className='font-bold font-open sans text-2xl mt-4'>
-              <h2>Mandate</h2>
-            </div>
-            <p className='mt-4'>{selectedContent.mandate}</p>
-
-            <div className='font-bold font-open sans text-2xl mt-60'>
-              <h2>Vision</h2>
-            </div>
-            <p className='mt-4'>{selectedContent.vision}</p>
-
-            <div className='font-bold font-open sans text-2xl mt-60'>
-              <h2>Mission</h2>
-            </div>
-            <p className='mt-4'>{selectedContent.mission}</p>
-
-            <div className='font-bold font-open sans text-2xl mt-60'>
-              <h2>Organizational Chart</h2>
-            </div>
-            <img src={selectedContent.orgChartImage} alt="Organizational Chart" className='mt-4' />
-
-            <div className='font-bold font-open sans text-2xl mt-60'>
-              <h2>Contact Numbers</h2>
-            </div>
-            <ul className='ml-4'>
-              {selectedContent.contactNumbers.map((contact, index) => (
-                <li key={index} className='my-5'>{contact}</li>
+      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5'>
+        {/* Sidebar */}
+        <div className="flex flex-row mt-20 mb-20">
+          <div className="w-1/4 bg-lgu-yellow p-4 mt-10 ml-20 mb-20 mr-6" style={{ maxHeight: '800px', overflowY: 'auto' }}>
+            <ul>
+              {officeData.map((office, index) => (
+                <li
+                  key={index}
+                  style={{
+                    marginBottom: '1.5vw',
+                    cursor: 'pointer',
+                    textDecoration: index === selectedContentIndex ? 'underline' : 'none', // Add underline here
+                  }}
+                  onClick={() => handleContentClick(office, index)}
+                >
+                  {office.name}
+                </li>
               ))}
             </ul>
           </div>
 
-            <iframe
-              width="90%"
-              height="600"
-              frameBorder="0"
-            ></iframe>
 
-            <div style={{ textAlign: 'right', marginTop: '1.5rem' }}>
-              <a
-                href="/services-offered"
-                style={{ textDecoration: 'underline', color: 'black' }}>See Services Offered
-              </a>
+          {/* Main Content with Scrollable Border */}
+          <div className="w-3/4 pr-4 border border-black p-4" ref={contentRef}>
+            <div>
+              {selectedContent && (
+                <>
+                  <div className='font-bold font-open sans text-3xl'>
+                    <h2>{selectedContent.name}</h2>
+                  </div>
+                </>
+              )}
+
+              <div>
+                {/* Content here */}
+                <div className='font-bold font-open sans text-2xl mt-4'>
+                  <h2>Mandate</h2>
+                </div>
+                <p className='mt-4'>{selectedContent.mandate}</p>
+
+                <div className='font-bold font-open sans text-2xl mt-60'>
+                  <h2>Vision</h2>
+                </div>
+                <p className='mt-4'>{selectedContent.vision}</p>
+
+                <div className='font-bold font-open sans text-2xl mt-60'>
+                  <h2>Mission</h2>
+                </div>
+                <p className='mt-4'>{selectedContent.mission}</p>
+
+                <div className='font-bold font-open sans text-2xl mt-60'>
+                  <h2>Organizational Chart</h2>
+                </div>
+                <img src={selectedContent.orgChartImage} alt="Organizational Chart" className='mt-4' />
+
+                <div className='font-bold font-open sans text-2xl mt-60'>
+                  <h2>Contact Numbers</h2>
+                </div>
+                <ul className='ml-4'>
+                  {selectedContent.contactNumbers.map((contact, index) => (
+                    <li key={index} className='my-5'>{contact}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <iframe
+                width="90%"
+                height="600"
+                frameBorder="0"
+              ></iframe>
+
+              <div style={{ textAlign: 'right', marginTop: '1.5rem' }}>
+                <a
+                  href="/services-offered"
+                  style={{ textDecoration: 'underline', color: 'black' }}>See Services Offered
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 }

@@ -11,6 +11,9 @@ module.exports = {
         'lgu-lime'  :'#B5F8B6',
         'lgu-yellow':'#FFE77B',
       },
+      boxShadow: {
+        'chat': 'inset 0 0 5px rgba(0, 0, 0, 0.3)',
+      },
       backgroundColor: {
         'emergency': 'red', // Define the 'success' background color as green
         'event': 'green'
