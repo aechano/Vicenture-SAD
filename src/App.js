@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import Banner from './components/Banner';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
+import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
@@ -50,6 +51,7 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
                         <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
+                        <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
 
                             <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
                             <Route path={PATH_NAME.TheTown.History} element={<History/>} />
