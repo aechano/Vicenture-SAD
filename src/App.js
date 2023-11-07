@@ -36,6 +36,7 @@ import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
+import { RedirectMessages } from './components/redirect-webpages';
 
 function App() {
     return (
@@ -77,8 +78,8 @@ function App() {
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
-                        <Route path={PATH_NAME.Messages + "/:user/:conversationID"} element={<Messaging />} />
-                        <Route path={PATH_NAME.Messages} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages + "/:conversationID"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages} element={<RedirectMessages />} />
                         <Route path={PATH_NAME.Profile} element={<Profile />} />
                         
 
