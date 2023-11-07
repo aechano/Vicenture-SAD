@@ -87,17 +87,17 @@ export default function ReasonsToInvestContent() {
             </Banner>
 
             <div className="flex flex-row">
-                <div className="lg:w-1/2 p-4" style={{ float: 'left' }}>
+                <div className=" p-4" >
                     <img
                         src={selectedContent.contentImg}
                         alt={selectedContent.title}
-                        className="w-full h-auto mt-7"
+                        
+                        className="float-left mr-4 my-2 w-auto h-96 mt-7"             
                     />
-                </div>
-                <div className="lg:w-1/2 p-4">
                     <h2 className="text-3xl font-bold mt-7">{selectedContent.title}</h2>
                     <p className="text-35 text-left">{selectedContent.body}</p>
                 </div>
+
             </div>
         </div>
     )

@@ -131,7 +131,7 @@ function Homepage() {
                 alt="San Vicente Logo"
                 button="About San Vicente"
                 arrow={true}
-                href="/the-town/about">
+                href="/the-town/about" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
                 Embark on a journey through time and culture as you discover the enchanting secrets of San Vicente. This hidden gem, nestled in the heart of Camarines Norte, offers a rich tapestry of history, tradition, and natural beauty. From its roots dating back to the late 18th century to the modern-day marvels that make it a thriving community, San Vicente has countless stories to tell.
             </Sections>
 
@@ -144,7 +144,7 @@ function Homepage() {
                 altDisplay="Mananap Falls"
                 button="View more details"
                 arrow={true}
-                href="/">
+                href="/" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
                 We cordially extend an invitation to experience the serene and captivating beauty of San Vicente, a remarkable destination that promises a rejuvenating departure from the everyday routine.
                 Tucked away in the embrace of nature, this tranquil paradise calls out to wanderers, urging them to pause, explore, and become one with a realm of stunning natural vistas, a rich tapestry of local culture,
                 and indelible memories waiting to be etched in your heart. Whether your heart craves adventure or craves serenity, San Vicente stands ready to offer you the quintessential escape, a portal to a world where
@@ -160,7 +160,7 @@ function Homepage() {
                 alt="Vector image of a hand holding a coin with the peso sign on it."
                 button="Sign Up as an Investor"
                 arrow={true}
-                href="/sign-up">
+                href="/sign-up" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
                 Investing in the tourism potential of San Vicente, Camarines Norte, is like planting the seeds of opportunity in a flourishing garden of natural beauty.
                 As this captivating destination continues to reveal its hidden gems, your investment not only promises growth and prosperity but also contributes to the sustainable development of a place destined
                 to become a sought-after haven for travelers seeking unique and authentic experiences. By investing in San Vicente's tourism, you're nurturing a brighter future for both the community and the
@@ -175,7 +175,7 @@ function Homepage() {
                 alt="Vector image of a group of people talking."
                 button="Read Forums and Discussions"
                 arrow={true}
-                href="/">
+                href="/" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
             </Sections>
 
