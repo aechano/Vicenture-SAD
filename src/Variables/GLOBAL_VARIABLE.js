@@ -27,6 +27,7 @@ const PATH_NAME = {
         PlacesToVisit: "/tourism/places-to-visit",
         PlacesToVisitPost: "/tourism/places-to-visit-post", // Try only
         Activities: "/tourism/activities",
+        Content: "/tourism/places-to-visit/content",
     },
 
     Invest : {
@@ -47,8 +48,6 @@ const PATH_NAME = {
     Articles:"/articles",
     ArticleContent: "/articles/:articleID",
 
-
-    AddPlacesToVisit: "/tourism/places-to-visit/add-places-to-visit",
     AddOffices: "/the-town/offices/add-offices"
 
     }
