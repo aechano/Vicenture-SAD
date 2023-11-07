@@ -78,6 +78,7 @@ function App() {
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
                         <Route path={PATH_NAME.Messages + "/:user/:conversationID"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages} element={<Messaging />} />
                         <Route path={PATH_NAME.Profile} element={<Profile />} />
                         
 
