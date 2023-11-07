@@ -35,6 +35,7 @@ import Transparency from './pages/non_admin_pages/Transparency';
 import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
 import PlacesToVisit_Add from './pages/lgu_sv_access/PlacesToVisit_Add';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
+import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 
 function App() {
     return (
@@ -87,6 +88,7 @@ function App() {
 
 
                         <Route path={PATH_NAME.AddPlacesToVisit} element={<PlacesToVisit_Add />} />
+                        <Route path={PATH_NAME.AddOffices} element={<Offices_Add />} />
 
 
 

@@ -235,6 +235,7 @@ export default function PlacesToVisit_Add() {
                             </div>
                         </div>
                     </div> 
+                    
                 </form>
             </div>
         </div>

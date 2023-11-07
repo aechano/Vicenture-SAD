@@ -48,7 +48,8 @@ const PATH_NAME = {
     ArticleContent: "/articles/:articleID",
 
 
-    AddPlacesToVisit: "/tourism/places-to-visit/add-places-to-visit"
+    AddPlacesToVisit: "/tourism/places-to-visit/add-places-to-visit",
+    AddOffices: "/the-town/offices/add-offices"
 
     }
 const API = {
