@@ -18,11 +18,12 @@ export default function AboutSanVicente() {
         <div className="lg:w-2/3 p-2 bg-white">
           <h1 className="text-3xl font-bold mt-7 ml-5">San Vicente,</h1>
           <h1 className="text-3xl font-bold ml-5">Camarines Norte</h1>
-          <p className="text-35 text-left mt-6 ml-5">San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.
+          <p className="text-40 text-left mt-4 ml-5">San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.<br></br><br></br> Step into San Vicente, and you'll find yourself in a living museum, where every street and corner has a story to tell. From the graceful swaying on the coconut palms to the vibrant festivities that echo through its streets, this town encapsulates the essence of Bicolano charm. Whether you're tracing its historical origins or savoring the serenity of its landscapes, San Vicente invites you to uncover the past and embrace the present. A town that has weathered the test of time, it continues to thrive, and its captivating heritage awaits those ready to explore.
+
           </p>
         </div>
         <div className="lg:w-2/3 p-4">
-          <video className="w-full h-full p-4" autoPlay loop controls muted>
+          <video className="w-full h-full rounded-2xl shadow-lg p-4" autoPlay loop controls muted>
             <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
           </video>
         </div>
@@ -37,7 +38,8 @@ export default function AboutSanVicente() {
         button="Read More"
         arrow={true}
         href={PATH_NAME.TheTown.History} onClick={() => window.scrollTo({top: 0, left:0, behavior: "smooth"})}>
-        San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.
+        Travel back in time and immerse yourself in the captivating history of San Vicente. The town's roots stretch far beyond Camarines Norte's official formation in 1919. Historical records tell us that San Vicente came into existence around 1790, boasting a population of 1,187 residents. Religious elements heavily influenced the town's origins. It started as a barrio named San Antonio, strategically located southwest of Daet. In 1771, under the guidance of Bishop Fray Antonio de Luna, it was a mission aimed at expanding the Franciscan Missions in Daet. However, due to a series of events, the Franciscans had to depart, only for the mission to be revived in 1783 and renamed San Vicente, dedicated to Saint Vincent Ferrer. 
+
       </Sections>
 
       {/* SV Hymn */}
@@ -46,21 +48,24 @@ export default function AboutSanVicente() {
         <div className="lg:w-2/3 p-2 bg-white">
           <h1 className="text-3xl font-bold text-center mt-6">San Vicente Hymn</h1>
           <div className="text-40 text-center mt-4 italic">
-            <p className="mt-2">Pagmamahal sa Makati</p>
-            <p className="mt-2">Bayan na itatanghal</p>
-            <p className="mt-2">Sa ngalan ng mga malalaya na may pagtingin sa bansa</p>
-            <p className="mt-2">Diwa't puso na natin sa Makati ibibigay!</p>
-            <p className="mt-2">Kapit bisig tayo itaguyod na natin</p>
-            <p className="mt-2">Ang magandang simula ang magpapaunlad ng bayan</p>
-            <p className="mt-2">O Makati na aming mahal</p>
-            <p className="mt-2">Bayan mo'y itatanghal</p>
-            <p className="mt-2">O Makati o Makati mahalin natin atin ito</p>
-            <p className="mt-2">Kapit bisig tayo itaguyod na natin</p>
-            <p className="mt-2">Ang maganda ng simula</p>
-            <p className="mt-2">Ang magpapaunlad ng bayan!</p>
-            <p className="mt-2">O Makati na aming mahal</p>
-            <p className="mt-2">Bayan mo'y itatanghal</p>
-            <p className="mt-2 mb-5">O Makati o Makati mahalin natin atin ito</p>
+          <p className="mt-2">Ang luntiang kabundukan, Nitong ating bayang minamahal</p>
+          <p className="mt-2">Tila isang Paraiso, Biyaya sa pamayanan</p>
+          <p className="mt-2">Yamang gubat na taglay, Bulsa ay tubig na Dalisay</p>
+          <p className="mt-2">Ganda ng Talon ng Mananap, Mga turista hinahanap</p>
+          <p className="mt-2">Siyam na nayon, iisang layon, Kalakal at agrikultura</p>
+          <p className="mt-2">Turismo at pagsasaka, Edukasyon dinadakila</p>
+          <p className="mt-2">Sa Silangan at Kanluran, Man-Ogob, Cabanbanan</p>
+          <p className="mt-2">Calabagas, Asdum, Fabrica, Iraya sur, San Jose, anong sigla!</p>
+          <p className="mt-6 mb-2"><b>CHORUS</b></p>
+          <p className="mt-2">O San Vicente, yamang likas natatangi, Kaulara’y kapuri-puri</p>
+          <p className="mt-2">Masayang nagbunbunyi. Pakinabang nito sa pamayanan masaganang buhay</p>
+          <p className="mt-2">Ang kinabukasan asam tagumpay ng bayan</p>
+          <p className="mt-2">Mga tao ay naghahabi, Angking sining at kultura</p>
+          <p className="mt-2">Sayaw Esperanza de San Vicente, Laso de Palo at Española</p>
+          <p className="mt-2">Ang madla’y nagpupugay, At nagkakaisang tunay</p>
+          <p className="mt-2">Sa tulong ng Patrong San Vicente, Sa pag-unlad siyang saksi</p>
+          <p className="mt-4 mb-5"><b>REPEAT CHORUS TWICE</b></p>
+
           </div>
         </div>
       </div>

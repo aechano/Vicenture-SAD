@@ -132,7 +132,7 @@ function Homepage() {
                 button="About San Vicente"
                 arrow={true}
                 href="/the-town/about">
-                San Vicente, formally recognized as the Municipality of San Vicente, is a town of the 5th class located in the province of Camarines Norte, Philippines. As of the 2020 census, it is home to a population of approximately 12,579 residents. The Mananap Falls is approximately 20–25 ft tall, tucked inside the thick forest and mountains. The water was ice cold, and there is a small raft tied which will lead you near the falls and a ladder to get to the top of the falls. There is a jumping point as well. It is more than this we-attitude that is practiced by the people, each one treating the other as more than a neighbor. A large segment of the population is related by blood.
+                Embark on a journey through time and culture as you discover the enchanting secrets of San Vicente. This hidden gem, nestled in the heart of Camarines Norte, offers a rich tapestry of history, tradition, and natural beauty. From its roots dating back to the late 18th century to the modern-day marvels that make it a thriving community, San Vicente has countless stories to tell.
             </Sections>
 
             {/* Tourism Section */}

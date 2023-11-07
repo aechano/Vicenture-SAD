@@ -50,7 +50,7 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
 
                             <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
-                            <Route path={PATH_NAME.TheTown.History} element={<History/>} />
+                            <Route path={PATH_NAME.TheTown.History} element={<History/>} /> 
                             <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo/>} />
                             <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
                             <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />

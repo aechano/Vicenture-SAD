@@ -92,9 +92,9 @@ export default function Viewer({view}) {
                     </div>
                     <div className='block grow'> {/** dunno if this `grow` className that I put actually does something. ehe~ */}
                         {selectedContent && (
-                            <div>
-                                <h1 className='pt-5 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
-                                <div className='flex justify-end w-full' ref={pdfRef}> {/** added pdfRef for keeping track of outer div's width */}
+                            <div className='rounded shadow-lg shadow-lgu-green'>
+                                <h1 className='pt-5 ml-5 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
+                                <div className='flex justify-end w-full pt-6' ref={pdfRef}> {/** added pdfRef for keeping track of outer div's width */}
                                     <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto"> {/** simplified this className to what's (I think) necessary */}
                                         <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} /> {/** set width attribute to target its inner canvas's width (which was the problem) */}
                                     </Document>
