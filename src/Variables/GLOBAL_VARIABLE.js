@@ -8,6 +8,9 @@ const PATH_NAME = {
         },
         list:["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"]
     },
+    AdminPages: {
+        AdminAnalytics:"/analytics",
+    },
     Home: "/",
     TheTown: {
         TheTown: "/the-town",
