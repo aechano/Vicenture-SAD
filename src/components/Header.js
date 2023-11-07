@@ -108,7 +108,10 @@ export default function Header(props) {
                                                                             <NavLink
                                                                                 key={subItem.name}
                                                                                 to={subItem.href}
-                                                                                onClick={() => handleDropdown(item.name)}
+                                                                                onClick={() => {
+                                                                                    handleDropdown(item.name)
+                                                                                    window.scrollTo({top: 0, left:0, behavior: "smooth"}) // Dito ko nilagay xenxen
+                                                                                }}
                                                                                 className={({ isActive }) => {
                                                                                     return "block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                         (isActive ? "font-medium" : "")
@@ -128,7 +131,7 @@ export default function Header(props) {
                                                                     return 'rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white ' +
                                                                         (isActive ? 'font-medium' : '')
                                                                 }}
-
+                                                                onClick={() => window.scrollTo({top: 0, left:0, behavior: "smooth"})} // tapos dito rin 
                                                             >
                                                                 {item.name}
                                                             </NavLink>

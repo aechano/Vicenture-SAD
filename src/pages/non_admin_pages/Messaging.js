@@ -130,7 +130,7 @@ export default function Messaging() {
             messageID: "100-0-1",
             sender: currentChat.office,
             messageContent: "Here are the files that you wanted.",
-            timestamp: new Date().getTime(),
+            timestamp: new Date().getTime()-(1000*60*60*24*5),
             file: [
                 {
                     fileID: "100-0-1-1",
@@ -156,6 +156,13 @@ export default function Messaging() {
             messageID: "100-0-2",
             sender: "gheeelo@gmail.com",
             messageContent: "Thank you very much!",
+            timestamp: new Date().getTime()-(1000*60*10 + 1000),
+            file: []
+        },
+        {
+            messageID: "100-0-3",
+            sender: currentChat.office,
+            messageContent: "No problem.",
             timestamp: new Date().getTime(),
             file: []
         },
@@ -234,4 +241,7 @@ function ChatSidePanel({ office, className, onClick }) {
             </div>
         </div>
     )
+}
+function MyChat({ message }){
+    
 }
