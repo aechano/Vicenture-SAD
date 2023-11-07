@@ -9,7 +9,7 @@ export default function TourismCards({ content, onClick }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // Function to toggle the dropdown
-    const toggleDropdown = () => {
+    const toggleDropdown = (event) => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
@@ -24,7 +24,7 @@ export default function TourismCards({ content, onClick }) {
                 <div className="flex flex-col justify-between p-4 leading-normal">
                     <div className='flex justify-between'>
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{content.title}</h5>
-                        <div className='relative'>
+                        <div className='relative' onClick={(event)=>event.stopPropagation()}>
                             <div className='text-2xl' onClick={toggleDropdown}>
                                 <HiDotsHorizontal />
                             </div>
@@ -37,8 +37,6 @@ export default function TourismCards({ content, onClick }) {
 
                     </div>
                     <p className="mb-3 font-normal text-stone-500 dark:text-gray-800">{content.body}</p>
-
-                    {/* Hindi pa kasama itong rating sa pagpasa nung argument, d ko alam pano haha */}
                     <div className="flex items-center">
                         <svg className={"w-2 h-4 ml-1 "+(content.rate>=0.5? "text-yellow-300":"text-gray-300")}
                             aria-hidden="true" fill="currentColor" viewBox="0 0 11 20">
