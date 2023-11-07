@@ -7,6 +7,7 @@ import Homepage from './pages/Homepage';
 import Banner from './components/Banner';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
+import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
@@ -33,8 +34,10 @@ import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
 import Transparency from './pages/non_admin_pages/Transparency';
 import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
-import PlacesToVisit_Add from './pages/lgu_sv_access/PlacesToVisit_Add';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
+import Offices_Add from './pages/lgu_sv_access/Offices_Add';
+import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
+import { RedirectMessages } from './components/redirect-webpages';
 
 function App() {
     return (
@@ -48,6 +51,7 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
                         <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
+                        <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
 
                             <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
                             <Route path={PATH_NAME.TheTown.History} element={<History/>} /> 
@@ -61,7 +65,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm />} />
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit />} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit+"/:postID"} element={<PlacesToVisitPost />} /> {/** Try only */}
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit+"/:contentID"} element={<PlacesToVisitPost />} /> {/** Try only */}
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs />} />
@@ -76,7 +80,8 @@ function App() {
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
-                        <Route path={PATH_NAME.Messages + "/:user/:conversationID"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages + "/:conversationID"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages} element={<RedirectMessages />} />
                         <Route path={PATH_NAME.Profile} element={<Profile />} />
                         
 
@@ -86,7 +91,9 @@ function App() {
                         <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:contentID"} element={<ReasonsToInvestContent />} />
 
 
-                        <Route path={PATH_NAME.AddPlacesToVisit} element={<PlacesToVisit_Add />} />
+                        <Route path={PATH_NAME.Tourism.Content+"/:method/:contentID"} element={<PlacesToVisitContent />} />
+                        <Route path={PATH_NAME.Tourism.Content+"/:method"} element={<PlacesToVisitContent />} />
+                        <Route path={PATH_NAME.AddOffices} element={<Offices_Add />} />
 
 
 

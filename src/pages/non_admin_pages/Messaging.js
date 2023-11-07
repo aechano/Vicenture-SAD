@@ -125,6 +125,48 @@ export default function Messaging() {
         },
     ]
     const [currentChat, setCurrentChat] = useState(offices[0]);
+    var messages = [
+        {
+            messageID: "100-0-1",
+            sender: currentChat.office,
+            messageContent: "Here are the files that you wanted.",
+            timestamp: new Date().getTime()-(1000*60*60*24*5),
+            file: [
+                {
+                    fileID: "100-0-1-1",
+                    file: "",
+                    fileType: "pdf",
+                    timestamp: new Date().getTime()
+                },
+                {
+                    fileID: "100-0-1-2",
+                    file: "",
+                    fileType: "pdf",
+                    timestamp: new Date().getTime()
+                },
+                {
+                    fileID: "100-0-1-3",
+                    file: "",
+                    fileType: "pdf",
+                    timestamp: new Date().getTime()
+                },
+            ]
+        },
+        {
+            messageID: "100-0-2",
+            sender: "gheeelo@gmail.com",
+            messageContent: "Thank you very much!",
+            timestamp: new Date().getTime()-(1000*60*10 + 1000),
+            file: []
+        },
+        {
+            messageID: "100-0-3",
+            sender: currentChat.office,
+            messageContent: "No problem.",
+            timestamp: new Date().getTime(),
+            file: []
+        },
+    ]
     return (
         <>
             <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen ps-5 mt-20'> {/** This is the sidebar */}
@@ -144,7 +186,7 @@ export default function Messaging() {
                 </div>
             </div>
             <div className='w-full ps-80'>
-                <div className='relative w-full h-20 bg-lgu-yellow flex'> {/** Topbar */}
+                <div className='fixed top-20 w-full h-20 bg-lgu-yellow flex'> {/** Topbar */}
                     <div className='ps-2 pt-2 w-20'>
                         <img
                             className='h-16 w-16'
@@ -152,6 +194,22 @@ export default function Messaging() {
                             alt={'office logo of ' + currentChat.office} />
                     </div>
                     <p className='absolute text-xl left-20 top-8 h-full'>{currentChat.office}</p>
+                </div>
+
+
+
+                <div className='fixed bottom-0 left-0 w-full h-14 bg-gray-100 flex ps-80'> {/** Bottombar */}
+                    <svg xmlns="http://www.w3.org/2000/svg" className='absolute w-10 h-10 rounded-full bg-lgu-yellow m-2 cursor-pointer'
+                        viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="11" y="5" width="2" height="14" style={{ fill: "black", strokeWidth: "0" }} />
+                        <rect x="5" y="11" width="14" height="2" style={{ fill: "black", strokeWidth: "0" }} />
+                    </svg>
+                    <input type='text' className='bg-white w-9/12 h-10 rounded-full ml-14 mt-2 ps-5 shadow-chat' />
+                    <svg className='w-10 h-8 m-3 cursor-pointer text-lgu-green fill-current hover:brightness-110'
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path d="M16,464,496,256,16,48V208l320,48L16,304Z" />
+                    </svg>
                 </div>
             </div>
         </>
@@ -183,4 +241,7 @@ function ChatSidePanel({ office, className, onClick }) {
             </div>
         </div>
     )
+}
+function MyChat({ message }){
+    
 }

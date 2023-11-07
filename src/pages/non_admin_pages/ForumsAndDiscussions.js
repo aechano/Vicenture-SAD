@@ -192,7 +192,7 @@ function Post({ content }) {
     const navigate = useNavigate();
     return (
         <div
-            className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5"
+            className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5 cursor-pointer"
             onClick={() => {
                 navigate(PATH_NAME.ForumsAndDiscussions + "/" + String(content.contentID));
                 window.scrollTo({ top: 0, left: 0 });
