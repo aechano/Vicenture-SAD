@@ -1,71 +1,6 @@
 import React, { useState } from 'react';
 
 export default function AdminAnalytics() {
-  const sidebarStyle = {
-    backgroundColor: '#FFE77B',
-    color: '#2D5F2E',
-    width: '300px',
-    padding: '20px',
-  };
-
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'row', // Arrange children horizontally
-  };
-
-  const itemStyle = {
-    marginBottom: '10px',
-    marginLeft: '20px', // Add left margin to adjust items to the right
-    fontWeight: 'bold',
-    color: '#2D5F2E',
-    fontSize: '20px',
-  };
-
-  const itemStyleHomepage = {
-    marginLeft: '20px', // Add left margin to adjust items to the right
-    fontWeight: 'bold',
-    color: '#2D5F2E',
-    fontSize: '20px',
-  };
-
-  const itemStyleOthers = {
-    marginLeft: '20px', // Add left margin to adjust items to the right
-    fontWeight: 'bold',
-    color: '#2D5F2E',
-    fontSize: '20px',
-  };
-
-  const titleStyle = {
-    fontSize: '24px',
-    fontWeight: 'bold',
-    color: '#80733D',
-  };
-
-  const dropdownItemStyle = {
-    cursor: 'pointer',
-    marginLeft: '30px', // Adjust the left margin to move items to the right
-    marginRight: '20px', // Add a right margin to separate items
-  };
-
-  const townStyle = {
-    marginLeft: '-10px', // Adjust the left margin to move "The Town" to the left
-    marginTop: '10px', // Add negative margin to align with "Homepage" vertically
-    marginBottom: '30px',
-    fontWeight: 'bold',
-    color: '#2D5F2E',
-    fontSize: '20px',
-  };
-
-  const tourismStyle = {
-    marginLeft: '-10px', // Adjust the left margin to move "Tourism" to the left
-    marginTop: '10px', // Add negative margin to align with "Homepage" vertically
-    marginBottom: '30px',
-    fontWeight: 'bold',
-    color: '#2D5F2E',
-    fontSize: '20px',
-  };
-  
-
   const [showTownOptions, setShowTownOptions] = useState(false);
   const [showTourismOptions, setShowTourismOptions] = useState(false);
   const [showInvestOptions, setShowInvestOptions] = useState(false);
@@ -83,74 +18,77 @@ export default function AdminAnalytics() {
   };
 
   return (
-    <div className="admin-analytics-container">
-      <div style={containerStyle}>
-      <div className="sidebar" style={sidebarStyle}>
-        <div style={titleStyle}>Dashboard</div> {/* Analytics */}
-        <div className="sidebar-item" style={itemStyle}>Analytics</div>
+    <div className="flex">
+      <div className="bg-lgu-yellow w-1/4 p-4">
+        <div className="text-xl font-bold text-80733D">Dashboard</div>
+        <div className="text-lg font-bold text-lgu-green ml-4">Analytics</div>
 
-        <div style={titleStyle}>Pages</div> {/* Homepage */}
-        <div className="sidebar-item" style={itemStyleHomepage}>Homepage</div>
+        <div className="text-xl font-bold text-80733D mt-4">Pages</div>
+        <div className="text-lg  font-bold text-lgu-green ml-4">Homepage</div>
 
-        <div style={dropdownItemStyle} onClick={toggleTownOptions}>
-          <span style={townStyle}>The Town</span>
+        <div className="cursor-pointer text-lg text-lgu-green font-bold ml-4" onClick={toggleTownOptions}>
+          The Town
         </div>
 
         {showTownOptions && (
-          <div>
-            {/* List of the town items*/}
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>About San Vicente</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Municipality Profile</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Municipality Programs</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Elected Officials</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Offices</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Citizen Charter</div>
+          <div className="ml-6">
+            <div className="text-lg text-lgu-green">About San Vicente</div>
+            <div className="text-lg text-lgu-green">Municipality Profile</div>
+            <div className="text-lg text-lgu-green">Municipality Programs</div>
+            <div className="text-lg text-lgu-green">Elected Officials</div>
+            <div className="text-lg text-lgu-green">Offices</div>
+            <div className="text-lg text-lgu-green">Citizen Charter</div>
           </div>
         )}
 
-        <div style={dropdownItemStyle} onClick={toggleTourismOptions}>
-          <span style={tourismStyle}>Tourism</span>
+        <div className="cursor-pointer  font-bold text-lg text-lgu-green ml-4" onClick={toggleTourismOptions}>
+          Tourism
         </div>
 
         {showTourismOptions && (
-          <div>
-            {/* List of Tourism items*/}
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Places To Visit</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Activities</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Promotional Contents</div>
+          <div className="ml-6">
+            <div className="text-lg text-lgu-green">Places To Visit</div>
+            <div className="text-lg text-lgu-green">Activities</div>
+            <div className="text-lg text-lgu-green">Promotional Contents</div>
           </div>
         )}
 
-        <div style={dropdownItemStyle} onClick={toggleInvestOptions}>
-            <span style={tourismStyle}>Invest</span>
+        <div className="cursor-pointer font-bold text-lg text-lgu-green ml-4" onClick={toggleInvestOptions}>
+          Invest 
         </div>
 
         {showInvestOptions && (
-          <div>
-            {/* List of Invest items*/}
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Investement Opportunities</div>
-            <div style={{ ...dropdownItemStyle, marginLeft: '40px' }}>Reasons To Invest</div>
+          <div className="ml-6">
+            <div className="text-lg text-lgu-green">Investment Opportunities</div>
+            <div className="text-lg text-lgu-green">Reasons To Invest</div>
           </div>
         )}
 
+        <div className="text-lg font-bold text-lgu-green ml-4">Transparency</div>
 
-        <div className="sidebar-item" style={itemStyle}>Transparency</div>
+        <div className="text-xl font-bold text-80733D mt-4">Forms</div>
+        <div className="text-lg font-bold text-lgu-green ml-4">Online Survey</div>
 
-        <div style={titleStyle}>Forms</div> {/* Online Survey */}
-        <div className="sidebar-item" style={itemStyle}>Online Survey</div>
-
-        <div style={titleStyle}>Others</div> {/* Others */}
-        <div className="sidebar-item" style={itemStyleOthers}>Live Streaming</div>
-        <div className="sidebar-item" style={itemStyleOthers}>Emergencies</div>
-        <div className="sidebar-item" style={itemStyleOthers}>Reported Contents</div>
-      </div>
+        <div className="text-xl font-bold text-80733D mt-4">Others</div>
+        <div className="text-lg font-bold text-lgu-green ml-4">Live Streaming</div>
+        <div className="text-lg font-bold text-lgu-green ml-4">Emergencies</div>
+        <div className="text-lg font-bold text-lgu-green ml-4">Reported Contents</div>
       </div>
 
-
-
-      <div className="main-content">
-        {/* Wala pa analytics */}
+          {/* Rounded squares (you can adjust the styling as needed) */}
+          <div class="border-2 border-lgu-green w-1/4 h-29 rounded-md ml-8 mt-16 mb-8 font-bold text-center">First-Level User Activity
       </div>
+
+      <div class="border-2 border-lgu-green w-1/4 h-29 rounded-md ml-8 mt-16 mb-8 font-bold text-center">
+        Investment-Related Activity
+      </div>
+      <div class="border-2 border-lgu-green w-1/4 h-29 rounded-md ml-4 mt-16 mb-8 font-bold text-center">
+        New User Account
+      </div>
+      <div class="border-2 border-lgu-green w-1/4 h-29 rounded-md ml-8 mt-16 mb-8 font-bold text-center">
+        User Account
+      </div>
+
     </div>
   );
 }
