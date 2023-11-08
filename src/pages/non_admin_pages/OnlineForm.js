@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Banner from "../../components/Banner";
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
+import jsPDF from "jspdf";
 
-export default function OOnlineForm() {
+export default function OnlineForm() {
 
     const [email, setEmail] = useState('');
     const [fname, setfname] = useState('');
@@ -16,12 +17,23 @@ export default function OOnlineForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // You can perform form submission logic here
+        // Generate and download the PDF, passing the form data as arguments
+        generatePDF(fname, midName, lname, email, phoneNum, date, duration, people, message);
+        
+        setfname('');
+        setmidName('');
+        setlname('');
+        setEmail('');
+        setphoneNum('');
+        setDate('');
+        setDuration('');
+        setPeople('');
+        setMessage('');
+
         console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, message });
     };
-
-
-    return (
+      
+    return ( 
         <>
             <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }, { title: "San Vicente Tourism", to: PATH_NAME.Tourism.SanVicente }]}>
                 <p>Tourism Office Online Form</p>
@@ -199,9 +211,16 @@ export default function OOnlineForm() {
                         </div>
                     </div>
                     <div className="pt-5 flex justify-end">
-                        <button type="submit" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                        <button
+                            type="submit"
+                            onClick={() => {
+                                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                            }}
+                            className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300"
+                        >
                             Generate and Download Form
                         </button>
+
                     </div>
 
                 </form>
@@ -210,3 +229,32 @@ export default function OOnlineForm() {
         </>
     );
 }
+
+const generatePDF = (fname, midName, lname, email, phoneNum, date, duration, people, message) => {
+    const doc = new jsPDF();
+  
+    // Set the properties of the PDF document
+    doc.setFontSize(16);
+    doc.text("Tourism Office Online Form", 10, 10);
+  
+    // Add form data to the PDF
+    doc.text("Contact Information", 10, 20);
+    doc.text(`First Name: ${fname}`, 10, 30);
+    doc.text(`Middle Name: ${midName}`, 10, 40);
+    doc.text(`Last Name: ${lname}`, 10, 50);
+    doc.text(`Email: ${email}`, 10, 60);
+    doc.text(`Phone Number: ${phoneNum}`, 10, 70);
+  
+    doc.text("Travel Details", 10, 80);
+    doc.text(`Date: ${date}`, 10, 90);
+    doc.text(`Duration of Stay: ${duration}`, 10, 100);
+    doc.text(`Number of People: ${people}`, 10, 110);
+  
+    doc.text(`Special request or requirements: ${message}`, 10, 120);
+
+    console.log("Inside generatePDF:", fname, midName, lname, email, phoneNum, date, duration, people, message);
+  
+    // Save the PDF to a file or trigger a download
+    doc.save("TourismForm.pdf");
+  };
+  
