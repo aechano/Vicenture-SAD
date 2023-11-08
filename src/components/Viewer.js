@@ -102,52 +102,46 @@ export default function Viewer({ view }) {
                         </ul>
                     </div>
                     <div className='block grow'>
+                        <div className="flex items-center justify-between">
+                            <h1 className='pt-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
+                            <button onClick={downloadPdf} className="cursor-pointer ml-3 bg-lgu-green text-lgu-lime hover:bg-lime-900 font-bold py-2 px-4 rounded">
+                                Download
+                            </button>
+                        </div>
                         {selectedContent && (
-                            <>
-                                <div className='flex justify-end my-3'>
-                                    <button onClick={downloadPdf} className='cursor-pointer bg-lgu-green text-lgu-lime hover-bg-lime-900 font-bold py-2 px-4 rounded'>
-                                        Download
+                            <div className='rounded shadow-lg shadow-lgu-green'>
+                                <div className='flex justify-end w-full pt-6' ref={pdfRef}>
+                                    <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto">
+                                        <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
+                                    </Document>
+                                </div>
+                                <div className='flex justify-end border w-full mt-5 p-2'>
+                                    <p className='pr-3'>Page {pageNumber} of {numPages}</p>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            changePageBack();
+                                        }}
+                                        disabled={pageNumber === 1}
+                                        className={`cursor-pointer pr-3 ${pageNumber === 1 ? 'text-gray-400' : ''}`}
+                                    >
+                                        <span className='text-2xl'><RiArrowLeftCircleFill /></span>
+                                    </button>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            changePageNext();
+                                        }}
+                                        disabled={pageNumber === numPages}
+                                        className={`cursor-pointer ${pageNumber === numPages ? 'text-gray-400' : ''}`}
+                                    >
+                                        <span className='text-2xl'><RiArrowRightCircleFill /></span>
                                     </button>
                                 </div>
-                                <div className='rounded shadow-lg shadow-lgu-green'>
-                                    <div className='flex items-center justify-between'>
-                                        <h1 className='pt-5 ml-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
-                                    </div>
-                                    <div className='flex justify-end w-full pt-6' ref={pdfRef}>
-                                        <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className='max-w-full h-auto'>
-                                            <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
-                                        </Document>
-                                    </div>
-                                    <div className='flex justify-end border w-full mt-5 p-2'>
-                                        <p className='pr-3'>Page {pageNumber} of {numPages}</p>
-                                        <button
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                changePageBack();
-                                            }}
-                                            disabled={pageNumber === 1}
-                                            className={`cursor-pointer pr-3 ${pageNumber === 1 ? 'text-gray-400' : ''}`}
-                                        >
-                                            <span className='text-2xl'><RiArrowLeftCircleFill /></span>
-                                        </button>
-                                        <button
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                changePageNext();
-                                            }}
-                                            disabled={pageNumber === numPages}
-                                            className={`cursor-pointer ${pageNumber === numPages ? 'text-gray-400' : ''}`}
-                                        >
-                                            <span className='text-2xl'><RiArrowRightCircleFill /></span>
-                                        </button>
-                                    </div>
-                                </div>
+                            </div>
 
-                            </>
                         )}
                     </div>
-
-
                 </div>
             </div>
         </>
