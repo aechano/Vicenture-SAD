@@ -108,13 +108,19 @@ export function ArticleContent() {
             pic: require('../../res/img/article.png'),
             title: 'June 23, 2023 | Monthly Meeting of the Local School Board Attended by All Stakeholders',
             cont:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            desc: "Office of the Mayor. Photo taken by PogsPhotography",
+            date: "October 1, 2023",
+            time: "9:50 A.M"
         },
         {
             id: 1,
             pic: require('../../res/img/article.png'),
             title: 'Article 2',
             cont: 'Content for Article 2...',
+            desc: "Office of the Mayor. Photo taken by PogsPhotography",
+            date: "October 1, 2023",
+            time: "9:50 A.M"
         },
     ];
 
@@ -138,7 +144,9 @@ export function ArticleContent() {
 
 
     return (
-        <div>
+
+        <>
+
             <Banner
                 bannerType="common"
                 src={require('../../res/img/mananap_falls.png')}
@@ -153,69 +161,41 @@ export function ArticleContent() {
                 <p>Article</p>
             </Banner>
 
-            <h1 style={{ marginTop: '20px', marginBottom: '20px', marginLeft: '20px', fontWeight: 'bold', fontSize: '40px' }}>{article.title}</h1>
-            <div className="flex flex-col items-center sm:flex-row justify-center sm:justify-end">
-                {/* First Container (Above) */}
-                <div className="w-full sm:w-[18rem] rounded-lg bg-white border border-black shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 my-4 sm:my-4 mx-2 sm:mx-14">
-                    <div className="relative overflow-hidden aspect-w-3 aspect-h-4">
-                        <img
-                            className="rounded-t-lg object-cover w-full h-full"
-                            src={require("../../res/img/article.png")}
-                            alt="Mayor"
-                        />
-                    </div>
-                    <div className="p-6">
-                        <p className="text-lg text-neutral-600 dark:text-neutral-200 text-left font-bold">
-                            June 23, 2023 | Monthly Meeting of the Local School Board Attended by All Stakeholders
-                        </p>
-                        <p className="text-sm text-neutral-400 dark:text-neutral-300 text-left font-regular">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus
-                        </p>
-                    </div>
+            <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5'>
+                <div className='mb-10'>
+                    <h1 className='mt-10 mb-2 font-bold text-4xl'>{article.title}</h1>
+                    <p className='text-sm'>{article.date} | {article.time}</p>
                 </div>
-            </div>
+                
 
-            {/* Second Container (Below) */}
-            <div className="flex flex-col items-center sm:flex-row justify-center sm:justify-end">
-                <div className="w-full sm:w-[18rem] rounded-lg bg-white border border-black shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700 my-auto sm:ml-auto sm:mr-14">
-                    <div className="relative overflow-hidden aspect-w-3 aspect-h-4">
-                        <img
-                            className="rounded-t-lg object-cover w-full h-full"
-                            src={require("../../res/img/article.png")}
-                            alt="Mayor"
-                        />
-                    </div>
-                    <div className="p-6">
-                        <p className="text-lg text-neutral-600 dark:text-neutral-200 text-left font-bold">
-                            June 23, 2023 | Monthly Meeting of the Local School Board Attended by All Stakeholders
-                        </p>
-                        <p className="text-sm text-neutral-400 dark:text-neutral-300 text-left font-regular">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus
-                        </p>
-                    </div>
+                <div>
+
+                    <img src={article.pic} alt="Article" className='mx-auto rounded-md w-auto h-96' />
+                    <p className='text-sm text-gray-500 text-center pt-2'>{article.desc}</p>
+
                 </div>
+
+
+
+                {paragraphs.map((paragraph, index) => (
+                    <p key={index} className='leading-6 mt-8 text-justify indent-10'>
+                        {paragraph}
+                    </p>
+                ))}
             </div>
 
 
-            <img src={article.pic} alt="Article" style={{ marginLeft: '60px', marginTop: '-965px' }} />
-
-            {paragraphs.map((paragraph, index) => (
-                <p key={index} style={{ marginTop: '20px', marginBottom: '20px', marginLeft: '60px', marginRight: '80px' }}>
-                    {paragraph}
-                </p>
-            ))}
 
             {/* Media query for screens with a maximum width of 768px */}
             <style>
                 {`
-          @media (max-width: 768px) {
-            p {
-              word-wrap: break-word; /* Adjust text wrapping for smaller screens */
-            }
-          }
-        `}
+                    @media (max-width: 768px) {
+                        p {
+                        word-wrap: break-word; /* Adjust text wrapping for smaller screens */
+                        }
+                    }
+                `}
             </style>
-
-        </div>
+        </>
     );
 }

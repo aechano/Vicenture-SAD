@@ -51,7 +51,7 @@ function Footer() {
                                                         <NavLink to={PATH_NAME.Transparency} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Transparency</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to={PATH_NAME.Tourism.Tourism} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Tourism</NavLink>
+                                                        <NavLink to={PATH_NAME.Tourism.SanVicente} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Tourism</NavLink>
                                                     </li>
                                                 </ul>
                                             </div>

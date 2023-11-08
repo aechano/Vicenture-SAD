@@ -116,7 +116,9 @@ export default function PlacesToVisit() {
                         </div>
                     </form>
                     <div className='text-4xl'>
-                        <FaFilter />
+                        <button>
+                            <FaFilter />
+                        </button>
                     </div>
                 </div>
 
