@@ -4,7 +4,7 @@ import { RiArrowLeftCircleFill, RiArrowRightCircleFill } from 'react-icons/ri';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-export default function Viewer({view}) {
+export default function Viewer({ view }) {
     const [selectedContent, setSelectedContent] = useState(view[0]);
     const [selectedContentIndex, setSelectedContentIndex] = useState(0);
     const contentRef = useRef(null);
@@ -26,8 +26,8 @@ export default function Viewer({view}) {
 
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
-    const [pdfWidth, setPdfWidth] = useState(800); // used to set the width of the canvas (pdf file) within the <Page/>
-    const pdfRef = useRef(null); // used to keep track of the outer div of pdf's width (used for setting pdfWidth)
+    const [pdfWidth, setPdfWidth] = useState(800);
+    const pdfRef = useRef(null);
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
@@ -39,11 +39,11 @@ export default function Viewer({view}) {
     }
 
     function changePageBack() {
-        changePage(-1)
+        changePage(-1);
     }
 
     function changePageNext() {
-        changePage(+1)
+        changePage(1);
     }
 
     useEffect(() => {
@@ -53,12 +53,20 @@ export default function Viewer({view}) {
             }
         }
 
-        handleResize(); // Initial setup
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => {
             window.removeEventListener("resize", handleResize);
         };
-    }, []); // set width attribute to target its inner canvas's width
+    }, []);
+
+    const downloadPdf = () => {
+        // Create a temporary anchor element to trigger the download
+        const link = document.createElement('a');
+        link.href = selectedContent.pdfView;
+        link.download = `${selectedContent.head}.pdf`;
+        link.click();
+    };
 
     return (
         <>
@@ -72,7 +80,7 @@ export default function Viewer({view}) {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='block md:flex space-x-5'>
-                    <div className="w-full bg-lgu-yellow p-4 md:w-1/3"> {/** added `md:w-1/3` to maintain its width for medium screens and up */}
+                    <div className="w-full bg-lgu-yellow p-4 md:w-1/3">
                         <ul>
                             {view.map((data, index) => (
                                 <li
@@ -81,50 +89,65 @@ export default function Viewer({view}) {
                                         marginBottom: '1.5vw',
                                         cursor: 'pointer',
                                         textDecoration: selectedContentIndex === index ? 'underline' : 'none',
+                                        display: 'flex',
+                                        alignItems: 'center',
                                     }}
                                     onClick={() => handleContentClick(data, index)}
                                 >
+
                                     {data.head}
+
                                 </li>
                             ))}
                         </ul>
-
                     </div>
-                    <div className='block grow'> {/** dunno if this `grow` className that I put actually does something. ehe~ */}
+                    <div className='block grow'>
                         {selectedContent && (
-                            <div className='rounded shadow-lg shadow-lgu-green'>
-                                <h1 className='pt-5 ml-5 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
-                                <div className='flex justify-end w-full pt-6' ref={pdfRef}> {/** added pdfRef for keeping track of outer div's width */}
-                                    <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto"> {/** simplified this className to what's (I think) necessary */}
-                                        <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} /> {/** set width attribute to target its inner canvas's width (which was the problem) */}
-                                    </Document>
-                                </div>
-                                <div className='flex justify-end border w-full mt-5 p-2'>
-                                    <p className='pr-3'>Page {pageNumber} of {numPages}</p>
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            changePageBack();
-                                        }}
-                                        disabled={pageNumber === 1}
-                                        className={`cursor-pointer pr-3 ${pageNumber === 1 ? 'text-gray-400' : ''}`}
-                                    >
-                                        <span className='text-2xl'><RiArrowLeftCircleFill /></span>
-                                    </button>
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            changePageNext();
-                                        }}
-                                        disabled={pageNumber === numPages}
-                                        className={`cursor-pointer ${pageNumber === numPages ? 'text-gray-400' : ''}`}
-                                    >
-                                        <span className='text-2xl'><RiArrowRightCircleFill /></span>
+                            <>
+                                <div className='flex justify-end my-3'>
+                                    <button onClick={downloadPdf} className='cursor-pointer bg-lgu-green text-lgu-lime hover-bg-lime-900 font-bold py-2 px-4 rounded'>
+                                        Download
                                     </button>
                                 </div>
-                            </div>
+                                <div className='rounded shadow-lg shadow-lgu-green'>
+                                    <div className='flex items-center justify-between'>
+                                        <h1 className='pt-5 ml-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
+                                    </div>
+                                    <div className='flex justify-end w-full pt-6' ref={pdfRef}>
+                                        <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className='max-w-full h-auto'>
+                                            <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
+                                        </Document>
+                                    </div>
+                                    <div className='flex justify-end border w-full mt-5 p-2'>
+                                        <p className='pr-3'>Page {pageNumber} of {numPages}</p>
+                                        <button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                changePageBack();
+                                            }}
+                                            disabled={pageNumber === 1}
+                                            className={`cursor-pointer pr-3 ${pageNumber === 1 ? 'text-gray-400' : ''}`}
+                                        >
+                                            <span className='text-2xl'><RiArrowLeftCircleFill /></span>
+                                        </button>
+                                        <button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                changePageNext();
+                                            }}
+                                            disabled={pageNumber === numPages}
+                                            className={`cursor-pointer ${pageNumber === numPages ? 'text-gray-400' : ''}`}
+                                        >
+                                            <span className='text-2xl'><RiArrowRightCircleFill /></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </>
                         )}
                     </div>
+
+
                 </div>
             </div>
         </>
