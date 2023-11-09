@@ -45,7 +45,7 @@ export default function MunicipalityProfile() {
     {
       head: "Try",
       pdfView: require("../../../res/pdf/MC.pdf"),
-    }
+    }, 
   ];
 
   return (

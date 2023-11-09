@@ -31,7 +31,7 @@ export default function Sections(props) {
                         null
                     }
                     {/*Section title*/}
-                    <h1 className={"lg:text-3xl md:p-2 font-bold p-0 text-2xl mb-0 mt-0 text-center " + (props.left ? "text-lgu-lime" : "text-black")}>
+                    <h1 className={"lg:text-4xl md:p-2 font-bold p-0 text-2xl mb-0 mt-0 text-center " + (props.left ? "text-lgu-lime" : "text-black")}>
                         {props.title !== undefined ? props.title : "No Title"}
                     </h1>
                     {/*Barline goes last if this is a right-type section*/}

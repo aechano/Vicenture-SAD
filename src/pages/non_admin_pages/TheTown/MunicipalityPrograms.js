@@ -15,7 +15,7 @@ export default function MunicipalityPrograms() {
 
             <Sections
                 title="Community Assistance"
-                src={require("../../../res/img/population.jpg")}
+                src={require("../../../res/img/assistance.jpg")}
                 alt="Community Assistance"
                 arrow={true}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
@@ -24,7 +24,7 @@ export default function MunicipalityPrograms() {
             <Sections
                 left={true}
                 title="Safety Programs"
-                src={require("../../../res/img/geography.png")}
+                src={require("../../../res/img/programs.jpg")}
                 alt="Safety Programs"
                 arrow={true}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.

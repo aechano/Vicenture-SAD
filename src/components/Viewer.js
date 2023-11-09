@@ -80,7 +80,7 @@ export default function Viewer({ view }) {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='block md:flex space-x-5'>
-                    <div className="w-full bg-lgu-yellow p-4 md:w-1/3">
+                    <div className="w-full bg-lgu-yellow p-4 md:w-1/3 overflow-y-auto max-h-[1293px]">
                         <ul>
                             {view.map((data, index) => (
                                 <li

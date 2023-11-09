@@ -70,9 +70,9 @@ export default function AboutSanVicente() {
         </div>
       </div>
 
-      <div className="flex flex-row bg-lgu-green">
+      <div className="block md:flex md:flex-row bg-lgu-green p-2">
         {/* Mandate Column */}
-        <div className="w-1/3 p-2 text-lgu-lime max-h-screen overflow-y-auto">
+        <div className="w-full p-2 text-lgu-lime max-h-screen overflow-y-auto">
           <h1 className="text-3xl font-bold mt-3 ml-5">Mandate</h1>
           <p className="text-35 text-left mt-4 ml-5">
             To serve primarily as a general-purpose government for the coordination of effective and efficient delivery of basic and regular governance of the inhabitants within its territorial jurisdiction.
@@ -80,15 +80,15 @@ export default function AboutSanVicente() {
         </div>
 
         {/* Vision Column */}
-        <div className="w-1/3 p-2  text-lgu-lime max-h-screen overflow-y-auto">
+        <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto">
           <h1 className="text-3xl font-bold mt-3 ml-5">Vision</h1>
-          <p className="text-35 text-left mt-4 ml-5 mb-10">
+          <p className="text-35 text-left mt-4 ml-5">
             San Vicente is a center for agriculture, sustainable agro-processing, eco-tourism and hydrothermal energy and the first walkable municipality in the province of Camarines Norte, where responsible and self-reliant men and women live and enjoy safe and quality life in an efficiently managed environment and community vested with rich heritage and culture under a transparent and innovative leadership.
           </p>
         </div>
 
         {/* Mission Column */}
-        <div className="w-1/3 p-2  text-lgu-lime max-h-screen overflow-y-auto">
+        <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto">
           <h1 className="text-3xl font-bold mt-3 ml-5">Mission</h1>
           <p className="text-35 text-left mt-4 ml-5">
             The Municipal Government shall spearhead the implementation of various development programs, projects, and activities through people empowerment, efficient and effective utilization of resources, committed public servants with strong political will.
@@ -103,7 +103,7 @@ export default function AboutSanVicente() {
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
-                  className="rounded-t-lg w-full h-60"
+                  className="rounded-t-lg w-full h-80"
                   src={require("../../../res/img/geography.png")}
                   alt="Geography"
                 />
@@ -122,7 +122,7 @@ export default function AboutSanVicente() {
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
-                  className="rounded-t-lg w-full h-60"
+                  className="rounded-t-lg w-full h-80"
                   src={require("../../../res/img/economy.jpg")}
                   alt="Economy"
                 />
@@ -143,7 +143,7 @@ export default function AboutSanVicente() {
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
-                  className="rounded-t-lg w-full h-60"
+                  className="rounded-t-lg w-full h-80"
                   src={require("../../../res/img/population.jpg")}
                   alt="Population"
                 />
@@ -162,7 +162,7 @@ export default function AboutSanVicente() {
             <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
               <div className="relative overflow-hidden bg-cover bg-no-repeat">
                 <img
-                  className="rounded-t-lg w-full h-60"
+                  className="rounded-t-lg w-full h-80"
                   src={require("../../../res/img/geography.png")}
                   alt="Barangays"
                 />
