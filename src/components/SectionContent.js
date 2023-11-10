@@ -23,7 +23,7 @@ export default function SectionContent(props) {
     return (
         <div className={"mt-10 pb-4 " + (props.left ? "bg-lgu-green" : "")}> {/*If this is a left-type component, make the background green*/}
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
-                <div className="sm:flex items-center pt-5">
+                <div className="sm:flex items-center pt-5 pb-5">
                     {/*Barline goes first if this is a left-type section*/}
                     {props.left ?
                         <div className="sm:flex-grow sm:h-1 sm:rounded-full sm:bg-lgu-lime" />
@@ -47,7 +47,7 @@ export default function SectionContent(props) {
                         <div className='pt-5 sm:pt-0 w-full'>
                             {/*This is the image*/}
                             <img
-                                className="p-5 rounded-xl sm:h-72 mx-auto"
+                                className="p-5 rounded-lg sm:h-96 mx-auto"
                                 srcSet={props.src !== undefined ? props.src : ""}
                                 alt={props.alt !== undefined ? props.alt : ""}
                             />
@@ -60,7 +60,7 @@ export default function SectionContent(props) {
                         </div>
                         <div className='h-auto w-full align-middle'>
                             {/*This is where the main text of the section goes*/}
-                            <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 " + (props.left ? "text-lgu-lime text-justify lg:text-left" : "text-justify text-black lg:text-right")}>
+                            <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 indent-20 " + (props.left ? "text-lgu-lime text-justify" : "text-justify text-black")}>
                                 {props.children !== undefined ? props.children : ""}
                             </p>
                             {/*If button is needed*/}

@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from "../../../components/Banner";
-import Sections from "../../../components/Sections";
+import SectionContent from "../../../components/SectionContent";
 import { Link } from "react-router-dom/dist";
 import BackToTop from "../../../components/BackToTop";
 import { PATH_NAME } from "../../../Variables/GLOBAL_VARIABLE";
@@ -13,22 +13,22 @@ export default function MunicipalityPrograms() {
             </Banner>
 
 
-            <Sections
+            <SectionContent
                 title="Community Assistance"
                 src={require("../../../res/img/assistance.jpg")}
                 alt="Community Assistance"
                 arrow={true}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
-            </Sections>
+            </SectionContent>
 
-            <Sections
+            <SectionContent
                 left={true}
                 title="Safety Programs"
                 src={require("../../../res/img/programs.jpg")}
                 alt="Safety Programs"
                 arrow={true}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
-            </Sections>
+            </SectionContent>
 
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
