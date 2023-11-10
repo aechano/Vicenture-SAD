@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { timeAgo } from '../../functionHelpers/Time';
 
 export default function Messaging() {
@@ -124,13 +124,15 @@ export default function Messaging() {
             lastMessageTimestamp: null
         },
     ]
+    const chatContainerRef = useRef();
     const [currentChat, setCurrentChat] = useState(offices[0]);
+    var userEmail = "gheeelo@gmail.com"
     var messages = [
         {
             messageID: "100-0-1",
             sender: currentChat.office,
             messageContent: "Here are the files that you wanted.",
-            timestamp: new Date().getTime()-(1000*60*60*24*5),
+            timestamp: new Date().getTime() - (1000 * 60 * 60 * 24 * 5),
             file: [
                 {
                     fileID: "100-0-1-1",
@@ -156,7 +158,7 @@ export default function Messaging() {
             messageID: "100-0-2",
             sender: "gheeelo@gmail.com",
             messageContent: "Thank you very much!",
-            timestamp: new Date().getTime()-(1000*60*10 + 1000),
+            timestamp: new Date().getTime() - (1000 * 60 * 10 + 1000),
             file: []
         },
         {
@@ -167,6 +169,17 @@ export default function Messaging() {
             file: []
         },
     ]
+    // Function to scroll the chat to the bottom
+    const scrollToBottom = () => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    };
+
+    // useEffect to scroll to the bottom whenever messages change
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
     return (
         <>
             <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen ps-5 mt-20'> {/** This is the sidebar */}
@@ -186,7 +199,7 @@ export default function Messaging() {
                 </div>
             </div>
             <div className='w-full ps-80'>
-                <div className='fixed top-20 w-full h-20 bg-lgu-yellow flex'> {/** Topbar */}
+                <div className='fixed top-20 w-full h-20 bg-lgu-yellow flex z-20'> {/** Topbar */}
                     <div className='ps-2 pt-2 w-20'>
                         <img
                             className='h-16 w-16'
@@ -196,9 +209,32 @@ export default function Messaging() {
                     <p className='absolute text-xl left-20 top-8 h-full'>{currentChat.office}</p>
                 </div>
 
+                <div className='fixed left-0 w-full h-screen overflow-y-scroll no-scrollbar pb-14 pt-20 pe-5 ps-80' ref={chatContainerRef}> {/** Chat threads */}
+                    {messages.map((messageDetails) => {
+                        
+                        if (userEmail === messageDetails.sender) {
+                            return (
+                                <MyChat
+                                    key={messageDetails.messageID}
+                                    content={messageDetails.messageContent}
+                                    timestamp={messageDetails.timestamp}
+                                    file={messageDetails.file} />
+                            )
+                        } else if (currentChat.office === messageDetails.sender) {
+                            return (
+                                <OtherChat
+                                    key={messageDetails.messageID}
+                                    content={messageDetails.messageContent}
+                                    timestamp={messageDetails.timestamp}
+                                    file={messageDetails.file} />
+                            )
+                        }
+                        return null
+                    })
+                    }
+                </div>
 
-
-                <div className='fixed bottom-0 left-0 w-full h-14 bg-gray-100 flex ps-80'> {/** Bottombar */}
+                <div className='fixed bottom-0 left-0 w-full h-14 bg-gray-100 flex ps-80 z-20'> {/** Bottombar */}
                     <svg xmlns="http://www.w3.org/2000/svg" className='absolute w-10 h-10 rounded-full bg-lgu-yellow m-2 cursor-pointer'
                         viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round"
                         stroke-linejoin="round">
@@ -242,6 +278,17 @@ function ChatSidePanel({ office, className, onClick }) {
         </div>
     )
 }
-function MyChat({ message }){
-    
+function MyChat({ content, file }) {
+    return (
+        <div className='h-auto w-auto max-w-3/5 float-right mt-5 bg-gray-100 p-5 rounded-3xl whitespace-normal clear-both'>
+            <p>{content}</p>
+        </div>
+    )
+}
+function OtherChat({ content, file }) {
+    return (
+        <div className='h-auto w-auto max-w-3/5 float-left mt-5 bg-lgu-lime p-5 ml-5 rounded-3xl whitespace-normal clear-both'>
+            <p>{content}</p>
+        </div>
+    )
 }

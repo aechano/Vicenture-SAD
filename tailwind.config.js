@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
@@ -7,9 +9,9 @@ module.exports = {
         'open-sans': ['"Open Sans"'],
       },
       colors: {
-        'lgu-green' :'#2D5F2E',
-        'lgu-lime'  :'#B5F8B6',
-        'lgu-yellow':'#FFE77B',
+        'lgu-green': '#2D5F2E',
+        'lgu-lime': '#B5F8B6',
+        'lgu-yellow': '#FFE77B',
       },
       boxShadow: {
         'chat': 'inset 0 0 5px rgba(0, 0, 0, 0.3)',
@@ -23,5 +25,17 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        ".no-scrollbar": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+          '&::-webkit-scrollbar': {
+            "display": "none"
+          },
+        }
+      })
+    })
+  ],
 } 
