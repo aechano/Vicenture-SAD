@@ -43,25 +43,21 @@ export default function SectionContent(props) {
                 </div>
                 <div className="relative h-full">
                     <div className="flex flex-col sm:items-start">
-                        {/*This image and image title will show up if this is a left-type section or if the width of the device is medium to small*/}
-                        {props.left || width < 1169 ?
-                            <div className='pt-5 sm:pt-0 w-full'>    
-                                {/*This is the image*/}
-                                <img
-                                    className="p-5 rounded-xl sm:h-72 mx-auto"
-                                    srcSet={props.src !== undefined ? props.src : ""}
-                                    alt={props.alt !== undefined ? props.alt : ""}
-                                />
-                                {/*This is the image title*/}
-                                {props.altDisplay !== undefined ?
-                                    <p className="sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
-                                    :
-                                    null
-                                }
-                            </div>
-                            :
-                            null
-                        }
+                        {/*This image and image title will show up if this is a left-type section*/}
+                        <div className='pt-5 sm:pt-0 w-full'>
+                            {/*This is the image*/}
+                            <img
+                                className="p-5 rounded-xl sm:h-72 mx-auto"
+                                srcSet={props.src !== undefined ? props.src : ""}
+                                alt={props.alt !== undefined ? props.alt : ""}
+                            />
+                            {/*This is the image title*/}
+                            {props.altDisplay !== undefined ?
+                                <p className="sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
+                                :
+                                null
+                            }
+                        </div>
                         <div className='h-auto w-full align-middle'>
                             {/*This is where the main text of the section goes*/}
                             <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 " + (props.left ? "text-lgu-lime text-justify lg:text-left" : "text-justify text-black lg:text-right")}>
@@ -96,25 +92,6 @@ export default function SectionContent(props) {
                                 null
                             }
                         </div>
-                        {/*This will show up if the section is right-type*/}
-                        {!props.left && width >= 1169 ?
-                            <div className='pt-5 sm:pt-0 w-full '>
-                                {/*This is the image*/}
-                                <img
-                                    className="sm:h-72 p-5 rounded-xl mx:auto"
-                                    src={props.src !== undefined ? props.src : ""}
-                                    alt={props.alt !== undefined ? props.alt : ""}
-                                />
-                                {/*This is the image title*/}
-                                {props.altDisplay !== undefined ?
-                                    <p className="pb-3 sm:pt-2 text-black font-bold text-center">{props.altDisplay}</p>
-                                    :
-                                    null
-                                }
-                            </div>
-                            :
-                            null
-                        }
                     </div>
                 </div>
             </div>
