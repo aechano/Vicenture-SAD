@@ -96,7 +96,10 @@ export default function Banner(props) {
                                     :
                                     null
                                 }
-                                {props.children}
+                                <div className='font-bold'>
+                                    {props.children}
+                                </div>
+
                             </div>
                         </>
                         :

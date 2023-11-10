@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 
-export default function Sections(props) {
+export default function SectionContent(props) {
     /**
      * This tag is for creating the sections pattern. It has the following values and their default (def) values:
      * - left (def:false)
@@ -31,7 +31,7 @@ export default function Sections(props) {
                         null
                     }
                     {/*Section title*/}
-                    <h1 className={"lg:text-4xl md:p-2 font-bold p-0 mb-0 mt-0 text-center " + (props.left ? "text-lgu-lime" : "text-black")}>
+                    <h1 className={"text-4xl md:p-2 font-bold p-0 mb-0 mt-0 text-center " + (props.left ? "text-lgu-lime" : "text-black")}>
                         {props.title !== undefined ? props.title : "No Title"}
                     </h1>
                     {/*Barline goes last if this is a right-type section*/}
@@ -42,10 +42,10 @@ export default function Sections(props) {
                     }
                 </div>
                 <div className="relative h-full">
-                    <div className="sm:flex sm:flex-col sm:items-start lg:flex-row">
+                    <div className="flex flex-col sm:items-start">
                         {/*This image and image title will show up if this is a left-type section or if the width of the device is medium to small*/}
                         {props.left || width < 1169 ?
-                            <div className='pt-5 sm:pt-0 w-full lg:w-auto'>    
+                            <div className='pt-5 sm:pt-0 w-full'>    
                                 {/*This is the image*/}
                                 <img
                                     className="p-5 rounded-xl sm:h-72 mx-auto"
@@ -62,7 +62,7 @@ export default function Sections(props) {
                             :
                             null
                         }
-                        <div className='h-auto lg:w-9/12 align-middle'>
+                        <div className='h-auto w-full align-middle'>
                             {/*This is where the main text of the section goes*/}
                             <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 " + (props.left ? "text-lgu-lime text-justify lg:text-left" : "text-justify text-black lg:text-right")}>
                                 {props.children !== undefined ? props.children : ""}
@@ -98,10 +98,10 @@ export default function Sections(props) {
                         </div>
                         {/*This will show up if the section is right-type*/}
                         {!props.left && width >= 1169 ?
-                            <div className='pt-5 sm:pt-0 w-full lg:w-auto '>
+                            <div className='pt-5 sm:pt-0 w-full '>
                                 {/*This is the image*/}
                                 <img
-                                    className="sm:h-72 lg:w-auto p-5 rounded-xl mx:auto"
+                                    className="sm:h-72 p-5 rounded-xl mx:auto"
                                     src={props.src !== undefined ? props.src : ""}
                                     alt={props.alt !== undefined ? props.alt : ""}
                                 />

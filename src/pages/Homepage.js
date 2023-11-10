@@ -33,8 +33,8 @@ function Homepage() {
                     </div>
                     <div className="lg:flex">
                         <div className="md:flex lg:block lg:w-[18rem] lg:p-4 mt-5">
-                            <div className="p-4 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                                <div className="border-b-2 border-[#0000002d] rounded-t-xl bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold">
+                            <div className="p-4 rounded-2xl border-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                                <div className="border-b-2 border-[#0000002d] rounded-md bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold">
                                     Emergency
                                 </div>
                                 <div className="p-6">
@@ -47,8 +47,8 @@ function Homepage() {
                                 </div>
                             </div>
 
-                            <div className="p-4 rounded-2xl lg:mt-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                                <div className="border-b-2 border-[#0000002d] rounded-t-xl bg-event px-6 py-3 text-white dark:text-neutral-50 font-bold">
+                            <div className="p-4 rounded-2xl lg:mt-5 border-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                                <div className="border-b-2 border-[#0000002d] rounded-md bg-event px-6 py-3 text-white dark:text-neutral-50 font-bold">
                                     September
                                 </div>
                                 <div className="p-6">
@@ -62,8 +62,8 @@ function Homepage() {
                             </div>
                         </div>
 
-                        <div className="lg:flex-1 pt-4 pb-4 pr-4 pl-4">
-                            <video class="w-full h-full rounded-2xl shadow-lg p-4" autoplay loop controls muted>
+                        <div className="lg:flex-1 pb-4">
+                            <video class="w-full h-full p-4" autoPlay loop controls muted>
                                 <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
                             </video>
                         </div>
@@ -144,7 +144,7 @@ function Homepage() {
                 altDisplay="Mananap Falls"
                 button="View more details"
                 arrow={true}
-                href="/" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
+                href="/tourism/san-vicente-tourism" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
                 We cordially extend an invitation to experience the serene and captivating beauty of San Vicente, a remarkable destination that promises a rejuvenating departure from the everyday routine.
                 Tucked away in the embrace of nature, this tranquil paradise calls out to wanderers, urging them to pause, explore, and become one with a realm of stunning natural vistas, a rich tapestry of local culture,
                 and indelible memories waiting to be etched in your heart. Whether your heart craves adventure or craves serenity, San Vicente stands ready to offer you the quintessential escape, a portal to a world where
@@ -175,7 +175,7 @@ function Homepage() {
                 alt="Vector image of a group of people talking."
                 button="Read Forums and Discussions"
                 arrow={true}
-                href="/" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
+                href="/forums" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
             </Sections>
 
