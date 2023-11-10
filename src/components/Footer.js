@@ -26,7 +26,7 @@ function Footer() {
                                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                                     <div className="lg:flex lg:justify-between">
                                         <div className="mb-6 md:mb-0">
-                                            <NavLink to={PATH_NAME.Home} className="flex items-center" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+                                            <NavLink to={PATH_NAME.Home} className="flex items-center" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                                                 <img src={require('./../res/img/logo.png')} className="h-12 w-auto mt-5 pr-2" alt="FlowBite Logo" />
                                                 <img src={require('./../res/img/transparency_seal.png')} className="h-12 w-auto mt-5 pr-2" alt="FlowBite Logo" />
                                                 <div className="text-white sm:ml-4 mt-5"> {/* Reduced left margin */}
@@ -45,13 +45,13 @@ function Footer() {
                                                 <h2 className="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Quick Links</h2>
                                                 <ul className="text-lgu-lime dark:text-lgu-lime font-medium">
                                                     <li className="mb-2">
-                                                        <NavLink to={PATH_NAME.TheTown.About} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>The Town</NavLink>
+                                                        <NavLink to={PATH_NAME.TheTown.About} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>The Town</NavLink>
                                                     </li>
                                                     <li className="mb-2">
-                                                        <NavLink to={PATH_NAME.Transparency} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Transparency</NavLink>
+                                                        <NavLink to={PATH_NAME.Transparency} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>Transparency</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to={PATH_NAME.Tourism.SanVicente} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Tourism</NavLink>
+                                                        <NavLink to={PATH_NAME.Tourism.SanVicente} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>Tourism</NavLink>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -59,13 +59,13 @@ function Footer() {
                                                 <h2 className="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Feedbacks</h2>
                                                 <ul className="text-lgu-lime dark:text-lgu-lime font-medium">
                                                     <li className="mb-2">
-                                                        <NavLink to={PATH_NAME.ContactUs} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Contact Us</NavLink>
+                                                        <NavLink to={PATH_NAME.ContactUs} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>Contact Us</NavLink>
                                                     </li>
                                                     <li className="mb-2">
-                                                        <NavLink to={PATH_NAME.Survey} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Survey</NavLink>
+                                                        <NavLink to={PATH_NAME.Survey} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>Survey</NavLink>
                                                     </li>
                                                     <li>
-                                                        <NavLink to={PATH_NAME.ForumsAndDiscussions} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Forum</NavLink>
+                                                        <NavLink to={PATH_NAME.ForumsAndDiscussions} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>Forum</NavLink>
                                                     </li>
                                                 </ul>
                                             </div>
