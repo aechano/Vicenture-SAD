@@ -168,6 +168,13 @@ export default function Messaging() {
             timestamp: new Date().getTime(),
             file: []
         },
+        {
+            messageID: "100-0-3",
+            sender: "gheeelo@gmail.com",
+            messageContent: "I will send you a Lorem Ipsum, okay? \n\n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt dui ut ornare lectus sit amet est. Blandit aliquam etiam erat velit scelerisque. Nullam eget felis eget nunc lobortis mattis aliquam. Ac tortor vitae purus faucibus ornare. Sit amet consectetur adipiscing elit ut aliquam. Vel elit scelerisque mauris pellentesque pulvinar pellentesque. Tincidunt dui ut ornare lectus sit. Ac orci phasellus egestas tellus rutrum tellus. Nunc sed blandit libero volutpat sed cras. Nunc mattis enim ut tellus elementum sagittis vitae et leo. Sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra. Sit amet justo donec enim diam. Lacus vel facilisis volutpat est velit egestas. Ante metus dictum at tempor. Accumsan sit amet nulla facilisi morbi tempus iaculis urna. \nAmet nisl purus in mollis nunc. Velit aliquet sagittis id consectetur purus ut. Turpis tincidunt id aliquet risus feugiat. Et pharetra pharetra massa massa ultricies mi quis hendrerit. Tristique senectus et netus et malesuada fames ac turpis. Tortor consequat id porta nibh venenatis cras sed felis eget. Quam elementum pulvinar etiam non quam lacus suspendisse faucibus interdum. Quis ipsum suspendisse ultrices gravida dictum. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Ac turpis egestas maecenas pharetra convallis posuere morbi. Malesuada proin libero nunc consequat interdum varius sit. Diam maecenas ultricies mi eget mauris pharetra et ultrices neque. Rhoncus est pellentesque elit ullamcorper dignissim cras tincidunt. Eu ultrices vitae auctor eu augue ut lectus arcu bibendum. Mattis ullamcorper velit sed ullamcorper morbi tincidunt ornare massa.",
+            timestamp: new Date().getTime(),
+            file: []
+        },
     ]
     // Function to scroll the chat to the bottom
     const scrollToBottom = () => {
@@ -209,9 +216,9 @@ export default function Messaging() {
                     <p className='absolute text-xl left-20 top-8 h-full'>{currentChat.office}</p>
                 </div>
 
-                <div className='fixed left-0 w-full h-screen overflow-y-scroll no-scrollbar pb-14 pt-20 pe-5 ps-80' ref={chatContainerRef}> {/** Chat threads */}
+                <div className='fixed left-0 w-full h-screen overflow-y-scroll no-scrollbar pb-40 pt-20 pe-5 ps-80' ref={chatContainerRef}> {/** Chat threads */}
                     {messages.map((messageDetails) => {
-                        
+
                         if (userEmail === messageDetails.sender) {
                             return (
                                 <MyChat
@@ -280,14 +287,14 @@ function ChatSidePanel({ office, className, onClick }) {
 }
 function MyChat({ content, file }) {
     return (
-        <div className='h-auto w-auto max-w-3/5 float-right mt-5 bg-gray-100 p-5 rounded-3xl whitespace-normal clear-both'>
+        <div className='h-auto w-auto max-w-xl float-right mt-5 bg-gray-100 p-5 rounded-3xl whitespace-pre-wrap clear-both'>
             <p>{content}</p>
         </div>
     )
 }
 function OtherChat({ content, file }) {
     return (
-        <div className='h-auto w-auto max-w-3/5 float-left mt-5 bg-lgu-lime p-5 ml-5 rounded-3xl whitespace-normal clear-both'>
+        <div className='h-auto w-auto max-w-xl float-left mt-5 bg-lgu-lime p-5 ml-5 rounded-3xl whitespace-pre-wrap clear-both'>
             <p>{content}</p>
         </div>
     )
