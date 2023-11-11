@@ -80,7 +80,7 @@ export default function Survey() {
                     <h2 className="font-bold text-lg pb-5">Frequently Ask Questions</h2>
                     <div className='place-items-center'>
                         {questions.map((data, index) => {
-                            return <FAQs key={index} open={index == open} data={data} toggle={() => toggle(index)} />;
+                            return <FAQs key={index} open={index === open} data={data} toggle={() => toggle(index)} />;
                         })}
                     </div>
 
