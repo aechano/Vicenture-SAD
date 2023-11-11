@@ -59,11 +59,11 @@ export default function Header(props) {
         <>
             {show ?
                 <>
-                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20">
+                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20 shadow-sm shadow-white">
                         {({ open }) => (
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                                    <div className="relative flex h-20 items-center justify-between">
+                                    <div className="relative flex h-28 items-center justify-between">
                                         <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                                             {/* Mobile menu button*/}
                                             <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-lgu-lime">
@@ -83,7 +83,7 @@ export default function Header(props) {
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="hidden sm:block text-lgu-lime text-lg ml-10 lg:ml-2 font-bold">LGU San Vicente</span>
+                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">SAN VICENTE, <br/>CAMARINES NORTE</span>
                                             </NavLink>
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-10">
@@ -103,7 +103,7 @@ export default function Header(props) {
                                                                     />
                                                                 </button>
                                                                 {openDropdown === item.name && (
-                                                                    <div className="py-2 bg-lgu-green absolute right-0 rounded-md">
+                                                                    <div className="py-2 bg-lgu-green border-2 border-lgu-lime absolute left-0 rounded-md">
                                                                         {item.subItems.map((subItem) => (
                                                                             <NavLink
                                                                                 key={subItem.name}
@@ -112,7 +112,7 @@ export default function Header(props) {
                                                                                 className={({ isActive }) => {
                                                                                     return "block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                         (isActive ? "font-medium" : "")
-                                                                                }}
+                                                                                }} 
                                                                             >
                                                                                 {subItem.name}
                                                                             </NavLink>

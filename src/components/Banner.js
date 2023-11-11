@@ -96,7 +96,7 @@ export default function Banner(props) {
                                     :
                                     null
                                 }
-                                <div className='font-bold'>
+                                <div className='font-semibold'>
                                     {props.children}
                                 </div>
 

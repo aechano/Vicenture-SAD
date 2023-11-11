@@ -77,7 +77,7 @@ export default function SignUp() {
     }
     return (
         <div
-            className="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center"
+            className="relative overflow-hidden bg-cover bg-no-repeat text-center"
             style={{
                 backgroundImage: "url(" + require('./../../res/img/try.jpg') + ")",
                 backgroundRepeat: "no-repeat",
@@ -86,13 +86,15 @@ export default function SignUp() {
             }}
         >
             <div
-                className="absolute bottom-0 right-0 top-0 min-h-screen w-1/2 overflow-hidden bg-fixed"
+                className="absolute top-10 bottom-10 rounded-2xl right-8 w-1/2 overflow-hidden bg-fixed"
                 style={{
                     backgroundColor: "rgba(45, 95, 46, 0.6)",
                     backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px",
+                    WebkitBackdropFilter: "blur(10px)",
                     border: "none", // Add this line to remove the border
                     outline: "none", // Add this line to remove the outline
+                    height: "95%", // Adjust this value to control the height
+                    margin: "auto", // Center the div horizontally
                 }}>
                 <NavLink
                     to={PATH_NAME.Home}
@@ -100,8 +102,21 @@ export default function SignUp() {
                     Not Now
                 </NavLink>
 
+                <div className='pt-16'>
+                    <div className=' h-36 w-36 mx-auto'>
+                        <img className='' src={require("../../res/img/logo.png")} />
+                    </div>
+                    <div>
+                        <h1 className='text-xl text-center font-bold text-white pt-2'>SAN VICENTE, CAMARINES NORTE</h1>
+                    </div>
+                    <div>
+                        <p className='text-lgu-lime italic text-sm'>The Town of Discovery and
+                            Adventure</p>
+                    </div>
+                </div>
+
                 <h1
-                    className='text-white w-full my-7 text-3xl font-bold pt-32'
+                    className='text-white w-full my-7 text-3xl font-semibold pt-2'
                 >
                     Sign Up
                 </h1>
@@ -128,6 +143,7 @@ export default function SignUp() {
                         </svg>
                     </InputBoxAccount>
                     <InputBoxAccount
+                        type="email"
                         placeholder="Email"
                         autocomplete="email"
                         value={email}
@@ -207,7 +223,7 @@ export default function SignUp() {
                         </div>
                     </div>
                     <button
-                        className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-16"
+                        className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-4"
                     >
                         {button}
                     </button>
