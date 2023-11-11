@@ -197,7 +197,7 @@ export default function ContactUs() {
 
                     <div className='place-items-center'>
                         {contacts.map((data, index) => {
-                            return <AccordionItem key={index} open={index == open} data={data} toggle={() => toggle(index)} />;
+                            return <AccordionItem key={index} open={index === open} data={data} toggle={() => toggle(index)} />;
                         })}
                     </div>
                 </div>

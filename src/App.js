@@ -33,7 +33,6 @@ import Messaging from './pages/non_admin_pages/Messaging';
 import Citizen from './pages/non_admin_pages/TheTown/Citizen';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
 import Transparency from './pages/non_admin_pages/Transparency';
-import SampleSurvey from './pages/non_admin_pages/SampleSurvey';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';

@@ -83,7 +83,7 @@ function Homepage() {
                                         This is a one-sentence overview of the activity, which can be multi-line.
                                     </p>
                                 </div>
-                                <a href="#" className="text-xs text-red-500"> Read more...</a>
+                                <NavLink to="/" className="text-xs text-red-500"> Read more...</NavLink>
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@ function Homepage() {
                                         This is a one-sentence overview of the activity, which can be multi-line.
                                     </p>
                                 </div>
-                                <a href="#" className="text-xs text-red-500"> Read more...</a>
+                                <NavLink to="/" className="text-xs text-red-500"> Read more...</NavLink>
                             </div>
                         </div>
 
