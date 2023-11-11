@@ -70,7 +70,7 @@ export default function CommentingSystem({ contentID }) {
                 <div>
                     {/** comment box */}
                     <div className='bg-gray-200 h-40 w-11/12 rounded-3xl mt-10'>
-                        <textarea className='w-full h-full rounded-3xl p-3'
+                        <textarea className='w-full h-full rounded-3xl p-3 resize-none'
                             placeholder='Comment...'
                             value={comment}
                             onChange={(e) => setComment(e.target.value)} />
@@ -185,7 +185,7 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
                                 replyBox ?
                                     <div className='border-l-2 border-lgu-green mb-3 ps-3'>
                                         <div className='bg-gray-200 h-20 w-11/12 rounded-3xl mt-10'>
-                                            <textarea className='w-full h-full rounded-3xl p-3'
+                                            <textarea className='w-full h-full rounded-3xl p-3 resize-none'
                                                 placeholder='Reply...'
                                                 value={reply}
                                                 onChange={(e) => setReply(e.target.value)} />
