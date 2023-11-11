@@ -60,7 +60,7 @@ export default function SectionContent(props) {
                         </div>
                         <div className='h-auto w-full align-middle'>
                             {/*This is where the main text of the section goes*/}
-                            <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 indent-20 " + (props.left ? "text-lgu-lime text-justify" : "text-justify text-black")}>
+                            <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 indent-10 " + (props.left ? "text-lgu-lime text-justify" : "text-justify text-black")}>
                                 {props.children !== undefined ? props.children : ""}
                             </p>
                             {/*If button is needed*/}

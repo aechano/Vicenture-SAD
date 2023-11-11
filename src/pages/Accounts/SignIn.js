@@ -43,16 +43,8 @@ export default function SignIn() {
             }}
         >
             <div
-                className="absolute bottom-10 right-8 top-10 h-full rounded-2xl w-1/2 overflow-hidden bg-fixed"
-                style={{
-                    backgroundColor: "rgba(45, 95, 46, 0.6)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    border: "none", // Add this line to remove the border
-                    outline: "none", // Add this line to remove the outline
-                    height: "95%", // Adjust this value to control the height
-                    margin: "auto", // Center the div horizontally
-                }}>
+                className="absolute bottom-0 md:bottom-10 right-0 md:right-8 top-0 md:top-10 md:rounded-3xl w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md md:h-95vh mx-auto" style={{backgroundColor: "rgba(45, 95, 46, 0.6)"}}
+                >
                 <NavLink
                     to={PATH_NAME.Home}
                     className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
@@ -116,7 +108,7 @@ export default function SignIn() {
                         Sign In
                     </button>
                 </form>
-                <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
+                <div className='absolute bottom-9 text-sm sm:text-md left-1/2 transform -translate-x-1/2 mr-5 mb-5 text-white'>
                     Don't have an account? &nbsp;
                     <NavLink
                         to={PATH_NAME.Accounts.SignUp.SignUp}

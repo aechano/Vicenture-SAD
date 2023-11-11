@@ -63,7 +63,7 @@ export default function Header(props) {
                         {({ open }) => (
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-                                    <div className="relative flex h-28 items-center justify-between">
+                                    <div className="relative flex h-20 lg:h-28 items-center justify-between">
                                         <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                                             {/* Mobile menu button*/}
                                             <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-lgu-lime">

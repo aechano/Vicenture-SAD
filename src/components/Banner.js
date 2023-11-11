@@ -38,6 +38,7 @@ export default function Banner(props) {
                     alt={props.alt !== undefined ? props.alt : "Municipal Office"}
                     className={"w-full object-cover " + (isCommonBanner ? "h-80" : "h-screen lg:h-auto")}
                 />
+                <div className="absolute inset-0 bg-lgu-green bg-opacity-50"></div>
                 {/*Banner overlay*/}
                 <div className='bg-opacity-50 bg-black inset-0 absolute flex flex-col justify-center items-center my-auto'>
                     {/*Big title text for special-type banners*/}

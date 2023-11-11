@@ -82,7 +82,7 @@ export default function PlacesToVisit() {
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='flex items-center justify-center'>
 
-                    <form className="w-7/12 my-auto p-3">
+                    <form className="w-72 sm:w-96 md:w-7/12 my-auto p-2">
                         <div class="relative">
                             {/*SVG image of a magnifying glass*/}
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -115,7 +115,7 @@ export default function PlacesToVisit() {
                             />
                         </div>
                     </form>
-                    <div className='text-4xl'>
+                    <div className='pt-2 text-2xl'>
                         <button>
                             <FaFilter />
                         </button>

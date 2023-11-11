@@ -20,7 +20,7 @@ export default function TourismCards({ content, onClick }) {
     return (
         <>
             <div className="m-3 flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200 select-none cursor-pointer" onClick={onClick}>
-                <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-sm m-3" src={content.pic} alt="Mananap Falls" />
+                <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-lg m-3 p-2" src={content.pic} alt="Mananap Falls" />
                 <div className="flex flex-col justify-between p-4 leading-normal">
                     <div className='flex justify-between'>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{content.title}</h5>
@@ -87,13 +87,20 @@ export default function TourismCards({ content, onClick }) {
                         </svg>
 
                         <div className='flex w-auto h-4'>
-                            <p className='text-sm font-semibold pl-2'>{content.rate.toFixed(1)}</p>
-                            <p className='text-sm font-semibold pl-2'>|</p>
-                            <p className='text-sm font-semibold pl-2'>{content.vote} votes</p>
+                            <p className='text-xs sm:text-sm font-semibold pl-2'>{content.rate.toFixed(1)}</p>
+                            <p className='text-xs sm:text-sm font-semibold pl-2'>|</p>
+                            <div className="flex">
+                                <p className='text-xs sm:text-sm font-semibold pl-2'>{content.vote}</p>
+                                <p className='text-xs sm:text-sm font-semibold pl-1'>votes</p>
+                            </div>
+
 
                             <div className='flex pl-2'>
                                 <AiOutlineComment />
-                                <p className='text-sm font-semibold pl-2'>{content.comments} comments</p>
+                                <div className="flex">
+                                    <p className='text-xs sm:text-sm font-semibold pl-2'>{content.comments}</p>
+                                    <p className='text-xs sm:text-sm font-semibold pl-1'>comments</p>
+                                </div>
                             </div>
 
                         </div>

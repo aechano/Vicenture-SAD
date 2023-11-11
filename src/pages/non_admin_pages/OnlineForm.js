@@ -19,7 +19,7 @@ export default function OnlineForm() {
         e.preventDefault();
         // Generate and download the PDF, passing the form data as arguments
         generatePDF(fname, midName, lname, email, phoneNum, date, duration, people, message);
-        
+
         setfname('');
         setmidName('');
         setlname('');
@@ -32,8 +32,8 @@ export default function OnlineForm() {
 
         console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, message });
     };
-      
-    return ( 
+
+    return (
         <>
             <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }, { title: "San Vicente Tourism", to: PATH_NAME.Tourism.SanVicente }]}>
                 <p>Tourism Office Online Form</p>
@@ -45,11 +45,12 @@ export default function OnlineForm() {
                         <div className="flex flex-col space-y-5">
                             <h1 className="text-2xl font-bold">Contact Information</h1>
                             <div className="flex flex-wrap justify-stretch">
+                                
                                 <div className="relative mb-3 mx-2">
                                     <input
                                         required
                                         type="text"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${fname ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="fname"
                                         placeholder="First Name"
                                         value={fname}
@@ -59,7 +60,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="fname"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${fname ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         First Name
                                     </label>
@@ -67,7 +68,7 @@ export default function OnlineForm() {
                                 <div className="relative mb-3 mx-2">
                                     <input
                                         type="text"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${midName ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="midName"
                                         placeholder="Middle Name"
                                         value={midName}
@@ -77,7 +78,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="minit"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${midName ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         Middle Name
                                     </label>
@@ -86,7 +87,7 @@ export default function OnlineForm() {
                                     <input
                                         required
                                         type="text"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${lname ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="lname"
                                         placeholder="Last Name"
                                         value={lname}
@@ -96,7 +97,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="lname"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${lname ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         Last Name
                                     </label>
@@ -105,7 +106,7 @@ export default function OnlineForm() {
                                     <input
                                         required
                                         type="email"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${email ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="email"
                                         placeholder="Email"
                                         value={email}
@@ -115,7 +116,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="email"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${email ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         Email
                                     </label>
@@ -124,7 +125,7 @@ export default function OnlineForm() {
                                     <input
                                         required
                                         type="text"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${phoneNum ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="phoneNum"
                                         placeholder="Phone Number"
                                         value={phoneNum}
@@ -134,7 +135,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="phoneNum"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${phoneNum ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         Phone Number
                                     </label>
@@ -148,7 +149,7 @@ export default function OnlineForm() {
                                     <input
                                         required
                                         type="date"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${date ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-gray-300 focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="date"
                                         placeholder="Date"
                                         value={date}
@@ -161,7 +162,7 @@ export default function OnlineForm() {
                                     <input
                                         required
                                         type="number"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${duration ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="duration"
                                         placeholder="Duration of Stay"
                                         value={duration}
@@ -171,7 +172,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="duration"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${duration ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         Duration of Stay
                                     </label>
@@ -180,7 +181,7 @@ export default function OnlineForm() {
                                     <input
                                         required
                                         type="number"
-                                        className={`peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary dark:peer-focus:text-primary ${people ? 'pb-[0.625rem] pt-[1.625rem]' : ''}`}
+                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="people"
                                         placeholder="Number of People"
                                         value={people}
@@ -190,7 +191,7 @@ export default function OnlineForm() {
                                     />
                                     <label
                                         htmlFor="people"
-                                        className={`pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-${people ? '-translate-y-2 translate-x-[0.15rem] scale-[0.85]' : ''} motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary`}
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
                                     >
                                         Number of people
                                     </label>
@@ -200,7 +201,7 @@ export default function OnlineForm() {
                         </div>
                         <div className="relative mb-3 mx-2">
                             <textarea
-                                className={`peer m-0 block h-56 w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:focus:border-primary`}
+                                className="peer m-0 block h-56 w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-gray-300 focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                 id="message"
                                 placeholder="Special request or requirements..."
                                 value={message}
@@ -232,11 +233,11 @@ export default function OnlineForm() {
 
 const generatePDF = (fname, midName, lname, email, phoneNum, date, duration, people, message) => {
     const doc = new jsPDF();
-  
+
     // Set the properties of the PDF document
     doc.setFontSize(16);
     doc.text("Tourism Office Online Form", 10, 10);
-  
+
     // Add form data to the PDF
     doc.text("Contact Information", 10, 20);
     doc.text(`First Name: ${fname}`, 10, 30);
@@ -244,17 +245,16 @@ const generatePDF = (fname, midName, lname, email, phoneNum, date, duration, peo
     doc.text(`Last Name: ${lname}`, 10, 50);
     doc.text(`Email: ${email}`, 10, 60);
     doc.text(`Phone Number: ${phoneNum}`, 10, 70);
-  
+
     doc.text("Travel Details", 10, 80);
     doc.text(`Date: ${date}`, 10, 90);
     doc.text(`Duration of Stay: ${duration}`, 10, 100);
     doc.text(`Number of People: ${people}`, 10, 110);
-  
+
     doc.text(`Special request or requirements: ${message}`, 10, 120);
 
     console.log("Inside generatePDF:", fname, midName, lname, email, phoneNum, date, duration, people, message);
-  
+
     // Save the PDF to a file or trigger a download
     doc.save("TourismForm.pdf");
-  };
-  
+};

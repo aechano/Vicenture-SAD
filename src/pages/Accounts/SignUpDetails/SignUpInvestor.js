@@ -63,7 +63,7 @@ export default function SignUpLGU() {
             }}
         >
             <div
-                className="absolute bottom-10 right-8 top-10 rounded-2xl min-h-screen w-1/2 overflow-hidden bg-fixed"
+                className="absolute bottom-10 right-8 top-10 rounded-3xl min-h-screen w-1/2 overflow-hidden bg-fixed"
                 style={{
                     backgroundColor: "rgba(45, 95, 46, 0.6)",
                     backdropFilter: "blur(10px)",

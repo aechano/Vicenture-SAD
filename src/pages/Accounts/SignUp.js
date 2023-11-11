@@ -86,7 +86,7 @@ export default function SignUp() {
             }}
         >
             <div
-                className="absolute top-10 bottom-10 rounded-2xl right-8 w-1/2 overflow-hidden bg-fixed"
+                className="absolute top-10 bottom-10 rounded-3xl right-8 w-1/2 overflow-hidden bg-fixed"
                 style={{
                     backgroundColor: "rgba(45, 95, 46, 0.6)",
                     backdropFilter: "blur(10px)",

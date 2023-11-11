@@ -107,13 +107,13 @@ export default function AboutSanVicente() {
           <div className="sm:flex-grow sm:border-b-4 sm:border-gray-900"></div>
         </div>
 
-        <div className='flex'>
-          <div className="w-full mx-3 my-5">
+        <div className='flex flex-wrap md:justify-center lg:flex-nowrap'>
+          <div className="md:w-80 w-full mx-3 my-5">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
-                    className="rounded-t-lg w-full h-52"
+                    className="rounded-t-lg w-full md:h-52"
                     src={require("../../../res/img/geography.png")}
                     alt="Geography"
                   />
@@ -127,12 +127,12 @@ export default function AboutSanVicente() {
             </Link>
           </div>
 
-          <div className="w-full mx-3 my-5">
+          <div className="md:w-80 w-full mx-3 my-5">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
-                    className="rounded-t-lg w-full h-52"
+                    className="rounded-t-lg md:w-80 w-full md:h-52"
                     src={require("../../../res/img/economy.jpg")}
                     alt="Economy"
                   />
@@ -146,12 +146,12 @@ export default function AboutSanVicente() {
             </Link>
           </div>
 
-          <div className="w-full mx-3 my-5">
+          <div className="md:w-80 w-full mx-3 my-5">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
-                    className="rounded-t-lg w-full h-52"
+                    className="rounded-t-lg md:w-80 w-full md:h-52"
                     src={require("../../../res/img/population.jpg")}
                     alt="Population"
                   />
@@ -165,12 +165,12 @@ export default function AboutSanVicente() {
             </Link>
           </div>
 
-          <div className="w-full mx-3 my-5">
+          <div className="md:w-80 w-full mx-3 my-5">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
-                    className="rounded-t-lg w-full h-52"
+                    className="rounded-t-lg w-full md:h-52"
                     src={require("../../../res/img/geography.png")}
                     alt="Barangays"
                   />
