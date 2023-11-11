@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import Banner from '../../components/Banner';
+import React, { useEffect, useState } from 'react'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
+import Banner from '../../components/Banner';
 
 const InputTypes = {
     Text: "ONE_LINE_TEXT",
@@ -10,53 +10,59 @@ const InputTypes = {
     Checkbox: "CHECKBOXES"
 }
 
-export default function SampleSurvey() {
-    let data = [
-        {
-            questionID: 1,
-            questionType: InputTypes.Text,
-            questionDetails: {
-                question: "What is your name?",
-                choices:[]
-            }
-        },
-        {
-            questionID: 2,
-            questionType: InputTypes.Number,
-            questionDetails: {
-                question: "Phone Number",
-                choices:[]
-            }
-        },
-        {
-            questionID: 3,
-            questionType: InputTypes.Radio,
-            questionDetails: {
-                question: "Gender",
-                choices: ["Man", "Womman", "Nonbinary", "Other"]
-            }
-        },
-        {
-            questionID: 4,
-            questionType: InputTypes.Checkbox,
-            questionDetails: {
-                question: "What do you play?",
-                choices: ["Minecraft", "Roblox", "Something fun", "Mobile Legends", "Genshin Impact"]
-            }
-        },
-        {
-            questionID: 5,
-            questionType: InputTypes.OpenEnded,
-            questionDetails: {
-                question: "What are your opinions on those games?",
-                choices:[]
-            }
-        },
-    ]
+export default function SurveyPage() {
     const [formData, setFormData] = useState({});
+    const [data, setData] = useState([]);
     useEffect(() => {
-        console.log("HELLO???")
-    }, []);
+        var newData = [
+            {
+                questionID: 1,
+                questionType: InputTypes.Text,
+                questionDetails: {
+                    question: "What is your name?",
+                    choices: []
+                }
+            },
+            {
+                questionID: 2,
+                questionType: InputTypes.Number,
+                questionDetails: {
+                    question: "Phone Number",
+                    choices: []
+                }
+            },
+            {
+                questionID: 3,
+                questionType: InputTypes.Radio,
+                questionDetails: {
+                    question: "Gender",
+                    choices: ["Man", "Woman", "Nonbinary", "Other"]
+                }
+            },
+            {
+                questionID: 4,
+                questionType: InputTypes.Checkbox,
+                questionDetails: {
+                    question: "What do you play?",
+                    choices: ["Minecraft", "Roblox", "Something fun", "Mobile Legends", "Genshin Impact"]
+                }
+            },
+            {
+                questionID: 5,
+                questionType: InputTypes.OpenEnded,
+                questionDetails: {
+                    question: "What are your opinions on those games?",
+                    choices: []
+                }
+            },
+        ]
+        setData(newData)
+        var dict = {}
+        for (let i = 0; i < newData.length; i++) {
+            dict[newData[i].questionID] = newData[i].questionType !== InputTypes.Checkbox ? "" : [];
+        }
+        setFormData(dict)
+    }, [])
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -82,7 +88,6 @@ export default function SampleSurvey() {
         console.log('Submitted data:', formData);
         // You can send the data to your server for processing here
     };
-
     return (
         <div>
             <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
@@ -100,11 +105,11 @@ export default function SampleSurvey() {
                                     type={dataContents.questionType}
                                     data={{
                                         "label": dataContents.questionDetails.question ? dataContents.questionDetails.question : "",
-                                        "formData": formData[String(dataContents.questionID)],
+                                        "formData": formData[dataContents.questionID],
                                         "handleInputChange": handleInputChange,
                                         "name": dataContents.questionID,
                                         "value": dataContents.questionDetails.choices ?
-                                            dataContents.questionDetails.choices
+                                            generateValues(dataContents.questionDetails.choices)
                                             :
                                             null
                                     }}
@@ -123,7 +128,13 @@ export default function SampleSurvey() {
         </div>
     );
 }
-
+function generateValues(value) {
+    let valueList = []
+    for (var i in value) {
+        valueList.push({ key: value[i], value: value[i].toLowerCase() })
+    }
+    return valueList;
+}
 function InputManager({ type, data }) {
     /**
      * This manages which input to use.
@@ -135,6 +146,7 @@ function InputManager({ type, data }) {
         case InputTypes.Text:
             return (
                 <OneLineTextInput
+                    name={data["name"]}
                     label={data["label"]}
                     handleInputChange={data["handleInputChange"]}
                     formData={data["formData"]}
@@ -143,6 +155,7 @@ function InputManager({ type, data }) {
         case InputTypes.Number:
             return (
                 <OneLineNumberInput
+                    name={data["name"]}
                     label={data["label"]}
                     handleInputChange={data["handleInputChange"]}
                     formData={data["formData"]}
@@ -151,26 +164,27 @@ function InputManager({ type, data }) {
         case InputTypes.Radio:
             return (
                 <RadioButtons
-                    label={data["label"]}
                     name={data["name"]}
+                    label={data["label"]}
                     values={data["value"]}
-                    handleInputChange={data["handleInputChange"]}
+                    onChange={data["handleInputChange"]}
                     check={data["formData"]}
                 />
             )
         case InputTypes.Checkbox:
             return (
                 <Checkboxes
-                    label={data["label"]}
                     name={data["name"]}
+                    label={data["label"]}
                     values={data["value"]}
-                    handleInputChange={data["handleInputChange"]}
+                    onChange={data["handleInputChange"]}
                     check={data["formData"]}
                 />
             )
         case InputTypes.OpenEnded:
             return (
                 <OpenEndedInput
+                    name={data["name"]}
                     label={data["label"]}
                     handleInputChange={data["handleInputChange"]}
                     check={data["formData"]}
@@ -180,32 +194,32 @@ function InputManager({ type, data }) {
     }
 }
 
-function OneLineTextInput({ label, formData, handleInputChange }) {
+function OneLineTextInput({ name, label, formData, handleInputChange }) {
     return (
         <div className="mb-4">
-            <label className="block text-black text-sm font-bold mb-2" htmlFor="text_input">
+            <label className="block text-black text-sm font-bold mb-2" htmlFor={name}>
                 {label}
             </label>
             <input
                 type="text"
-                id="text_input"
-                name="text_input"
+                id={name}
+                name={name}
                 value={formData}
                 onChange={handleInputChange}
                 className="w-full border rounded p-2 border-lgu-yellow border-3" />
         </div>
     )
 }
-function OneLineNumberInput({ label, formData, handleInputChange }) {
+function OneLineNumberInput({ name, label, formData, handleInputChange }) {
     return (
         <div className="mb-4">
-            <label className="block text-black text-sm font-bold mb-2" htmlFor="number_input">
+            <label className="block text-black text-sm font-bold mb-2" htmlFor={name}>
                 {label}
             </label>
             <input
                 type="number"
-                id="number_input"
-                name="number"
+                id={name}
+                name={name}
                 value={formData}
                 onChange={handleInputChange}
                 className="w-full border rounded p-2 border-lgu-yellow border-3"
@@ -287,15 +301,15 @@ function CheckboxItems({ item, onChange, name, checked }) {
         </label>
     )
 }
-function OpenEndedInput({ label, formData, handleInputChange }) {
+function OpenEndedInput({ label, name, formData, handleInputChange }) {
     return (
         <div className="mb-4">
-            <label className="block text-black text-sm font-bold mb-2" htmlFor="open_ended">
+            <label className="block text-black text-sm font-bold mb-2" htmlFor={name}>
                 {label}
             </label>
             <textarea
-                id="open_ended"
-                name="open_ended"
+                id={name}
+                name={name}
                 value={formData}
                 onChange={handleInputChange}
                 className="w-full border rounded p-2 border-lgu-yellow border-3 resize-none"

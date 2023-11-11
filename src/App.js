@@ -38,6 +38,7 @@ import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
 import { RedirectMessages } from './components/redirect-webpages';
+import SurveyPage from './pages/non_admin_pages/SurveyPage';
 
 function App() {
     return (
@@ -73,7 +74,7 @@ function App() {
                         <Route path={PATH_NAME.Transparency} element={<Transparency />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
-                        <Route path={PATH_NAME.SampleSurvey} element={<SampleSurvey />} />
+                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage />} />
                         <Route path="/articles" element={<Articles />} />
                         <Route path="/article/:articleID" element={<ArticleContent/>} /> 
 
