@@ -251,7 +251,7 @@ function RadioButtons({ label, name, values, onChange, check }) {
 }
 function RadioButtonItem({ item, name, onChange, checked }) {
     return (
-        <label className="items-center p-5">
+        <label className="items-center">
             <input
                 type="radio"
                 name={name}
@@ -266,7 +266,7 @@ function RadioButtonItem({ item, name, onChange, checked }) {
 }
 function Checkboxes({ label, name, values, onChange, check }) {
     return (
-        <div className="mb-4">
+        <div className="mb-4 ml-5">
             <p className="text-black text-sm font-bold mb-2">{label}</p>
             {
                 values.map((item, index) => {
@@ -288,7 +288,7 @@ function Checkboxes({ label, name, values, onChange, check }) {
 }
 function CheckboxItems({ item, onChange, name, checked }) {
     return (
-        <label className="items-center p-5">
+        <label className="items-center ml-5">
             <input
                 type="checkbox"
                 name={name}
