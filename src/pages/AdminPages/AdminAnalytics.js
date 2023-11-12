@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import Page403 from '../Accounts/ErrorPages/Page403';
 
-export default function AdminAnalytics() {
+export default function AdminAnalytics({ userType }) {
   const [dashboardItems] = useState([
     {
       id: 'AdminAnalytics',
@@ -169,7 +171,7 @@ export default function AdminAnalytics() {
     if (selectedOption && selectedOption.id === 'AdminAnalytics') {
       return renderAnalyticsContent();
     }
-  
+
     if (selectedOption && !selectedOption.isTitle) {
       const selectedItem = [...dashboardItems, ...pagesItems, ...formsItems, ...othersItems].find(
         (item) => item.id === selectedOption.id
@@ -180,10 +182,10 @@ export default function AdminAnalytics() {
         </div>
       ) : null;
     }
-  
+
     return null;
   };
-  
+
   const renderAnalyticsContent = () => {
     return (
       <div className="flex">
@@ -193,19 +195,19 @@ export default function AdminAnalytics() {
           <div className="border-2 border-lgu-green w-80 h-80 rounded-md ml-36 mt-16 mb-8 font-bold text-center">
             <p className="mt-4">First-Level User Activity</p>
           </div>
-  
+
           <div className="border-2 border-lgu-green w-80 h-80 rounded-md ml-36 mt-8 mb-8 font-bold text-center">
             <p className="mt-4">New User Accounts</p>
           </div>
         </div>
-  
+
         {/* Second container */}
         <div className="w-10/11 ml-16">
           {/* Container for New User Account and User Account */}
           <div className="border-2 border-lgu-green w-80 h-80 rounded-md ml-2 mt-16 mb-8 font-bold text-center">
             <p className="mt-4">Investment Related Activity</p>
           </div>
-  
+
           <div className="border-2 border-lgu-green w-80 h-80 rounded-md ml-2 mt-8 mb-8 font-bold text-center">
             <p className="mt-4">User Account</p>
           </div>
@@ -213,7 +215,12 @@ export default function AdminAnalytics() {
       </div>
     );
   };
-  
+
+
+  if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist, USER_TYPES.Investorm, USER_TYPES.LguSV].includes(userType)) {
+    return <Page403 />
+  }
+
   return (
     <div className="flex">
       <div className="bg-lgu-yellow w-1/6 p-4">

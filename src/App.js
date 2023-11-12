@@ -44,6 +44,8 @@ import { RedirectMessages } from './components/redirect-webpages';
 import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
 import SignInPrompt from './components/SignInPrompt';
+import Page404 from './pages/Accounts/ErrorPages/Page404';
+import Page403 from './pages/Accounts/ErrorPages/Page403';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -113,7 +115,7 @@ function App() {
 
 
 
-                        <Route path='/debug' element={<SignInPrompt />} />
+                        <Route path='/debug' element={<Page403 />} />
                     </Routes>
                 </Header>
             </BrowserRouter>

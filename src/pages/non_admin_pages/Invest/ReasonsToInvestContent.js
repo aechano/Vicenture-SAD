@@ -1,12 +1,17 @@
 import React from "react";
 import Banner from "../../../components/Banner";
 import { useParams } from 'react-router-dom';
-import { PATH_NAME } from "../../../Variables/GLOBAL_VARIABLE";
+import { PATH_NAME, USER_TYPES } from "../../../Variables/GLOBAL_VARIABLE";
+import Page403 from "../../Accounts/ErrorPages/Page403";
 
 
-export default function ReasonsToInvestContent() {
+export default function ReasonsToInvestContent({ userType }) {
+
     let { contentID } = useParams();
 
+    if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist].includes(userType)) {
+        return <Page403 />
+    }
 
     // Your contents array
     var contents = [
@@ -91,8 +96,8 @@ export default function ReasonsToInvestContent() {
                     <img
                         src={selectedContent.contentImg}
                         alt={selectedContent.title}
-                        
-                        className="float-left mr-4 my-2 w-auto h-96 mt-7"             
+
+                        className="float-left mr-4 my-2 w-auto h-96 mt-7"
                     />
                     <h2 className="text-3xl font-bold mt-7">{selectedContent.title}</h2>
                     <p className="text-35 text-left">{selectedContent.body}</p>
