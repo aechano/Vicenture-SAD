@@ -10,7 +10,7 @@ export default function Offices() {
       mandate: 'Exercise general supervision and control over all programs, projects, services, and activities of the LGU. Enforce all laws and ordinances relative to the governance of the LGU and the exercise of the appropriate corporate powers. Ensure the delivery of basic services and the provision of adequate facilities.',
       vision: 'Envision an office with competent, honest, courteous workers of the government providing outstanding services to its clients.',
       mission: 'To provide basic services conducive to the attainment of a better quality life through participative governance.',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg'),
       contactNumbers: ['Contact Number: 0998-547-0465', 'Hotline Number: 0546036244', 'Email Address: lgusanvicente4609@gmail.com'],
     },
     {
@@ -267,27 +267,27 @@ export default function Offices() {
 
               <div>
                 {/* Content here */}
-                <div className='font-bold font-open sans text-2xl mt-4'>
-                  <h2>Mandate</h2>
+                <div className='mt-9'>
+                  <h2 className='font-bold font-open sans text-2xl'>Mandate</h2>
+                  <p className='mt-2'>{selectedContent.mandate}</p>
                 </div>
-                <p className='mt-4'>{selectedContent.mandate}</p>
 
-                <div className='font-bold font-open sans text-2xl mt-60'>
-                  <h2>Vision</h2>
+                <div className='mt-9'>
+                  <h2 className='font-bold font-open sans text-2xl'>Vision</h2>
+                  <p className='mt-2'>{selectedContent.vision}</p>
                 </div>
-                <p className='mt-4'>{selectedContent.vision}</p>
 
-                <div className='font-bold font-open sans text-2xl mt-60'>
-                  <h2>Mission</h2>
+                <div className='mt-9'>
+                  <h2 className='font-bold font-open sans text-2xl'>Mission</h2>
+                  <p className='mt-2'>{selectedContent.mission}</p>
                 </div>
-                <p className='mt-4'>{selectedContent.mission}</p>
-
-                <div className='font-bold font-open sans text-2xl mt-60'>
-                  <h2>Organizational Chart</h2>
+                
+                <div className='mt-9'>
+                  <h2 className='font-bold font-open sans text-2xl'>Organizational Chart</h2>
+                  <img src={selectedContent.orgChartImage} alt="Organizational Chart" className='mt-2' />
                 </div>
-                <img src={selectedContent.orgChartImage} alt="Organizational Chart" className='mt-4' />
 
-                <div className='font-bold font-open sans text-2xl mt-60'>
+                <div className='font-bold font-open sans text-2xl mt-44'>
                   <h2>Contact Numbers</h2>
                 </div>
                 <ul className='ml-4'>

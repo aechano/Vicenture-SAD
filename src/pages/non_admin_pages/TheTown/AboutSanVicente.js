@@ -35,7 +35,7 @@ export default function AboutSanVicente() {
         alt="Mananap Falls"
         button="Read More"
         arrow={true}
-        href={PATH_NAME.TheTown.History} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+        href={PATH_NAME.TheTown.History} onClick={() => window.scrollTo({ top: 0, left: 0})}>
         Travel back in time and immerse yourself in the captivating history of San Vicente. The town's roots stretch far beyond Camarines Norte's official formation in 1919. Historical records tell us that San Vicente came into existence around 1790, boasting a population of 1,187 residents. Religious elements heavily influenced the town's origins. It started as a barrio named San Antonio, strategically located southwest of Daet. In 1771, under the guidance of Bishop Fray Antonio de Luna, it was a mission aimed at expanding the Franciscan Missions in Daet. However, due to a series of events, the Franciscans had to depart, only for the mission to be revived in 1783 and renamed San Vicente, dedicated to Saint Vincent Ferrer.
 
       </SectionContent>
@@ -109,7 +109,7 @@ export default function AboutSanVicente() {
 
         <div className='flex flex-wrap md:justify-center lg:flex-nowrap'>
           <div className="md:w-80 w-full mx-3 my-5">
-            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0})}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
@@ -128,7 +128,7 @@ export default function AboutSanVicente() {
           </div>
 
           <div className="md:w-80 w-full mx-3 my-5">
-            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0})}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
@@ -147,7 +147,7 @@ export default function AboutSanVicente() {
           </div>
 
           <div className="md:w-80 w-full mx-3 my-5">
-            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0})}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
@@ -166,7 +166,7 @@ export default function AboutSanVicente() {
           </div>
 
           <div className="md:w-80 w-full mx-3 my-5">
-            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+            <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
               <div className="block w-full rounded-lg bg-lgu-yellow shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
