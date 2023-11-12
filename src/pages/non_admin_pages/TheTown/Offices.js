@@ -10,7 +10,7 @@ export default function Offices() {
       mandate: 'Exercise general supervision and control over all programs, projects, services, and activities of the LGU. Enforce all laws and ordinances relative to the governance of the LGU and the exercise of the appropriate corporate powers. Ensure the delivery of basic services and the provision of adequate facilities.',
       vision: 'Envision an office with competent, honest, courteous workers of the government providing outstanding services to its clients.',
       mission: 'To provide basic services conducive to the attainment of a better quality life through participative governance.',
-      orgChartImage: require('../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg'),
+      orgChartImage: '../../../res/img/org_chart/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
       contactNumbers: ['Contact Number: 0998-547-0465', 'Hotline Number: 0546036244', 'Email Address: lgusanvicente4609@gmail.com'],
     },
     {
@@ -26,7 +26,7 @@ export default function Offices() {
           </ul>
         </div>
       ),
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Office-of-the-Municipal-Vice-Mayor.jpg'),
       contactNumbers: ['Contact Number: 0939-911-0503', 'Facebook: San Vicente Sangguniang Bayan', 'Email Address: sbsanvicente4609@gmail.com'],
     },
     {
@@ -43,7 +43,7 @@ export default function Offices() {
           </ul>
         </div>
       ),
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Office-of-the-Municipal-Vice-Mayor.jpg'),
       contactNumbers: ['Contact Number: 0939-911-0503', 'Facebook: San Vicente Sangguniang Bayan', 'Email Address: sbsanvicente4609@gmail.com'],
     },
     {
@@ -51,7 +51,7 @@ export default function Offices() {
       mandate: "Take charge of the Office of the Secretary to the Sangguniang Bayan, handle correspondence and keep journal of the Sangguniang Bayan’s proceedings. To keep track of various sanggunian records, transactions, and documents in aid of efficient legislations and to exercise the supervision over the secretariat of the Sangguniang Bayan.",
       vision: 'Effective, efficient, and responsive Legislative Secretariat.',
       mission: 'To enact ordinances, approve resolutions and appropriate funds for the general welfare of the municipality and its inhabitants and in the proper exercise of the corporate powers of the municipality pursuant to RA 7160.',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Office-of-the-Municipal-Vice-Mayor.jpg'),
       contactNumbers: ['Contact Number: 0939-911-0503', 'Facebook: San Vicente Sangguniang Bayan', 'Email Address: sbsanvicente4609@gmail.com'],
     },
     {
@@ -97,7 +97,7 @@ export default function Offices() {
       mandate: "To follow",
       vision: 'A friendly and an office of a smiling face and dedicated public servants, provide honest and efficient service to the people who are in need of our services. Enhance revenue collection and establish a complete inventor and identify ownership of every piece of real property within the municipality.',
       mission: 'The Municipal Assessor’s Office provides knowledgeable customer service and brings a systemic method through real property assessment. Conduct frequent physical surveys to verify and determine whether all real property within the municipality are properly listed in the assessment rolls.',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Municipal-Assesor-Office.jpg'),
       contactNumbers: ['Email Address: svcnmunicipalassessor@gmail.com'],
     },
     {
@@ -110,12 +110,12 @@ export default function Offices() {
     },
 
     {
-      name: "Municipal Civil Registrar",
+      name: "Office of the Municipal Civil Registrar",
       mandate: "To follow",
-      vision: 'To follow',
-      mission: 'To follow',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
-      contactNumbers: ['Contact Number: To follow'],
+      vision: "The Municipal Civil Registrar’s Office provides quality civil registration products and services in accordance with the existing laws and rules in serving the people with all honesty and in the end contributing income to the municipality",
+      mission: "The Municipal Civil Registrar’s Office maintains effective, reliable and accurate civil registration system thru its honest and dedicated public servant with the highest degree of professionalism in serving the people and generate income for the municipality.",
+      orgChartImage: require('../../../res/img/org_chart/Office-of-the-Municipal-Civil-Registrar.jpg'),
+      contactNumbers: ['ANACORITA D. LITANA - 0910-185-9099', 'JOE DENNIS D. OPEDA - 0927-588-9176', 'MARICEL D. BALANE - 0929-696-5091'],
     },
     {
       name: 'Municipal Disaster Risk Reduction and Management Office',
@@ -141,7 +141,7 @@ export default function Offices() {
       mandate: 'To follow',
       vision: 'A global leader for attaining better health outcomes, competitive and responsive health care system, and equitable health financing.',
       mission: 'To guarantee equitable, sustainable, and quality health for all Filipinos, especially the poor, and to lead the quest for excellence in health.',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Municipal-Health-Office.jpg'),
       contactNumbers: ['To follow'],
     },
     {
@@ -168,11 +168,11 @@ export default function Offices() {
       contactNumbers: ['To follow'],
     },
     {
-      name: 'Municipal Traffic & Public Safety Office',
+      name: 'Municipal Traffic and Public Safety Office',
       mandate: 'To follow',
       vision: 'The MTPSO committed to serve and protect the community, life, and property. They are committed to execute any implementing rules and regulations regarding public order and traffic violations and accidents free community.',
       mission: 'To lessen the crime and accident within the vicinity of San Vicente through conducting on duty personnel 24 hours a day and visibility patrolling and to attain a peaceful and safe community within the municipality.',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg'),
       contactNumbers: ['MTPSO Hotline: 0985-403-2655', 'Email Address: sanvicentemtpso@gmail.com',
         'Facebook Page: Mun. Traffic and Public Safety Office-San Vicente'],
     },
@@ -189,7 +189,7 @@ export default function Offices() {
       mandate: 'To follow',
       vision: 'To promote and develop sustainable and responsible tourism in San Vicente, showcasing its natural beauty, cultural heritage, and unique attractions while contributing to the economic well-being of the community. Our mission is to provide memorable and authentic experiences for visitors, protect and preserve our environment, and enhance the quality of life for our residents by creating opportunities for employment and economic growth in the tourism sector.',
       mission: 'To emphasize responsible tourism practices, community involvement, economic development, and the preservation of the natural and cultural assets that make San Vicente an attractive destination. Specific golas and strategies would be developed in alignment with this mission to guide the tourism development efforts in the area.',
-      orgChartImage: '../../../res/img/Municipal-Traffic-And-Public-Safety-Office-Org-Chart.jpg',
+      orgChartImage: require('../../../res/img/org_chart/Municipal-Tourism-Office.jpg'),
       contactNumbers: ['Email Address: taldocindy@gmail.com'],
     },
 
@@ -287,7 +287,7 @@ export default function Offices() {
                   <img src={selectedContent.orgChartImage} alt="Organizational Chart" className='mt-2' />
                 </div>
 
-                <div className='font-bold font-open sans text-2xl mt-44'>
+                <div className='font-bold font-open sans text-2xl mt-9'>
                   <h2>Contact Numbers</h2>
                 </div>
                 <ul className='ml-4'>

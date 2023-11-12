@@ -17,7 +17,7 @@ export default function SanVicenteTourism() {
         </Banner>
         <div className='absolute -bottom-28 left-1/2 transform -translate-x-1/2 rounded-xl max-w-4xl w-full h-auto bg-lgu-green '>
           <h1 className='text-3xl font-bold text-center text-lgu-lime pt-5'>Visit San Vicente</h1>
-          <p className='text-center text-lgu-lime font-semibold p-5'>Explore the serene charm of San Vicente, Camarines Norte – a hidden gem where nature's beauty meets tranquil simplicity. Immerse yourself in the welcoming community and discover the wonders of Mananap Falls, a pristine oasis nestled deep within lush forests and towering mountains. Take a refreshing plunge into its crystal-clear, ice-cold waters, embark on a rafting adventure, and dare to climb to the top of the falls. Don't miss the thrill of the jumping point. Visit San Vicente today and experience the unspoiled beauty and thrilling adventures that await!</p>
+          <p className='text-center text-lgu-lime p-5'>Explore the serene charm of San Vicente, Camarines Norte – a hidden gem where nature's beauty meets tranquil simplicity. Immerse yourself in the welcoming community and discover the wonders of Mananap Falls, a pristine oasis nestled deep within lush forests and towering mountains. Take a refreshing plunge into its crystal-clear, ice-cold waters, embark on a rafting adventure, and dare to climb to the top of the falls. Don't miss the thrill of the jumping point. Visit San Vicente today and experience the unspoiled beauty and thrilling adventures that await!</p>
         </div>
       </div>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-28'>

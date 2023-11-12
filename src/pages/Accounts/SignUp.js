@@ -86,24 +86,16 @@ export default function SignUp() {
             }}
         >
             <div
-                className="absolute top-10 bottom-10 rounded-3xl right-8 w-1/2 overflow-hidden bg-fixed"
-                style={{
-                    backgroundColor: "rgba(45, 95, 46, 0.6)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    border: "none", // Add this line to remove the border
-                    outline: "none", // Add this line to remove the outline
-                    height: "95%", // Adjust this value to control the height
-                    margin: "auto", // Center the div horizontally
-                }}>
+                className="absolute bottom-0  right-0 top-0  w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md h-full mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
+            >
                 <NavLink
                     to={PATH_NAME.Home}
                     className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
                 </NavLink>
 
-                <div className='pt-16'>
-                    <div className=' h-36 w-36 mx-auto'>
+                <div className='md:pt-16'>
+                    <div className=' h-28 w-28 mx-auto'>
                         <img className='' src={require("../../res/img/logo.png")} />
                     </div>
                     <div>
@@ -116,7 +108,7 @@ export default function SignUp() {
                 </div>
 
                 <h1
-                    className='text-white w-full my-7 text-3xl font-semibold pt-2'
+                    className='text-white w-full my-7 text-xl font-semibold pt-2'
                 >
                     Sign Up
                 </h1>
@@ -124,73 +116,86 @@ export default function SignUp() {
                     className="w-full h-fit items-center justify-center"
                     onSubmit={evaluateAnswers}
                 >
-                    <InputBoxAccount
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => {
-                            setUsername(e.target.value)
-                        }}
-                        required={true}
-                    >
-                        <svg
-                            width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
-                            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                    <div className='flex justify-center'>
+                        <InputBoxAccount
+                            placeholder="Username"
+                            value={username}
+                            onChange={(e) => {
+                                setUsername(e.target.value)
+                            }}
+                            required={true}
+                            className="w-2/5"
+                            width="w-full"
                         >
-                            <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
-                            <circle cx="12" cy="10" r="3" />
-                            <circle cx="12" cy="12" r="10" />
-                        </svg>
-                    </InputBoxAccount>
-                    <InputBoxAccount
-                        type="email"
-                        placeholder="Email"
-                        autocomplete="email"
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value)
-                        }}
-                        required={true}
-                    >
-                        <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
-                            <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
-                            <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
-                        </svg>
-                    </InputBoxAccount>
-                    <InputBoxAccount
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value)
-                        }}
-                        required={true}
-                    >
-                        <svg width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
-                            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                            <svg
+                                width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
+                                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                            >
+                                <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
+                                <circle cx="12" cy="10" r="3" />
+                                <circle cx="12" cy="12" r="10" />
+                            </svg>
+                        </InputBoxAccount>
+                        <InputBoxAccount
+                            type="email"
+                            placeholder="Email"
+                            autocomplete="email"
+                            value={email}
+                            onChange={(e) => {
+                                setEmail(e.target.value)
+                            }}
+                            required={true}
+                            className="w-2/5"
+                            width="w-full"
                         >
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                        </svg>
-                    </InputBoxAccount>
-                    <InputBoxAccount
-                        type="password"
-                        placeholder="Confirm Password"
-                        value={confirmPassword}
-                        onChange={(e) => {
-                            setConfirmPassword(e.target.value)
-                        }}
-                        required={true}
-                    >
-                        <svg width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
-                            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
+                                <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                                <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                            </svg>
+                        </InputBoxAccount>
+                    </div>
+                    <div className='flex justify-center'>
+                        <InputBoxAccount
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => {
+                                setPassword(e.target.value)
+                            }}
+                            required={true}
+                            className="w-2/5"
+                            width="w-full"
                         >
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                        </svg>
-                    </InputBoxAccount>
+                            <svg width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
+                                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                            >
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </InputBoxAccount>
+                        <InputBoxAccount
+                            type="password"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => {
+                                setConfirmPassword(e.target.value)
+                            }}
+                            required={true}
+                            className="w-2/5"
+                            width="w-full"
+                        >
+                            <svg width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
+                                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                            >
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </InputBoxAccount>
+                    </div>
+
                     <div className="flex justify-center">
                         <div className="relative w-3/5 mb-6">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
