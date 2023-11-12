@@ -73,10 +73,10 @@ function Footer() {
                                                 <h2 className="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Contacts</h2>
                                                 <ul className="text-lgu-lime dark:text-lgu-lime font-medium">
                                                     <li className="mb-2">
-                                                        <p>0912-345-6789</p>
+                                                        <p>+63 998-547-0485</p>
                                                     </li>
                                                     <li>
-                                                        <p>username@gmail.com</p>
+                                                        <p>lgusanvicente4609@gmail.com</p>
                                                     </li>
                                                 </ul>
                                             </div>
