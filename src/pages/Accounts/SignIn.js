@@ -31,7 +31,7 @@ export default function SignIn() {
     }
     return (
         <div
-            className="min-h-screen flex items-center justify-center bg-cover bg-no-repeat"
+            className="flex items-center justify-center bg-cover bg-no-repeat"
             style={{
                 backgroundImage: "url(" + require('./../../res/img/try.jpg') + ")",
                 backgroundRepeat: "no-repeat",
