@@ -7,12 +7,12 @@ import { NO_HEADER, PATH_NAME, USER_TYPES } from './../Variables/GLOBAL_VARIABLE
 import 'tailwindcss/tailwind.css';
 const navigation = [
     {
-        access: [...USER_TYPES.General],
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Home',
         href: PATH_NAME.Home
     },
     {
-        access: [...USER_TYPES.General],
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'The Town',
         href: PATH_NAME.TheTown.TheTown,
         subItems: [
@@ -25,7 +25,7 @@ const navigation = [
         ],
     },
     {
-        access: [...USER_TYPES.General],
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Tourism',
         href: PATH_NAME.Tourism.Tourism,
         subItems: [
@@ -44,17 +44,17 @@ const navigation = [
         ]
     },
     {
-        access: [...USER_TYPES.General],
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Services',
         href: "#"
     },
     {
-        access: [...USER_TYPES.General],
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Transparency',
         href: PATH_NAME.Transparency
     },
     {
-        access: [...USER_TYPES.General],
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Contact Us',
         href: PATH_NAME.ContactUs
     },
@@ -217,16 +217,21 @@ export default function Header(props) {
                                                                 </NavLink>
                                                             )}
                                                         </Menu.Item>
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <NavLink
-                                                                    to={PATH_NAME.Messages}
-                                                                    className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
-                                                                >
-                                                                    Messages
-                                                                </NavLink>
-                                                            )}
-                                                        </Menu.Item>
+                                                        {
+                                                            props.userType === USER_TYPES.Guest ?
+                                                                null
+                                                                :
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <NavLink
+                                                                            to={PATH_NAME.Messages}
+                                                                            className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
+                                                                        >
+                                                                            Messages
+                                                                        </NavLink>
+                                                                    )}
+                                                                </Menu.Item>
+                                                        }
                                                         <Menu.Item>
                                                             {({ active }) => (
                                                                 <NavLink
@@ -242,6 +247,10 @@ export default function Header(props) {
                                                                 <NavLink
                                                                     to={PATH_NAME.Accounts.SignIn}
                                                                     className='block px-4 py-2 text-sm text-gray-700'
+                                                                    onClick={()=>{
+                                                                        localStorage.clear();
+                                                                        window.dispatchEvent(new Event("storage"));
+                                                                    }}
                                                                 >
                                                                     Sign out
                                                                 </NavLink>
