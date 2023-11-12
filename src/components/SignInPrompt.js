@@ -1,4 +1,3 @@
-import { Box, Modal, Typography } from '@mui/material'
 import React from 'react'
 
 export default function SignInPrompt({ open, handleClose }) {
