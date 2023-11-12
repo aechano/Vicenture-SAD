@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { InputBoxAccount } from '../../../components/InputBox';
 import { API, PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { RxCross2 } from "react-icons/rx"
 
 
 export default function SignUpLGU() {
@@ -55,140 +56,126 @@ export default function SignUpLGU() {
         navigate(PATH_NAME.Home);
     }
     return (
-        <div
-            className="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center"
-            style={{
-                backgroundImage: "url(" + require('./../../../res/img/try.jpg') + ")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center bottom 0%",
-                height: "100vh",
-            }}
-        >
-            <div
-                className="absolute bottom-10 right-8 top-10 min-h-screen rounded-3xl w-1/2 overflow-hidden bg-fixed"
-                style={{
-                    backgroundColor: "rgba(45, 95, 46, 0.6)",
-                    backdropFilter: "blur(10px)",
-                    WebkitBackdropFilter: "blur(10px)",
-                    border: "none", // Add this line to remove the border
-                    outline: "none", // Add this line to remove the outline
-                    height: "95%", // Adjust this value to control the height
-                    margin: "auto", // Center the div horizontally
-                }}>
-                <NavLink
-                    to={PATH_NAME.Home}
-                    className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
-                    Not Now
-                </NavLink>
-                <NavLink
-                    to={PATH_NAME.Accounts.SignUp.SignUp}
-                    className='float-left text-lgu-lime p-5 w-fit mr-0 ml-auto'>
-                    Back
-                </NavLink>
-
-                <div className='pt-16'>
-                    <div className=' h-36 w-36 mx-auto'>
-                        <img className='' src={require("../../../res/img/logo.png")} />
-                    </div>
-                    <div>
-                        <h1 className='text-xl text-center font-bold text-white pt-2'>SAN VICENTE, CAMARINES NORTE</h1>
-                    </div>
-                    <div>
-                        <p className='text-lgu-lime italic text-sm'>The Town of Discovery and
-                            Adventure</p>
-                    </div>
-                </div>
-
-
-
-                <h1
-                    className='text-white w-full my-7 text-3xl font-semibold pt-2'
-                >
-                    LGU Account
-                </h1>
-                <form
-                    className="w-full h-fit items-center justify-center"
-                    onSubmit={evaluateAnswers}
-                >
-                    <InputBoxAccount
-                        placeholder="First Name"
-                        value={firstName}
-                        onChange={(e) => {
-                            setFirstName(e.target.value)
-                        }}
-                        required={true}
-                    />
-                    <div className='flex justify-center'>
-                        <div className='relative w-3/5 mb-6'>
-                            <div className="w-2/5 float-left">
-                                <input
-                                    type="text"
-                                    className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4"
-                                    placeholder="Middle Initial"
-                                    value={middleInitial}
-                                    onChange={(e) => {
-                                        setMiddleInitial(e.target.value)
-                                    }} />
-                            </div>
-                            <div className="w-3/5 ml-0 float-right pl-5">
-                                <input
-                                    type="text"
-                                    className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4"
-                                    placeholder="Name Extension"
-                                    value={nameExt}
-                                    onChange={(e) => {
-                                        setNameExt(e.target.value)
-                                    }} />
-                            </div>
-                        </div>
-                    </div>
-                    <InputBoxAccount
-                        placeholder="Last Name"
-                        value={lastName}
-                        onChange={(e) => {
-                            setLastName(e.target.value)
-                        }}
-                        required={true}
-                    />
-                    <InputBoxAccount
-                        placeholder="Employee ID"
-                        value={empId}
-                        onChange={(e) => {
-                            setEmpId(e.target.value)
-                        }}
-                        required={true}
-                    />
-                    <InputBoxAccount
-                        placeholder="Office"
-                        value={office}
-                        onChange={(e) => {
-                            setOffice(e.target.value)
-                        }}
-                        required={true}
-                    />
-                    <InputBoxAccount
-                        placeholder="Position"
-                        value={position}
-                        onChange={(e) => {
-                            setPosition(e.target.value)
-                        }}
-                        required={true}
-                    />
-                    <button
-                        className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-4"
-                    >
-                        Create Account
-                    </button>
-                </form>
-                <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
-                    Already have an account? &nbsp;
+        <section className="bg-gray-900 p-32 " style={{ backgroundImage:"url(" + require('../../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <a href="#" className="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
+                    <img className="w-20 h-20 mr-2" src={require("../../../res/img/logo.png")} alt="logo" />
+                    <span className='pt-3'>SAN VICENTE, CAMARINES NORTE</span>
+                </a>
+                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
                     <NavLink
-                        to={PATH_NAME.Accounts.SignIn}
-                        className='text-lgu-lime bold'>
-                        Sign In
+                        to={PATH_NAME.Home}
+                        className='float-right text-lgu-lime p-3 w-fit mr-0 ml-auto'>
+                        <RxCross2 />
                     </NavLink>
+                    <NavLink
+                        to={PATH_NAME.Accounts.SignUp.SignUp}
+                        className='float-left text-lgu-lime p-3 w-fit mr-0 ml-auto'>
+                        Back
+                    </NavLink>
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 className="text-xl text-center font-semibold leading-tight tracking-tight  md:text-2xl text-white pt-5">
+                            LGU Account
+                        </h1>
+                        <form className="space-y-4 md:space-y-6" onSubmit={evaluateAnswers}>
+                            <InputBoxAccount
+                                placeholder="First Name"
+                                value={firstName}
+                                onChange={(e) => {
+                                    setFirstName(e.target.value)
+                                }}
+                                required={true}
+                                marginBottom="-mb-3"
+                            />
+                            <div className='flex justify-center'>
+                                <div className='relative w-4/5 -mb-3'>
+                                    <div className="w-1/2 float-left">
+                                        <input
+                                            type="text"
+                                            className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4"
+                                            placeholder="Middle Initial"
+                                            value={middleInitial}
+                                            onChange={(e) => {
+                                                setMiddleInitial(e.target.value)
+                                            }} />
+                                    </div>
+                                    <div className="w-1/2 ml-0 float-right pl-1">
+                                        <input
+                                            type="text"
+                                            className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4"
+                                            placeholder="Name Extension"
+                                            value={nameExt}
+                                            onChange={(e) => {
+                                                setNameExt(e.target.value)
+                                            }} />
+                                    </div>
+                                </div>
+                            </div>
+                            <InputBoxAccount
+                                placeholder="Last Name"
+                                value={lastName}
+                                onChange={(e) => {
+                                    setLastName(e.target.value)
+                                }}
+                                required={true}
+                                marginBottom="-mb-3"
+                            />
+                            <InputBoxAccount
+                                placeholder="Employee ID"
+                                value={empId}
+                                onChange={(e) => {
+                                    setEmpId(e.target.value)
+                                }}
+                                required={true}
+                                marginBottom="-mb-3"
+                            />
+                            <InputBoxAccount
+                                placeholder="Office"
+                                value={office}
+                                onChange={(e) => {
+                                    setOffice(e.target.value)
+                                }}
+                                required={true}
+                                marginBottom="-mb-3"
+                            />
+                            <InputBoxAccount
+                                placeholder="Position"
+                                value={position}
+                                onChange={(e) => {
+                                    setPosition(e.target.value)
+                                }}
+                                required={true}
+                                marginBottom="-mb-3"
+                            />
+                            <div class="flex items-start justify-center">
+                                <div class="flex items-center h-5">
+                                    <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required="" />
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I accept the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
+                                </div>
+                            </div>
+                            <div className='flex justify-center'>
+                                <button
+                                    className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2"
+                                >
+                                    Create Account
+                                </button>
+                            </div>
+
+                        </form>
+                        <div className='text-center mr-5 mb-5 text-white'>
+                            Already have an account? &nbsp;
+                            <NavLink
+                                to={PATH_NAME.Accounts.SignIn}
+                                className='text-lgu-lime bold'>
+                                Sign In
+                            </NavLink>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div >
+        </section>
     )
 }

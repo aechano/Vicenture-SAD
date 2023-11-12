@@ -85,7 +85,7 @@ export default function Header(props) {
         <>
             {show ?
                 <>
-                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20 shadow-sm shadow-white">
+                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20 ">
                         {({ open }) => (
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">

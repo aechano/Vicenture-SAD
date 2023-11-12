@@ -77,23 +77,23 @@ export default function SignUp() {
         }
     }
     return (
-        <section class="bg-gray-50 dark:bg-gray-900 p-20">
+        <section class="bg-gray-900 p-20" style={{ backgroundImage:"url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
                     <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
-                    SAN VICENTE, CAMARINES NORTE
+                    <span className='pt-3'>SAN VICENTE, CAMARINES NORTE</span>
                 </a>
-                <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div class="p-2 space-y-4 md:space-y-6 sm:p-4">
+                <div className="w-full  rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
+                    <div className="p-2 space-y-4 md:space-y-6 sm:p-4">
                         <NavLink
                             to={PATH_NAME.Home}
                             className='float-right text-lgu-lime  mr-0 text-right'>
                             <RxCross2 />
                         </NavLink>
-                        <h1 class="text-xl font-semibold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        <h1 className="text-xl font-semibold text-center leading-tight tracking-tight  md:text-2xl text-white">
                             Create an account
                         </h1>
-                        <form class="space-y-4 md:space-y-6 max-w-md mx-auto" onSubmit={evaluateAnswers}>
+                        <form className="space-y-4 md:space-y-6 max-w-md mx-auto" onSubmit={evaluateAnswers}>
                             <InputBoxAccount
                                 placeholder="Username"
                                 value={username}
@@ -198,7 +198,7 @@ export default function SignUp() {
                             </div>
                             <div className='flex justify-center'>
                                 <button
-                                    className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
+                                    className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2"
                                 >
                                     {button}
                                 </button>
@@ -206,7 +206,7 @@ export default function SignUp() {
                             </div>
 
                         </form>
-                        <div className='mr-5 mb-5 text-white'>
+                        <div className='text-center mr-5 mb-5 text-white'>
                             Already have an account? &nbsp;
                             <NavLink
                                 to={PATH_NAME.Accounts.SignIn}
