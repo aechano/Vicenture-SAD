@@ -66,7 +66,6 @@ export default function Header(props) {
     const [show, setShow] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
-    const [userType, setUserType] = useState(null);
 
     const handleDropdown = (name) => {
         if (openDropdown === name) {
@@ -80,7 +79,6 @@ export default function Header(props) {
 
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
-        setUserType(localStorage.getItem("accountType"));
     }, [location]);
 
     return (
@@ -119,7 +117,7 @@ export default function Header(props) {
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-10">
                                                     {navigation.map((item) =>
-                                                        item.access.includes(userType) ?
+                                                        item.access.includes(props.userType) ?
                                                             item.subItems ? // Check if it's a dropdown item
                                                                 <div key={item.name} className="relative group">
                                                                     <button

@@ -24,6 +24,7 @@ export default function SignIn() {
                     var payload= jwtDecode(data.refreshToken)
                     localStorage.setItem("accountType", payload.AccountType)
                     localStorage.setItem("username", payload.Username)
+                    window.dispatchEvent(new Event("storage"));
                 }
             })
     }
