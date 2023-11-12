@@ -10,6 +10,13 @@ const PATH_NAME = {
     },
     AdminPages: {
         AdminAnalytics:"/analytics",
+        AdminHomepage:"/adminHomepage",
+        AdminAboutSV:"/adminAboutSV",
+        AdminMunicipalityProfile:"/adminMunicipalityProfile",
+        AdminElectedOfficial:"/adminElectedOfficial",
+        AdminCharter:"/adminCharter",
+        AdminToVisit:"/adminToVisit",
+        AdminActivities:"/adminActivities",
     },
     Home: "/",
     TheTown: {
