@@ -30,7 +30,7 @@ export default function SignIn() {
     }
     return (
         <div
-            className="relative overflow-hidden bg-cover bg-no-repeat p-12 text-center"
+            className="overflow-hidden bg-cover bg-no-repeat p-12 text-center"
             style={{
                 backgroundImage: "url(" + require('./../../res/img/try.jpg') + ")",
                 backgroundRepeat: "no-repeat",
@@ -39,7 +39,7 @@ export default function SignIn() {
             }}
         >
             <div
-                className="absolute bottom-0 right-0 top-0 w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md h-full mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
+                className="w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md h-full mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
             >
 
                 <NavLink
@@ -48,7 +48,7 @@ export default function SignIn() {
                     Not Now
                 </NavLink>
 
-                <div className='p-28'>
+                <div className='m-28'>
                     <div className='md:pt-16'>
                         <div className=' h-28 w-28 mx-auto'>
                             <img className='' src={require("../../res/img/logo.png")} />
@@ -106,7 +106,7 @@ export default function SignIn() {
                             Sign In
                         </button>
                     </form>
-                    <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
+                    <div className=' m-5 mr-5 mb-5 text-white'>
                         Don't have an account? &nbsp;
                         <NavLink
                             to={PATH_NAME.Accounts.SignUp.SignUp}
