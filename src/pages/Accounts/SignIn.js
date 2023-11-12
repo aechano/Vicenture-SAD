@@ -36,16 +36,16 @@ export default function SignIn() {
             }}
         >
             <div
-                className="absolute bottom-0 md:bottom-10 right-0 md:right-8 top-0 md:top-10 md:rounded-3xl w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md md:h-95vh mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
-            >
+                className="absolute bottom-0  right-0 top-0  w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md h-full mx-auto" style={{backgroundColor: "rgba(45, 95, 46, 0.6)"}}
+                >
                 <NavLink
                     to={PATH_NAME.Home}
                     className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
                     Not Now
                 </NavLink>
 
-                <div className='pt-36'>
-                    <div className=' h-36 w-36 mx-auto'>
+                <div className='md:pt-16'>
+                    <div className=' h-28 w-28 mx-auto'>
                         <img className='' src={require("../../res/img/logo.png")} />
                     </div>
                     <div>
@@ -59,7 +59,7 @@ export default function SignIn() {
 
 
                 <h1
-                    className='text-white w-full my-7 text-3xl font-semibold pt-2'
+                    className='text-white w-full my-7 text-xl font-semibold pt-2'
                 >
                     Sign In
                 </h1>
@@ -96,12 +96,12 @@ export default function SignIn() {
                         </svg>
                     </InputBoxAccount>
                     <button
-                        className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-4"
+                        className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
                     >
                         Sign In
                     </button>
                 </form>
-                <div className='absolute bottom-9 text-sm sm:text-md left-1/2 transform -translate-x-1/2 mr-5 mb-5 text-white'>
+                <div className='absolute bottom-0 right-0 mr-5 mb-5 text-white'>
                     Don't have an account? &nbsp;
                     <NavLink
                         to={PATH_NAME.Accounts.SignUp.SignUp}

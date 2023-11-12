@@ -254,15 +254,15 @@ export default function ContactUs() {
                                             </svg>
                                         </button>
                                         {isDropdownOpen && (
-                                            <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg bg-white divide-y divide-gray-100 dark:bg-lgu-green z-10">
+                                            <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg divide-y divide-gray-100 bg-lgu-green z-10">
                                                 <ul className="py-2 text-sm text-white dark:text-white">
                                                     <li>
-                                                        <p className="block px-4 py-2 hover:bg-gray-700 dark:hover:bg-green-700 dark:hover:text-white" onClick={() => handleOptionSelect('Suggestions and Feedback')}>
+                                                        <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('Suggestions and Feedback')}>
                                                             Suggestions and Feedback
                                                         </p>
                                                     </li>
                                                     <li>
-                                                        <p className="block px-4 py-2 hover:bg-gray-700 dark:hover:bg-green-700 dark:hover:text-white" onClick={() => handleOptionSelect('Website Bug/ Issue Report')}>
+                                                        <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('Website Bug/ Issue Report')}>
                                                             Website Bug/ Issue Report
                                                         </p>
                                                     </li>

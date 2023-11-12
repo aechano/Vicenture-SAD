@@ -11,7 +11,7 @@ const navigation = [
         name: 'The Town',
         href: PATH_NAME.TheTown.TheTown,
         subItems: [
-            { name: 'About San Vicente', href: PATH_NAME.TheTown.About },
+            { name: 'About San Vicente', href: PATH_NAME.TheTown.About},
             { name: 'Municipality Profile', href: PATH_NAME.TheTown.MunicipalityProfile },
             { name: 'Municipality Programs', href: PATH_NAME.TheTown.MunicipalityPrograms },
             { name: 'Elected Officials', href: PATH_NAME.TheTown.ElectedOfficials },
@@ -23,7 +23,7 @@ const navigation = [
         name: 'Tourism',
         href: PATH_NAME.Tourism.Tourism,
         subItems: [
-            { name: 'San Vicente Tourism', href: PATH_NAME.Tourism.SanVicente },
+            { name: 'San Vicente Tourism', href: PATH_NAME.Tourism.SanVicente} ,
             { name: 'Places to Visit', href: PATH_NAME.Tourism.PlacesToVisit },
             { name: 'Activities', href: PATH_NAME.Tourism.Activities }
         ],
@@ -77,7 +77,10 @@ export default function Header(props) {
                                             </Disclosure.Button>
                                         </div>
                                         <div className="flex flex-1 items-center justify-between">
-                                            <NavLink to={PATH_NAME.Home} className="flex flex-shrink-0 items-center">
+                                            <NavLink
+                                            to={PATH_NAME.Home}
+                                            className="flex flex-shrink-0 items-center"
+                                            onClick={()=>window.scrollTo({top: 0, left: 0})}>
                                                 <img
                                                     className="h-12 w-auto hidden lg:block"
                                                     src={require('./../res/img/logo.png')}
@@ -107,12 +110,16 @@ export default function Header(props) {
                                                                         {item.subItems.map((subItem) => (
                                                                             <NavLink
                                                                                 key={subItem.name}
-                                                                                to={subItem.href}
-                                                                                onClick={() => handleDropdown(item.name)}
+                                                                                to={subItem.href} 
+                                                                                onClick={() => {
+                                                                                    handleDropdown(item.name)
+                                                                                    window.scrollTo({top: 0, left: 0})
+                                                                                }}
                                                                                 className={({ isActive }) => {
                                                                                     return "block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                         (isActive ? "font-medium" : "")
                                                                                 }} 
+                                                                                
                                                                             >
                                                                                 {subItem.name}
                                                                             </NavLink>
@@ -124,10 +131,12 @@ export default function Header(props) {
                                                             <NavLink
                                                                 key={item.name}
                                                                 to={item.href}
+                                                                onClick={() => window.scrollTo({top: 0, left: 0})}
                                                                 className={({ isActive }) => {
                                                                     return 'rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white ' +
                                                                         (isActive ? 'font-medium' : '')
                                                                 }}
+                                                                
 
                                                             >
                                                                 {item.name}
@@ -239,11 +248,12 @@ export default function Header(props) {
                                                                 {item.subItems.map((subItem) => (
                                                                     <NavLink
                                                                         key={subItem.name}
-                                                                        to={subItem.href}
+                                                                        to={subItem.href} onClick={() => window.scrollTo({ top: 0, left: 0})}
                                                                         className={({ isActive }) => {
                                                                             return "block rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                 (isActive ? "font-medium" : "")
-                                                                        }}
+                                                                        }} 
+                                                                        
                                                                     >
                                                                         {subItem.name}
                                                                     </NavLink>
@@ -258,7 +268,8 @@ export default function Header(props) {
                                                         className={({ isActive }) => {
                                                             return 'block rounded-md px-3 py-2 text-sm text-lgu-lime  hover:text-white' +
                                                                 (isActive ? 'font-medium' : '')
-                                                        }}
+                                                        }} 
+                                                        onClick={() => window.scrollTo({ top: 0, left: 0})}
 
                                                     >
                                                         {item.name}
