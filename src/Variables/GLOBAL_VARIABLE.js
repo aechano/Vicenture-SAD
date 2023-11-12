@@ -55,12 +55,9 @@ const PATH_NAME = {
 
     }
 const API = {
-    SignUp: {
-        LGU: "http://localhost:8080/accounts/lgu",
-        Investor:"http://localhost:8080/accounts/investor",
-        Other: "http://localhost:8080/accounts"
-    },
-    SignIn: "http://localhost:8080/accounts/",
+    SignUp: "http://localhost:8080/api/v1/auth/signup",
+    SignIn: "http://localhost:8080/api/v1/auth/signin",
+    
 }
 const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages+"/*",...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];

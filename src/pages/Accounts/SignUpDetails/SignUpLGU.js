@@ -36,7 +36,7 @@ export default function SignUpLGU() {
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
 
-        axios.post(API.SignUp.LGU, {
+        axios.post(API.SignUp, {
             "lastName": lastName,
             "firstName": firstName,
             "middleName": middleInitial,

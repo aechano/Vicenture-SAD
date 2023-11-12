@@ -3,6 +3,7 @@ import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
 import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
+import { jwtDecode } from 'jwt-decode';
 
 export default function SignIn() {
     const [email, setEmail] = useState();
@@ -12,25 +13,17 @@ export default function SignIn() {
 
     function checkCredentials(e) {
         e.preventDefault();
-        const promise = axios.get(API.SignIn + email);
-        const dataPromise = promise.then((response) => response.data);
-        dataPromise.then(data => {
-            if (data == null) {
-                console.log("Sign in failed: Email not found.")
-            } else {
-                if (data.password === password) {
-                    console.log("Sign in success!");
-                    data.lastActiveDate = Date.now();
-                    console.log(Date.now());
-                    setUserAccount(data);
-                    console.log(userAccount);
-                    axios.post(API.SignUp.Other, data);
-                    navigate(PATH_NAME.Home);
+        axios.post(API.SignIn, { "email": email, "password": password })
+            .then((response) => response.data)
+            .then(data => {
+                if (data == null) {
+                    console.log("Sign in failed.")
                 } else {
-                    console.log("Sign in failed: Password does not match.");
+                    localStorage.setItem("token", data.token)
+                    localStorage.setItem("refresh", data.refreshToken)
+                    console.log(jwtDecode(data.token))
                 }
-            }
-        })
+            })
     }
     return (
         <div
@@ -43,8 +36,8 @@ export default function SignIn() {
             }}
         >
             <div
-                className="absolute bottom-0 md:bottom-10 right-0 md:right-8 top-0 md:top-10 md:rounded-3xl w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md md:h-95vh mx-auto" style={{backgroundColor: "rgba(45, 95, 46, 0.6)"}}
-                >
+                className="absolute bottom-0 md:bottom-10 right-0 md:right-8 top-0 md:top-10 md:rounded-3xl w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md md:h-95vh mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
+            >
                 <NavLink
                     to={PATH_NAME.Home}
                     className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
