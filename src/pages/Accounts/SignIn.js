@@ -31,7 +31,7 @@ export default function SignIn() {
     }
     return (
         <div
-            className="overflow-hidden bg-cover bg-no-repeat p-12 text-center"
+            className="min-h-screen flex items-center justify-center bg-cover bg-no-repeat"
             style={{
                 backgroundImage: "url(" + require('./../../res/img/try.jpg') + ")",
                 backgroundRepeat: "no-repeat",
@@ -40,7 +40,7 @@ export default function SignIn() {
             }}
         >
             <div
-                className="w-full md:w-1/2 overflow-hidden bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md h-full mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
+                className="w-full md:w-1/2 bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
             >
 
                 <NavLink
@@ -58,19 +58,19 @@ export default function SignIn() {
                             <h1 className='text-xl text-center font-bold text-white pt-2'>SAN VICENTE, CAMARINES NORTE</h1>
                         </div>
                         <div>
-                            <p className='text-lgu-lime italic text-sm'>The Town of Discovery and
+                            <p className='text-center text-lgu-lime italic text-sm'>The Town of Discovery and
                                 Adventure</p>
                         </div>
                     </div>
 
 
                     <h1
-                        className='text-white w-full my-7 text-xl font-semibold pt-2'
+                        className='text-white text-center w-full my-7 text-xl font-semibold pt-2'
                     >
                         Sign In
                     </h1>
                     <form
-                        className="w-full h-fit items-center justify-center"
+                        className="w-full items-center justify-center"
                         onSubmit={checkCredentials}
                     >
                         <InputBoxAccount
@@ -101,13 +101,17 @@ export default function SignIn() {
                                 <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                             </svg>
                         </InputBoxAccount>
-                        <button
-                            className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
-                        >
-                            Sign In
-                        </button>
+                        <div className='flex justify-center'>
+                            <button
+                                className=" text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
+                            >
+                                Sign In
+                            </button>
+
+                        </div>
+
                     </form>
-                    <div className=' m-5 mr-5 mb-5 text-white'>
+                    <div className='text-center m-5 mr-5 mb-5 text-white '>
                         Don't have an account? &nbsp;
                         <NavLink
                             to={PATH_NAME.Accounts.SignUp.SignUp}
