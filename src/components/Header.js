@@ -115,14 +115,14 @@ export default function Header(props) {
                                                 <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">SAN VICENTE, <br />CAMARINES NORTE</span>
                                             </NavLink>
                                             <div className="hidden lg:block">
-                                                <div className="flex space-x-4 mr-10">
+                                                <div className="flex space-x-4 mr-5">
                                                     {navigation.map((item) =>
                                                         item.access.includes(props.userType) ?
                                                             item.subItems ? // Check if it's a dropdown item
                                                                 <div key={item.name} className="relative group">
                                                                     <button
                                                                         onClick={() => handleDropdown(item.name)}
-                                                                        className='relative rounded-md px-3 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
+                                                                        className='relative rounded-md px-1 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
                                                                     >
                                                                         {item.name}
                                                                         <ChevronDownIcon
@@ -160,7 +160,7 @@ export default function Header(props) {
                                                                     to={item.href}
                                                                     onClick={() => window.scrollTo({ top: 0, left: 0 })}
                                                                     className={({ isActive }) => {
-                                                                        return 'rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white ' +
+                                                                        return 'rounded-md px-1 py-2 text-sm text-lgu-lime hover:text-white ' +
                                                                             (isActive ? 'font-medium' : '')
                                                                     }}
 
@@ -171,56 +171,67 @@ export default function Header(props) {
                                                             :
                                                             null
                                                     )}
+
+                                                    <NavLink
+                                                        to={PATH_NAME.Accounts.SignIn}
+                                                        onClick={() => window.scrollTo({ top: 0, left: 0 })}
+                                                        className={({ isActive }) => {
+                                                            return 'rounded-md px-10 py-2 text-sm text-lgu-lime hover:text-white ' +
+                                                                (isActive ? 'font-medium' : '')
+                                                        }}
+                                                    >
+                                                        Sign In
+                                                    </NavLink>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="flex items-center">
-                                            <button
-                                                type="button"
-                                                className="relative p-1 text-lgu-lime hover:text-white"
-                                            >
-                                                <span className="absolute -inset-1.5" />
-                                                <span className="sr-only">View notifications</span>
-                                                <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                            </button>
-
-                                            {/* Profile dropdown */}
-                                            <Menu as="div" className="relative ml-3">
-                                                <div>
-                                                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                        {
+                                            props.userType === USER_TYPES.Guest ?
+                                                null
+                                                :
+                                                <div className="flex items-center">
+                                                    <button
+                                                        type="button"
+                                                        className="relative p-1 text-lgu-lime hover:text-white"
+                                                    >
                                                         <span className="absolute -inset-1.5" />
-                                                        <span className="sr-only">Open user menu</span>
-                                                        <img
-                                                            className="h-10 w-auto rounded-full"
-                                                            src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t1.6435-9/157425982_1304090739970516_233654553417427649_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7a1959&_nc_eui2=AeHCZHrUlmDBj8vZCwrOoEH2UGHrp6j-YmZQYeunqP5iZnJtfmx7qup-SwxFWNYIq41r11UR4Q3IxPGxN-ASyY0X&_nc_ohc=c7hjr2L9e2kAX-L1kit&_nc_oc=AQn1HuhIrbGNH_IkFyzacoilsey9s74VcBNiGCcnDTkn23Mpqz5sTT0HhfJuX3DxLQ4&_nc_ht=scontent.fmnl3-1.fna&oh=00_AfAg5gXj79gMyTRsnn97HTlQCsoSSeaobFEsrZSfwNXV9w&oe=655713AF"
-                                                            alt=""
-                                                        />
-                                                    </Menu.Button>
-                                                </div>
-                                                <Transition
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-100"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <NavLink
-                                                                    to={PATH_NAME.Profile}
-                                                                    className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
-                                                                >
-                                                                    Your Profile
-                                                                </NavLink>
-                                                            )}
-                                                        </Menu.Item>
-                                                        {
-                                                            props.userType === USER_TYPES.Guest ?
-                                                                null
-                                                                :
+                                                        <span className="sr-only">View notifications</span>
+                                                        <BellIcon className="h-6 w-6" aria-hidden="true" />
+                                                    </button>
+
+                                                    {/* Profile dropdown */}
+                                                    <Menu as="div" className="relative ml-3">
+                                                        <div>
+                                                            <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                                                                <span className="absolute -inset-1.5" />
+                                                                <span className="sr-only">Open user menu</span>
+                                                                <img
+                                                                    className="h-10 w-auto rounded-full"
+                                                                    src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t1.6435-9/157425982_1304090739970516_233654553417427649_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7a1959&_nc_eui2=AeHCZHrUlmDBj8vZCwrOoEH2UGHrp6j-YmZQYeunqP5iZnJtfmx7qup-SwxFWNYIq41r11UR4Q3IxPGxN-ASyY0X&_nc_ohc=c7hjr2L9e2kAX-L1kit&_nc_oc=AQn1HuhIrbGNH_IkFyzacoilsey9s74VcBNiGCcnDTkn23Mpqz5sTT0HhfJuX3DxLQ4&_nc_ht=scontent.fmnl3-1.fna&oh=00_AfAg5gXj79gMyTRsnn97HTlQCsoSSeaobFEsrZSfwNXV9w&oe=655713AF"
+                                                                    alt=""
+                                                                />
+                                                            </Menu.Button>
+                                                        </div>
+                                                        <Transition
+                                                            as={Fragment}
+                                                            enter="transition ease-out duration-100"
+                                                            enterFrom="transform opacity-0 scale-95"
+                                                            enterTo="transform opacity-100 scale-100"
+                                                            leave="transition ease-in duration-75"
+                                                            leaveFrom="transform opacity-100 scale-100"
+                                                            leaveTo="transform opacity-0 scale-95"
+                                                        >
+                                                            <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <NavLink
+                                                                            to={PATH_NAME.Profile}
+                                                                            className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
+                                                                        >
+                                                                            Your Profile
+                                                                        </NavLink>
+                                                                    )}
+                                                                </Menu.Item>
                                                                 <Menu.Item>
                                                                     {({ active }) => (
                                                                         <NavLink
@@ -231,46 +242,46 @@ export default function Header(props) {
                                                                         </NavLink>
                                                                     )}
                                                                 </Menu.Item>
-                                                        }
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <NavLink
-                                                                    to={PATH_NAME.PrivacyPolicy}
-                                                                    className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
-                                                                >
-                                                                    Privacy Policy
-                                                                </NavLink>
-                                                            )}
-                                                        </Menu.Item>
-                                                        <Menu.Item>
-                                                            {({ active }) => (
-                                                                <NavLink
-                                                                    to={PATH_NAME.Accounts.SignIn}
-                                                                    className='block px-4 py-2 text-sm text-gray-700'
-                                                                    onClick={()=>{
-                                                                        localStorage.clear();
-                                                                        window.dispatchEvent(new Event("storage"));
-                                                                    }}
-                                                                >
-                                                                    Sign out
-                                                                </NavLink>
-                                                            )}
-                                                        </Menu.Item>
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </Menu>
-                                        </div>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <NavLink
+                                                                            to={PATH_NAME.PrivacyPolicy}
+                                                                            className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
+                                                                        >
+                                                                            Privacy Policy
+                                                                        </NavLink>
+                                                                    )}
+                                                                </Menu.Item>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <NavLink
+                                                                            to={PATH_NAME.Accounts.SignIn}
+                                                                            className='block px-4 py-2 text-sm text-gray-700'
+                                                                            onClick={() => {
+                                                                                localStorage.clear();
+                                                                                window.dispatchEvent(new Event("storage"));
+                                                                            }}
+                                                                        >
+                                                                            Sign out
+                                                                        </NavLink>
+                                                                    )}
+                                                                </Menu.Item>
+                                                            </Menu.Items>
+                                                        </Transition>
+                                                    </Menu>
+                                                </div>
+                                        }
                                     </div>
                                 </div>
                                 <Disclosure.Panel>
                                     <div className="block">
-                                        <div className="flex flex-col mr-10">
+                                        <div className="flex flex-col mr-5">
                                             {navigation.map((item) =>
                                                 item.subItems ? ( // Check if it's a dropdown item
                                                     <div key={item.name} className="group">
                                                         <button
                                                             onClick={() => handleDropdown(item.name)}
-                                                            className='relative rounded-md px-3 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
+                                                            className='relative rounded-md px-1 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
                                                         >
                                                             {item.name}
                                                             <ChevronDownIcon
@@ -287,7 +298,7 @@ export default function Header(props) {
                                                                         key={subItem.name}
                                                                         to={subItem.href} onClick={() => window.scrollTo({ top: 0, left: 0 })}
                                                                         className={({ isActive }) => {
-                                                                            return "block rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
+                                                                            return "block rounded-md px-1 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                 (isActive ? "font-medium" : "")
                                                                         }}
 
@@ -303,7 +314,7 @@ export default function Header(props) {
                                                         key={item.name}
                                                         to={item.href}
                                                         className={({ isActive }) => {
-                                                            return 'block rounded-md px-3 py-2 text-sm text-lgu-lime  hover:text-white' +
+                                                            return 'block rounded-md px-1 py-2 text-sm text-lgu-lime  hover:text-white' +
                                                                 (isActive ? 'font-medium' : '')
                                                         }}
                                                         onClick={() => window.scrollTo({ top: 0, left: 0 })}
