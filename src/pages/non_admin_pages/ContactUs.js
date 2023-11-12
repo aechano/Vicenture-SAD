@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Banner from '../../components/Banner';
-import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
+import { PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import AccordionItem from '../../components/AccordionItem';
 import { IoLocation } from 'react-icons/io5';
 import { BsFillTelephoneFill } from 'react-icons/bs';
@@ -8,31 +8,7 @@ import { MdEmail, MdFacebook } from 'react-icons/md';
 
 
 
-export default function ContactUs() {
-
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('General Inquiry');
-
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
-
-    // Define state variables for form inputs
-    const [subject, setSubject] = useState('');
-    const [message, setMessage] = useState('');
-    const [sendCopy, setSendCopy] = useState(false);
-
-    // Function to handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // You can perform form submission logic here
-        console.log('Form submitted:', { subject, message, sendCopy });
-    };
-
-    const handleOptionSelect = (option) => {
-        setSelectedOption(option);
-        setIsDropdownOpen(false); // Close the dropdown when an option is selected
-    };
+export default function ContactUs({ userType }) {
 
     const [open, setOpen] = useState(false);
     const toggle = (index) => {
@@ -201,128 +177,180 @@ export default function ContactUs() {
                         })}
                     </div>
                 </div>
-
-                <div className='pt-5 m-5 space-y-1'>
-                    <h1 className='font-bold text-center text-4xl'>Get in Touch with Us</h1>
-                    <p className='font-semibold text-center text-md'>Do you need more information? Please contact us to find more about San Vicente</p>
-
-                    <div className='md:grid md:grid-cols-2 pt-10'>
-                        <div className='text-center md:text-right px-10 space-y-4 md:my-6 lg:my-14 pb-5 md:pb-0'>
-                            <p className='font-semibold text-2xl'>San Vicente, Camarines Norte,</p>
-                            <p className='font-semibold text-2xl'>Philippines</p>
-                            <div className='flex justify-center md:justify-end items-center space-x-2'>
-                                <IoLocation className='hidden lg:flex' />
-                                <p className='font-normal text-xl'>4V4F+J6F, San Vicente, Camarines Norte</p>
-                            </div>
-                            <div className='flex justify-center md:justify-end items-center space-x-2'>
-                                <BsFillTelephoneFill className='hidden lg:flex' />
-                                <p className='font-normal text-xl'>+63 9985470485</p>
-                            </div>
-                            <div className='flex justify-center md:justify-end items-center space-x-2'>
-                                <MdEmail className='hidden lg:flex' />
-                                <p className='font-normal text-xl'>lgusanvicente4609@yahoo.com</p>
-                            </div>
-                            <div className='flex justify-center md:justify-end items-center space-x-2'>
-                                <MdFacebook className='hidden lg:flex' />
-                                <p className='font-normal text-xl flex-col'>http://bit.ly/3FxCrbU</p>
-                            </div>
-                        </div>
-                        <div className='flex justify-center md:block'>
-                            <div className="block max-w-md rounded-lg border-2 border-black p-4">
-                                <form onSubmit={handleSubmit}>
-
-                                    <div className="relative inline-block text-left">
-                                        <button
-                                            type="button"
-                                            onClick={toggleDropdown}
-                                            className="text-white bg-lgu-green hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-                                        >
-                                            {selectedOption}
-                                            <svg
-                                                className="w-2.5 h-2.5 ml-2.5"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 10 6"
-                                            >
-                                                <path
-                                                    stroke="currentColor"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="m1 1 4 4 4-4"
-                                                />
-                                            </svg>
-                                        </button>
-                                        {isDropdownOpen && (
-                                            <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg divide-y divide-gray-100 bg-lgu-green z-10">
-                                                <ul className="py-2 text-sm text-white dark:text-white">
-                                                    <li>
-                                                        <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('Suggestions and Feedback')}>
-                                                            Suggestions and Feedback
-                                                        </p>
-                                                    </li>
-                                                    <li>
-                                                        <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('Website Bug/ Issue Report')}>
-                                                            Website Bug/ Issue Report
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
-                                        <input
-                                            required
-                                            type="text"
-                                            className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                                            id="exampleInput8"
-                                            placeholder="Subject"
-                                            value={subject}
-                                            onChange={(e) => setSubject(e.target.value)} />
-                                    </div>
-
-
-                                    <div className="relative mb-6" data-te-input-wrapper-init>
-                                        <textarea
-                                            required
-                                            className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                                            id="exampleFormControlTextarea13"
-                                            rows="3"
-                                            placeholder="Message"
-                                            value={message}
-                                            onChange={(e) => setMessage(e.target.value)}></textarea>
-                                    </div>
-
-                                    <div className="mb-6 flex min-h-[1.5rem] items-center justify-center pl-[1.5rem]">
-                                        <input
-                                            type="checkbox"
-                                            id="exampleCheck10"
-                                            checked={sendCopy}
-                                            onChange={() => setSendCopy(!sendCopy)}
-                                        />
-                                        <label
-                                            className="inline-block pl-[0.15rem] hover:cursor-pointer"
-                                            htmlFor="exampleCheck10"
-                                        >
-                                            Send me a copy of this message
-                                        </label>
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        className="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded border border-1 bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-lgu-green shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-lgu-lime hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-lgu-lime focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                                        data-te-ripple-init
-                                        data-te-ripple-color="light"
-                                    >
-                                        Send
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <GetInTouch userType={userType}/>
             </div>
         </>
     );
+}
+function GetInTouch({ userType }) {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('General Inquiry');
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    // Define state variables for form inputs
+    const [email, setEmail] = useState(localStorage.getItem('email'));
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+    const [sendCopy, setSendCopy] = useState(false);
+
+    // Function to handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // You can perform form submission logic here
+        console.log('Form submitted:', { subject, message, sendCopy });
+    };
+
+    const handleOptionSelect = (option) => {
+        setSelectedOption(option);
+        setIsDropdownOpen(false); // Close the dropdown when an option is selected
+    };
+    return (
+
+        <div className='pt-5 m-5 space-y-1'>
+            <h1 className='font-bold text-center text-4xl'>Get in Touch with Us</h1>
+            <p className='font-semibold text-center text-md'>Do you need more information? Please contact us to find more about San Vicente</p>
+
+            <div className='md:grid md:grid-cols-2 pt-10'>
+                <div className='text-center md:text-right px-10 space-y-4 md:my-6 lg:my-14 pb-5 md:pb-0'>
+                    <p className='font-semibold text-2xl'>San Vicente, Camarines Norte,</p>
+                    <p className='font-semibold text-2xl'>Philippines</p>
+                    <div className='flex justify-center md:justify-end items-center space-x-2 select-none cursor-pointer'
+                        onClick={()=>window.open("https://www.google.com/maps/place/4V4F%2BJ6F,+San+Vicente,+Camarines+Norte/", '_blank').focus()}>
+                        <IoLocation className='hidden lg:flex' />
+                        <p className='font-normal text-xl'>4V4F+J6F, San Vicente, Camarines Norte</p>
+                    </div>
+                    <div className='flex justify-center md:justify-end items-center space-x-2'>
+                        <BsFillTelephoneFill className='hidden lg:flex' />
+                        <p className='font-normal text-xl'>+63 9985470485</p>
+                    </div>
+                    <div className='flex justify-center md:justify-end items-center space-x-2 select-none cursor-pointer'
+                        onClick={()=>window.open("mailto:lgusanvicente4609@yahoo.com", '_blank').focus()}>
+                        <MdEmail className='hidden lg:flex' />
+                        <p className='font-normal text-xl'>lgusanvicente4609@yahoo.com</p>
+                    </div>
+                    <div className='flex justify-center md:justify-end items-center space-x-2 select-none cursor-pointer'
+                        onClick={()=>window.open("https://www.facebook.com/sanvicentecamarinesnorte/", '_blank').focus()}>
+                        <MdFacebook className='hidden lg:flex' />
+                        <p className='font-normal text-xl flex-col'>/sanvicentecamarinesnorte</p>
+                    </div>
+                </div>
+                <div className='flex justify-center md:block'>
+                    <div className="block max-w-md rounded-lg border-2 border-black p-4">
+                        <form onSubmit={handleSubmit}>
+
+                            <div className="relative inline-block text-left">
+                                <button
+                                    type="button"
+                                    onClick={toggleDropdown}
+                                    className="text-white bg-lgu-green hover:bg-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+                                >
+                                    {selectedOption}
+                                    <svg
+                                        className="w-2.5 h-2.5 ml-2.5"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 10 6"
+                                    >
+                                        <path
+                                            stroke="currentColor"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="m1 1 4 4 4-4"
+                                        />
+                                    </svg>
+                                </button>
+                                {isDropdownOpen && (
+                                    <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg shadow-lg divide-y divide-gray-100 bg-lgu-green z-10">
+                                        <ul className="py-2 text-sm text-white dark:text-white">
+                                            <li>
+                                                <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('Suggestions and Feedback')}>
+                                                    Suggestions and Feedback
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('Website Bug/ Issue Report')}>
+                                                    Website Bug/ Issue Report
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p className="block px-4 py-2 hover:bg-green-600 dark:hover:bg-green-600 dark:hover:text-white" onClick={() => handleOptionSelect('General Inquiry')}>
+                                                    General Inquiry
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+
+                            {
+                                userType===USER_TYPES.Guest?
+                                <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
+                                    <input
+                                        required
+                                        type="email"
+                                        className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                        placeholder="Email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)} />
+                                </div>
+                                :
+                                null
+                            }
+                            
+                            <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
+                                <input
+                                    required
+                                    type="text"
+                                    className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                    id="exampleInput8"
+                                    placeholder="Subject"
+                                    value={subject}
+                                    onChange={(e) => setSubject(e.target.value)} />
+                            </div>
+
+
+                            <div className="relative mb-6" data-te-input-wrapper-init>
+                                <textarea
+                                    required
+                                    className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                    id="exampleFormControlTextarea13"
+                                    rows="3"
+                                    placeholder="Message"
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}></textarea>
+                            </div>
+
+                            <div className="mb-6 flex min-h-[1.5rem] items-center justify-center pl-[1.5rem]">
+                                <input
+                                    type="checkbox"
+                                    id="exampleCheck10"
+                                    checked={sendCopy}
+                                    onChange={() => setSendCopy(!sendCopy)}
+                                />
+                                <label
+                                    className="inline-block pl-[0.15rem] hover:cursor-pointer"
+                                    htmlFor="exampleCheck10"
+                                >
+                                    Send me a copy of this message
+                                </label>
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]] inline-block w-full rounded border border-1 bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-lgu-green shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-lgu-lime hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-lgu-lime focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                                data-te-ripple-init
+                                data-te-ripple-color="light"
+                            >
+                                Send
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
