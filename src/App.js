@@ -116,6 +116,7 @@ function App() {
 
 
                         <Route path='/debug' element={<Page403 />} />
+                        <Route path='/*' element={<Page404/>} />
                     </Routes>
                 </Header>
             </BrowserRouter>
