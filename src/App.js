@@ -8,6 +8,10 @@ import Banner from './components/Banner';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
+import adminHomepage from './pages/AdminPages/adminHomepage';
+import adminAboutSV from './pages/AdminPages/adminAboutSV';
+import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
+import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
@@ -40,73 +44,81 @@ import { RedirectMessages } from './components/redirect-webpages';
 import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
 import SignInPrompt from './components/SignInPrompt';
+import Page404 from './pages/Accounts/ErrorPages/Page404';
+import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 
 function App() {
-    const [userType, setUserType] = useState(localStorage.getItem("accountType")?localStorage.getItem("accountType"):USER_TYPES.Guest);
+    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
 
     window.addEventListener('storage', () => {
-        setUserType(localStorage.getItem("accountType")?localStorage.getItem("accountType"):USER_TYPES.Guest);
+        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
     })
-    
+
     return (
         <div className="App">
             <BrowserRouter>
                 <Header userType={userType}>
                     <Routes>
-                        <Route path={PATH_NAME.Home} element={<Homepage userType={userType}/>} />
+                        <Route path={PATH_NAME.Home} element={<Homepage userType={userType} />} />
 
                         <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
                         <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
                         <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
+                        <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
+                        <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
+                        <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile />} />
+                        <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
 
-                            <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.History} element={<History userType={userType}/>} /> 
-                            <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.Offices} element={<Offices userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials userType={userType}/>} />
 
-                        <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType}/>} />
-                        <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm userType={userType}/>} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit userType={userType}/>} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit+"/:contentID"} element={<PlacesToVisitPost userType={userType}/>} /> {/** Try only */}
-                        <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType}/>} />
+                        <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />
+                        <Route path={PATH_NAME.TheTown.History} element={<History />} />
+                        <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo />} />
+                        <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile />} />
+                        <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms />} />
+                        <Route path={PATH_NAME.TheTown.Offices} element={<Offices />} />
+                        <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen />} />
+                        <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials />} />
 
-                        <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType}/>} />
+                        <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} /> {/** Try only */}
+                        <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType} />} />
+
+                        <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType} />} />
                         <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />
 
-                        <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType}/>} />
+                        <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType} />} />
 
-                        <Route path={PATH_NAME.Survey} element={<Survey userType={userType}/>} />
-                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType}/>} />
-                        <Route path="/articles" element={<Articles userType={userType}/>} />
-                        <Route path="/article/:articleID" element={<ArticleContent userType={userType}/>} /> 
+                        <Route path={PATH_NAME.Survey} element={<Survey userType={userType} />} />
+                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType} />} />
+                        <Route path="/articles" element={<Articles userType={userType} />} />
+                        <Route path="/article/:articleID" element={<ArticleContent userType={userType} />} />
 
-                        <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions userType={userType}/>} />
-                        <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost userType={userType}/>} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions userType={userType} />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost userType={userType} />} />
 
-                        <Route path={PATH_NAME.Messages + "/:conversationID"} element={<Messaging userType={userType}/>} />
-                        <Route path={PATH_NAME.Messages} element={<RedirectMessages userType={userType}/>} />
-                        <Route path={PATH_NAME.Profile} element={<Profile />} userType={userType}/>
-                        
-                        <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType}/>} />
-                        <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType}/>} />
-                        <Route path={PATH_NAME.Invest.ReasonsToInvest} element={<ReasonsToInvest userType={userType}/>} />
-                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:contentID"} element={<ReasonsToInvestContent userType={userType}/>} />
+                        <Route path={PATH_NAME.Messages + "/:conversationID"} element={<Messaging userType={userType} />} />
+                        <Route path={PATH_NAME.Messages} element={<RedirectMessages userType={userType} />} />
+                        <Route path={PATH_NAME.Profile} element={<Profile userType={userType} />} />
 
-
-                        <Route path={PATH_NAME.Tourism.Content+"/:method/:contentID"} element={<PlacesToVisitContent userType={userType}/>} />
-                        <Route path={PATH_NAME.Tourism.Content+"/:method"} element={<PlacesToVisitContent userType={userType}/>} />
-                        <Route path={PATH_NAME.AddOffices} element={<Offices_Add userType={userType}/>} />
+                        <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.ReasonsToInvest} element={<ReasonsToInvest userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:contentID"} element={<ReasonsToInvestContent userType={userType} />} />
 
 
+                        <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent userType={userType} />} />
+                        <Route path={PATH_NAME.AddOffices} element={<Offices_Add userType={userType} />} />
 
-                        <Route path='/debug' element={<SignInPrompt/>} />
+
+
+                        <Route path='/debug' element={<Page403 />} />
+                        <Route path='/*' element={<Page404/>} />
                     </Routes>
                 </Header>
             </BrowserRouter>

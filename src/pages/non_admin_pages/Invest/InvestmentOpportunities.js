@@ -1,10 +1,11 @@
 import React from 'react';
 import Banner from '../../../components/Banner';
 import BackToTop from '../../../components/BackToTop';
-import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import InvestContent from '../../../components/InvestContent';
+import Page403 from '../../Accounts/ErrorPages/Page403';
 
-export default function InvestmentOpportunities() {
+export default function InvestmentOpportunities({ userType }) {
 
   var contents = [
     {
@@ -31,23 +32,27 @@ export default function InvestmentOpportunities() {
 
   ];
 
-  return (
-    <div>
-      <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
-        <p>Investment Opportunities</p>
-      </Banner>
+  if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist].includes(userType)){
+    return <Page403/>
+  }
 
-
-
+    return (
       <div>
-        {contents.map((data, index) => {
-          return <InvestContent key={index} data={data} />
-        })}
+        <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+          <p>Investment Opportunities</p>
+        </Banner>
+
+
+
+        <div>
+          {contents.map((data, index) => {
+            return <InvestContent key={index} data={data} />
+          })}
+        </div>
+
+
+
+        <BackToTop />
       </div>
-
-
-
-      <BackToTop />
-    </div>
-  )
+    )
 }

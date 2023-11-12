@@ -76,7 +76,7 @@ export default function AboutSanVicente() {
         {/* Mandate Column */}
         <div className="w-full p-2 text-lgu-lime max-h-screen overflow-y-auto border-4 border-lgu-lime">
           <h1 className="text-3xl font-bold mt-3 ml-5 text-center">Mandate</h1>
-          <p className="text-35 text-justify mt-4 ml-5 p-5 leading-10">
+          <p className="text-35 text-left mt-4 ml-5 p-5 leading-10">
             To serve primarily as a general-purpose government for the coordination of effective and efficient delivery of basic and regular governance of the inhabitants within its territorial jurisdiction.
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function AboutSanVicente() {
         {/* Vision Column */}
         <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto border-4 border-lgu-lime">
           <h1 className="text-3xl font-bold mt-3 ml-5 text-center">Vision</h1>
-          <p className="text-35 text-justify mt-4 ml-5 p-5 leading-10">
+          <p className="text-35 text-left mt-4 ml-5 p-5 leading-10">
             San Vicente is a center for agriculture, sustainable agro-processing, eco-tourism and hydrothermal energy and the first walkable municipality in the province of Camarines Norte, where responsible and self-reliant men and women live and enjoy safe and quality life in an efficiently managed environment and community vested with rich heritage and culture under a transparent and innovative leadership.
           </p>
         </div>
@@ -92,7 +92,7 @@ export default function AboutSanVicente() {
         {/* Mission Column */}
         <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto border-4 border-lgu-lime">
           <h1 className="text-3xl font-bold mt-3 ml-5 text-center">Mission</h1>
-          <p className="text-35 text-justify mt-4 ml-5 p-5 leading-10">
+          <p className="text-35 text-left mt-4 ml-5 p-5 leading-10">
             The Municipal Government shall spearhead the implementation of various development programs, projects, and activities through people empowerment, efficient and effective utilization of resources, committed public servants with strong political will.
           </p>
         </div>

@@ -27,27 +27,28 @@ export default function SignIn() {
                     localStorage.setItem("username", payload.Username)
                     localStorage.setItem("email", payload.sub)
                     window.dispatchEvent(new Event("storage"));
+                    navigate(PATH_NAME.Home);
                 }
             })
     }
     return (
-        <section class="bg-gray-50 dark:bg-gray-900 p-0">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                    <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
-                    SAN VICENTE, CAMARINES NORTE
+        <section className="bg-gray-900 p-20" style={{ backgroundImage:"url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <a href="#" className="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
+                    <img className="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
+                    <span className='pt-3'>SAN VICENTE, CAMARINES NORTE</span>
                 </a>
-                <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
                     <NavLink
                         to={PATH_NAME.Home}
                         className='float-right text-lgu-lime p-3 w-fit mr-0 ml-auto'>
                         <RxCross2/>
                     </NavLink>
-                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 class="text-xl text-center font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white pt-5">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 className="text-xl text-center font-semibold leading-tight tracking-tight md:text-2xl text-white pt-5">
                             Sign in to your account
                         </h1>
-                        <form class="space-y-4 md:space-y-6" onSubmit={checkCredentials}>
+                        <form className="space-y-4 md:space-y-6" onSubmit={checkCredentials}>
                             <InputBoxAccount
                                 type="email"
                                 placeholder="Email"
@@ -87,7 +88,7 @@ export default function SignIn() {
 
                             </div>
 
-                            <div className='mr-5 mb-5 text-white'>
+                            <div className='text-center mr-5 mb-5 text-white'>
                                 Don't have an account? &nbsp;
                                 <NavLink
                                     to={PATH_NAME.Accounts.SignUp.SignUp}

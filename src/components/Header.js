@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import { NO_HEADER, PATH_NAME, USER_TYPES } from './../Variables/GLOBAL_VARIABLE';
 import 'tailwindcss/tailwind.css';
@@ -63,7 +63,9 @@ const navigation = [
 export default function Header(props) {
 
     const location = useLocation();
+    const navigate = useNavigate();
     const [show, setShow] = useState(true);
+    const [adminHeader, setAdminHeader] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
 
@@ -79,13 +81,15 @@ export default function Header(props) {
 
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
+        setAdminHeader(!PATH_NAME.AdminPages.AllPages.includes(location.pathname))
     }, [location]);
+
 
     return (
         <>
             {show ?
                 <>
-                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20">
+                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20 ">
                         {({ open }) => (
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -335,6 +339,13 @@ export default function Header(props) {
                         )}
                     </Disclosure>
                     <div className='mt-20' />
+                    {props.userType === USER_TYPES.Admin && adminHeader?
+                        < div className="block w-full h-[50px] bg-lgu-yellow ps-5 pt-2">
+                            <p className="select-none">You are logged in as an admin. <span className="text-lgu-green underline leading-[50px] cursor-pointer" onClick={() => navigate(PATH_NAME.AdminPages.AdminAnalytics)}>Click here to go to admin dashboard</span>.</p>
+                        </div>
+                        :
+                        null
+                    }
                 </>
                 :
                 null
