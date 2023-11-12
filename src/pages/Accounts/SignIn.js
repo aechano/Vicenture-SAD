@@ -4,8 +4,9 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
 import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
+import {RxCross2} from 'react-icons/rx'
 
-export default function SignIn() {
+export default function Try() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [userAccount, setUserAccount] = useState();
@@ -25,102 +26,77 @@ export default function SignIn() {
                     localStorage.setItem("accountType", payload.AccountType)
                     localStorage.setItem("username", payload.Username)
                     window.dispatchEvent(new Event("storage"));
-                    navigate(PATH_NAME.Home)
                 }
             })
     }
     return (
-        <div
-            className="flex items-center justify-center bg-cover bg-no-repeat"
-            style={{
-                backgroundImage: "url(" + require('./../../res/img/try.jpg') + ")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "center bottom 0%",
-                height: "100vh",
-            }}
-        >
-            <div
-                className="w-full md:w-1/2 bg-fixed bg-opacity-60 backdrop-filter backdrop-blur-md mx-auto" style={{ backgroundColor: "rgba(45, 95, 46, 0.6)" }}
-            >
-
-                <NavLink
-                    to={PATH_NAME.Home}
-                    className='float-right text-lgu-lime p-5 w-fit mr-0 ml-auto'>
-                    Not Now
-                </NavLink>
-
-                <div className='m-28'>
-                    <div className='md:pt-16'>
-                        <div className=' h-28 w-28 mx-auto'>
-                            <img className='' src={require("../../res/img/logo.png")} />
-                        </div>
-                        <div>
-                            <h1 className='text-xl text-center font-bold text-white pt-2'>SAN VICENTE, CAMARINES NORTE</h1>
-                        </div>
-                        <div>
-                            <p className='text-center text-lgu-lime italic text-sm'>The Town of Discovery and
-                                Adventure</p>
-                        </div>
-                    </div>
-
-
-                    <h1
-                        className='text-white text-center w-full my-7 text-xl font-semibold pt-2'
-                    >
-                        Sign In
-                    </h1>
-                    <form
-                        className="w-full items-center justify-center"
-                        onSubmit={checkCredentials}
-                    >
-                        <InputBoxAccount
-                            type="email"
-                            placeholder="Email"
-                            autocomplete="email"
-                            value={email}
-                            onChange={(e) => {
-                                setEmail(e.target.value)
-                            }}
-                        >
-                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
-                                <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
-                            </svg>
-                        </InputBoxAccount>
-                        <InputBoxAccount
-                            type="password"
-                            placeholder="Password"
-                            autocomplete="password"
-                            value={password}
-                            onChange={(e) => {
-                                setPassword(e.target.value)
-                            }}
-                        >
-                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
-                                <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
-                                <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                            </svg>
-                        </InputBoxAccount>
-                        <div className='flex justify-center'>
-                            <button
-                                className=" text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
+        <section class="bg-gray-50 dark:bg-gray-900">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                    <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
+                    SAN VICENTE, CAMARINES NORTE
+                </a>
+                <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <NavLink
+                        to={PATH_NAME.Home}
+                        className='float-right text-lgu-lime p-3 w-fit mr-0 ml-auto'>
+                        <RxCross2/>
+                    </NavLink>
+                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 class="text-xl text-center font-semibold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white pt-5">
+                            Sign in to your account
+                        </h1>
+                        <form class="space-y-4 md:space-y-6" onSubmit={checkCredentials}>
+                            <InputBoxAccount
+                                type="email"
+                                placeholder="Email"
+                                autocomplete="email"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value)
+                                }}
+                                marginBottom="-mb-1"
                             >
-                                Sign In
-                            </button>
+                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
+                                    <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
+                                    <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
+                                </svg>
+                            </InputBoxAccount>
+                            <InputBoxAccount
+                                type="password"
+                                placeholder="Password"
+                                autocomplete="password"
+                                value={password}
+                                onChange={(e) => {
+                                    setPassword(e.target.value)
+                                }}
+                            >
+                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
+                                    <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                                    <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                </svg>
+                            </InputBoxAccount>
+                            <div className='flex justify-center'>
+                                <button
+                                    className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
+                                >
+                                    Sign In
+                                </button>
 
-                        </div>
+                            </div>
 
-                    </form>
-                    <div className='text-center m-5 mr-5 mb-5 text-white '>
-                        Don't have an account? &nbsp;
-                        <NavLink
-                            to={PATH_NAME.Accounts.SignUp.SignUp}
-                            className='text-lgu-lime bold'>
-                            Sign Up
-                        </NavLink>
+                            <div className='mr-5 mb-5 text-white'>
+                                Don't have an account? &nbsp;
+                                <NavLink
+                                    to={PATH_NAME.Accounts.SignUp.SignUp}
+                                    className='text-lgu-lime bold'>
+                                    Sign Up
+                                </NavLink>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-    )
+        </section>
+    );
 }

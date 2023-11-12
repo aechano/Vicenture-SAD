@@ -125,7 +125,7 @@ export default function SignUp() {
                             }}
                             required={true}
                             className="w-2/5"
-                            width="w-full"
+                            
                         >
                             <svg
                                 width="20" height="20"

@@ -14,7 +14,7 @@ function InputBoxAccount(props) {
     */
     return (
         <div className={'flex justify-center '+props.className}>
-            <div className={"relative " + (props.width !== undefined ? props.width : "w-3/5 ") + (props.marginBottom !== undefined ? props.marginBottom : "mb-6")}>
+            <div className={"relative " + (props.width !== undefined ? props.width : "w-4/5 ") + (props.marginBottom !== undefined ? props.marginBottom : "mb-2")}>
                 {/*The children here is the icon used for the input box if needed.*/}
                 {
                     props.children !== undefined ?
