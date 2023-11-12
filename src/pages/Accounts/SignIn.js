@@ -25,6 +25,7 @@ export default function SignIn() {
                     localStorage.setItem("accountType", payload.AccountType)
                     localStorage.setItem("username", payload.Username)
                     window.dispatchEvent(new Event("storage"));
+                    navigate(PATH_NAME.Home)
                 }
             })
     }
