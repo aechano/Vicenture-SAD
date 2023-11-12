@@ -39,6 +39,7 @@ import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
 import { RedirectMessages } from './components/redirect-webpages';
 import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
+import SignInPrompt from './components/SignInPrompt';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType")?localStorage.getItem("accountType"):USER_TYPES.Guest);
@@ -103,7 +104,7 @@ function App() {
 
 
 
-                        <Route path='/debug' element={<Banner/>} />
+                        <Route path='/debug' element={<SignInPrompt/>} />
                     </Routes>
                 </Header>
             </BrowserRouter>
