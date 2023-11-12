@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiDotsHorizontal } from 'react-icons/hi'
 import { AiOutlineComment } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom';
-import { PATH_NAME } from '../Variables/GLOBAL_VARIABLE';
-
+import { PATH_NAME, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
 
 export default function TourismCards({ content, onClick }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    window.addEventListener('storage', () => {
+        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    })
+
+    const wrapperRef = useRef(null);
 
     // Function to toggle the dropdown
     const toggleDropdown = (event) => {
@@ -17,6 +23,20 @@ export default function TourismCards({ content, onClick }) {
     const closeDropdown = () => {
         setIsDropdownOpen(false);
     };
+
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                if (isDropdownOpen) {
+                    setIsDropdownOpen(false);
+                }
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [wrapperRef]);
     return (
         <>
             <div className="m-3 flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200 select-none cursor-pointer" onClick={onClick}>
@@ -30,16 +50,21 @@ export default function TourismCards({ content, onClick }) {
                             </div>
                             <div
                                 className={'absolute top-5 -right-2 z-10 block w-32 bg-white border border-gray-300 rounded-lg shadow py-2 px-4' + (isDropdownOpen ? '' : ' hidden')}
+                                ref={wrapperRef}
                             >
-                                <div className="mb-2">
-                                    <NavLink to="#">Report</NavLink>
-                                </div>
-                                <div className="mb-2">
-                                    <NavLink to="#">Edit</NavLink> {/* Add an "Edit" link */}
-                                </div>
-                                <div>
-                                    <NavLink to="#">Delete</NavLink> {/* Add a "Delete" link */}
-                                </div>
+                                {userType !== USER_TYPES.Guest ?
+                                    <div>
+                                        <NavLink to="#" className={"block"}>Report</NavLink>
+                                        {userType === USER_TYPES.LguSV ?
+                                            <div className="block">
+                                                <NavLink to="#" className={"mt-2 block"}>Edit</NavLink> {/* Add an "Edit" link */}
+                                                <NavLink to="#" className={"mt-2 block"}>Delete</NavLink> {/* Add a "Delete" link */}
+                                            </div>
+                                            :
+                                            null}
+                                    </div>
+                                    :
+                                    null}
                             </div>
                         </div>
                     </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { timeAgo } from '../functionHelpers/Time';
+import { PATH_NAME, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
+import { useNavigate } from 'react-router';
 
 export default function CommentingSystem({ contentID }) {
     /** 
@@ -11,9 +13,18 @@ export default function CommentingSystem({ contentID }) {
     const [comment, setComment] = useState(); // comment box contents
     const [revealReplies, setRevealReplies] = useState({}); //used to reveal certain amount of replies to a comment
 
+    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    const [isGuest, setIsGuest] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") === USER_TYPES.GUest : true);
+    window.addEventListener('storage', () => {
+        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+        setIsGuest(localStorage.getItem("accountType") ? localStorage.getItem("accountType") === USER_TYPES.GUest : true)
+    })
+
     const modifyRevealedReplies = (commentID, value) => { //handler of multiple states (dictionary in useState)
         setRevealReplies((prevState) => ({ ...prevState, [commentID]: value }));
     };
+
+    const navigate = useNavigate();
 
     // sample comments
     var comments = [
@@ -61,11 +72,19 @@ export default function CommentingSystem({ contentID }) {
     return (
         <>
             {/** add comment button */}
-            <div
-                className='flex bg-lgu-yellow w-fit p-2 mt-10 rounded-full select-none cursor-pointer hover:brightness-95'
-                onClick={() => setAddComment(!addComment)}>
-                + Add a Comment
-            </div>
+            {!isGuest ?
+                <div
+                    className='flex bg-lgu-yellow w-fit p-2 mt-10 rounded-full select-none cursor-pointer hover:brightness-95'
+                    onClick={() => setAddComment(!addComment)}>
+                    + Add a Comment
+                </div>
+                :
+                <div
+                    className='flex bg-gray-200 text-gray-500 border-dashed border-2 border-gray-500 w-fit p-2 mt-10 rounded-lg select-none cursor-pointer hover:brightness-95'
+                    onClick={() => navigate(PATH_NAME.Accounts.SignIn)}>
+                    Sign In to join the conversation
+                </div>
+            }
             {addComment ?
                 <div>
                     {/** comment box */}
@@ -95,7 +114,7 @@ export default function CommentingSystem({ contentID }) {
                 {
                     comments.map((comment, index) => {
                         return (
-                            <Comment key={index} comment={comment} revealReplies={revealReplies} setRevealReplies={modifyRevealedReplies} />
+                            <Comment key={index} comment={comment} revealReplies={revealReplies} setRevealReplies={modifyRevealedReplies} isGuest={isGuest} />
                         );
                     })
                 }
@@ -103,10 +122,12 @@ export default function CommentingSystem({ contentID }) {
         </>
     )
 }
-function Comment({ comment, revealReplies, setRevealReplies }) {
+function Comment({ comment, revealReplies, setRevealReplies, isGuest }) {
     const [replyBox, setReplyBox] = useState(false); // used for revealing the reply box
     const [reply, setReply] = useState() // reply box contents
     const [report, setReport] = useState(false) // used for revealing report box
+    const [vote, setVote] = useState(0)
+    const [initialVote, setInitialVote] = useState(7)
 
     return (
         <div>
@@ -124,16 +145,21 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
                             <div className='h-full align-contents-middle'>
                                 <p className='text-sm h-full'>{comment.username}&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(comment.timestamp)}</span></p>
                             </div>
-                            <div
-                                className='ml-32 select-none cursor-pointer hover:brightness-95'
-                                onClick={() => setReport(!report)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
-                                    fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="19" cy="12" r="1" />
-                                    <circle cx="5" cy="12" r="1" />
-                                </svg>
-                            </div>
+                            {
+                                isGuest ?
+                                    null
+                                    :
+                                    <div
+                                        className='ml-32 select-none cursor-pointer hover:brightness-95'
+                                        onClick={() => setReport(!report)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                            fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="1" />
+                                            <circle cx="19" cy="12" r="1" />
+                                            <circle cx="5" cy="12" r="1" />
+                                        </svg>
+                                    </div>
+                            }
                             {report ?
                                 <div className='flex ml-2 select-none cursor-pointer hover:brightness-95'>
                                     <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
@@ -158,28 +184,44 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
                             <div className='flex mt-5'>
                                 {/** Up/Down voting system */}
                                 <div className='flex bg-lgu-yellow w-fit p-2 rounded-full select-none'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 cursor-pointer bg-lgu-yellow rounded-full hover:brightness-95' viewBox="0 0 24 24"
-                                        fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                        className={'w-5 h-5 cursor-pointer bg-lgu-yellow rounded-full ' + (!isGuest ? 'hover:brightness-95 ' : '') + (vote === 1 ? 'brightness-90' : '')}
+                                        fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
+                                        onClick={() => {
+                                            if (!isGuest) {
+                                                vote === 1 ? setVote(0) : setVote(1)
+                                            }
+                                        }}>
                                         <circle cx="12" cy="12" r="10" />
                                         <path d="M16 12l-4-4-4 4M12 16V9" />
-                                    </svg>
-                                    <p className='text-sm mx-2'>0</p>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5 cursor-pointer bg-lgu-yellow rounded-full hover:brightness-95' viewBox="0 0 24 24"
-                                        fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                                    </svg> {/** upvote icon */}
+                                    <p className='text-sm mx-2'>{initialVote + vote}</p> {/** vote count */}
+                                    <svg xmlns="http://www.w3.org/2000/svg" className={'w-5 h-5 cursor-pointer bg-lgu-yellow rounded-full ' + (!isGuest ? 'hover:brightness-95 ' : '') + (vote === -1 ? 'brightness-90' : '')} viewBox="0 0 24 24"
+                                        fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
+                                        onClick={() => {
+                                            if (!isGuest) {
+                                                vote === -1 ? setVote(0) : setVote(-1)
+                                            }
+                                        }}>
                                         <circle cx="12" cy="12" r="10" />
                                         <path d="M16 12l-4 4-4-4M12 8v7" />
-                                    </svg>
+                                    </svg> {/** downvote icon */}
                                 </div>
                                 {/** Comment info display */}
-                                <div
-                                    className='flex bg-lgu-yellow w-fit p-2 ml-10 rounded-full select-none cursor-pointer hover:brightness-95'
-                                    onClick={() => setReplyBox(!replyBox)}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
-                                        fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                                    </svg>
-                                    <p className='text-sm mx-2'>Reply</p>
-                                </div>
+                                {
+                                    !isGuest ?
+                                        <div
+                                            className='flex bg-lgu-yellow w-fit p-2 ml-10 rounded-full select-none cursor-pointer hover:brightness-95'
+                                            onClick={() => setReplyBox(!replyBox)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                                fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                                            </svg>
+                                            <p className='text-sm mx-2'>Reply</p>
+                                        </div>
+                                        :
+                                        null
+                                }
                             </div>
                             {
                                 replyBox ?
@@ -212,7 +254,7 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
                                 {
                                     comment.replies.map((reply, index) => {
                                         if (index < revealReplies[comment.commentID]) {
-                                            return (<Reply reply={reply} key={index} className="mt-5 ml-10" />);
+                                            return (<Reply reply={reply} key={index} className="mt-5 ml-10" isGuest={isGuest} />);
                                         } else if (index === revealReplies[comment.commentID]) {
                                             return (
                                                 <div
@@ -255,7 +297,7 @@ function Comment({ comment, revealReplies, setRevealReplies }) {
         </div>
     );
 }
-function Reply({ reply, className }) {
+function Reply({ reply, className, isGuest }) {
     const [report, setReport] = useState(false) // used for revealing report box
     return (
         <div>
@@ -273,16 +315,21 @@ function Reply({ reply, className }) {
                             <div className='h-full align-contents-middle'>
                                 <p className='text-sm h-full'>{reply.username}&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(reply.timestamp)}</span></p>
                             </div>
-                            <div
-                                className='ml-32 select-none cursor-pointer hover:brightness-95'
-                                onClick={() => setReport(!report)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
-                                    fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="1" />
-                                    <circle cx="19" cy="12" r="1" />
-                                    <circle cx="5" cy="12" r="1" />
-                                </svg>
-                            </div>
+                            {
+                                isGuest ?
+                                    null
+                                    :
+                                    <div
+                                        className='ml-32 select-none cursor-pointer hover:brightness-95'
+                                        onClick={() => setReport(!report)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
+                                            fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="1" />
+                                            <circle cx="19" cy="12" r="1" />
+                                            <circle cx="5" cy="12" r="1" />
+                                        </svg>
+                                    </div>
+                            }
                             {report ?
                                 <div className='flex ml-2 select-none cursor-pointer hover:brightness-95'>
                                     <svg xmlns="http://www.w3.org/2000/svg" className='w-5 h-5' viewBox="0 0 24 24"
