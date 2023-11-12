@@ -1,41 +1,14 @@
 import React, { useState } from 'react';
+import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 
-export default function Profile() {
+export default function Profile({ userType }) {
     const user = {
-        email: "Ghe3lo_@example.com",
-        username: "Ghe3lo_",
-        // Add more user details if needed
-    };
-
-    const profileContainerStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '20px',
-        minHeight: '100vh',
-    };
-
-    const profileContentStyle = {
-        margin: '0 auto', // Center the content horizontally
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100%',
-        maxWidth: '800px',
-        marginBottom: '10px',
-        marginTop: '-70px',
-        border: '2px solid #2D5F2E',
-        borderRadius: '14px',
-    };
-
-    const profileImageStyle = {
-        width: '200px',
-        height: '200px',
-        border: '4px solid #2D5F2E',
-        borderRadius: '50%',
-        marginBottom: '20px',
-        marginTop: '20px',
+        email: localStorage.getItem("email"),
+        username: localStorage.getItem("username"),
+        businessSector: "Agriculture",
+        company: "Cargill Inc",
+        office: "Tourism Office",
+        position: "Head Officer"
     };
 
     const profileInfoStyle = {
@@ -43,14 +16,14 @@ export default function Profile() {
         padding: '20px',
         backgroundColor: '#B5F8B6',
         width: '100%',
-        maxWidth: '600px', 
-        margin: '0 auto', 
+        maxWidth: '600px',
+        margin: '0 auto',
         borderRadius: '10px',
         marginTop: '10px',
     };
 
     const smallInputStyle = {
-        width: '100%', 
+        width: '100%',
         padding: '10px',
         fontSize: '16px',
         border: '2px solid #2D5F2E',
@@ -68,18 +41,6 @@ export default function Profile() {
         marginBottom: '15px',
         fontSize: '16px',
         textAlign: 'left',
-    };
-
-    const profileTextStyle = {
-        fontSize: '24px',
-        fontWeight: 'bold',
-        margin: '0',
-        padding: '20px',
-        backgroundColor: '#2D5F2E',
-        color: '#fff',
-        width: '100%',
-        borderTopLeftRadius: '10px',
-        borderTopRightRadius: '10px',
     };
 
     const buttonStyle = {
@@ -101,6 +62,10 @@ export default function Profile() {
     const [editing, setEditing] = useState(false);
     const [newEmail, setNewEmail] = useState(user.email);
     const [newUsername, setNewUsername] = useState(user.username);
+    const [newBusinessSector, setBusinessSector] = useState(user.businessSector);
+    const [newCompany, setCompany] = useState(user.company);
+    const [newOffice, setOffice] = useState(user.office);
+    const [newPosition, setPosition] = useState(user.position);
 
     const handleEditClick = () => {
         setEditing(true);
@@ -109,6 +74,10 @@ export default function Profile() {
     const handleCancelClick = () => {
         setNewEmail(user.email);
         setNewUsername(user.username);
+        setBusinessSector(user.businessSector);
+        setCompany(user.company);
+        setOffice(user.office);
+        setPosition(user.position);
         setEditing(false);
     };
 
@@ -119,10 +88,10 @@ export default function Profile() {
     };
 
     return (
-        <div style={profileContainerStyle}>
-            <div style={profileContentStyle}>
-                <div style={profileTextStyle}>Profile</div>
-                <div style={profileImageStyle}>
+        <div className="flex flex-col items-center justify-center p-20 min-h-screen mt-32">
+            <div className="my-0 mx-auto flex flex-col items-center w-full max-w-[800px] mb-2.5 mt-[-70px] border-2 border-solid border-lgu-green rounded-[14px]">
+                <div className='text 2xl font-bold m-0 p-5 bg-lgu-green text-white w-full rounded-t-[10px]'>Profile</div>
+                <div className='w-[200px] h-[200px] border-4 border-solid border-lgu-green rounded-[50%] my-5'>
                     <img src={require("./../../res/debug_img/userpfp1.png")} style={{ width: '100%', height: '100%', borderRadius: '50%' }} alt={user.username} />
                 </div>
                 <div style={profileInfoStyle}>
@@ -132,7 +101,7 @@ export default function Profile() {
                             type="text"
                             value={newEmail}
                             onChange={(e) => setNewEmail(e.target.value)}
-                            style={smallInputStyle} 
+                            style={smallInputStyle}
                         />
                     ) : (
                         <p style={detailStyle}>{newEmail}</p>
@@ -143,11 +112,40 @@ export default function Profile() {
                             type="text"
                             value={newUsername}
                             onChange={(e) => setNewUsername(e.target.value)}
-                            style={smallInputStyle} 
+                            style={smallInputStyle}
                         />
                     ) : (
                         <p style={detailStyle}>{newUsername}</p>
                     )}
+                    {
+                        [USER_TYPES.Investor, USER_TYPES.LguSV].includes(userType) ?
+                            <>
+                                <div style={labelStyle}>{userType===USER_TYPES.LguSV?"Office: ":"Business Sector: "}</div>
+                                {editing ? (
+                                    <input
+                                        type="text"
+                                        value={userType===USER_TYPES.LguSV?newOffice:newBusinessSector}
+                                        onChange={(e) => userType===USER_TYPES.LguSV?setOffice(e.target.value):setBusinessSector(e.target.value)}
+                                        style={smallInputStyle}
+                                    />)
+                                    :
+                                    (<p style={detailStyle}>{userType===USER_TYPES.LguSV?newOffice:newBusinessSector}</p>)
+                                }
+                                <div style={labelStyle}>{userType===USER_TYPES.LguSV?"Position: ":"Company: "}</div>
+                                {editing ?
+                                    <input
+                                        type="text"
+                                        value={userType===USER_TYPES.LguSV?newPosition:newCompany}
+                                        onChange={(e) => userType===USER_TYPES.LguSV?setPosition(e.target.value):setCompany(e.target.value)}
+                                        style={smallInputStyle}
+                                    />
+                                    :
+                                    <p style={detailStyle}>{userType===USER_TYPES.LguSV?newPosition:newCompany}</p>
+                                }
+                            </>
+                            :
+                            null
+                    }
                 </div>
                 {editing ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -90,7 +90,7 @@ function App() {
 
                         <Route path={PATH_NAME.Messages + "/:conversationID"} element={<Messaging userType={userType}/>} />
                         <Route path={PATH_NAME.Messages} element={<RedirectMessages userType={userType}/>} />
-                        <Route path={PATH_NAME.Profile} element={<Profile />} userType={userType}/>
+                        <Route path={PATH_NAME.Profile} element={<Profile userType={userType}/>} />
                         
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType}/>} />
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType}/>} />
