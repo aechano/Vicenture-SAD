@@ -21,7 +21,9 @@ export default function SignIn() {
                 } else {
                     localStorage.setItem("token", data.token)
                     localStorage.setItem("refresh", data.refreshToken)
-                    console.log(jwtDecode(data.token))
+                    var payload= jwtDecode(data.refreshToken)
+                    localStorage.setItem("accountType", payload.AccountType)
+                    localStorage.setItem("username", payload.Username)
                 }
             })
     }

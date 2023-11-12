@@ -56,10 +56,18 @@ const PATH_NAME = {
     }
 const API = {
     SignUp: "http://localhost:8080/api/v1/auth/signup",
-    SignIn: "http://localhost:8080/api/v1/auth/signin",
-    
+    SignIn: "http://localhost:8080/api/v1/auth/signin",    
+}
+const USER_TYPES = {
+    Guest: "GUEST",
+    Citizen: "CITIZEN",
+    Tourist: "TOURIST",
+    Investor: "INVESTOR",
+    LguSV: "LGU_SV",
+    Admin: "ADMIN",
+    General: ["CITIZEN", "TOURIST", "INVESTOR", "LGU_SV", "ADMIN"]
 }
 const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages+"/*",...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
 
-export { PATH_NAME, API, NO_FOOTER, NO_HEADER};
+export { PATH_NAME, API, NO_FOOTER, NO_HEADER, USER_TYPES};

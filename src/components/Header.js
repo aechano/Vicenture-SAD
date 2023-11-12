@@ -3,15 +3,20 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { NavLink, useLocation } from 'react-router-dom';
 import Footer from './Footer';
-import { NO_HEADER, PATH_NAME } from './../Variables/GLOBAL_VARIABLE';
+import { NO_HEADER, PATH_NAME, USER_TYPES } from './../Variables/GLOBAL_VARIABLE';
 import 'tailwindcss/tailwind.css';
 const navigation = [
-    { name: 'Home', href: PATH_NAME.Home },
     {
+        access: [...USER_TYPES.General],
+        name: 'Home',
+        href: PATH_NAME.Home
+    },
+    {
+        access: [...USER_TYPES.General],
         name: 'The Town',
         href: PATH_NAME.TheTown.TheTown,
         subItems: [
-            { name: 'About San Vicente', href: PATH_NAME.TheTown.About},
+            { name: 'About San Vicente', href: PATH_NAME.TheTown.About },
             { name: 'Municipality Profile', href: PATH_NAME.TheTown.MunicipalityProfile },
             { name: 'Municipality Programs', href: PATH_NAME.TheTown.MunicipalityPrograms },
             { name: 'Elected Officials', href: PATH_NAME.TheTown.ElectedOfficials },
@@ -20,17 +25,39 @@ const navigation = [
         ],
     },
     {
+        access: [...USER_TYPES.General],
         name: 'Tourism',
         href: PATH_NAME.Tourism.Tourism,
         subItems: [
-            { name: 'San Vicente Tourism', href: PATH_NAME.Tourism.SanVicente} ,
+            { name: 'San Vicente Tourism', href: PATH_NAME.Tourism.SanVicente },
             { name: 'Places to Visit', href: PATH_NAME.Tourism.PlacesToVisit },
             { name: 'Activities', href: PATH_NAME.Tourism.Activities }
         ],
     },
-    { name: 'Services', href: "#" },
-    { name: 'Transparency', href: PATH_NAME.Transparency },
-    { name: 'Contact Us', href: PATH_NAME.ContactUs },
+    {
+        access: [USER_TYPES.Investor, USER_TYPES.LguSV, USER_TYPES.Admin],
+        name: "Invest",
+        href: PATH_NAME.Invest.Invest,
+        subItems: [
+            { name: 'Investment Opportunities', href: PATH_NAME.Invest.InvestmentOpportunities },
+            { name: 'Reasons to Investment', href: PATH_NAME.Invest.ReasonsToInvest }
+        ]
+    },
+    {
+        access: [...USER_TYPES.General],
+        name: 'Services',
+        href: "#"
+    },
+    {
+        access: [...USER_TYPES.General],
+        name: 'Transparency',
+        href: PATH_NAME.Transparency
+    },
+    {
+        access: [...USER_TYPES.General],
+        name: 'Contact Us',
+        href: PATH_NAME.ContactUs
+    },
 ];
 
 export default function Header(props) {
@@ -39,6 +66,7 @@ export default function Header(props) {
     const [show, setShow] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+    const [userType, setUserType] = useState(null);
 
     const handleDropdown = (name) => {
         if (openDropdown === name) {
@@ -52,7 +80,7 @@ export default function Header(props) {
 
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
-        console.log("currently in: " + location.pathname);
+        setUserType(localStorage.getItem("accountType"));
     }, [location]);
 
     return (
@@ -78,70 +106,72 @@ export default function Header(props) {
                                         </div>
                                         <div className="flex flex-1 items-center justify-between">
                                             <NavLink
-                                            to={PATH_NAME.Home}
-                                            className="flex flex-shrink-0 items-center"
-                                            onClick={()=>window.scrollTo({top: 0, left: 0})}>
+                                                to={PATH_NAME.Home}
+                                                className="flex flex-shrink-0 items-center"
+                                                onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                                                 <img
                                                     className="h-12 w-auto hidden lg:block"
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">SAN VICENTE, <br/>CAMARINES NORTE</span>
+                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">SAN VICENTE, <br />CAMARINES NORTE</span>
                                             </NavLink>
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-10">
                                                     {navigation.map((item) =>
-                                                        item.subItems ? ( // Check if it's a dropdown item
-                                                            <div key={item.name} className="relative group">
-                                                                <button
-                                                                    onClick={() => handleDropdown(item.name)}
-                                                                    className='relative rounded-md px-3 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
+                                                        item.access.includes(userType) ?
+                                                            item.subItems ? // Check if it's a dropdown item
+                                                                <div key={item.name} className="relative group">
+                                                                    <button
+                                                                        onClick={() => handleDropdown(item.name)}
+                                                                        className='relative rounded-md px-3 py-2 text-sm text-lgu-lime group inline-flex hover:text-white'
+                                                                    >
+                                                                        {item.name}
+                                                                        <ChevronDownIcon
+                                                                            className={
+                                                                                'w-au h-5 ml-2 text-lgu-lime hover:text-white inline-flex ' +
+                                                                                (openDropdown === item.name ? 'transform rotate-180' : '')
+                                                                            }
+                                                                        />
+                                                                    </button>
+                                                                    {openDropdown === item.name && (
+                                                                        <div className="py-2 bg-lgu-green border-2 border-lgu-lime absolute left-0 rounded-md">
+                                                                            {item.subItems.map((subItem) => (
+                                                                                <NavLink
+                                                                                    key={subItem.name}
+                                                                                    to={subItem.href}
+                                                                                    onClick={() => {
+                                                                                        handleDropdown(item.name)
+                                                                                        window.scrollTo({ top: 0, left: 0 })
+                                                                                    }}
+                                                                                    className={({ isActive }) => {
+                                                                                        return "block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
+                                                                                            (isActive ? "font-medium" : "")
+                                                                                    }}
+
+                                                                                >
+                                                                                    {subItem.name}
+                                                                                </NavLink>
+                                                                            ))}
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                                :
+                                                                <NavLink
+                                                                    key={item.name}
+                                                                    to={item.href}
+                                                                    onClick={() => window.scrollTo({ top: 0, left: 0 })}
+                                                                    className={({ isActive }) => {
+                                                                        return 'rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white ' +
+                                                                            (isActive ? 'font-medium' : '')
+                                                                    }}
+
+
                                                                 >
                                                                     {item.name}
-                                                                    <ChevronDownIcon
-                                                                        className={
-                                                                            'w-au h-5 ml-2 text-lgu-lime hover:text-white inline-flex ' +
-                                                                            (openDropdown === item.name ? 'transform rotate-180' : '')
-                                                                        }
-                                                                    />
-                                                                </button>
-                                                                {openDropdown === item.name && (
-                                                                    <div className="py-2 bg-lgu-green border-2 border-lgu-lime absolute left-0 rounded-md">
-                                                                        {item.subItems.map((subItem) => (
-                                                                            <NavLink
-                                                                                key={subItem.name}
-                                                                                to={subItem.href} 
-                                                                                onClick={() => {
-                                                                                    handleDropdown(item.name)
-                                                                                    window.scrollTo({top: 0, left: 0})
-                                                                                }}
-                                                                                className={({ isActive }) => {
-                                                                                    return "block px-4 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
-                                                                                        (isActive ? "font-medium" : "")
-                                                                                }} 
-                                                                                
-                                                                            >
-                                                                                {subItem.name}
-                                                                            </NavLink>
-                                                                        ))}
-                                                                    </div>
-                                                                )}
-                                                            </div>
-                                                        ) : (
-                                                            <NavLink
-                                                                key={item.name}
-                                                                to={item.href}
-                                                                onClick={() => window.scrollTo({top: 0, left: 0})}
-                                                                className={({ isActive }) => {
-                                                                    return 'rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white ' +
-                                                                        (isActive ? 'font-medium' : '')
-                                                                }}
-                                                                
-
-                                                            >
-                                                                {item.name}
-                                                            </NavLink>
-                                                        )
+                                                                </NavLink>
+                                                            :
+                                                            null
                                                     )}
                                                 </div>
                                             </div>
@@ -248,12 +278,12 @@ export default function Header(props) {
                                                                 {item.subItems.map((subItem) => (
                                                                     <NavLink
                                                                         key={subItem.name}
-                                                                        to={subItem.href} onClick={() => window.scrollTo({ top: 0, left: 0})}
+                                                                        to={subItem.href} onClick={() => window.scrollTo({ top: 0, left: 0 })}
                                                                         className={({ isActive }) => {
                                                                             return "block rounded-md px-3 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                 (isActive ? "font-medium" : "")
-                                                                        }} 
-                                                                        
+                                                                        }}
+
                                                                     >
                                                                         {subItem.name}
                                                                     </NavLink>
@@ -268,8 +298,8 @@ export default function Header(props) {
                                                         className={({ isActive }) => {
                                                             return 'block rounded-md px-3 py-2 text-sm text-lgu-lime  hover:text-white' +
                                                                 (isActive ? 'font-medium' : '')
-                                                        }} 
-                                                        onClick={() => window.scrollTo({ top: 0, left: 0})}
+                                                        }}
+                                                        onClick={() => window.scrollTo({ top: 0, left: 0 })}
 
                                                     >
                                                         {item.name}
