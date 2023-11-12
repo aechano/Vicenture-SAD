@@ -57,7 +57,7 @@ export default function SignUp() {
                 "accountCreationDate": Date.now()
             });
 
-            axios.post(API.SignUp.Other, userAccount);
+            axios.post(API.SignUp, userAccount);
             navigate(PATH_NAME.Home);
         } else { //if this is an investor or lgu account
             var currentData = {

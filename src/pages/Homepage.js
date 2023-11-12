@@ -3,9 +3,9 @@ import Sections from "../components/Sections";
 import Banner from "../components/Banner";
 import BackToTop from "../components/BackToTop";
 import { NavLink } from "react-router-dom";
-import { PATH_NAME } from "../Variables/GLOBAL_VARIABLE";
+import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
 
-function Homepage() {
+function Homepage({ userType }) {
     return (
         <div>
             {/* Hero Section */}
@@ -152,15 +152,15 @@ function Homepage() {
             </Sections>
 
             {/* Invest Section */}
-
             <Sections
                 left={true}
                 title="Invest Now"
                 src={require("./../res/img/invest.png")}
                 alt="Vector image of a hand holding a coin with the peso sign on it."
-                button="Sign Up as an Investor"
+                button={userType===USER_TYPES.Investor?"View Opportunities":"Sign Up as an Investor"}
                 arrow={true}
-                href="/sign-up" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
+                href={userType===USER_TYPES.Investor?PATH_NAME.Invest.InvestmentOpportunities:PATH_NAME.Accounts.SignUp.SignUp}
+                onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                 Investing in the tourism potential of San Vicente, Camarines Norte, is like planting the seeds of opportunity in a flourishing garden of natural beauty.
                 As this captivating destination continues to reveal its hidden gems, your investment not only promises growth and prosperity but also contributes to the sustainable development of a place destined
                 to become a sought-after haven for travelers seeking unique and authentic experiences. By investing in San Vicente's tourism, you're nurturing a brighter future for both the community and the
