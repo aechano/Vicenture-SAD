@@ -8,6 +8,10 @@ import Banner from './components/Banner';
 import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
+import adminHomepage from './pages/AdminPages/adminHomepage';
+import adminAboutSV from './pages/AdminPages/adminAboutSV';
+import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
+import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
@@ -60,15 +64,20 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
                         <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
-
-                            <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.History} element={<History userType={userType}/>} /> 
-                            <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.Offices} element={<Offices userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen userType={userType}/>} />
-                            <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials userType={userType}/>} />
+                        <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
+                        <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
+                        <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile/>} />
+                        <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
+                        
+                        
+                            <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente/>} />
+                            <Route path={PATH_NAME.TheTown.History} element={<History/>} /> 
+                            <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo/>} />
+                            <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile/>} />
+                            <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms/>} />
+                            <Route path={PATH_NAME.TheTown.Offices} element={<Offices/>} />
+                            <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen/>} />
+                            <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials/>} />
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType}/>} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm userType={userType}/>} />
