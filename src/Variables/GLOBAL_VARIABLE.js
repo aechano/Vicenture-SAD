@@ -47,6 +47,7 @@ const PATH_NAME = {
     ForumsAndDiscussions:"/forums",
     Survey:"/surveys",
     SampleSurvey:"/sample-survey",
+    Services: "/services",
     Debug:"/debug",
     Articles:"/articles",
     ArticleContent: "/articles/:articleID",

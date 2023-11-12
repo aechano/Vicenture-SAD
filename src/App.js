@@ -40,6 +40,7 @@ import { RedirectMessages } from './components/redirect-webpages';
 import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
 import SignInPrompt from './components/SignInPrompt';
+import Services from './pages/non_admin_pages/Services';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType")?localStorage.getItem("accountType"):USER_TYPES.Guest);
@@ -77,6 +78,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType}/>} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType}/>} />
+                        <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />
 
                         <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType}/>} />
 

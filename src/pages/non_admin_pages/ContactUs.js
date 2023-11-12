@@ -168,6 +168,7 @@ export default function ContactUs({ userType }) {
                     <h1 className='font-bold text-center text-4xl'>Emergency Hotlines</h1>
                     <img src={require('../../res/img/hotlines.png')} alt='Hotlines' />
                 </div>
+                
                 <div className='pt-5 m-5 space-y-6'>
                     <h1 className='font-bold text-center text-4xl'>Municipal Offices Contacts</h1>
 

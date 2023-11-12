@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { NavLink } from 'react-router-dom';
 
 
 export default function Offices() {
@@ -304,10 +305,10 @@ export default function Offices() {
               ></iframe>
 
               <div style={{ textAlign: 'right', marginTop: '1.5rem' }}>
-                <a
-                  href="/services-offered"
+                <NavLink
+                  href={PATH_NAME.Services} onClick={() => window.scrollTo({ top: 0, left: 0})}
                   style={{ textDecoration: 'underline', color: 'black' }}>See Services Offered
-                </a>
+                </NavLink>
               </div>
             </div>
           </div>
