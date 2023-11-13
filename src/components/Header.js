@@ -116,7 +116,7 @@ export default function Header(props) {
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">SAN VICENTE, <br />CAMARINES NORTE</span>
+                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">San Vicente, <br />Camarines Norte</span>
                                             </NavLink>
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-5">
