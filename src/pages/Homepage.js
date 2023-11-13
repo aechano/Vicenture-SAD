@@ -71,6 +71,23 @@ function Homepage({ userType }) {
                     <div className="border-b-2 border-gray-900"></div>
                     <div className="flex flex-col mt-5 space-y-4 lg:space-y-0 lg:justify-between lg:flex-row">
                         <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                            <div className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
+                                <div className="space-y-0.5">
+                                    <p className="text-lg text-black font-semibold">
+                                        Article Title
+                                    </p>
+                                    <p className="text-xs text-slate-500">
+                                        October 1, 2023 | 9:50 AM
+                                    </p>
+                                    <p class="text-black font-medium">
+                                        This is a one-sentence overview of the activity, which can be multi-line.
+                                    </p>
+                                </div>
+                                <NavLink to="/" className="text-xs text-red-500"> Read more...</NavLink>
+                            </div>
+                        </div>
+
+                        <div className="transition-all duration-400 hover:scale-110 py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
                                     <p className="text-lg text-black font-semibold">
@@ -87,24 +104,7 @@ function Homepage({ userType }) {
                             </div>
                         </div>
 
-                        <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                            <div className="text-left space-y-2 sm:text-left">
-                                <div className="space-y-0.5">
-                                    <p className="text-lg text-black font-semibold">
-                                        Article Title
-                                    </p>
-                                    <p className="text-xs text-slate-500">
-                                        October 1, 2023 | 9:50 AM
-                                    </p>
-                                    <p class="text-black font-medium">
-                                        This is a one-sentence overview of the activity, which can be multi-line.
-                                    </p>
-                                </div>
-                                <NavLink to="/" className="text-xs text-red-500"> Read more...</NavLink>
-                            </div>
-                        </div>
-
-                        <NavLink to={PATH_NAME.Articles} className="py-8 px-8 max-w-sm bg-lgu-yellow rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                        <NavLink to={PATH_NAME.Articles} className="transition-all duration-400 hover:scale-110 py-8 px-8 max-w-sm bg-lgu-yellow rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-center space-y-2 sm:text-left">
                                 <div className="space-y-0.5 flex">
                                     <p className="text-lg text-black font-semibold mr-5">

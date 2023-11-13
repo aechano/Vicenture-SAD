@@ -160,7 +160,7 @@ export default function ContactUs({ userType }) {
 
     return (
         <>
-            <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+            <Banner bannerType="common" src={require("../../res/img/LGU-PERS.jpg")} alt="LGU" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
                 <p>Contact Us</p>
             </Banner>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">

@@ -16,7 +16,7 @@ export default function History() {
                     <img
                         src={require("../../../res/img/mananap.jpg")}
                         alt="Mananap Falls"
-                        className="float-left mr-4 my-2 w-auto h-96"
+                        className="float-left mr-4 my-2 w-auto max-h-96"
                     />
                     <div className="text-35">
                         <p className='mb-3 mt-1'>Long before Ambos Camarines was finally divided into provinces of Camarines Norte and Camarines Sur in 1919, the town of San Vicente had been existing for more than a century. Based on the document Memoria de la Provincia de Camarines Norte from the Records Management and Archives Office in Manila, San Vicente was created in 1790. The document provided details of Camarines Norte such as the creation, situation, communications, products, bodies of water, climate, and poblacions. There was no exact date of the creation except for the year and a recorded population of 1,187.</p>
