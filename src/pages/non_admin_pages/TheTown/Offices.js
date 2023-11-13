@@ -236,7 +236,7 @@ export default function Offices() {
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5'>
         {/* Sidebar */}
         <div className="flex flex-row mt-20 mb-20">
-          <div className="w-1/4 bg-lgu-yellow p-4 mt-10 ml-20 mb-20 mr-6" style={{ maxHeight: '800px', overflowY: 'auto' }}>
+          <div className="w-full bg-lgu-yellow p-4 md:w-1/3 overflow-y-auto max-h-[1293px] mr-6" style={{ maxHeight: '800px', overflowY: 'auto' }}>
             <ul>
               {officeData.map((office, index) => (
                 <li
