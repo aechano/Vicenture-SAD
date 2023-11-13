@@ -51,7 +51,7 @@ export default function Banner(props) {
                     }
                     {/*If banner has a searchbar for general searching*/}
                     {props.searchBar ?
-                        <form className={"w-7/12 lg:w-5/12 " + (isCommonBanner ? "my-auto" : "mt-5")}>
+                        <form className={"w-7/12 lg:w-5/12 pt-4 " + (isCommonBanner ? "my-auto" : "mt-5")}>
                             <div class="relative">
                                 {/*SVG image of a magnifying glass*/}
                                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

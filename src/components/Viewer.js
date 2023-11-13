@@ -7,7 +7,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export default function Viewer({ view }) {
     const [selectedContent, setSelectedContent] = useState(view[0]);
     const [selectedContentIndex, setSelectedContentIndex] = useState(0);
-    const contentRef = useRef(null);
 
     useEffect(() => {
         // Set the initial selected content when the component mounts
@@ -17,11 +16,6 @@ export default function Viewer({ view }) {
     const handleContentClick = (content, index) => {
         setSelectedContent(content);
         setSelectedContentIndex(index);
-
-        // Scroll the content back to the top
-        if (contentRef.current) {
-            contentRef.current.scrollTop = 0;
-        }
     };
 
     const [numPages, setNumPages] = useState(null);
@@ -80,7 +74,7 @@ export default function Viewer({ view }) {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='block md:flex space-x-5'>
-                    <div className="w-full bg-lgu-yellow p-4 md:w-1/3 overflow-y-auto max-h-[1293px]">
+                    <div className={'w-full bg-lgu-yellow p-4 md:w-1/3 overflow-y-auto'}>
                         <ul>
                             {view.map((data, index) => (
                                 <li
