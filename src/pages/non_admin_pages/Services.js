@@ -375,7 +375,7 @@ export default function Services() {
 
     return (
         <>
-            <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+            <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
                 <p>Services</p>
             </Banner>
 
@@ -384,7 +384,7 @@ export default function Services() {
                 <div className="relative">
                     <input
                         type="search"
-                        className="block w-100 mb-4 p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
+                        className="block w-2/5 mb-4 p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
                         placeholder="Search"
                         value={search}
                         onChange={(e) => {

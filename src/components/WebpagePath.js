@@ -20,10 +20,10 @@ export default function WebpagePath(props) {
                 props.previous.map((page, index) => (
                     page.to !== "" && page.to != undefined ?
                         /*if breadcrumb has redirect, use NavLink to display*/
-                        <NavLink key={index} to={page.to}>{page.title}/</NavLink>
+                        <NavLink key={index} to={page.to}>{page.title} /&nbsp;</NavLink>
                         :
                         /*if breadcrumb has no redirect, use <p> tag to display*/
-                        <p key={index}>{page.title}/</p>
+                        <p key={index}>{page.title} /&nbsp; </p>
                 ))
                 :
                 null}

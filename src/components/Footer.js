@@ -26,7 +26,7 @@ function Footer() {
                                 <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                                     <div className="lg:flex lg:justify-between">
                                         <div className="mb-6 md:mb-0">
-                                            <NavLink to={PATH_NAME.Home} className="flex items-center" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
+                                            <NavLink to={PATH_NAME.Home} className="flex items-center pb-4" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                                                 <img src={require('./../res/img/logo.png')} className="h-12 w-auto mt-5 pr-2" alt="FlowBite Logo" />
                                                 <img src={require('./../res/img/transparency_seal.png')} className="h-12 w-auto mt-5 pr-2" alt="FlowBite Logo" />
                                                 <div className="text-white sm:ml-4 mt-5"> {/* Reduced left margin */}
@@ -40,9 +40,9 @@ function Footer() {
 
                                             </NavLink>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                                        <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 text-center">
                                             <div>
-                                                <h2 className="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Quick Links</h2>
+                                                <h2 className="mb-4 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Quick Links</h2>
                                                 <ul className="text-lgu-lime dark:text-lgu-lime font-medium">
                                                     <li className="mb-2">
                                                         <NavLink to={PATH_NAME.TheTown.About} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>The Town</NavLink>
@@ -56,7 +56,7 @@ function Footer() {
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h2 className="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Feedbacks</h2>
+                                                <h2 className="mb-4 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Feedbacks</h2>
                                                 <ul className="text-lgu-lime dark:text-lgu-lime font-medium">
                                                     <li className="mb-2">
                                                         <NavLink to={PATH_NAME.ContactUs} className="hover:underline" onClick={() => window.scrollTo({ top: 0, left: 0 })}>Contact Us</NavLink>
@@ -70,13 +70,13 @@ function Footer() {
                                                 </ul>
                                             </div>
                                             <div>
-                                                <h2 className="mb-6 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Contacts</h2>
+                                                <h2 className="mb-4 text-sm font-semibold text-lgu-lime uppercase dark:text-lgu-lime">Contacts</h2>
                                                 <ul className="text-lgu-lime dark:text-lgu-lime font-medium">
                                                     <li className="mb-2">
                                                         <p>+63 998-547-0485</p>
                                                     </li>
                                                     <li>
-                                                        <p>lgusanvicente4609@gmail.com</p>
+                                                        <p className="break-words">lgusanvicente4609@gmail.com</p>
                                                     </li>
                                                 </ul>
                                             </div>
