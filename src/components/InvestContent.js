@@ -16,10 +16,10 @@ export default function InvestContent({ data }) {
         <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
                 <div
-                    className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-lgu-green m-5">
+                    className="block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-lgu-green m-5 w-5/6 mx-auto">
                     <div className="relative overflow-hidden bg-cover bg-no-repeat">
                         <img
-                            className="rounded-t-lg w-full"
+                            className="rounded-t-lg w-full h-1/2"
                             src={data.source}
                             alt={data.alt} />
                     </div>
@@ -28,7 +28,7 @@ export default function InvestContent({ data }) {
                         <div className="p-6">
                             <div className='flex justify-between'>
                                 <h5
-                                    className="mb-2 text-3xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    className="mb-2 text-3xl font-medium leading-tight text-neutral-50">
                                     {data.title}
                                 </h5>
                                 <div className='relative' onClick={(event) => event.stopPropagation()}>
@@ -51,11 +51,11 @@ export default function InvestContent({ data }) {
                                 </div>
                             </div>
 
-                            <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200 text-justify  line-clamp-3">
+                            <p className="mb-4 text-base text-neutral-200 text-justify line-clamp-3">
                                 {data.body}
                             </p>
                             <p className="text-base text-neutral-600 dark:text-neutral-200">
-                                <small className="text-neutral-500 dark:text-neutral-400 hover:text-lgu-lime">Read more...</small>
+                                <small className="text-neutral-400 hover:text-lgu-lime">Read more...</small>
                             </p>
                         </div>
                     </NavLink>

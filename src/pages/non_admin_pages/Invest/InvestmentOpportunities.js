@@ -42,16 +42,11 @@ export default function InvestmentOpportunities({ userType }) {
           <p>Investment Opportunities</p>
         </Banner>
 
-
-
         <div>
           {contents.map((data, index) => {
             return <InvestContent key={index} data={data} />
           })}
         </div>
-
-
-
         <BackToTop />
       </div>
     )

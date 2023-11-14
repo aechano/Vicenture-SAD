@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Sections from "../components/Sections";
 import Banner from "../components/Banner";
 import BackToTop from "../components/BackToTop";
 import { NavLink } from "react-router-dom";
 import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
+import CalendarModal from "../components/CalendarModal";
+import Clock from 'react-live-clock';
 
 function Homepage({ userType }) {
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [currentDate, setCurrentDate] = useState(new Date());
+
+    const openModal = () => {
+        console.log("Opening modal");
+        setModalOpen(true);
+
+    };
+
+    const closeModal = () => {
+        console.log("Closing modal");
+        setModalOpen(false);
+    };
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentDate(new Date());
+        }, 1000); // Update every second
+
+        return () => clearInterval(intervalId); // Cleanup on component unmount
+    }, []);
+
+    const formattedDate = currentDate.toLocaleDateString(undefined, {
+        month: 'long',
+        year: 'numeric',
+    });
+
     return (
         <div>
             {/* Hero Section */}
@@ -32,7 +61,7 @@ function Homepage({ userType }) {
                         <div className="sm:flex-grow sm:border-b-4 sm:border-gray-900"></div>
                     </div>
                     <div className="lg:flex">
-                        <div className="md:flex lg:block lg:w-[18rem] lg:p-4 mt-5">
+                        <div className="space-y-2 md:space-y-0 lg:space-y-2 md:space-x-2 lg:space-x-0  md:flex lg:block lg:w-[18rem] lg:p-4 mt-5">
                             <div className="p-4 rounded-2xl border-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                                 <div className="border-b-2 border-[#0000002d] rounded-md bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold">
                                     Emergency
@@ -48,20 +77,22 @@ function Homepage({ userType }) {
                             </div>
 
                             <div className="p-4 rounded-2xl lg:mt-5 border-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                                <div className="border-b-2 border-[#0000002d] rounded-md bg-event px-6 py-3 text-white dark:text-neutral-50 font-bold">
-                                    September
+                                <div className="border-b-2 border-[#0000002d] rounded-md bg-event px-6 py-3 text-white dark:text-neutral-50 font-bold text-center">
+                                    {formattedDate}
                                 </div>
-                                <div className="p-6">
-                                    <h5 className="mb-2 text-xl font-medium leading-tight text-black">
-                                        Success card title
-                                    </h5>
-                                    <p className="text-base text-black">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                </div>
+                                <button className="p-6 mx-auto flex items-center justify-center" onClick={openModal}>
+                                    <div className="flex flex-col items-center">
+                                        <div className="text-5xl font-bold">{currentDate.getDate()}</div>
+                                        <div className="text-sm">Current Day</div>
+                                        <div className="text-lg mt-2">
+                                            {currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                                        </div>
+                                    </div>
+                                </button>
+                                <CalendarModal isOpen={isModalOpen} onRequestClose={closeModal} />
                             </div>
-                        </div>
 
+                        </div>
                         <div className="lg:flex-1 pb-4">
                             <video class="w-full h-full p-4" autoPlay loop controls muted>
                                 <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
@@ -131,7 +162,7 @@ function Homepage({ userType }) {
                 alt="San Vicente Logo"
                 button="About San Vicente"
                 arrow={true}
-                href="/the-town/about" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
+                href="/the-town/about" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
                 Embark on a journey through time and culture as you discover the enchanting secrets of San Vicente. This hidden gem, nestled in the heart of Camarines Norte, offers a rich tapestry of history, tradition, and natural beauty. From its roots dating back to the late 18th century to the modern-day marvels that make it a thriving community, San Vicente has countless stories to tell.
             </Sections>
 
@@ -144,7 +175,7 @@ function Homepage({ userType }) {
                 altDisplay="Mananap Falls"
                 button="View more details"
                 arrow={true}
-                href="/tourism/san-vicente-tourism" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
+                href="/tourism/san-vicente-tourism" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
                 We cordially extend an invitation to experience the serene and captivating beauty of San Vicente, a remarkable destination that promises a rejuvenating departure from the everyday routine.
                 Tucked away in the embrace of nature, this tranquil paradise calls out to wanderers, urging them to pause, explore, and become one with a realm of stunning natural vistas, a rich tapestry of local culture,
                 and indelible memories waiting to be etched in your heart. Whether your heart craves adventure or craves serenity, San Vicente stands ready to offer you the quintessential escape, a portal to a world where
@@ -157,9 +188,9 @@ function Homepage({ userType }) {
                 title="Invest Now"
                 src={require("./../res/img/invest.png")}
                 alt="Vector image of a hand holding a coin with the peso sign on it."
-                button={userType===USER_TYPES.Investor?"View Opportunities":"Sign Up as an Investor"}
+                button={userType === USER_TYPES.Investor ? "View Opportunities" : "Sign Up as an Investor"}
                 arrow={true}
-                href={userType===USER_TYPES.Investor?PATH_NAME.Invest.InvestmentOpportunities:PATH_NAME.Accounts.SignUp.SignUp}
+                href={userType === USER_TYPES.Investor ? PATH_NAME.Invest.InvestmentOpportunities : PATH_NAME.Accounts.SignUp.SignUp}
                 onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                 Investing in the tourism potential of San Vicente, Camarines Norte, is like planting the seeds of opportunity in a flourishing garden of natural beauty.
                 As this captivating destination continues to reveal its hidden gems, your investment not only promises growth and prosperity but also contributes to the sustainable development of a place destined
@@ -175,11 +206,11 @@ function Homepage({ userType }) {
                 alt="Vector image of a group of people talking."
                 button="Read Forums and Discussions"
                 arrow={true}
-                href="/forums" onClick={() => window.scrollTo({top: 0, left: 0, behavior: "smooth"})}>
+                href="/forums" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
             </Sections>
 
-        <BackToTop />
+            <BackToTop />
         </div>
 
     );

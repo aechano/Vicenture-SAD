@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { Document, Page, pdfjs } from 'react-pdf';
@@ -12,6 +12,8 @@ export default function CitizensCharter() {
   const [inputPage, setInputPage] = useState(''); // Store the user input page number
   const [invalidInput, setInvalidInput] = useState(false); // Track invalid input
   const [pageExceedsTotal, setPageExceedsTotal] = useState(false); // Track input exceeding total pages
+  const [pdfWidth, setPdfWidth] = useState(800);
+  const pdfRef = useRef(null);
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -26,7 +28,7 @@ export default function CitizensCharter() {
         const pdfDoc = await loadingTask.promise;
         const firstPage = await pdfDoc.getPage(1);
         const { width, height } = firstPage.getViewport({ scale: 1 });
-
+      
         setPdfDimensions({ width, height });
       } catch (error) {
         console.error('Error loading PDF:', error);
@@ -47,7 +49,6 @@ export default function CitizensCharter() {
       setPageNumber(pageNumber + 1);
     }
   };
-
 
   const handleGoToPage = () => {
     const parsedPage = parseInt(inputPage, 10);
@@ -71,6 +72,20 @@ export default function CitizensCharter() {
     link.download = 'SanVicente-CitizensCharter.pdf';
     link.click();
   };
+
+  useEffect(() => {
+    function handleResize() {
+      if (pdfRef.current) {
+        setPdfWidth(pdfRef.current.offsetWidth);
+      }
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
 
   return (
@@ -102,7 +117,7 @@ export default function CitizensCharter() {
             color: #fff;
             border: none;
             border-radius: 5px;
-            padding: 10px 15px;
+            padding: 5px 15px;
             margin: 0 5px;
             cursor: pointer;
           }
@@ -111,8 +126,9 @@ export default function CitizensCharter() {
             align-items: center;
           }
           .page-input {
-            width: 40px;
+            width: 50px;
             margin: 0 10px;
+            padding: 4px;
           }
         `}
       </style>
@@ -123,10 +139,10 @@ export default function CitizensCharter() {
       >
         <p>Citizen's Charter</p>
       </Banner>
-      <div className="mx-auto max-w-4xl px-2 sm:px-6 lg:px-8 m-5">
-        <div className="pdf-container">
-          <Document file={require("../../../res/pdf/citizenscharterfile.pdf")} onLoadSuccess={onDocumentLoadSuccess}>
-            <Page pageNumber={pageNumber} width={pdfDimensions.width} renderTextLayer={false} />
+      <div className="mx-auto max-w-4xl px-2 sm:px-6 lg:px-8 m-5 block grow">
+        <div className="pdf-container w-full" ref={pdfRef}>
+          <Document file={require("../../../res/pdf/citizenscharterfile.pdf")} onLoadSuccess={onDocumentLoadSuccess} className={'border-4'}>
+            <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
           </Document>
         </div>
         <div className="pdf-buttons">
@@ -141,8 +157,8 @@ export default function CitizensCharter() {
           </button>
         </div>
 
-        <div >
-          <div className="page-navigation mt-20">
+        <div className='flex justify-between mt-20' >
+          <div className='page-navigation'>
             <span>Go to Page: </span>
             <input
               type="text"
@@ -158,15 +174,16 @@ export default function CitizensCharter() {
             <button onClick={handleGoToPage} className="pdf-button">
               Go
             </button>
+
+            {invalidInput && <span style={{ color: 'red' }}>Invalid input</span>}
+            {pageExceedsTotal && <span style={{ color: 'red' }}>Page exceeded</span>}
+
           </div>
-          <div className='flex justify-between'>
+          <div>
             <button onClick={downloadPdf} className="cursor-pointer ml-3 bg-lgu-green text-lgu-lime hover:bg-lime-900 font-bold py-2 px-4 rounded">
               Download
             </button>
           </div>
-
-          {invalidInput && <span style={{ color: 'red' }}>Invalid input</span>}
-          {pageExceedsTotal && <span style={{ color: 'red' }}>Page exceededS</span>}
 
         </div>
       </div>

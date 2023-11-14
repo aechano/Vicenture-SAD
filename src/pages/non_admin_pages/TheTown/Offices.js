@@ -235,8 +235,8 @@ export default function Offices() {
 
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5'>
         {/* Sidebar */}
-        <div className="flex flex-row mt-20 mb-20">
-          <div className="bg-lgu-yellow p-4 md:w-1/3 mr-6" style={{ maxHeight: '900px', overflowY: 'auto' }}>
+        <div className="block md:flex md:flex-row md:mt-20 md:mb-20">
+          <div className="bg-lgu-yellow p-4 w-full md:w-1/3 md:mr-6 mb-6 md:mb-0" style={{ maxHeight: '900px', overflowY: 'auto' }}>
             <ul>
               {officeData.map((office, index) => (
                 <li
@@ -256,7 +256,7 @@ export default function Offices() {
 
 
           {/* Main Content with Scrollable Border */}
-          <div className="w-3/4 pr-4 border border-black p-4">
+          <div className="md:w-3/4 pr-4 border border-black p-4">
             <div>
               {selectedContent && (
                 <>
