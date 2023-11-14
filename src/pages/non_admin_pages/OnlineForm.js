@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Banner from "../../components/Banner";
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
 import jsPDF from "jspdf";
+import Popconfirm from "../../components/PopConfirm";
 
 export default function OnlineForm() {
 
@@ -14,11 +15,23 @@ export default function OnlineForm() {
     const [duration, setDuration] = useState('');
     const [people, setPeople] = useState('');
     const [message, setMessage] = useState('');
+    const [showPopconfirm, setShowPopconfirm] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setShowPopconfirm(true);
+
         // Generate and download the PDF, passing the form data as arguments
+
+    };
+
+    const handlePopconfirmCancel = () => {
+        setShowPopconfirm(false);
+    };
+
+    const handlePopconfirmConfirm = () => {
         generatePDF(fname, midName, lname, email, phoneNum, date, duration, people, message);
+        setShowPopconfirm(false);
 
         setfname('');
         setmidName('');
@@ -33,6 +46,7 @@ export default function OnlineForm() {
         console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, message });
     };
 
+
     return (
         <>
             <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }, { title: "San Vicente Tourism", to: PATH_NAME.Tourism.SanVicente }]}>
@@ -45,7 +59,7 @@ export default function OnlineForm() {
                         <div className="flex flex-col space-y-5">
                             <h1 className="text-2xl font-bold">Contact Information</h1>
                             <div className="flex flex-wrap justify-stretch">
-                                
+
                                 <div className="relative mb-3 mx-2">
                                     <input
                                         required
@@ -213,16 +227,20 @@ export default function OnlineForm() {
                     </div>
                     <div className="pt-5 flex justify-end">
                         <button
-                            type="submit"
-                            onClick={() => {
-                                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-                            }}
+                            type="button"
+                            onClick={handleSubmit}
                             className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300"
                         >
                             Generate and Download Form
                         </button>
 
                     </div>
+                    {showPopconfirm && (
+                        <Popconfirm
+                            onConfirm={handlePopconfirmConfirm}
+                            onCancel={handlePopconfirmCancel}
+                        />
+                    )}
 
                 </form>
 
