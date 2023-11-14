@@ -46,7 +46,7 @@ export default function MunicipalityPrograms() {
                         </div>
                         <div className="grid grid-cols-2">
                             <div>
-                                <div className="block p-6 ">
+                                <div className="block p-6 mt-3">
                                     <div className="w-full relative z-10 p-2">
                                         <div className="flex flex-col justify-between h-full">
                                             <Link to="/activities" className="block flex-1 p-8 bg-lgu-green border rounded-lg shadow">
@@ -78,12 +78,12 @@ export default function MunicipalityPrograms() {
 
                             <div>
                                 <div
-                                    className="mx-3 mt-6 flex flex-col self-start rounded-lg  bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-700 sm:shrink-0 sm:grow sm:basis-0 relative z-10">
+                                    className="mx-3 mt-6 flex flex-col self-start rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-700 sm:shrink-0 sm:grow sm:basis-0 relative z-10">
                                     <a href="/activities">
                                         <img
                                             className="rounded-t-lg w-full object-cover h-96 "
-                                            src={require("../../../res/img/shoes-with-ball.jpg")}
-                                            alt="Hollywood Sign on The Hill" />
+                                            src={require("../../../res/img/sports.jpg")}
+                                            alt="Different Sports Vector" />
                                     </a>
                                     <div className="p-6">
                                         <h5

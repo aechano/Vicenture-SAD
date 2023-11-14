@@ -50,7 +50,7 @@ export default function Articles() {
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div>
                     {contents.map((content, index) => (
-                        <Link to={`/article/${content.id}`} key={index} className="article-link">
+                        <Link to={`/article/${content.id}`} onClick={() => window.scrollTo({ top: 0, left: 0 })} key={index} className="article-link">
                             <div className="pb-5">
                                 <div className="flex flex-col items-center border-b-2 border-black md:flex-row md:mx-auto">
                                     <img

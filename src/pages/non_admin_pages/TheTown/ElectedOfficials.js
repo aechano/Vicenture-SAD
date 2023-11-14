@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import BackToTop from '../../../components/BackToTop';
 
 export default function ElectedOfficials() {
     return (
@@ -119,11 +120,7 @@ export default function ElectedOfficials() {
             </div>
 
 
-
-
-
-
-
+        <BackToTop />
         </>
     );
 }

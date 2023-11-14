@@ -47,6 +47,7 @@ import SignInPrompt from './components/SignInPrompt';
 import Page404 from './pages/Accounts/ErrorPages/Page404';
 import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
+import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -87,6 +88,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit userType={userType} />} />
                         <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} /> {/** Try only */}
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.Activities + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType} />} />
                         <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />

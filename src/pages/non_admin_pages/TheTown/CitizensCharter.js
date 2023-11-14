@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { Document, Page, pdfjs } from 'react-pdf';
+import BackToTop from '../../../components/BackToTop';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -187,6 +188,7 @@ export default function CitizensCharter() {
 
         </div>
       </div>
+    <BackToTop />
     </>
   );
 }

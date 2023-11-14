@@ -137,7 +137,7 @@ export default function AboutSanVicente() {
                 </div>
                 <div className="p-5 text-center">
                   {isHovered ? (
-                    <button className="border-2 p-2 pl-5 pr-5 rounded-lg text-lgu-lime text-sm font-semibold">Read More</button>
+                    <button className="border-2 p-1 pl-5 pr-5 rounded-lg text-lgu-lime text-sm font-semibold">Read More</button>
                   ) : (
                     <p className="text-base text-lgu-lime font-bold">Geography</p>
                   )}
@@ -235,11 +235,6 @@ export default function AboutSanVicente() {
 
         </div>
       </div>
-
-
-
-
-
 
       <BackToTop />
     </div>

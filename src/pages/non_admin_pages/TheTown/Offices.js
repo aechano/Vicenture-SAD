@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { NavLink } from 'react-router-dom';
+import BackToTop from '../../../components/BackToTop';
 
 
 export default function Offices() {
@@ -282,7 +283,7 @@ export default function Offices() {
                   <h2 className='font-bold font-open sans text-2xl'>Mission</h2>
                   <p className='mt-2'>{selectedContent.mission}</p>
                 </div>
-                
+
                 <div className='mt-9'>
                   <h2 className='font-bold font-open sans text-2xl'>Organizational Chart</h2>
                   <img src={selectedContent.orgChartImage} alt="Organizational Chart" className='mt-2' />
@@ -306,7 +307,7 @@ export default function Offices() {
 
               <div style={{ textAlign: 'right', marginTop: '1.5rem' }}>
                 <NavLink
-                  to={PATH_NAME.Services} onClick={() => window.scrollTo({ top: 0, left: 0})}
+                  to={PATH_NAME.Services} onClick={() => window.scrollTo({ top: 0, left: 0 })}
                   style={{ textDecoration: 'underline', color: 'black' }}>See Services Offered
                 </NavLink>
               </div>
@@ -314,7 +315,7 @@ export default function Offices() {
           </div>
         </div>
       </div>
-
+      <BackToTop />
     </div>
   );
 }
