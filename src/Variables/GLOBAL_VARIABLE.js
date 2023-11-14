@@ -28,7 +28,7 @@ const PATH_NAME = {
         MunicipalityPrograms: "/the-town/programs",
         ElectedOfficials: "/the-town/officials",
         Offices: "/the-town/offices",
-        Citizen: "/the-town/citizens-charter",
+        CitizensCharter: "/the-town/citizens-charter",
         History: "/history",
         OtherInfo: "/other-info",
     },

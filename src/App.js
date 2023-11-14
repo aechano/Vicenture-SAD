@@ -34,7 +34,7 @@ import ReasonsToInvestContent from './pages/non_admin_pages/Invest/ReasonsToInve
 import OnlineForm from './pages/non_admin_pages/OnlineForm';
 import Profile from './pages/non_admin_pages/Profile';
 import Messaging from './pages/non_admin_pages/Messaging';
-import Citizen from './pages/non_admin_pages/TheTown/Citizen';
+import CitizensCharter from './pages/non_admin_pages/TheTown/CitizensCharter';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
 import Transparency from './pages/non_admin_pages/Transparency';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
@@ -79,7 +79,7 @@ function App() {
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile />} />
                         <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms />} />
                         <Route path={PATH_NAME.TheTown.Offices} element={<Offices />} />
-                        <Route path={PATH_NAME.TheTown.Citizen} element={<Citizen />} />
+                        <Route path={PATH_NAME.TheTown.CitizensCharter} element={<CitizensCharter />} />
                         <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials />} />
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType} />} />

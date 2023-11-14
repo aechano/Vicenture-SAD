@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from 'react-pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-export default function Citizen() {
+export default function CitizensCharter() {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [pdfDimensions, setPdfDimensions] = useState({ width: 0, height: 0 });
@@ -48,6 +48,7 @@ export default function Citizen() {
     }
   };
 
+
   const handleGoToPage = () => {
     const parsedPage = parseInt(inputPage, 10);
     if (isNaN(parsedPage) || parsedPage < 1) {
@@ -60,9 +61,17 @@ export default function Citizen() {
       setPageNumber(parsedPage);
       setInputPage(''); // Clear the input field
       setInvalidInput(false); // Reset the invalid input flag
-      setPageExceedsTotal(false); // Reset the exceeding pages flag
+      setPageExceedsTotal(false); // Reset the exceeding pages flag]
     }
   };
+
+  const downloadPdf = () => {
+    const link = document.createElement('a');
+    link.href = (require("../../../res/pdf/citizenscharterfile.pdf"));
+    link.download = 'SanVicente-CitizensCharter.pdf';
+    link.click();
+  };
+
 
   return (
     <>
@@ -132,24 +141,33 @@ export default function Citizen() {
           </button>
         </div>
 
-        <div className="page-navigation mt-20">
-          <span>Go to Page: </span>
-          <input
-            type="text"
-            className="page-input"
-            placeholder="Page"
-            value={inputPage}
-            onChange={(e) => {
-              
-              const numericInput = e.target.value.replace(/[^0-9]/g, '');
-              setInputPage(numericInput);
-            }}
-          />
-          <button onClick={handleGoToPage} className="pdf-button">
-            Go
-          </button>
+        <div >
+          <div className="page-navigation mt-20">
+            <span>Go to Page: </span>
+            <input
+              type="text"
+              className="page-input"
+              placeholder="Page"
+              value={inputPage}
+              onChange={(e) => {
+
+                const numericInput = e.target.value.replace(/[^0-9]/g, '');
+                setInputPage(numericInput);
+              }}
+            />
+            <button onClick={handleGoToPage} className="pdf-button">
+              Go
+            </button>
+          </div>
+          <div className='flex justify-between'>
+            <button onClick={downloadPdf} className="cursor-pointer ml-3 bg-lgu-green text-lgu-lime hover:bg-lime-900 font-bold py-2 px-4 rounded">
+              Download
+            </button>
+          </div>
+
           {invalidInput && <span style={{ color: 'red' }}>Invalid input</span>}
           {pageExceedsTotal && <span style={{ color: 'red' }}>Page exceededS</span>}
+
         </div>
       </div>
     </>
