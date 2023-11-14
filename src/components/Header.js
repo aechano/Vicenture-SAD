@@ -21,7 +21,7 @@ const navigation = [
             { name: 'Municipality Programs', href: PATH_NAME.TheTown.MunicipalityPrograms },
             { name: 'Elected Officials', href: PATH_NAME.TheTown.ElectedOfficials },
             { name: 'Offices', href: PATH_NAME.TheTown.Offices },
-            { name: 'Citizen\'s Charter', href: PATH_NAME.TheTown.Citizen }
+            { name: 'Citizen\'s Charter', href: PATH_NAME.TheTown.CitizensCharter }
         ],
     },
     {

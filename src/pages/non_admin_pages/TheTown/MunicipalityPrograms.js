@@ -68,8 +68,8 @@ export default function MunicipalityPrograms() {
                                     <div className="w-full relative z-10 p-2">
                                         <div className="flex flex-col justify-between h-full">
                                             <Link to="/activities" className="block flex-1 p-8 bg-lgu-green border rounded-lg shadow">
-                                                <h5 className="mb-2 text-2xl font-bold text-white text-center tracking-tight">Sport Activity</h5>
-                                                <p className="font-normal text-white text-center">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                                                <h5 className="mb-2 text-2xl font-bold text-lgu-lime text-center tracking-tight">Sport Activity</h5>
+                                                <p className="font-normal text-lgu-lime text-center">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
                                             </Link>
                                         </div>
                                     </div>
@@ -79,10 +79,10 @@ export default function MunicipalityPrograms() {
                             <div>
                                 <div
                                     className="mx-3 mt-6 flex flex-col self-start rounded-lg  bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-green-700 sm:shrink-0 sm:grow sm:basis-0 relative z-10">
-                                    <a href="#!">
+                                    <a href="/activities">
                                         <img
                                             className="rounded-t-lg w-full object-cover h-96 "
-                                            src={require("../../../res/img/dunk.jpeg")}
+                                            src={require("../../../res/img/shoes-with-ball.jpg")}
                                             alt="Hollywood Sign on The Hill" />
                                     </a>
                                     <div className="p-6">
