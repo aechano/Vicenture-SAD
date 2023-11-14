@@ -4,6 +4,7 @@ import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
+import BackToTop from '../../../components/BackToTop';
 
 
 export default function PlacesToVisit() {
@@ -138,6 +139,7 @@ export default function PlacesToVisit() {
 
 
             </div>
+        <BackToTop />
         </>
 
     )

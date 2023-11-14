@@ -1,8 +1,9 @@
-import React from 'react'
-import Banner from '../../../components/Banner'
-import SocialMedia from '../../../components/SocialMedia'
-import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import Banner from '../../../components/Banner';
+import SocialMedia from '../../../components/SocialMedia';
+import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { NavLink } from 'react-router-dom';
+import BackToTop from '../../../components/BackToTop';
 
 export default function SanVicenteTourism() {
   return (
@@ -44,7 +45,7 @@ export default function SanVicenteTourism() {
               </p>
             </div>
             <div className="absolute left-0 -bottom-14 m-5">
-              <NavLink to={PATH_NAME.Tourism.OnlineForm} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+              <NavLink to={PATH_NAME.Tourism.OnlineForm} onClick={() => window.scrollTo({ top: 0, left: 0})} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                 Go to Our Online Form
                 <svg
                   className="w-3.5 h-3.5 ml-2"
@@ -79,7 +80,7 @@ export default function SanVicenteTourism() {
               <div className='flex flex-col'>
                 <img className="w-auto h-48 rounded-xl" src={require('../../../res/img/mountain.png')} alt="Mountain" />
                 <div className="mx-auto m-5">
-                  <NavLink to={PATH_NAME.Tourism.PlacesToVisit} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                  <NavLink to={PATH_NAME.Tourism.PlacesToVisit} onClick={() => window.scrollTo({ top: 0, left: 0})} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                     Go to Places To Visit
                     <svg
                       className="w-3.5 h-3.5 ml-2"
@@ -104,7 +105,7 @@ export default function SanVicenteTourism() {
               <div className='flex flex-col'>
                 <img className="w-auto h-48 rounded-xl" src={require('../../../res/img/adventure.png')} alt="adventure" />
                 <div className="mx-auto m-5">
-                  <NavLink to={PATH_NAME.Tourism.Activities} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                  <NavLink to={PATH_NAME.Tourism.Activities} onClick={() => window.scrollTo({ top: 0, left: 0})} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                     Go to Activities
                     <svg
                       className="w-3.5 h-3.5 ml-2"
@@ -138,7 +139,7 @@ export default function SanVicenteTourism() {
         </div>
       </div>
 
-
+    <BackToTop />
     </div>
   )
 }

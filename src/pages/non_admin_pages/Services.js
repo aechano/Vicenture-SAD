@@ -371,6 +371,59 @@ export default function Services() {
                 },
             ],
         },
+        {
+            office: "Business Permits and Licensing Office",
+            services: [
+                {
+                    typeOfService: "Motorized Tricycle Operator's Permit (MTOP) New or Renewal",
+                    aboutTheService: "The Motorized Tricycle Operator’s Permit (MTOP) is a document granting franchise or license to any individual with tricycle/s allowing him to ply and operate within the territorial jurisdiction of San Vicente, Camarines Norte. MTOP is being issued to regulate the number of tricycles to avoid traffic congestion. There shall be collected an annual franchise fee per unit payable on or before January 20 of the year for the operation of each tricycle-for hire. Only Filipino citizens who are actually residing in the municipality of San Vicente, Camarines Norte are qualified to operate and maintain tricycles-for-hire.",
+                },
+                {
+                    typeOfService: "Cessation (Retirement/Closure) of Business",
+                    aboutTheService: "Enterprises, upon cessation of operation, shall inform the LGU for the assessment of any tax due. Any person natural or juridical who discontinues, transfer to other locality/ies or close/retire his/her business operation(s) is subject to the taxes, fees and charges on business. Any tax due must first be paid before any business or an undertaking is finally terminated.",
+                },
+                {
+                    typeOfService: "Issuance of Mayor's Clearance",
+                    aboutTheService: "Serves as pre-requisite for employment.",
+                },
+                {
+                    typeOfService: "Business Registration (New/Renewal) Issuance of Business Permits",
+                    aboutTheService: "The Local Government Code authorizes the LGU to impose taxes, fees and other charges on business entities in order to generate revenue. The Business Permits and Licensing Section (BPLS) were tasked to implement several provisions of the existing Municipal Tax Ordinance. Its main objective is to require all business establishments to register and secure Business License and pay the required taxes and fees prior to the start of operations. Said permit shall be renewed annually, before the 20th of January. Business One Stop Shop (BOSS) is being conducted during business renewal period participated in by authorized representatives from DTI, San Vicente PNP, BFP, Engineering, Assessors, Health, MPDO, and MTPSO.",
+                },
+                {
+                    typeOfService: "Permit on Hauling and Trucking Services (New or Renewal)",
+                    aboutTheService: "The Mayor’s Permit to operate hauling or trucking services is granted to every person engaged in the business of hauling and trucking services operating within this municipality.",
+                },
+            ],
+        },
+        {
+            office: "Municipal Human Resource Office",
+            services: [
+                {
+                    typeOfService: "Request for Issuance of Official Documents, Certificate of Employment and Compensation, Copy of Leave Balances, Copy of Service Records, Copy of Training List Attended, Copy of Appointment and Other Pertinent Documents, Copy of Authenticated Documents, List of Existing Vacant Positions, Human Resource Data and Statistics.",
+                    aboutTheService: "Upon the request of the employee, HRMO issues a certification to the employee for their official documents",
+                },
+                {
+                    typeOfService: "The Release of Official Turnover of 201",
+                    aboutTheService: "Upon the request of the employee, HRMO issues a certification to the employee for their official documents",
+                },
+                {
+                    typeOfService: "Complaint Mechanism",
+                    aboutTheService: "",
+                },
+                {
+                    typeOfService: "Feedback Form",
+                    aboutTheService: "",
+                },
+                {
+                    typeOfService: "Complaint Form",
+                    aboutTheService: "",
+                },
+            ],
+        },
+
+
+
     ];
 
     return (

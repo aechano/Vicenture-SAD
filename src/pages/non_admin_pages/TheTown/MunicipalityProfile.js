@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import Viewer from '../../../components/Viewer';
+import BackToTop from '../../../components/BackToTop';
 
 export default function MunicipalityProfile() {
 
@@ -53,7 +54,7 @@ export default function MunicipalityProfile() {
       <div>
         <Viewer view={view}/>
       </div>
-
+    <BackToTop/>
     </>
   );
 }

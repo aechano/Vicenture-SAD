@@ -3,10 +3,13 @@ import Banner from '../../../components/Banner'
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
+import { useNavigate } from 'react-router';
+import BackToTop from '../../../components/BackToTop';
 
 
 export default function Activities() {
     const [search, setSearch] = useState('');
+    const navigate = useNavigate();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -17,6 +20,7 @@ export default function Activities() {
 
     var contents = [
         {
+            id: 1,
             pic: require("../../../res/img/mapIcon.png"),
             title: "Abasig Matognon Natural Biotic Area (Hiking)",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
@@ -25,6 +29,7 @@ export default function Activities() {
             comments: 16,
         },
         {
+            id: 2,
             pic: require("../../../res/img/mapIcon.png"),
             title: "Abasig Matognon Natural Biotic Area (Hiking)",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
@@ -33,6 +38,7 @@ export default function Activities() {
             comments: 16,
         },
         {
+            id: 3,
             pic: require("../../../res/img/mapIcon.png"),
             title: "Abasig Matognon Natural Biotic Area (Hiking)",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
@@ -41,6 +47,7 @@ export default function Activities() {
             comments: 16,
         },
         {
+            id: 4,
             pic: require("../../../res/img/mapIcon.png"),
             title: "Abasig Matognon Natural Biotic Area (Hiking)",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
@@ -49,6 +56,7 @@ export default function Activities() {
             comments: 16,
         },
         {
+            id: 5,
             pic: require("../../../res/img/mapIcon.png"),
             title: "Abasig Matognon Natural Biotic Area (Hiking)",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
@@ -57,6 +65,7 @@ export default function Activities() {
             comments: 16,
         },
         {
+            id: 6,
             pic: require("../../../res/img/mapIcon.png"),
             title: "Abasig Matognon Natural Biotic Area (Hiking)",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
@@ -111,10 +120,17 @@ export default function Activities() {
                         <FaFilter />
                     </div>
                 </div>
-                
+
                 <div className='pt-12'>
                     {contents.map((content, index) => {
-                        return <TourismCards key={index} content={content} />;
+                        return <TourismCards
+                            key={index}
+                            content={content}
+                            onClick={() => {
+                                navigate(PATH_NAME.Tourism.Activities + "/" + content.id);
+                                window.scrollTo({ top: 0, left: 0 });
+                            }}
+                        />;
                     })}
                 </div>
 
@@ -122,6 +138,7 @@ export default function Activities() {
 
 
             </div>
+        <BackToTop />
         </>
 
     )
