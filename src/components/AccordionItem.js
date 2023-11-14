@@ -23,7 +23,7 @@ const AccordionItem = ({ open, toggle, data }) => {
                     <p>Location: {data.location}</p>
                 </div>
 
-            </Collapse>
+            </Collapse> 
         </div>
     )
 }
