@@ -25,7 +25,7 @@ export default function AboutSanVicente() {
           </p>
         </div>
         <div className="lg:w-2/3 p-4">
-          <video className="w-full h-full rounded-2xl shadow-lg p-4" autoPlay loop controls muted>
+          <video className="w-full h-full rounded-2xl p-4" autoPlay loop controls muted>
             <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
           </video>
         </div>
@@ -56,10 +56,10 @@ export default function AboutSanVicente() {
         <div className="absolute inset-0 bg-green-800 bg-opacity-70"></div>
 
         <div className='p-5 relative z-10'>
-          <h1 className="text-4xl font-bold text-center mt-6 pb-2 text-white">San Vicente Hymn</h1>
+          <h1 className="text-4xl font-bold text-center mt-6 text-white">San Vicente Hymn</h1>
         </div>
 
-        <div className="text-40 text-center mt-4 italic relative z-10 text-white">
+        <div className="text-40 text-center mt-2 italic relative z-10 text-white">
           <p className="mt-2">Ang luntiang kabundukan, Nitong ating bayang minamahal</p>
           <p className="mt-2">Tila isang Paraiso, Biyaya sa pamayanan</p>
           <p className="mt-2">Yamang gubat na taglay, Bulsa ay tubig na Dalisay</p>

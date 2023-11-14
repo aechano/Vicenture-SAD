@@ -33,7 +33,7 @@ export default function MunicipalityPrograms() {
 
             <div className='relative bg-fixed bg-cover p-10'
                 style={{
-                    backgroundImage: "url(" + require("../../../res/img/sports_background.jpg") + ")",
+                    backgroundImage: "url(" + require("../../../res/img/sports_cover.jpg") + ")",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: "center",
                 }}>
@@ -82,7 +82,7 @@ export default function MunicipalityPrograms() {
                                     <a href="#!">
                                         <img
                                             className="rounded-t-lg w-full object-cover h-96 "
-                                            src={require("../../../res/img/dunk.jpeg")}
+                                            src={require("../../../res/img/dunk.jpg")}
                                             alt="Hollywood Sign on The Hill" />
                                     </a>
                                     <div className="p-6">
@@ -106,17 +106,6 @@ export default function MunicipalityPrograms() {
                 </div>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
 
             <BackToTop />
         </div>
