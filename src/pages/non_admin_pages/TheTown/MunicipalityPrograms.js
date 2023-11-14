@@ -82,7 +82,7 @@ export default function MunicipalityPrograms() {
                                     <a href="#!">
                                         <img
                                             className="rounded-t-lg w-full object-cover h-96 "
-                                            src={require("../../../res/img/dunk.jpg")}
+                                            src={require("../../../res/img/dunk.jpeg")}
                                             alt="Hollywood Sign on The Hill" />
                                     </a>
                                     <div className="p-6">
