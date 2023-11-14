@@ -8,6 +8,9 @@ import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 
 export default function AboutSanVicente() {
   const [isHovered, setHovered] = useState(false);
+  const [isHovered1, setHovered1] = useState(false);
+  const [isHovered2, setHovered2] = useState(false);
+  const [isHovered3, setHovered3] = useState(false);
   return (
     <div>
       <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
@@ -79,9 +82,9 @@ export default function AboutSanVicente() {
 
 
 
-      <div className="block md:flex md:flex-row bg-lgu-green p-6 space-y-2 md:space-y-0 md:space-x-4">
+      <div className="block md:flex md:flex-row bg-lgu-green p-10 space-y-2 md:space-y-0 md:space-x-4">
         {/* Mandate Column */}
-        <div className="w-full p-2 text-lgu-lime max-h-screen overflow-y-auto border-4 border-lgu-lime">
+        <div className="w-full p-2 text-lgu-lime max-h-screen overflow-y-auto border-4 rounded-xl border-lgu-lime">
           <h1 className="text-3xl font-bold mt-3 ml-5 text-center">Mandate</h1>
           <p className="text-35 text-left mt-4 ml-5 p-5 leading-10">
             To serve primarily as a general-purpose government for the coordination of effective and efficient delivery of basic and regular governance of the inhabitants within its territorial jurisdiction.
@@ -89,7 +92,7 @@ export default function AboutSanVicente() {
         </div>
 
         {/* Vision Column */}
-        <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto border-4 border-lgu-lime">
+        <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto border-4 rounded-xl border-lgu-lime">
           <h1 className="text-3xl font-bold mt-3 ml-5 text-center">Vision</h1>
           <p className="text-35 text-left mt-4 ml-5 p-5 leading-10">
             San Vicente is a center for agriculture, sustainable agro-processing, eco-tourism and hydrothermal energy and the first walkable municipality in the province of Camarines Norte, where responsible and self-reliant men and women live and enjoy safe and quality life in an efficiently managed environment and community vested with rich heritage and culture under a transparent and innovative leadership.
@@ -97,7 +100,7 @@ export default function AboutSanVicente() {
         </div>
 
         {/* Mission Column */}
-        <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto border-4 border-lgu-lime">
+        <div className="w-full p-2  text-lgu-lime max-h-screen overflow-y-auto border-4 rounded-xl border-lgu-lime">
           <h1 className="text-3xl font-bold mt-3 ml-5 text-center">Mission</h1>
           <p className="text-35 text-left mt-4 ml-5 p-5 leading-10">
             The Municipal Government shall spearhead the implementation of various development programs, projects, and activities through people empowerment, efficient and effective utilization of resources, committed public servants with strong political will.
@@ -130,7 +133,7 @@ export default function AboutSanVicente() {
                   <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity group-hover:opacity-75"></div>
                 </div>
                 <div className="absolute -top-8 left-3 w-full h-full flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 break-words p-4">
-                  <p className="text-base text-lgu-lime font-normal">The municipality covers 57.49 square kilometers (22.20 square miles), accounting for 2.52% of Camarines Norte's total land area. According to the 2020 Census, its population was 12,579.</p>
+                  <p className="text-base text-white font-normal">The municipality covers 57.49 square kilometers (22.20 square miles), accounting for 2.52% of Camarines Norte's total land area. According to the 2020 Census, its population was 12,579.</p>
                 </div>
                 <div className="p-5 text-center">
                   {isHovered ? (
@@ -143,66 +146,94 @@ export default function AboutSanVicente() {
             </Link>
           </div>
 
-          <div className="md:w-80 w-full mx-3 my-5">
+          <div className="md:w-80 w-full mx-3 my-5 relative overflow-hidden group">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-              <div className="block w-full rounded-lg bg-lgu-green shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                <div className="relative overflow-hidden bg-cover bg-no-repeat">
+              <div
+                className="block w-full rounded-lg bg-lgu-green shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] relative overflow-hidden"
+                onMouseEnter={() => setHovered1(true)}
+                onMouseLeave={() => setHovered1(false)}
+              >
+                <div className="relative">
                   <img
-                    className="rounded-t-lg md:w-80 w-full md:h-52"
+                    className="rounded-t-lg w-full md:h-52 transition-transform transform group-hover:scale-107"
                     src={require("../../../res/img/economy.jpg")}
                     alt="Economy"
                   />
+                  <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity group-hover:opacity-75"></div>
+                </div>
+                <div className="absolute -top-8 left-1 w-full h-full flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 break-words p-4">
+                  <p className="text-base text-white font-normal">San Vicente aspires to secure a brighter future over the next decade, one characterized by an enhanced quality of life and a thriving economy.</p>
                 </div>
                 <div className="p-5 text-center">
-                  <p className="text-base text-lgu-lime font-bold">
-                    Economy
-                  </p>
+                  {isHovered1 ? (
+                    <button className="border-2 p-2 pl-5 pr-5 rounded-lg text-lgu-lime text-sm font-semibold">Read More</button>
+                  ) : (
+                    <p className="text-base text-lgu-lime font-bold">Economy</p>
+                  )}
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="md:w-80 w-full mx-3 my-5">
+          <div className="md:w-80 w-full mx-3 my-5 relative overflow-hidden group">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-              <div className="block w-full rounded-lg bg-lgu-green shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                <div className="relative overflow-hidden bg-cover bg-no-repeat">
+              <div
+                className="block w-full rounded-lg bg-lgu-green shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] relative overflow-hidden"
+                onMouseEnter={() => setHovered2(true)}
+                onMouseLeave={() => setHovered2(false)}
+              >
+                <div className="relative">
                   <img
-                    className="rounded-t-lg md:w-80 w-full md:h-52"
+                    className="rounded-t-lg w-full md:h-52 transition-transform transform group-hover:scale-107"
                     src={require("../../../res/img/population.jpg")}
                     alt="Population"
                   />
+                  <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity group-hover:opacity-75"></div>
+                </div>
+                <div className="absolute -top-8 left-1 w-full h-full flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 break-words p-4">
+                  <p className="text-base text-white font-normal">Based on the data from the PhilAtlas, the population of San Vicente totals 12,579 in the year 2020. Man-Ogob has 3,303 members, the highest percentage among the nine barangays.</p>
                 </div>
                 <div className="p-5 text-center">
-                  <p className="text-base text-lgu-lime font-bold">
-                    Population
-                  </p>
+                  {isHovered2 ? (
+                    <button className="border-2 p-2 pl-5 pr-5 rounded-lg text-lgu-lime text-sm font-semibold">Read More</button>
+                  ) : (
+                    <p className="text-base text-lgu-lime font-bold">Population</p>
+                  )}
                 </div>
               </div>
             </Link>
           </div>
 
-          <div className="md:w-80 w-full mx-3 my-5">
+          <div className="md:w-80 w-full mx-3 my-5 relative overflow-hidden group">
             <Link to={PATH_NAME.TheTown.OtherInfo} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-              <div className="block w-full rounded-lg bg-lgu-green shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                <div className="relative overflow-hidden bg-cover bg-no-repeat">
+              <div
+                className="block w-full rounded-lg bg-lgu-green shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] relative overflow-hidden"
+                onMouseEnter={() => setHovered3(true)}
+                onMouseLeave={() => setHovered3(false)}
+              >
+                <div className="relative">
                   <img
-                    className="rounded-t-lg w-full md:h-52"
+                    className="rounded-t-lg w-full md:h-52 transition-transform transform group-hover:scale-107"
                     src={require("../../../res/img/geography.png")}
-                    alt="Barangays"
+                    alt="Barangay"
                   />
+                  <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity group-hover:opacity-75"></div>
+                </div>
+                <div className="absolute -top-8 left-1 w-full h-full flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100 break-words p-4">
+                  <p className="text-base text-white font-normal">Asdum, Cabanban, Calabagas, Fabrica, Iraya Sur, Man-Ogob, Poblacion District 1 and 2, and San Jose are among the nine barangays that make up San Vicente.</p>
                 </div>
                 <div className="p-5 text-center">
-                  <p className="text-base text-lgu-lime font-bold">
-                    Barangays
-                  </p>
+                  {isHovered3 ? (
+                    <button className="border-2 p-2 pl-5 pr-5 rounded-lg text-lgu-lime text-sm font-semibold">Read More</button>
+                  ) : (
+                    <p className="text-base text-lgu-lime font-bold">Barangays</p>
+                  )}
                 </div>
               </div>
             </Link>
           </div>
+
         </div>
-
-
-
       </div>
 
 
