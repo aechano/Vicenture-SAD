@@ -49,9 +49,9 @@ export default function OnlineForm() {
 
     return (
         <>
-            <Banner bannerType="common" src={require("../../res/img/mananap_falls.png")} alt="Mananap Falls" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }, { title: "San Vicente Tourism", to: PATH_NAME.Tourism.SanVicente }]}>
+            <Banner bannerType="common" src={require("../../res/img/LGU-PERS.jpg")} alt="LGU" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }, { title: "San Vicente Tourism", to: PATH_NAME.Tourism.SanVicente }]}>
                 <p>Tourism Office Online Form</p>
-            </Banner>
+            </Banner>   
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-28'>
                 <form onSubmit={handleSubmit}>
 
@@ -227,8 +227,7 @@ export default function OnlineForm() {
                     </div>
                     <div className="pt-5 flex justify-end">
                         <button
-                            type="button"
-                            onClick={handleSubmit}
+                            type="submit"
                             className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300"
                         >
                             Generate and Download Form
@@ -237,8 +236,9 @@ export default function OnlineForm() {
                     </div>
                     {showPopconfirm && (
                         <Popconfirm
-                            onConfirm={handlePopconfirmConfirm}
+                            onConfirm={handlePopconfirmConfirm} 
                             onCancel={handlePopconfirmCancel}
+                            note={'Are you sure you want to generate and download the form?'}
                         />
                     )}
 
