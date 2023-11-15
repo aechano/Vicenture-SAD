@@ -12,6 +12,7 @@ import adminHomepage from './pages/AdminPages/adminHomepage';
 import adminAboutSV from './pages/AdminPages/adminAboutSV';
 import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
 import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
+import AdminTransparency from './pages/AdminPages/adminTransparency'
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
