@@ -54,7 +54,7 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'transparency',
       label: 'Transparency',
-      content: <TransparencyComponent />,
+      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Transparency Dashboard</h1>,
     },
   ]);
 
@@ -118,7 +118,6 @@ export default function AdminAnalytics({ userType }) {
         setShowTownOptions(false);
         setShowTourismOptions(false);
         setShowInvestOptions(false);
-
       }
     };
 
@@ -476,14 +475,6 @@ function PreviewHomepage() {
       <div className="w-3/4 h-96 overflow-auto border-2 border-gray-500 rounded shadow-lg">
         <Homepage userType={USER_TYPES.Admin} />
       </div>
-    </div>
-  );
-}
-
-function TransparencyComponent() {
-  return (
-    <div>
-      <TransparencyContent />
     </div>
   );
 }
