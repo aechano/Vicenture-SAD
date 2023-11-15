@@ -49,7 +49,7 @@ export default function AboutSanVicente() {
       {/* Center the content */}
       <div className='relative bg-fixed bg-cover p-10'
         style={{
-          backgroundImage: "url(" + require("../../../res/img/LGU-PERS.jpg") + ")",
+          backgroundImage: "url(" + require("../../../res/img/pic_banner.png") + ")",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
         }}>
@@ -214,7 +214,7 @@ export default function AboutSanVicente() {
                 <div className="relative">
                   <img
                     className="rounded-t-lg w-full md:h-52 transition-transform transform group-hover:scale-107"
-                    src={require("../../../res/img/geography.png")}
+                    src={require("../../../res/img/map.jpg")}
                     alt="Barangay"
                   />
                   <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity group-hover:opacity-75"></div>

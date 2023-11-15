@@ -14,14 +14,14 @@ export default function OtherInfo() {
             <SectionContent
                 left={true}
                 title="Geography"
-                src={require("../../../res/img/geography.png")}
+                src={require("../../../res/img/pic_banner.png")}
                 alt="Geography">
                 The municipality covers 57.49 square kilometers (22.20 square miles), accounting for 2.52% of Camarines Norte's total land area. According to the 2020 Census, its population was 12,579. This accounted for 2.00% of the total population of Camarines Norte province, or 0.21% of the Bicol Region's total population. Based on these numbers, the population density is calculated to be 219 people per square kilometer or 567 people per square mile.
             </SectionContent>
 
             <SectionContent
                 title="Economy"
-                src={require("../../../res/img/economy.jpg")}
+                src={require("../../../res/img/map.jpg")}
                 alt="Economy">
                 San Vicente aspires to secure a brighter future over the next decade, one characterized by an enhanced quality of life and a thriving economy. The municipality's key drivers for this transformation are its promising agricultural and tourism sectors, both poised for sustainable growth. Additionally, ensuring peace and order at the barangay level is a top priority, empowering public safety officers to safeguard the community.
 
