@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import Homepage from '../Homepage';
+import { TransparencyContent } from '../../pages/AdminPages/adminTransparency';
 import Page403 from '../Accounts/ErrorPages/Page403';
 import { FaHome, FaChartBar, FaBuilding, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa'
 
@@ -8,7 +9,7 @@ export default function AdminAnalytics({ userType }) {
   const [dashboardItems] = useState([
     {
       id: 'AdminAnalytics',
-      label: 'Analytics',
+      label: 'Analytics', 
       iconAnalytics: <FaChartBar />,
       content: <div></div>,
     },
@@ -53,7 +54,7 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'transparency',
       label: 'Transparency',
-      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Transparency Dashboard</h1>,
+      content: <TransparencyComponent />,
     },
   ]);
 
@@ -70,13 +71,13 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'liveStreaming',
       label: 'Live Streaming',
-      iconLive:<FaFileVideo/>,
+      iconLive: <FaFileVideo />,
       content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Live Streaming</h1>,
     },
     {
       id: 'emergencies',
       label: 'Emergencies',
-      iconEmergency:<FaStop/>,
+      iconEmergency: <FaStop />,
       content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Emergencies</h1>,
     },
     {
@@ -95,7 +96,7 @@ export default function AdminAnalytics({ userType }) {
   const [townDropdownOpen, setTownDropdownOpen] = useState(false);
   const [tourismDropdownOpen, setTourismDropdownOpen] = useState(false);
   const [investDropdownOpen, setInvestDropdownOpen] = useState(false);
-  
+
 
 
   const townRef = useRef();
@@ -117,6 +118,7 @@ export default function AdminAnalytics({ userType }) {
         setShowTownOptions(false);
         setShowTourismOptions(false);
         setShowInvestOptions(false);
+
       }
     };
 
@@ -136,35 +138,35 @@ export default function AdminAnalytics({ userType }) {
         setTownDropdownOpen(false);
         setTourismDropdownOpen(false);
         setInvestDropdownOpen(false);
-        
+
         return '';
       }
-  
+
       setShowTownOptions(option.id === 'town');
       setShowTourismOptions(option.id === 'tourism');
       setShowInvestOptions(option.id === 'invest');
       setTownDropdownOpen(option.id === 'town');
       setTourismDropdownOpen(option.id === 'tourism');
       setInvestDropdownOpen(option.id === 'invest');
-  
+
       return option.id;
     });
   };
-  
+
 
   const handleTownSubItemClick = (subItem, event) => {
     event.stopPropagation();  // Stop event propagation to prevent closing
     setSelectedTownSubItem(subItem);
     setSelectedSubItemContent(subItem.content);
   };
-  
-  
+
+
 
   const renderSubItems = (subItems, ref, option) => {
     const isTownOption = option.id === 'town';
     const isTourismOption = option.id === 'tourism';
     const isInvestOption = option.id === 'invest';
-  
+
     return (
       <div className={`ml-6 ${isTownOption || isTourismOption || isInvestOption ? 'dropdown-submenu' : ''}`} ref={ref}>
         {(isTownOption && townDropdownOpen) || (isTourismOption && tourismDropdownOpen) || (isInvestOption && investDropdownOpen) ? (
@@ -198,7 +200,7 @@ export default function AdminAnalytics({ userType }) {
       // Include the PreviewHomepage component for the admin homepage
       return <PreviewHomepage />;
     }
-  
+
 
     const selectedItem = [...dashboardItems, ...pagesItems, ...formsItems, ...othersItems].find(
       (item) => item.id.toLowerCase() === lowerCaseSelectedOption
@@ -221,12 +223,12 @@ export default function AdminAnalytics({ userType }) {
         <div className="text-xl font-bold text-80733D mt-4">Dashboard</div>
         {dashboardItems.map((item) => (
           <div key={item.id} className="cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4" onClick={() => handleOptionClick(item)}>
-          <span className="mr-2 icon-large">{item.iconAnalytics}</span>
+            <span className="mr-2 icon-large">{item.iconAnalytics}</span>
             {item.label}
 
-            
+
           </div>
-          
+
         ))}
 
         <div className="text-xl font-bold text-80733D mt-6">Pages</div>
@@ -474,6 +476,14 @@ function PreviewHomepage() {
       <div className="w-3/4 h-96 overflow-auto border-2 border-gray-500 rounded shadow-lg">
         <Homepage userType={USER_TYPES.Admin} />
       </div>
+    </div>
+  );
+}
+
+function TransparencyComponent() {
+  return (
+    <div>
+      <TransparencyContent />
     </div>
   );
 }
