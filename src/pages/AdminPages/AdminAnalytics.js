@@ -3,13 +3,15 @@ import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import Homepage from '../Homepage';
 import { TransparencyContent } from '../../pages/AdminPages/adminTransparency';
 import Page403 from '../Accounts/ErrorPages/Page403';
-import { FaHome, FaChartBar, FaBuilding, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa'
+import { FaHome, FaChartBar, FaBuilding, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa';
+import AdminEmergenciesComponent from '../../pages/AdminPages/adminEmergencies';
+
 
 export default function AdminAnalytics({ userType }) {
   const [dashboardItems] = useState([
     {
       id: 'AdminAnalytics',
-      label: 'Analytics', 
+      label: 'Analytics',
       iconAnalytics: <FaChartBar />,
       content: <div></div>,
     },
@@ -54,7 +56,7 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'transparency',
       label: 'Transparency',
-      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Transparency Dashboard</h1>,
+      content: <TransparencyComponent />,
     },
   ]);
 
@@ -78,7 +80,7 @@ export default function AdminAnalytics({ userType }) {
       id: 'emergencies',
       label: 'Emergencies',
       iconEmergency: <FaStop />,
-      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Emergencies</h1>,
+      content: <AdminEmergenciesComponent />,
     },
     {
       id: 'reportedContents',
@@ -118,6 +120,7 @@ export default function AdminAnalytics({ userType }) {
         setShowTownOptions(false);
         setShowTourismOptions(false);
         setShowInvestOptions(false);
+
       }
     };
 
@@ -478,3 +481,13 @@ function PreviewHomepage() {
     </div>
   );
 }
+
+function TransparencyComponent() {
+  return (
+    <div>
+      <TransparencyContent />
+    </div>
+  );
+}
+
+
