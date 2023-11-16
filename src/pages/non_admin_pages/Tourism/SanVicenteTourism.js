@@ -61,7 +61,7 @@ export default function SanVicenteTourism() {
         <div>
           <div className="flex items-center pt-10">
             <div className="flex-grow border-b-4 border-gray-900"></div>
-            <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">Let Us Guide You</h1>
+            <h1 className="lg:text-4xl font-bold p-0 text-3xl md:p-2 mb-0 mt-0">Let Us Guide You</h1>
 
           </div>
 
@@ -105,8 +105,9 @@ export default function SanVicenteTourism() {
           backgroundPosition: "center",
         }}>
         <div className="absolute inset-0 bg-gray-600 bg-opacity-70"></div>
+      
         <div className="text-center pt-5 pb-5">
-          <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0 relative z-10 text-white">Content Feeds</h1>
+          <h1 className="lg:text-5xl font-bold p-0 text-4xl md:p-2 mb-0 mt-0 relative z-10 text-white">CONTENT FEEDS</h1>
         </div>
         <div className='flex justify-center space-x-5 pb-16 relative z-10 p-5'>
 
@@ -222,7 +223,7 @@ export default function SanVicenteTourism() {
 
       <div className=''>
         <div className="text-center pt-5 pb-5">
-          <h1 className="lg:text-3xl font-bold p-0 text-2xl md:p-2 mb-0 mt-0">Follow Us on Our Social Media Accounts.</h1>
+          <h1 className="lg:text-4xl font-bold p-0 text-3xl md:p-2 mb-0 mt-0">Follow Us on Our Social Media Accounts.</h1>
         </div>
         <div>
           <SocialMedia />
