@@ -18,8 +18,9 @@ const PATH_NAME = {
         AdminToVisit: "/adminToVisit",
         AdminActivities: "/adminActivities",
         AdminTransparency: "/adminTransparency",
+        adminEmergencies:"/adminEmergencies",
         AllPages: ["/analytics", "/adminHomepage", "/adminAboutSV", "/adminMunicipalityProfile",
-            "/adminElectedOfficial", "/adminCharter", "/adminToVisit", "/adminActivities",]
+            "/adminElectedOfficial", "/adminCharter", "/adminToVisit", "/adminActivities", "/adminEmergencies",]
     },
     Home: "/",
     TheTown: {

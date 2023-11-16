@@ -12,7 +12,8 @@ import adminHomepage from './pages/AdminPages/adminHomepage';
 import adminAboutSV from './pages/AdminPages/adminAboutSV';
 import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
 import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
-import AdminTransparency from './pages/AdminPages/adminTransparency'
+import AdminTransparency from './pages/AdminPages/adminTransparency';
+import { adminEmergencies } from './pages/AdminPages/adminEmergencies';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
@@ -73,6 +74,7 @@ function App() {
                         <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
                         <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile />} />
                         <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
+                        <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
 
 
                         <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />
