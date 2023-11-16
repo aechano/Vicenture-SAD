@@ -68,6 +68,7 @@ export default function Header(props) {
     const [adminHeader, setAdminHeader] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+    
 
     const handleDropdown = (name) => {
         if (openDropdown === name) {
@@ -201,12 +202,34 @@ export default function Header(props) {
                                                     <button
                                                         type="button"
                                                         className="relative p-1 text-lgu-lime hover:text-white"
+                                                        onClick={() => setOpenMobileDropdown('notifications')}
                                                     >
                                                         <span className="absolute -inset-1.5" />
                                                         <span className="sr-only">View notifications</span>
                                                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                                                     </button>
 
+                                                    {/* Notification dropdown */}
+                                                    <Transition
+                                                        as={Fragment}
+                                                        show={openMobileDropdown === 'notifications'}
+                                                        enter="transition ease-out duration-100"
+                                                        enterFrom="transform opacity-0 scale-95"
+                                                        enterTo="transform opacity-100 scale-100"
+                                                        leave="transition ease-in duration-75"
+                                                        leaveFrom="transform opacity-100 scale-100"
+                                                        leaveTo="transform opacity-0 scale-95"
+                                                    >
+                                                        <div className="absolute bottom-[-4rem] right-0 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                            {/* Replace the content below with your notification items */}
+                                                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                                                Notification 1
+                                                            </div>
+                                                            <div className="block px-4 py-2 text-sm text-gray-700">
+                                                                Notification 2
+                                                            </div>
+                                                        </div>
+                                                    </Transition>
                                                     {/* Profile dropdown */}
                                                     <Menu as="div" className="relative ml-3">
                                                         <div>
@@ -339,7 +362,7 @@ export default function Header(props) {
                         )}
                     </Disclosure>
                     <div className='mt-20' />
-                    {props.userType === USER_TYPES.Admin && adminHeader?
+                    {props.userType === USER_TYPES.Admin && adminHeader ?
                         < div className="block w-full h-[50px] bg-lgu-yellow ps-5 pt-2">
                             <p className="select-none">You are logged in as an admin. <span className="text-lgu-green underline leading-[50px] cursor-pointer" onClick={() => navigate(PATH_NAME.AdminPages.AdminAnalytics)}>Click here to go to admin dashboard</span>.</p>
                         </div>

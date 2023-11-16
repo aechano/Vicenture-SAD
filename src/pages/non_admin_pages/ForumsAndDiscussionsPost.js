@@ -73,8 +73,9 @@ export default function ForumsAndDiscussionsPost() {
     /** Retrieve content depending on (useParams) forumID value */
     useEffect(() => {
         for (let contentsItem of contents) {
-            if (contentsItem.contentID === forumID) {
+            if (contentsItem.contentID === parseInt(forumID)) {
                 setContent(contentsItem);
+     
                 break;
             }
         }

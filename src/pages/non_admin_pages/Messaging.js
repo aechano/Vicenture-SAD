@@ -189,7 +189,7 @@ export default function Messaging() {
     }, [messages]);
     return (
         <>
-            <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen ps-5 mt-20'> {/** This is the sidebar */}
+            <div className='fixed top-5 left-0 z-40 w-80 drop-shadow-md bg-white h-screen ps-5 mt-20'> {/** This is the sidebar */}
                 <div className='flex h-17 pe-5'>
                     <h1 className='text-lgu-green text-xl select-none h-full grow'>
                         Messaging
@@ -206,7 +206,7 @@ export default function Messaging() {
                 </div>
             </div>
             <div className='w-full ps-80'>
-                <div className='fixed top-20 w-full h-20 bg-lgu-yellow flex z-20'> {/** Topbar */}
+                <div className='fixed top-20 lg:top-24 w-full h-20 bg-lgu-yellow flex z-20'> {/** Topbar */}
                     <div className='ps-2 pt-2 w-20'>
                         <img
                             className='h-16 w-16'
