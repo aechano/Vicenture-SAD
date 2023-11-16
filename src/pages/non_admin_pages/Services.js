@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Collapse } from 'react-collapse';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 import Banner from '../../components/Banner';
+import { FaPeopleGroup } from "react-icons/fa6";
+import { GiPalmTree } from "react-icons/gi";
+import { MdAddBusiness } from "react-icons/md";
+import { NavLink } from 'react-router-dom';
 
 export default function Services() {
 
@@ -433,37 +437,162 @@ export default function Services() {
             </Banner>
 
             <div className="pt-3 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 relative">
-                {/* Search input box */}
-                <div className="relative">
-                    <input
-                        type="search"
-                        className="block w-2/5 mb-4 p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
-                        placeholder="Search"
-                        value={search}
-                        onChange={(e) => {
-                            setSearch(e.target.value);
-                        }}
-                        required
-                        onKeyDown={handleKeyDown}
-                    />
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <svg
-                            className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 20 20"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                            />
-                        </svg>
+
+                <div className='pb-20'>
+                    <img src={require("../../res/img/SERVICES.png")} alt='services_cover' className='rounded-sm' />
+                </div>
+
+                <div className='grid grid-cols-3 justify-items-center gap-4 pb-20'>
+                    <div className='text-center border-r-2 border-black p-2'>
+                        <FaPeopleGroup className='text-5xl text-lgu-green mx-auto' />
+                        <p className='leading-loose'>We offer different services for people within our community.</p>
+                    </div>
+                    <div className='text-center border-r-2 border-black'>
+                        <GiPalmTree className='text-5xl text-lgu-green mx-auto' />
+                        <p className='leading-loose'>
+                            Feel the warmth of our small town as you embark on a journey of exploration and relaxation during your travels.</p>
+                    </div>
+                    <div className='text-center'>
+                        <MdAddBusiness className='text-5xl text-lgu-green mx-auto' />
+                        <p className='leading-loose'>
+                            Select San Vicente as the inaugural destination for your business venture.</p>
                     </div>
                 </div>
+
+                <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
+                    <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
+                        <div>
+                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/residents.jpg")} />
+                        </div>
+                    </div>
+                    <div className='p-5'>
+                        <div className='flex md:block '>
+                            <h1 className='text-2xl lg:text-5xl font-bold pb-4'>FOR&nbsp;</h1>
+                            <h1 className='text-2xl lg:text-5xl font-bold pb-4'>RESIDENTS</h1>
+                        </div>
+                        <div className="sm:flex-grow sm:border-b-2 sm:border-gray-900"></div>
+                        <p className='font-semibold pt-4'>Title Goes Here...</p>
+                        <p className='text-sm pt-4 text-justify leading-6'>It engages its enemies using psychic powers. Each of its three heads fires off psychokinetic energy, tripling its power.Weezing alternately shrinks and inflates its twin bodies to mix together toxic gases inside. The more the gases are mixed, the more powerful the toxins become. The Pokémon also becomes more putrid.Geodude that have lived a long life have had all their edges smoothed out until they’re totally round. They also have a calm, quiet disposition.</p>
+                        <div className='pt-8'>
+                            <NavLink to={PATH_NAME.TheTown.CitizensCharter} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                Go to Citizen Charter
+                            </NavLink>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
+                    <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
+                        <div>
+                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/investors.jpg")} />
+                        </div>
+                    </div>
+                    <div className='p-5'>
+                        <div className='flex md:block'>
+                            <h1 className='text-2xl lg:text-5xl font-bold pb-4'>FOR&nbsp;</h1>
+                            <h1 className='text-2xl lg:text-5xl font-bold pb-4'>INVESTORS</h1>
+                        </div>
+                        <div className="sm:flex-grow sm:border-b-2 sm:border-gray-900"></div>
+                        <p className='font-semibold pt-4'>Title Goes Here...</p>
+                        <p className='text-sm pt-4 text-justify leading-6'>It engages its enemies using psychic powers. Each of its three heads fires off psychokinetic energy, tripling its power.</p>
+                        <div className='flex flex-wrap space-x-2 pt-5'>
+                            <div className="pt-2">
+                                <a href={require("../../res/pdf/Geographic-Location.pdf")} download="Geographic-Location.pdf" class="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-blue-500 border border-transparent rounded-full md:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
+                                    Download Business Permit
+                                </a>
+                            </div>
+                            <div className="pt-2">
+                                <a href={require("../../res/pdf/Geographic-Location.pdf")} download="Geographic-Location.pdf" class="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-blue-500 border border-transparent rounded-full md:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
+                                    Download File
+                                </a>
+                            </div>
+                            <div className="pt-2">
+                                <a href={require("../../res/pdf/Geographic-Location.pdf")} download="Geographic-Location.pdf" class="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-blue-500 border border-transparent rounded-full md:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
+                                    Download File
+                                </a>
+                            </div>
+                        </div>
+
+                        <div className='pt-5'>
+                            <NavLink to={PATH_NAME.Invest.InvestmentOpportunities} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                View our Investor Contents
+                            </NavLink>
+                        </div>
+                    </div>
+                </div>
+
+                <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
+                    <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
+                        <div>
+                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/tourist.jpg")} />
+                        </div>
+                    </div>
+                    <div className='p-5'>
+                        <div className='flex md:block'>
+                            <h1 className='text-2xl lg:text-5xl font-bold pb-4'>FOR&nbsp;</h1>
+                            <h1 className='text-2xl lg:text-5xl font-bold pb-4'>TOURISTS</h1>
+                        </div>
+
+                        <div className="sm:flex-grow sm:border-b-2 sm:border-gray-900"></div>
+                        <p className='font-semibold pt-4'>Title Goes Here...</p>
+                        <p className='text-sm pt-4 text-justify leading-6'>It engages its enemies using psychic powers. Each of its three heads fires off psychokinetic energy, tripling its power.Weezing alternately shrinks and inflates its twin bodies to mix together toxic gases inside. The more the gases are mixed, the more powerful the toxins become. The Pokémon also becomes more putrid.Geodude that have lived a long life have had all their edges smoothed out until they’re totally round. They also have a calm, quiet disposition.</p>
+                        <div className='pt-8'>
+                            <NavLink to={PATH_NAME.Tourism.SanVicente} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                View San Vicente Tourism
+                            </NavLink>
+                        </div>
+                    </div>
+                </div>
+
+                <div className='grid grid-cols-2'>
+                    <div className='flex items-center justify-center'>
+                        <h1 className='sm:text-3xl font-bold text-center'>View Other Offered Services</h1>
+                    </div>
+
+                    <div className='pt-3 px-2 sm:px-6 lg:px-8 m-5 relative'>
+
+                        {/* Search input box */}
+                        <div className="relative">
+
+                            <input
+                                type="search"
+                                className="block w-full mb-4 p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
+                                placeholder="Search"
+                                value={search}
+                                onChange={(e) => {
+                                    setSearch(e.target.value);
+                                }}
+                                required
+                                onKeyDown={handleKeyDown}
+                            />
+
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg
+                                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                                    />
+                                </svg>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
             </div>
 
             <div className="pt-3 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
@@ -475,7 +604,7 @@ export default function Services() {
                         >
                             <p className="text-2xl mt-2 text-white font-semibold">{office.office}</p>
                             <div className="text-5xl text-white">
-                                {open === index ? <AiOutlineMinus /> : <AiOutlinePlus />}
+                                {open === index ? <IoIosArrowUp /> : <IoIosArrowDown />}
                             </div>
                         </div>
 
