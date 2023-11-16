@@ -3,6 +3,7 @@ import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import Homepage from '../Homepage';
 import { TransparencyContent } from '../../pages/AdminPages/adminTransparency';
 import Page403 from '../Accounts/ErrorPages/Page403';
+import { FaHome, FaChartBar, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa'
 import { FaHome, FaChartBar, FaBuilding, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa';
 import AdminEmergenciesComponent from '../../pages/AdminPages/adminEmergencies';
 import AdminReportedContentsComponent from '../../pages/AdminPages/adminReportedContents';
@@ -57,6 +58,7 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'transparency',
       label: 'Transparency',
+      content:<TransparencyComponent />,
       content: <TransparencyComponent />,
     },
   ]);
@@ -74,12 +76,14 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'liveStreaming',
       label: 'Live Streaming',
-      iconLive: <FaFileVideo />,
+      iconLive:<FaFileVideo/>,
       content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Live Streaming</h1>,
     },
     {
       id: 'emergencies',
       label: 'Emergencies',
+      iconEmergency:<FaStop/>,
+      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Emergencies</h1>,
       iconEmergency: <FaStop />,
       content: <AdminEmergenciesComponent />,
     },
@@ -99,7 +103,7 @@ export default function AdminAnalytics({ userType }) {
   const [townDropdownOpen, setTownDropdownOpen] = useState(false);
   const [tourismDropdownOpen, setTourismDropdownOpen] = useState(false);
   const [investDropdownOpen, setInvestDropdownOpen] = useState(false);
-
+  
 
 
   const townRef = useRef();
@@ -121,6 +125,7 @@ export default function AdminAnalytics({ userType }) {
         setShowTownOptions(false);
         setShowTourismOptions(false);
         setShowInvestOptions(false);
+        
 
       }
     };
@@ -141,35 +146,35 @@ export default function AdminAnalytics({ userType }) {
         setTownDropdownOpen(false);
         setTourismDropdownOpen(false);
         setInvestDropdownOpen(false);
-
+        
         return '';
       }
-
+  
       setShowTownOptions(option.id === 'town');
       setShowTourismOptions(option.id === 'tourism');
       setShowInvestOptions(option.id === 'invest');
       setTownDropdownOpen(option.id === 'town');
       setTourismDropdownOpen(option.id === 'tourism');
       setInvestDropdownOpen(option.id === 'invest');
-
+  
       return option.id;
     });
   };
-
+  
 
   const handleTownSubItemClick = (subItem, event) => {
     event.stopPropagation();  // Stop event propagation to prevent closing
     setSelectedTownSubItem(subItem);
     setSelectedSubItemContent(subItem.content);
   };
-
-
+  
+  
 
   const renderSubItems = (subItems, ref, option) => {
     const isTownOption = option.id === 'town';
     const isTourismOption = option.id === 'tourism';
     const isInvestOption = option.id === 'invest';
-
+  
     return (
       <div className={`ml-6 ${isTownOption || isTourismOption || isInvestOption ? 'dropdown-submenu' : ''}`} ref={ref}>
         {(isTownOption && townDropdownOpen) || (isTourismOption && tourismDropdownOpen) || (isInvestOption && investDropdownOpen) ? (
@@ -203,7 +208,7 @@ export default function AdminAnalytics({ userType }) {
       // Include the PreviewHomepage component for the admin homepage
       return <PreviewHomepage />;
     }
-
+  
 
     const selectedItem = [...dashboardItems, ...pagesItems, ...formsItems, ...othersItems].find(
       (item) => item.id.toLowerCase() === lowerCaseSelectedOption
@@ -226,12 +231,12 @@ export default function AdminAnalytics({ userType }) {
         <div className="text-xl font-bold text-80733D mt-4">Dashboard</div>
         {dashboardItems.map((item) => (
           <div key={item.id} className="cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4" onClick={() => handleOptionClick(item)}>
-            <span className="mr-2 icon-large">{item.iconAnalytics}</span>
+          <span className="mr-2 icon-large">{item.iconAnalytics}</span>
             {item.label}
 
-
+            
           </div>
-
+          
         ))}
 
         <div className="text-xl font-bold text-80733D mt-6">Pages</div>
@@ -341,6 +346,7 @@ function PreviewHomepage() {
     <div className="flex items-center justify-center">
       {/* Edit section for homepage */}
       <div className="w-1/3 p-4 bg-lgu-lime rounded-md mr-8 ml-8 mt-8" style={{ height: "500px", overflowY: "auto", overflowX: "hidden" }}>
+      <h1 className="text-3xl font-bold mb-4">Homepage</h1>
         <div className="flex items-center mt-2 mb-4">
           {/* Checkbox for banner title */}
           <input
@@ -489,6 +495,4 @@ function TransparencyComponent() {
       <TransparencyContent />
     </div>
   );
-}
-
-
+  }
