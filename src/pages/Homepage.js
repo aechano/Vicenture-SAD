@@ -12,7 +12,7 @@ function Homepage({ userType }) {
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const openModal = () => {
-        console.log("Opening modal");
+        console.log("Opening modals");
         setModalOpen(true);
 
     };
