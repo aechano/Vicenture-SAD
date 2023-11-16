@@ -5,14 +5,13 @@ import BackToTop from "../components/BackToTop";
 import { NavLink } from "react-router-dom";
 import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
 import CalendarModal from "../components/CalendarModal";
-import RevealOnScroll from "../components/RevealOnScroll";
 
 function Homepage({ userType }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const openModal = () => {
-        console.log("Opening modal");
+        console.log("Opening modals");
         setModalOpen(true);
 
     };

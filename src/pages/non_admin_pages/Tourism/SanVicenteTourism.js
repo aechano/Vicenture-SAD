@@ -32,7 +32,7 @@ export default function SanVicenteTourism() {
           <div className='relative'>
             <img src={require('../../../res/img/tara.png')} className='rounded-md' />
             <div className='absolute bottom-16 left-40'>
-              <a href="#_" class="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+              <a href="#_" className="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
                 Go to Tourism Office
               </a>
             </div>

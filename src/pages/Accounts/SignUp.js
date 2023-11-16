@@ -16,29 +16,42 @@ export default function SignUp() {
     const [button, setButton] = useState("Create Account");
     const navigate = useNavigate();
 
+    const [emailError, setEmailError] = useState('');
+    const [usernameError, setUsernameError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
+    const [roleError, setRoleError] = useState('');
+
     function evaluateAnswers(e) {
         e.preventDefault();
 
+        setEmailError('');
+        setUsernameError('');
+        setPasswordError('');
+        setConfirmPasswordError('');
+        setRoleError('');
+
+
         var validInputs = true;
         if (!String(email).toLowerCase().match('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$')) { // checks if the email input is valid
-            console.log("Not a valid email.");
+            setEmailError('Not a valid email.');
             validInputs = false;
         }
         if (!String(username)
             .match('^[A-Za-z0-9_]{6,}$')) { // checks if the username input is valid
             if (String(username).length < 6) {
-                console.log("Username needs to be 6 characters and above.")
+                setUsernameError("Username needs to be 6 characters and above.")
             } else {
-                console.log("Username can only contain A-Z, a-z, numbers, and underscores")
+                setUsernameError("Username can only contain A-Z, a-z, numbers, and underscores")
             }
             validInputs = false;
         }
         if (String(password) !== String(confirmPassword)) {
-            console.log("Password does not match.")
+            setPasswordError("Password does not match.")
             validInputs = false;
         }
         if (role === "" || role === null) {
-            console.log("Roles are not chosen!")
+            setRoleError("Roles are not chosen!")
             validInputs = false;
         }
 
@@ -77,7 +90,7 @@ export default function SignUp() {
         }
     }
     return (
-        <section class="bg-gray-900 p-20" style={{ backgroundImage:"url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
+        <section class="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
                     <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
@@ -94,6 +107,12 @@ export default function SignUp() {
                             Create an account
                         </h1>
                         <form className="space-y-4 md:space-y-6 max-w-md mx-auto" onSubmit={evaluateAnswers}>
+                            {emailError && <div className="text-red-200">{emailError}</div>}
+                            {usernameError && <div className="text-red-200">{usernameError}</div>}
+                            {passwordError && <div className="text-red-200">{passwordError}</div>}
+                            {confirmPasswordError && <div className="text-red-200">{confirmPasswordError}</div>}
+                            {roleError && <div className="text-red-200">{roleError}</div>}
+                            
                             <InputBoxAccount
                                 placeholder="Username"
                                 value={username}
