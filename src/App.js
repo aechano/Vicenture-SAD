@@ -13,8 +13,6 @@ import adminAboutSV from './pages/AdminPages/adminAboutSV';
 import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
 import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
 import AdminTransparency from './pages/AdminPages/adminTransparency';
-import adminEmergencies from './pages/AdminPages/adminEmergencies'
-import AdminTransparency from './pages/AdminPages/adminTransparency';
 import adminReportedContents from './pages/AdminPages/adminReportedContents';
 import { adminEmergencies } from './pages/AdminPages/adminEmergencies';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
@@ -77,7 +75,6 @@ function App() {
                         <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
                         <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile />} />
                         <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
-                        <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
                         <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
                         <Route path={PATH_NAME.AdminPages.adminReportedContents} element={<adminReportedContents />} />
 

@@ -4,7 +4,6 @@ import Homepage from '../Homepage';
 import { TransparencyContent } from '../../pages/AdminPages/adminTransparency';
 import Page403 from '../Accounts/ErrorPages/Page403';
 import { FaHome, FaChartBar, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa'
-import { FaHome, FaChartBar, FaBuilding, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa';
 import AdminEmergenciesComponent from '../../pages/AdminPages/adminEmergencies';
 import AdminReportedContentsComponent from '../../pages/AdminPages/adminReportedContents';
 
