@@ -7,6 +7,7 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { GiPalmTree } from "react-icons/gi";
 import { MdAddBusiness } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
+import BackToTop from '../../components/BackToTop';
 
 export default function Services() {
 
@@ -621,6 +622,7 @@ export default function Services() {
                     </div>
                 ))}
             </div>
+            <BackToTop />
         </>
     );
 }
