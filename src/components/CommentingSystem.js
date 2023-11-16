@@ -146,7 +146,7 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest }) {
                                 <p className='text-sm h-full'>{comment.username}&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(comment.timestamp)}</span></p>
                             </div>
                             {
-                                isGuest ?
+                                isGuest || !isGuest ? // remove ` || !isGuest ` after debugging
                                     null
                                     :
                                     <div
@@ -316,7 +316,7 @@ function Reply({ reply, className, isGuest }) {
                                 <p className='text-sm h-full'>{reply.username}&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(reply.timestamp)}</span></p>
                             </div>
                             {
-                                isGuest ?
+                                isGuest || !isGuest ? //remove the part ` || !isGuest`
                                     null
                                     :
                                     <div
