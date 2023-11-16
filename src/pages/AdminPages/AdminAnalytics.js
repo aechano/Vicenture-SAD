@@ -5,6 +5,7 @@ import { TransparencyContent } from '../../pages/AdminPages/adminTransparency';
 import Page403 from '../Accounts/ErrorPages/Page403';
 import { FaHome, FaChartBar, FaBuilding, FaPencilAlt, FaFileVideo, FaStop } from 'react-icons/fa';
 import AdminEmergenciesComponent from '../../pages/AdminPages/adminEmergencies';
+import AdminReportedContentsComponent from '../../pages/AdminPages/adminReportedContents';
 
 
 export default function AdminAnalytics({ userType }) {
@@ -85,7 +86,7 @@ export default function AdminAnalytics({ userType }) {
     {
       id: 'reportedContents',
       label: 'Reported Contents',
-      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Reported Contents</h1>,
+      content: <AdminReportedContentsComponent />,
     },
   ]);
 

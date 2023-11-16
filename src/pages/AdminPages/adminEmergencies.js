@@ -48,6 +48,7 @@ export default function AdminEmergenciesComponent() {
                 </button>
 
             </div>
+
         </div>
     )
 }
