@@ -67,10 +67,10 @@ function Homepage({ userType }) {
                                 </div>
                                 <div className="p-6">
                                     <h5 className="mb-2 text-xl font-medium leading-tight text-black">
-                                        Success card title
+                                        Heavy Rainfall Warning
                                     </h5>
-                                    <p className="text-base text-black">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                                    <p className="text-base text-black overflow-y-scroll no-scrollbar h-40">
+                                        A "Heavy Rainfall Warning" has been issued, urging residents to exercise caution and take necessary precautions as intense precipitation is anticipated in the forecast.
                                     </p>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@ function Homepage({ userType }) {
                     <div className="border-b-2 border-gray-900"></div>
                     <div className="flex flex-col mt-5 space-y-4 lg:space-y-0 lg:justify-between lg:flex-row">
                         <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                            <div className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
+                            <NavLink to={PATH_NAME.Articles} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
                                     <p className="text-lg text-black font-semibold">
                                         Article Title
@@ -113,12 +113,12 @@ function Homepage({ userType }) {
                                         This is a one-sentence overview of the activity, which can be multi-line.
                                     </p>
                                 </div>
-                                <NavLink to="/" className="text-xs text-red-500"> Read more...</NavLink>
-                            </div>
+                                <p className="text-xs text-red-500"> Read more...</p>
+                            </NavLink>
                         </div>
 
-                        <div className="transition-all duration-400 hover:scale-110 py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                            <div className="text-left space-y-2 sm:text-left">
+                        <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                            <NavLink to={PATH_NAME.Articles} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
                                 <div className="space-y-0.5">
                                     <p className="text-lg text-black font-semibold">
                                         Article Title
@@ -130,8 +130,8 @@ function Homepage({ userType }) {
                                         This is a one-sentence overview of the activity, which can be multi-line.
                                     </p>
                                 </div>
-                                <NavLink to="/" className="text-xs text-red-500"> Read more...</NavLink>
-                            </div>
+                                <p className="text-xs text-red-500"> Read more...</p>
+                            </NavLink>
                         </div>
 
                         <NavLink to={PATH_NAME.Articles} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 py-8 px-8 max-w-sm bg-lgu-yellow rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
