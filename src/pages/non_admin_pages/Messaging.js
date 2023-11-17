@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { timeAgo } from '../../functionHelpers/Time';
+import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 
-export default function Messaging() {
+export default function Messaging({ userType }) {
     var offices = [
         {
             officeId: 0,
@@ -124,9 +125,31 @@ export default function Messaging() {
             lastMessageTimestamp: null
         },
     ]
+    var usersChats = [{
+        officeId: 0,
+        office: "Gheeelo",
+        officeLogo: require("./../../res/img/angelo.png"),
+        lastMessage: "You: I will send you a  ...",
+        lastMessageSender: null,
+        lastMessageTimestamp: null
+    },{
+        officeId: 1,
+        office: "Xeniaaa",
+        officeLogo: require("./../../res/img/xenia.png"),
+        lastMessage: "You: I will send you a  ...",
+        lastMessageSender: null,
+        lastMessageTimestamp: null
+    },{
+        officeId: 2,
+        office: "Vheeeel",
+        officeLogo: require("./../../res/img/josevhel.png"),
+        lastMessage: "You: I will send you a  ...",
+        lastMessageSender: null,
+        lastMessageTimestamp: null
+    }]
     const chatContainerRef = useRef();
     const [currentChat, setCurrentChat] = useState(offices[0]);
-    var userEmail = "gheeelo@gmail.com"
+    var userEmail = [USER_TYPES.Citizen, USER_TYPES.Tourist, USER_TYPES.Investor].includes(userType) ? "gheeelo@gmail.com" : currentChat.office
     var messages = [
         {
             messageID: "100-0-1",
@@ -202,7 +225,10 @@ export default function Messaging() {
                     </svg>
                 </div>
                 <div className='overflow-y-scroll h-full pb-32'>
-                    {offices.map((office, index) => <ChatSidePanel key={index} onClick={setCurrentChat} office={office} className="mb-1 pe-2" />)}
+                    {userEmail === currentChat.office ?
+                        usersChats.map((users, index) => <ChatSidePanel key={index} onClick={setCurrentChat} office={users} className="mb-1 pe-2" />)
+                        :
+                        offices.map((office, index) => <ChatSidePanel key={index} onClick={setCurrentChat} office={office} className="mb-1 pe-2" />)}
                 </div>
             </div>
             <div className='w-full ps-80'>
@@ -218,8 +244,7 @@ export default function Messaging() {
 
                 <div className='fixed left-0 w-full h-screen overflow-y-scroll no-scrollbar pb-40 pt-20 pe-5 ps-80' ref={chatContainerRef}> {/** Chat threads */}
                     {messages.map((messageDetails) => {
-
-                        if (userEmail === messageDetails.sender) {
+                        if ((userEmail==="gheeelo@gmail.com" && userEmail === messageDetails.sender) || (userEmail===currentChat.office && messageDetails.sender==="gheeelo@gmail.com")) {
                             return (
                                 <MyChat
                                     key={messageDetails.messageID}
@@ -227,7 +252,7 @@ export default function Messaging() {
                                     timestamp={messageDetails.timestamp}
                                     file={messageDetails.file} />
                             )
-                        } else if (currentChat.office === messageDetails.sender) {
+                        } else if (currentChat.office === messageDetails.sender || (userEmail===currentChat.office && messageDetails.sender==="gheeelo@gmail.com")) {
                             return (
                                 <OtherChat
                                     key={messageDetails.messageID}

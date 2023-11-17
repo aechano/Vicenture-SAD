@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
@@ -68,7 +68,22 @@ export default function Header(props) {
     const [adminHeader, setAdminHeader] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
-    
+
+    const notificationDropdownRef = useRef(null);
+
+    const handleClickOutside = (event) => {
+        if (notificationDropdownRef.current && !notificationDropdownRef.current.contains(event.target)) {
+            setOpenMobileDropdown(null);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
 
     const handleDropdown = (name) => {
         if (openDropdown === name) {
@@ -220,7 +235,9 @@ export default function Header(props) {
                                                         leaveFrom="transform opacity-100 scale-100"
                                                         leaveTo="transform opacity-0 scale-95"
                                                     >
-                                                        <div className="absolute bottom-[-4rem] right-0 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                        <div
+                                                            ref={notificationDropdownRef}
+                                                            className="absolute bottom-[-4rem] right-0 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                             {/* Replace the content below with your notification items */}
                                                             <div className="block px-4 py-2 text-sm text-gray-700">
                                                                 Notification 1

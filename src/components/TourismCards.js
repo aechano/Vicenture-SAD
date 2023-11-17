@@ -54,14 +54,19 @@ export default function TourismCards({ content, onClick }) {
                             >
                                 {userType !== USER_TYPES.Guest ?
                                     <div>
-                                        <NavLink to="#" className={"block"}>Report</NavLink>
+                                        {userType !== USER_TYPES.LguSV ?
+                                            <NavLink to="#" className={"block"}>Report</NavLink>
+                                            :
+                                            null
+                                        }
                                         {userType === USER_TYPES.LguSV ?
                                             <div className="block">
-                                                <NavLink to="#" className={"mt-2 block"}>Edit</NavLink> {/* Add an "Edit" link */}
+                                                <NavLink to={PATH_NAME.Tourism.Content + "/edit/1"} className={"mt-2 block"}>Edit</NavLink> {/* Add an "Edit" link */}
                                                 <NavLink to="#" className={"mt-2 block"}>Delete</NavLink> {/* Add a "Delete" link */}
                                             </div>
                                             :
-                                            null}
+                                            null
+                                        }
                                     </div>
                                     :
                                     null}

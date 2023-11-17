@@ -5,6 +5,7 @@ import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
+import { NavLink } from 'react-router-dom';
 
 
 export default function Activities() {
@@ -82,7 +83,6 @@ export default function Activities() {
             </Banner>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='flex items-center justify-center'>
-
                     <form className="w-7/12 my-auto p-3">
                         <div class="relative">
                             {/*SVG image of a magnifying glass*/}
@@ -120,7 +120,13 @@ export default function Activities() {
                         <FaFilter />
                     </div>
                 </div>
-
+                <div className='w-fit rounded-full ms-5 my-2 float float-right'>
+                    <NavLink
+                    to={PATH_NAME.Tourism.Content + "/add"}
+                    className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
+                        +&nbsp;&nbsp;&nbsp;Create A Post
+                    </NavLink>
+                </div>
                 <div className='pt-12'>
                     {contents.map((content, index) => {
                         return <TourismCards
@@ -138,7 +144,7 @@ export default function Activities() {
 
 
             </div>
-        <BackToTop />
+            <BackToTop />
         </>
 
     )
