@@ -7,7 +7,7 @@ import { API, PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from "react-icons/rx"
 
 
-export default function SignUpLGU() {
+export default function SignUpLGU({ state, previousPage }) {
 
     const navigate = useNavigate();
 
@@ -45,12 +45,12 @@ export default function SignUpLGU() {
             "office": office,
             "position": position,
             "accounts": {
-                "email": data.email,
-                "password": data.password,
-                "username": data.username,
-                "accountType": data.role,
-                "lastActiveDate": data.lastActiveDate,
-                "accountCreationDate": data.accountCreationDate
+                "email": state.email,
+                "password": state.password,
+                "username": state.username,
+                "accountType": state.role,
+                "lastActiveDate": state.lastActiveDate,
+                "accountCreationDate": state.accountCreationDate
             }
         });
          */
@@ -58,10 +58,12 @@ export default function SignUpLGU() {
         localStorage.setItem("username", data.username)
         localStorage.setItem("email", data.email)
         window.dispatchEvent(new Event("storage"));
-        navigate(-1);
+        var goTo = localStorage.getItem("PREVIOUS_LINK");
+        localStorage.setItem("PREVIOUS_LINK", "/");
+        navigate(goTo!==undefined?goTo:"/");
     }
     return (
-        <section className="bg-gray-900 p-32 " style={{ backgroundImage:"url(" + require('../../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
+        <section className="bg-gray-900 p-32 " style={{ backgroundImage: "url(" + require('../../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" className="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
                     <img className="w-20 h-20 mr-2" src={require("../../../res/img/logo.png")} alt="logo" />
@@ -74,7 +76,10 @@ export default function SignUpLGU() {
                         <RxCross2 />
                     </NavLink>
                     <NavLink
-                        to={PATH_NAME.Accounts.SignUp.SignUp}
+                        to={{
+                            pathname: PATH_NAME.Accounts.SignUp.SignUp,
+                            state: { previousPage: previousPage, initialData:state }
+                        }}
                         className='float-left text-lgu-lime p-3 w-fit mr-0 ml-auto'>
                         Back
                     </NavLink>
@@ -172,7 +177,10 @@ export default function SignUpLGU() {
                         <div className='text-center mr-5 mb-5 text-white'>
                             Already have an account? &nbsp;
                             <NavLink
-                                to={PATH_NAME.Accounts.SignIn}
+                                to={{
+                                    pathname: PATH_NAME.Accounts.SignIn,
+                                    state: { previousPage: previousPage }
+                                }}
                                 className='text-lgu-lime bold'>
                                 Sign In
                             </NavLink>

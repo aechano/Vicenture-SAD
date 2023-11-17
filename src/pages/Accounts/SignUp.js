@@ -6,12 +6,12 @@ import { InputBoxAccount } from '../../components/InputBox';
 import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from "react-icons/rx"
 
-export default function SignUp() {
-    const [email, setEmail] = useState();
-    const [username, setUsername] = useState();
+export default function SignUp({ previousPage, initialData }) {
+    const [email, setEmail] = useState(initialData?initialData.email:null);
+    const [username, setUsername] = useState(initialData?initialData.username:null);
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
-    const [role, setRole] = useState();
+    const [role, setRole] = useState(initialData?initialData.role:null);
     const [userAccount, setUserAccount] = useState();
     const [button, setButton] = useState("Create Account");
     const navigate = useNavigate();
@@ -72,12 +72,14 @@ export default function SignUp() {
             });
 
             //axios.post(API.SignUp, userAccount);
-            
+
             localStorage.setItem("accountType", USER_TYPES.Tourist)
             localStorage.setItem("username", username)
             localStorage.setItem("email", email)
             window.dispatchEvent(new Event("storage"));
-            navigate(-1);
+            var goTo = localStorage.getItem("PREVIOUS_LINK");
+            localStorage.setItem("PREVIOUS_LINK", "/");
+            navigate(goTo!==undefined?goTo:"/");
         } else { //if this is an investor or lgu account
             var currentData = {
                 email: email,
@@ -88,9 +90,9 @@ export default function SignUp() {
                 accountCreationDate: Date.now()
             }
             if (role === "2") {
-                navigate(PATH_NAME.Accounts.SignUp.INVESTOR, { state: currentData });
+                navigate(PATH_NAME.Accounts.SignUp.INVESTOR, { state: currentData, previousPage:previousPage });
             } else {
-                navigate(PATH_NAME.Accounts.SignUp.LGU, { state: currentData });
+                navigate(PATH_NAME.Accounts.SignUp.LGU, { state: currentData, previousPage:previousPage });
             }
         }
     }
@@ -117,7 +119,7 @@ export default function SignUp() {
                             {passwordError && <div className="text-red-200">{passwordError}</div>}
                             {confirmPasswordError && <div className="text-red-200">{confirmPasswordError}</div>}
                             {roleError && <div className="text-red-200">{roleError}</div>}
-                            
+
                             <InputBoxAccount
                                 placeholder="Username"
                                 value={username}
@@ -233,7 +235,10 @@ export default function SignUp() {
                         <div className='text-center mr-5 mb-5 text-white'>
                             Already have an account? &nbsp;
                             <NavLink
-                                to={PATH_NAME.Accounts.SignIn}
+                                to={{
+                                    pathname: PATH_NAME.Accounts.SignIn,
+                                    state: { previousPage: previousPage }
+                                }}
                                 className='text-lgu-lime bold'>
                                 Sign In
                             </NavLink>

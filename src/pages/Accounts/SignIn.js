@@ -6,7 +6,7 @@ import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
 import { RxCross2 } from 'react-icons/rx'
 
-export default function SignIn() {
+export default function SignIn({ previousPage }) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [userAccount, setUserAccount] = useState();
@@ -36,27 +36,27 @@ export default function SignIn() {
             localStorage.setItem("accountType", USER_TYPES.LguSV)
             localStorage.setItem("username", "Office Sample")
             localStorage.setItem("email", "lgu_office@vicenture.com")
-        } else if (email === "lgu_admin@vicenture.com" && password === "vicenture_admin"){
+        } else if (email === "lgu_admin@vicenture.com" && password === "vicenture_admin") {
             localStorage.setItem("accountType", USER_TYPES.Admin)
             localStorage.setItem("username", "Vicenture Admin")
             localStorage.setItem("email", "lgu_admin@vicenture.com")
-        } else if (email === "investor@vicenture.com" && password === "investor"){
+        } else if (email === "investor@vicenture.com" && password === "investor") {
             localStorage.setItem("accountType", USER_TYPES.Investor)
             localStorage.setItem("username", "Sample Investor")
             localStorage.setItem("email", "investor@vicenture.com")
-        } else if (email === "tourist@vicenture.com" && password === "tourist"){
+        } else if (email === "tourist@vicenture.com" && password === "tourist") {
             localStorage.setItem("accountType", USER_TYPES.Tourist)
             localStorage.setItem("username", "Sample Tourist")
             localStorage.setItem("email", "tourist@vicenture.com")
-        } else if (email === "citizen@vicenture.com" && password === "citizen"){
+        } else if (email === "citizen@vicenture.com" && password === "citizen") {
             localStorage.setItem("accountType", USER_TYPES.Citizen)
             localStorage.setItem("username", "Sample Citizen")
             localStorage.setItem("email", "citizen@vicenture.com")
-        } else if (email === "lgu_employee@vicenture.com" && password === "lgu_employee"){
+        } else if (email === "lgu_employee@vicenture.com" && password === "lgu_employee") {
             localStorage.setItem("accountType", USER_TYPES.Citizen)
             localStorage.setItem("username", "Sample Employee (Unverified)")
             localStorage.setItem("email", "lgu_employee@vicenture.com")
-        } else if (email === "lgu_emp_verified@vicenture.com" && password === "lgu_employee"){
+        } else if (email === "lgu_emp_verified@vicenture.com" && password === "lgu_employee") {
             localStorage.setItem("accountType", USER_TYPES.Investor)
             localStorage.setItem("username", "Sample Employee (Verified)")
             localStorage.setItem("email", "lgu_emp_verified@vicenture.com")
@@ -66,7 +66,9 @@ export default function SignIn() {
             localStorage.setItem("email", "citizen@vicenture.com")
         }
         window.dispatchEvent(new Event("storage"));
-        navigate(-1)
+        var goTo = localStorage.getItem("PREVIOUS_LINK");
+        localStorage.setItem("PREVIOUS_LINK", "/");
+        navigate(goTo!==undefined?goTo:"/");
     }
     return (
         <section className="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
@@ -128,7 +130,10 @@ export default function SignIn() {
                             <div className='text-center mr-5 mb-5 text-white'>
                                 Don't have an account? &nbsp;
                                 <NavLink
-                                    to={PATH_NAME.Accounts.SignUp.SignUp}
+                                    to={{
+                                        pathname: PATH_NAME.Accounts.SignUp.SignUp,
+                                        state: { previousPage: previousPage }
+                                    }}
                                     className='text-lgu-lime bold'>
                                     Sign Up
                                 </NavLink>
@@ -136,7 +141,7 @@ export default function SignIn() {
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

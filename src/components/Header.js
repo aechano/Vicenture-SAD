@@ -194,8 +194,14 @@ export default function Header(props) {
                                                     {
                                                         props.userType === USER_TYPES.Guest ?
                                                             <NavLink
-                                                                to={PATH_NAME.Accounts.SignIn}
-                                                                onClick={() => window.scrollTo({ top: 0, left: 0 })}
+                                                                to={{
+                                                                    pathname: PATH_NAME.Accounts.SignIn,
+                                                                    state: { previousPage: location.pathname }
+                                                                }}
+                                                                onClick={() => {
+                                                                    window.scrollTo({ top: 0, left: 0 });
+                                                                    localStorage.setItem("PREVIOUS_LINK", location.pathname);
+                                                                }}
                                                                 className={({ isActive }) => {
                                                                     return 'rounded-md px-10 py-2 text-sm text-lgu-lime hover:text-white ' +
                                                                         (isActive ? 'font-medium' : '')
@@ -307,6 +313,7 @@ export default function Header(props) {
                                                                             className='block px-4 py-2 text-sm text-gray-700'
                                                                             onClick={() => {
                                                                                 localStorage.clear();
+                                                                                localStorage.setItem("PREVIOUS_LINK", location.pathname);
                                                                                 window.dispatchEvent(new Event("storage"));
                                                                             }}
                                                                         >
