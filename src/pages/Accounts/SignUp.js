@@ -3,7 +3,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
-import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from "react-icons/rx"
 
 export default function SignUp() {
@@ -71,8 +71,13 @@ export default function SignUp() {
                 "accountCreationDate": Date.now()
             });
 
-            axios.post(API.SignUp, userAccount);
-            navigate(PATH_NAME.Home);
+            //axios.post(API.SignUp, userAccount);
+            
+            localStorage.setItem("accountType", USER_TYPES.Tourist)
+            localStorage.setItem("username", username)
+            localStorage.setItem("email", email)
+            window.dispatchEvent(new Event("storage"));
+            navigate(-1);
         } else { //if this is an investor or lgu account
             var currentData = {
                 email: email,

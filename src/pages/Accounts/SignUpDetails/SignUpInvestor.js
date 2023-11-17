@@ -3,7 +3,7 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { InputBoxAccount } from '../../../components/InputBox';
-import { API, PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from 'react-icons/rx'
 
 export default function SignUpLGU() {
@@ -34,7 +34,7 @@ export default function SignUpLGU() {
         now that input is valid, let's store it in the database.
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
-
+        /*
         axios.post(API.SignUp, {
             "lastName": lastName,
             "firstName": firstName,
@@ -51,7 +51,13 @@ export default function SignUpLGU() {
                 "accountCreationDate": data.accountCreationDate
             }
         });
-        navigate(PATH_NAME.Home);
+        */
+       
+        localStorage.setItem("accountType", USER_TYPES.Investor)
+        localStorage.setItem("username", data.username)
+        localStorage.setItem("email", data.email)
+        window.dispatchEvent(new Event("storage"));
+        navigate(-1);
     }
     return (
         <section className="bg-gray-900 p-32" style={{ backgroundImage:"url(" + require('../../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
