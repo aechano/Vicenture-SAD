@@ -261,7 +261,7 @@ export default function Header(props) {
                                                                 <span className="sr-only">Open user menu</span>
                                                                 <img
                                                                     className="h-10 w-auto rounded-full"
-                                                                    src="https://scontent.fmnl3-1.fna.fbcdn.net/v/t1.6435-9/157425982_1304090739970516_233654553417427649_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7a1959&_nc_eui2=AeHCZHrUlmDBj8vZCwrOoEH2UGHrp6j-YmZQYeunqP5iZnJtfmx7qup-SwxFWNYIq41r11UR4Q3IxPGxN-ASyY0X&_nc_ohc=c7hjr2L9e2kAX-L1kit&_nc_oc=AQn1HuhIrbGNH_IkFyzacoilsey9s74VcBNiGCcnDTkn23Mpqz5sTT0HhfJuX3DxLQ4&_nc_ht=scontent.fmnl3-1.fna&oh=00_AfAg5gXj79gMyTRsnn97HTlQCsoSSeaobFEsrZSfwNXV9w&oe=655713AF"
+                                                                    src={require("../res/debug_img/userpfp1.png")}
                                                                     alt=""
                                                                 />
                                                             </Menu.Button>
