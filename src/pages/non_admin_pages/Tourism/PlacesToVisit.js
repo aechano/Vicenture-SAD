@@ -5,6 +5,7 @@ import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
+import { NavLink } from 'react-router-dom';
 
 
 export default function PlacesToVisit() {
@@ -122,7 +123,13 @@ export default function PlacesToVisit() {
                         </button>
                     </div>
                 </div>
-
+                <div className='w-fit rounded-full ms-5 my-2 float float-right'>
+                    <NavLink
+                    to={PATH_NAME.Tourism.Content + "/add"}
+                    className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
+                        +&nbsp;&nbsp;&nbsp;Create A Post
+                    </NavLink>
+                </div>
                 <div className='pt-12'>
                     {contents.map((content, index) => {
                         return <TourismCards

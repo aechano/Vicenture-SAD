@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
-import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
-import {RxCross2} from 'react-icons/rx'
+import { RxCross2 } from 'react-icons/rx'
 
-export default function SignIn() {
+export default function SignIn({ previousPage }) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [userAccount, setUserAccount] = useState();
@@ -14,6 +14,7 @@ export default function SignIn() {
 
     function checkCredentials(e) {
         e.preventDefault();
+        /*
         axios.post(API.SignIn, { "email": email, "password": password })
             .then((response) => response.data)
             .then(data => {
@@ -30,9 +31,47 @@ export default function SignIn() {
                     navigate(PATH_NAME.Home);
                 }
             })
+        */
+        if (email === "lgu_office@vicenture.com" && password === "vicenture_office") {
+            localStorage.setItem("accountType", USER_TYPES.LguSV)
+            localStorage.setItem("username", "Office Sample")
+            localStorage.setItem("email", "lgu_office@vicenture.com")
+        } else if (email === "lgu_admin@vicenture.com" && password === "vicenture_admin") {
+            localStorage.setItem("accountType", USER_TYPES.Admin)
+            localStorage.setItem("username", "Vicenture Admin")
+            localStorage.setItem("email", "lgu_admin@vicenture.com")
+        } else if (email === "investor@vicenture.com" && password === "investor") {
+            localStorage.setItem("accountType", USER_TYPES.Investor)
+            localStorage.setItem("username", "Sample Investor")
+            localStorage.setItem("email", "investor@vicenture.com")
+        } else if (email === "tourist@vicenture.com" && password === "tourist") {
+            localStorage.setItem("accountType", USER_TYPES.Tourist)
+            localStorage.setItem("username", "Sample Tourist")
+            localStorage.setItem("email", "tourist@vicenture.com")
+        } else if (email === "citizen@vicenture.com" && password === "citizen") {
+            localStorage.setItem("accountType", USER_TYPES.Citizen)
+            localStorage.setItem("username", "Sample Citizen")
+            localStorage.setItem("email", "citizen@vicenture.com")
+        } else if (email === "lgu_employee@vicenture.com" && password === "lgu_employee") {
+            localStorage.setItem("accountType", USER_TYPES.Citizen)
+            localStorage.setItem("username", "Sample Employee (Unverified)")
+            localStorage.setItem("email", "lgu_employee@vicenture.com")
+        } else if (email === "lgu_emp_verified@vicenture.com" && password === "lgu_employee") {
+            localStorage.setItem("accountType", USER_TYPES.Investor)
+            localStorage.setItem("username", "Sample Employee (Verified)")
+            localStorage.setItem("email", "lgu_emp_verified@vicenture.com")
+        } else {
+            localStorage.setItem("accountType", USER_TYPES.Citizen)
+            localStorage.setItem("username", "Sample Citizen")
+            localStorage.setItem("email", "citizen@vicenture.com")
+        }
+        window.dispatchEvent(new Event("storage"));
+        var goTo = localStorage.getItem("PREVIOUS_LINK");
+        localStorage.setItem("PREVIOUS_LINK", "/");
+        navigate(goTo!==undefined?goTo:"/");
     }
     return (
-        <section className="bg-gray-900 p-20" style={{ backgroundImage:"url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%",}}>
+        <section className="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" className="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
                     <img className="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
@@ -42,7 +81,7 @@ export default function SignIn() {
                     <NavLink
                         to={PATH_NAME.Home}
                         className='float-right text-lgu-lime p-3 w-fit mr-0 ml-auto'>
-                        <RxCross2/>
+                        <RxCross2 />
                     </NavLink>
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl text-center font-semibold leading-tight tracking-tight md:text-2xl text-white pt-5">
@@ -72,7 +111,7 @@ export default function SignIn() {
                                 onChange={(e) => {
                                     setPassword(e.target.value)
                                 }}
-                                
+
                             >
                                 <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
                                     <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
@@ -91,7 +130,10 @@ export default function SignIn() {
                             <div className='text-center mr-5 mb-5 text-white'>
                                 Don't have an account? &nbsp;
                                 <NavLink
-                                    to={PATH_NAME.Accounts.SignUp.SignUp}
+                                    to={{
+                                        pathname: PATH_NAME.Accounts.SignUp.SignUp,
+                                        state: { previousPage: previousPage }
+                                    }}
                                     className='text-lgu-lime bold'>
                                     Sign Up
                                 </NavLink>
@@ -99,7 +141,7 @@ export default function SignIn() {
                         </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }
