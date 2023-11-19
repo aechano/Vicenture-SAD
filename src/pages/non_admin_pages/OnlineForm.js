@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Banner from "../../components/Banner";
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
 import jsPDF from "jspdf";
+import 'jspdf-autotable';
 import Popconfirm from "../../components/PopConfirm";
 
 export default function OnlineForm() {
@@ -14,6 +15,7 @@ export default function OnlineForm() {
     const [date, setDate] = useState('');
     const [duration, setDuration] = useState('');
     const [people, setPeople] = useState('');
+    const [names, setNames] = useState('');
     const [message, setMessage] = useState('');
     const [showPopconfirm, setShowPopconfirm] = useState(false);
 
@@ -30,7 +32,7 @@ export default function OnlineForm() {
     };
 
     const handlePopconfirmConfirm = () => {
-        generatePDF(fname, midName, lname, email, phoneNum, date, duration, people, message);
+        generatePDF(fname, midName, lname, email, phoneNum, date, duration, people, names, message);
         setShowPopconfirm(false);
 
         setfname('');
@@ -41,9 +43,10 @@ export default function OnlineForm() {
         setDate('');
         setDuration('');
         setPeople('');
+        setNames('');
         setMessage('');
 
-        console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, message });
+        console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, names, message });
     };
 
 
@@ -51,7 +54,7 @@ export default function OnlineForm() {
         <>
             <Banner bannerType="common" src={require("../../res/img/LGU-PERS.jpg")} alt="LGU" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }, { title: "San Vicente Tourism", to: PATH_NAME.Tourism.SanVicente }]}>
                 <p>Tourism Office Online Form</p>
-            </Banner>   
+            </Banner>
             <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-28'>
                 <form onSubmit={handleSubmit}>
 
@@ -216,6 +219,17 @@ export default function OnlineForm() {
                         <div className="relative mb-3 mx-2">
                             <textarea
                                 className="peer m-0 block h-56 w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-gray-300 focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                                id="names"
+                                placeholder="List the full names of individuals who will be traveling, separating each name with a comma."
+                                value={names}
+                                onChange={(e) => {
+                                    setNames(e.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className="relative mb-3 mx-2">
+                            <textarea
+                                className="peer m-0 block h-56 w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-gray-300 focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                 id="message"
                                 placeholder="Special request or requirements..."
                                 value={message}
@@ -236,7 +250,7 @@ export default function OnlineForm() {
                     </div>
                     {showPopconfirm && (
                         <Popconfirm
-                            onConfirm={handlePopconfirmConfirm} 
+                            onConfirm={handlePopconfirmConfirm}
                             onCancel={handlePopconfirmCancel}
                             note={'Are you sure you want to generate and download the form?'}
                         />
@@ -249,29 +263,70 @@ export default function OnlineForm() {
     );
 }
 
-const generatePDF = (fname, midName, lname, email, phoneNum, date, duration, people, message) => {
+const generatePDF = (
+    fname,
+    midName,
+    lname,
+    email,
+    phoneNum,
+    date,
+    duration,
+    people,
+    names,
+    message
+) => {
     const doc = new jsPDF();
+
+    // Background Logo
+    const logo = new Image();
+    logo.src = require("../../res/img/logo.png");
+    doc.addImage(logo, "JPEG", 10, 10, 40, 40);
 
     // Set the properties of the PDF document
     doc.setFontSize(16);
-    doc.text("Tourism Office Online Form", 10, 10);
+    doc.text("Tourism Office Online Form", 60, 30);
 
-    // Add form data to the PDF
-    doc.text("Contact Information", 10, 20);
-    doc.text(`First Name: ${fname}`, 10, 30);
-    doc.text(`Middle Name: ${midName}`, 10, 40);
-    doc.text(`Last Name: ${lname}`, 10, 50);
-    doc.text(`Email: ${email}`, 10, 60);
-    doc.text(`Phone Number: ${phoneNum}`, 10, 70);
+    // Add form data to the PDF in table form
+    const tableData = [
+        [{ content: "Contact Information", styles: { fontStyle: 'bold' } }, "", ""],
+        ["First Name", fname, ""],
+        ["Middle Name", midName, ""],
+        ["Last Name", lname, ""],
+        ["Email", email, ""],
+        ["Phone Number", phoneNum, ""],
+        ["", "", ""],
+        [{ content: "Travel Details", styles: { fontStyle: 'bold' } }, "", ""],
+        ["Date", date, ""],
+        ["Duration of Stay", duration, ""],
+        ["Number of People", people, ""],
+        [
+            "List of Names Who Will Be in the Travel",
+            { content: names.split(",").map((name) => [name.trim()]), colSpan: 2 },
+            "",
+        ],
+        ["Special request or requirements", message, ""],
+    ];
 
-    doc.text("Travel Details", 10, 80);
-    doc.text(`Date: ${date}`, 10, 90);
-    doc.text(`Duration of Stay: ${duration}`, 10, 100);
-    doc.text(`Number of People: ${people}`, 10, 110);
+    // Use autoTable from the jspdf-autotable plugin
+    doc.autoTable({
+        head: [],
+        body: tableData,
+        startY: 50,
+    });
 
-    doc.text(`Special request or requirements: ${message}`, 10, 120);
-
-    console.log("Inside generatePDF:", fname, midName, lname, email, phoneNum, date, duration, people, message);
+    console.log(
+        "Inside generatePDF:",
+        fname,
+        midName,
+        lname,
+        email,
+        phoneNum,
+        date,
+        duration,
+        people,
+        names,
+        message
+    );
 
     // Save the PDF to a file or trigger a download
     doc.save("TourismForm.pdf");

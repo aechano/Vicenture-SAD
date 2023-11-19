@@ -29,6 +29,7 @@ const PATH_NAME = {
         About: "/the-town/about",
         MunicipalityProfile: "/the-town/profile",
         MunicipalityPrograms: "/the-town/programs",
+        SportsContent: "/the-town/programs/:sportsID",
         ElectedOfficials: "/the-town/officials",
         Offices: "/the-town/offices",
         CitizensCharter: "/the-town/citizens-charter",
