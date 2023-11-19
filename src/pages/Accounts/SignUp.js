@@ -4,16 +4,19 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
 import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
-import { RxCross2 } from "react-icons/rx"
+import { RxCross2 } from "react-icons/rx";
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
 
 export default function SignUp({ previousPage, initialData }) {
-    const [email, setEmail] = useState(initialData?initialData.email:null);
-    const [username, setUsername] = useState(initialData?initialData.username:null);
-    const [password, setPassword] = useState();
-    const [confirmPassword, setConfirmPassword] = useState();
-    const [role, setRole] = useState(initialData?initialData.role:null);
+    const [email, setEmail] = useState(initialData ? initialData.email : null);
+    const [username, setUsername] = useState(initialData ? initialData.username : null);
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false); //for confirm password
+    const [role, setRole] = useState(initialData ? initialData.role : null);
     const [userAccount, setUserAccount] = useState();
-    const [button, setButton] = useState("Create Account");
+    const [button, setButton] = useState('Create Account');
     const navigate = useNavigate();
 
     const [emailError, setEmailError] = useState('');
@@ -79,7 +82,7 @@ export default function SignUp({ previousPage, initialData }) {
             window.dispatchEvent(new Event("storage"));
             var goTo = localStorage.getItem("PREVIOUS_LINK");
             localStorage.setItem("PREVIOUS_LINK", "/");
-            navigate(goTo!==undefined?goTo:"/");
+            navigate(goTo !== undefined ? goTo : "/");
         } else { //if this is an investor or lgu account
             var currentData = {
                 email: email,
@@ -90,9 +93,9 @@ export default function SignUp({ previousPage, initialData }) {
                 accountCreationDate: Date.now()
             }
             if (role === "2") {
-                navigate(PATH_NAME.Accounts.SignUp.INVESTOR, { state: currentData, previousPage:previousPage });
+                navigate(PATH_NAME.Accounts.SignUp.INVESTOR, { state: currentData, previousPage: previousPage });
             } else {
-                navigate(PATH_NAME.Accounts.SignUp.LGU, { state: currentData, previousPage:previousPage });
+                navigate(PATH_NAME.Accounts.SignUp.LGU, { state: currentData, previousPage: previousPage });
             }
         }
     }
@@ -114,11 +117,11 @@ export default function SignUp({ previousPage, initialData }) {
                             Create an account
                         </h1>
                         <form className="space-y-4 md:space-y-6 max-w-md mx-auto" onSubmit={evaluateAnswers}>
-                            {emailError && <div className="text-red-200">{emailError}</div>}
-                            {usernameError && <div className="text-red-200">{usernameError}</div>}
-                            {passwordError && <div className="text-red-200">{passwordError}</div>}
-                            {confirmPasswordError && <div className="text-red-200">{confirmPasswordError}</div>}
-                            {roleError && <div className="text-red-200">{roleError}</div>}
+                            {emailError && <div className="text-red-600">{emailError}</div>}
+                            {usernameError && <div className="text-red-600">{usernameError}</div>}
+                            {passwordError && <div className="text-red-600">{passwordError}</div>}
+                            {confirmPasswordError && <div className="text-red-600">{confirmPasswordError}</div>}
+                            {roleError && <div className="text-red-600">{roleError}</div>}
 
                             <InputBoxAccount
                                 placeholder="Username"
@@ -155,42 +158,71 @@ export default function SignUp({ previousPage, initialData }) {
                                     <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
                                 </svg>
                             </InputBoxAccount>
-                            <InputBoxAccount
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={(e) => {
-                                    setPassword(e.target.value)
-                                }}
-                                required={true}
-                                marginBottom="-mb-1"
-                            >
-                                <svg width="20" height="20"
-                                    viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
-                                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+
+                            <div className='relative mt-3'>
+                                <InputBoxAccount
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Password"
+                                    autoComplete="current-password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required={true}
+                                    marginBottom="-mb-1"
                                 >
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                                </svg>
-                            </InputBoxAccount>
-                            <InputBoxAccount
-                                type="password"
-                                placeholder="Confirm Password"
-                                value={confirmPassword}
-                                onChange={(e) => {
-                                    setConfirmPassword(e.target.value)
-                                }}
-                                required={true}
-                                marginBottom="-mb-1"
-                            >
-                                <svg width="20" height="20"
-                                    viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
-                                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                    <svg width="20" height="20"
+                                        viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
+                                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                    >
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                    </svg>
+                                </InputBoxAccount>
+                                <div className="float-right">
+                                    {showPassword ? (
+                                        <IoMdEyeOff
+                                            className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        />
+                                    ) : (
+                                        <IoMdEye
+                                            className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        />
+                                    )}
+                                </div>
+                            </div>
+                            <div className='relative mt-3'>
+                                <InputBoxAccount
+                                    type={showConfirmPassword ? 'text' : 'password'}
+                                    placeholder="Confirm Password"
+                                    autoComplete="current-password"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                    required={true}
+                                    marginBottom="-mb-1"
                                 >
-                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                                </svg>
-                            </InputBoxAccount>
+                                    <svg width="20" height="20"
+                                        viewBox="0 0 24 24" fill="none" stroke="#9CA3AF"
+                                        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                                    >
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                    </svg>
+                                </InputBoxAccount>
+                                <div className="float-right">
+                                    {showConfirmPassword ? (
+                                        <IoMdEyeOff
+                                            className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        />
+                                    ) : (
+                                        <IoMdEye
+                                            className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        />
+                                    )}
+                                </div>
+                            </div>
                             <div className="flex justify-center">
                                 <div className="relative w-full md:w-4/5 mb-6">
                                     <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">

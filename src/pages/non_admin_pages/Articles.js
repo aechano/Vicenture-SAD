@@ -1,10 +1,14 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import Banner from "../../components/Banner";
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
+import { NavLink } from 'react-router-dom';
 
 export default function Articles() {
+    const articlesPerPage = 5;
+    const { page = 1 } = useParams();
+    const currentPage = parseInt(page, 10);
+
     var contents = [
         {
             id: 0,
@@ -36,8 +40,61 @@ export default function Articles() {
 
         },
 
+        {
+            id: 4,
+            pic: require('../../res/img/article.png'),
+            title: 'Article 4',
+            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
 
+        },
+
+        {
+            id: 5,
+            pic: require('../../res/img/article.png'),
+            title: 'Article 4',
+            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+
+        },
+
+        {
+            id: 6,
+            pic: require('../../res/img/article.png'),
+            title: 'Article 4',
+            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+
+        },
+
+        {
+            id: 7,
+            pic: require('../../res/img/article.png'),
+            title: 'Article 4',
+            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+
+        },
+
+        {
+            id: 8,
+            pic: require('../../res/img/article.png'),
+            title: 'Article 4',
+            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+
+        },
+        
     ];
+
+    // Calculate the start and end indices for the current page
+    const startIndex = (currentPage - 1) * articlesPerPage;
+    const endIndex = startIndex + articlesPerPage;
+
+    const currentArticles = contents.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(contents.length / articlesPerPage);
+
+    const navigate = useNavigate();
+
+    const handlePageChange = (newPage) => {
+        navigate(`/articles/${newPage}`);
+    };
 
 
     return (
@@ -49,7 +106,7 @@ export default function Articles() {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div>
-                    {contents.map((content, index) => (
+                {currentArticles.map((content, index) => (
                         <Link to={`/article/${content.id}`} onClick={() => window.scrollTo({ top: 0, left: 0 })} key={index} className="article-link">
                             <div className="pb-5">
                                 <div className="flex flex-col items-center border-b-2 border-black md:flex-row md:mx-auto">
@@ -71,29 +128,34 @@ export default function Articles() {
                         </Link>
                     ))}
                 </div>
-                <div>
-                    <button
-                        type="button"
-                        className="flex items-center text-lgu-green font-medium text-md px-5 py-2.5 mr-2 mb-2"
-                    >
-                        <svg
-                            className="w-4 h-4 text-lgu-green"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 14 10"
-                        >
-                            <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M13 5H1m0 0 4 4M1 5l4-4"
-                            />
-                        </svg>
-                        <p className="pl-3">Older Posts</p>
-                    </button>
-                </div>
+                <nav aria-label="Page navigation example">
+                    <ul className="list-style-none flex justify-center">
+                        <li>
+                            <NavLink
+                                className="relative block rounded bg-transparent px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                                href="#"
+                                aria-label="Previous" onClick={() => handlePageChange(currentPage - 1)}>
+                                <span aria-hidden="true">&laquo;</span>
+                            </NavLink>
+                        </li>
+                        {[...Array(totalPages).keys()].map((pageNumber) => (
+                        <li key={pageNumber}>
+                            <NavLink
+                                to={`${PATH_NAME.Articles}/${pageNumber + 1}`} onClick={() => handlePageChange(pageNumber + 1)}
+                                className="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                            > {pageNumber + 1} </NavLink>
+                        </li>
+                        ))}
+                        <li>
+                            <NavLink
+                                className="relative block rounded bg-transparent px-3 py-1.5 text-lg text-black  transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                                href="#"
+                                aria-label="Next" onClick={() => handlePageChange(currentPage + 1)}
+                            ><span aria-hidden="true">&raquo;</span>
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </>
     );
@@ -166,7 +228,7 @@ export function ArticleContent() {
                     <h1 className='mt-10 mb-2 font-bold text-4xl'>{article.title}</h1>
                     <p className='text-sm'>{article.date} | {article.time}</p>
                 </div>
-                
+
 
                 <div>
 

@@ -8,7 +8,9 @@ export default function Offices_Add() {
     const [Hotline, setHotline] = useState('');
     const [phoneNum, setphoneNum] = useState('');
     const [email, setEmail] = useState('');
+    const [fbPage, setFBPage] = useState('');
     const [chart, setChart] = useState('');
+    const [street, setStreet] = useState('');
 
     // Function to handle file input change
     const handleFileChange = (e) => {
@@ -32,25 +34,25 @@ export default function Offices_Add() {
                     <form>
                         <div className="grid grid-cols-2 gap-x-36 m-5 pt-10">
                             <div>
-                                <h1 className='text-sm pb-1'>Department/Office</h1>
+                                <h1 className='text-md font-bold pb-1'>Department/Office</h1>
                                 <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
                                     <input
                                         required
                                         type="text"
                                         className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                                         id="dep"
-                                        placeholder="Municipal Treasury Office"
+                                        placeholder="Office"
                                         value={Department}
                                         onChange={(e) => setDepartment(e.target.value)} />
                                 </div>
-                                <h1 className='text-sm pb-1'>Contacts</h1>
+                                <h1 className='text-md font-bold pb-1'>Contacts</h1>
                                 <div className="relative mb-2 mt-1 text-left" data-te-input-wrapper-init>
                                     <input
                                         required
                                         type="text"
                                         className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                                         id="hotline"
-                                        placeholder="0998-577-3706"
+                                        placeholder="Hotline Number"
                                         value={Hotline}
                                         onChange={(e) => setHotline(e.target.value)} />
                                 </div>
@@ -60,25 +62,35 @@ export default function Offices_Add() {
                                         type="text"
                                         className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                                         id="phone"
-                                        placeholder="0910-727-9853"
+                                        placeholder="Phone Number"
                                         value={phoneNum}
                                         onChange={(e) => setphoneNum(e.target.value)} />
                                 </div>
-                                <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
+                                <div className="relative mb-2 mt-1 text-left" data-te-input-wrapper-init>
                                     <input
                                         required
                                         type="email"
                                         className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                                         id="email"
-                                        placeholder="san_vicente@gmail.com"
+                                        placeholder="Email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)} />
                                 </div>
-                                <h1 className='text-sm pb-1'>Vision</h1>
+                                <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
+                                    <input
+                                        required
+                                        type="text"
+                                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                        id="fbPage"
+                                        placeholder="Facebook Page"
+                                        value={fbPage}
+                                        onChange={(e) => setFBPage(e.target.value)} />
+                                </div>
+                                <h1 className='text-md font-bold pb-1'>Vision</h1>
                                 <textarea id="message" rows="4" className="block mt-1 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black" placeholder="Write your vision here..."></textarea>
                             </div>
                             <div>
-                                <h1 className='text-sm pb-1'>Organizational Chart</h1>
+                                <h1 className='text-md font-bold pb-1'>Organizational Chart</h1>
                                 <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
                                     <div className="flex items-center h-14 rounded border border-1 w-80 bg-transparent">
                                         <input
@@ -95,7 +107,7 @@ export default function Offices_Add() {
                                             className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
                                             onClick={triggerFileInput}
                                         >
-                                            <BsImage className='text-2xl text-gray-400' />
+                                            <BsImage className='text-2xl text-lgu-green' />
                                         </div>
                                         <input
                                             type="file"
@@ -106,11 +118,19 @@ export default function Offices_Add() {
                                         />
                                     </div>
                                 </div>
-                                <h1 className='text-sm pb-1'>Mandate</h1>
+                                <h1 className='text-md font-bold pb-1'>Mandate</h1>
                                 <textarea id="message" rows="4" className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black" placeholder="Write your mandate here..."></textarea>
-                                <h1 className='text-sm pb-1'>Mission</h1>
-                                <textarea id="message" rows="4" className="block mt-1 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black" placeholder="Write your mission here..."></textarea>
+                                <h1 className='text-md font-bold pb-1'>Mission</h1>
+                                <textarea id="message" rows="4" className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black" placeholder="Write your mission here..."></textarea>
+                                <div className="relative mb-2 mt-1 text-left" data-te-input-wrapper-init>
+                                    <h1 className='text-md font-bold pb-1'>Location</h1>
+                                    <textarea id="message" rows="4" className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black" placeholder="Write the office location here..."></textarea>
+                                </div>
+
                             </div>
+
+
+
                         </div>
                         <div className='flex justify-between pb-5 pt-5'>
                             <div className='flex items-center px-5'>

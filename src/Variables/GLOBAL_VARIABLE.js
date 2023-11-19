@@ -29,6 +29,7 @@ const PATH_NAME = {
         About: "/the-town/about",
         MunicipalityProfile: "/the-town/profile",
         MunicipalityPrograms: "/the-town/programs",
+        SportsContent: "/the-town/programs/:sportsID",
         ElectedOfficials: "/the-town/officials",
         Offices: "/the-town/offices",
         CitizensCharter: "/the-town/citizens-charter",
@@ -48,6 +49,7 @@ const PATH_NAME = {
         Invest: "/invest",
         InvestmentOpportunities: "/invest/investment-opportunities",
         ReasonsToInvest: "/invest/reasons-to-invest",
+        InvestContent: "/invest/reasons-to-invest/content",
     },
 
     Transparency: "/transparency",
@@ -63,7 +65,7 @@ const PATH_NAME = {
     Articles: "/articles",
     ArticleContent: "/articles/:articleID",
 
-    AddOffices: "/the-town/offices/add-offices",
+    AddOffices: "/the-town/offices/add-offices",  
 }
 const API = {
     SignUp: "http://localhost:8080/api/v1/auth/signup",

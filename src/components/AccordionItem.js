@@ -1,6 +1,6 @@
 import React from "react";
 import { Collapse } from "react-collapse";
-import {AiOutlineMinus, AiOutlinePlus} from "react-icons/ai"
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 
 const AccordionItem = ({ open, toggle, data }) => {
     return (
@@ -8,7 +8,7 @@ const AccordionItem = ({ open, toggle, data }) => {
             <div className="bg-lgu-green py-2 p-4 sm:px-16 flex justify-between item-center cursor-pointer rounded-xl" onClick={toggle}>
                 <p className="text-md text-white font-semibold">{data.offices}</p>
                 <div className="text-3xl text-white ">
-                    {open ? <AiOutlineMinus/> : <AiOutlinePlus/>}
+                    {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
 
                 </div>  
 

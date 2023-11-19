@@ -15,7 +15,7 @@ export default function PlacesToVisitContent() {
 
     return (
         <LguSvAddEditContent
-            title = {(method==="add"?"Add":"Edit")+" Reasons To Invest"}
+            title = {(method==="add"?"Add":"Edit")+" Places To Visit"}
             categories={categories}
             type = {method==="add"?"ADD":"EDIT"}
             contentType = "TOURISM"

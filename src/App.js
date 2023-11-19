@@ -20,7 +20,7 @@ import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
 import ContactUs from './pages/non_admin_pages/ContactUs';
 import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
-import MunicipalityPrograms from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
+import MunicipalityPrograms, {SportContent} from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
 import History from './pages/non_admin_pages/TheTown/History';
 import PlacesToVisit from './pages/non_admin_pages/Tourism/PlacesToVisit';
 import Activities from './pages/non_admin_pages/Tourism/Activities';
@@ -51,6 +51,7 @@ import Page404 from './pages/Accounts/ErrorPages/Page404';
 import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
+import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsToInvestContent';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -84,6 +85,7 @@ function App() {
                         <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo />} />
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile />} />
                         <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms />} />
+                        <Route path={PATH_NAME.TheTown.MunicipalityPrograms + "/:sportID"} element={<SportContent />} />
                         <Route path={PATH_NAME.TheTown.Offices} element={<Offices />} />
                         <Route path={PATH_NAME.TheTown.CitizensCharter} element={<CitizensCharter />} />
                         <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials />} />
@@ -116,6 +118,7 @@ function App() {
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType} />} />
                         <Route path={PATH_NAME.Invest.ReasonsToInvest} element={<ReasonsToInvest userType={userType} />} />
                         <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:contentID"} element={<ReasonsToInvestContent userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
 
 
                         <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent userType={userType} />} />
