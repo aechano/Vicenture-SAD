@@ -126,7 +126,7 @@ export default function SignIn({ previousPage }) {
                                         <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                     </svg>
                                 </InputBoxAccount>
-                                <div className="absolute right-14 top-1/2 transform -translate-y-1/2 cursor-pointer">
+                                <div className="absolute right-14 top-7 transform -translate-y-1/2 cursor-pointer">
                                     {showPassword ? (
                                         <IoMdEyeOff
                                             className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"

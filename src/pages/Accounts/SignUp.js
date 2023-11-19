@@ -177,7 +177,7 @@ export default function SignUp({ previousPage, initialData }) {
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                     </svg>
                                 </InputBoxAccount>
-                                <div className="float-right">
+                                <div className="absolute right-14 top-7 transform -translate-y-1/2 cursor-pointer">
                                     {showPassword ? (
                                         <IoMdEyeOff
                                             className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
@@ -209,7 +209,7 @@ export default function SignUp({ previousPage, initialData }) {
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                     </svg>
                                 </InputBoxAccount>
-                                <div className="float-right">
+                                <div className="absolute right-14 top-7 transform -translate-y-1/2 cursor-pointer">
                                     {showConfirmPassword ? (
                                         <IoMdEyeOff
                                             className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
