@@ -3,12 +3,14 @@ import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
 import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
-import { jwtDecode } from 'jwt-decode';
-import { RxCross2 } from 'react-icons/rx'
+import { jwtDecode } from 'jwt-decode'; import { RxCross2 } from 'react-icons/rx';
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
+
 
 export default function SignIn({ previousPage }) {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
+    const [showPassword, setShowPassword] = useState(false); // New state to track password visibility
     const [userAccount, setUserAccount] = useState();
     const navigate = useNavigate();
 
@@ -68,7 +70,7 @@ export default function SignIn({ previousPage }) {
         window.dispatchEvent(new Event("storage"));
         var goTo = localStorage.getItem("PREVIOUS_LINK");
         localStorage.setItem("PREVIOUS_LINK", "/");
-        navigate(goTo!==undefined?goTo:"/");
+        navigate(goTo !== undefined ? goTo : "/");
     }
     return (
         <section className="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
@@ -91,33 +93,53 @@ export default function SignIn({ previousPage }) {
                             <InputBoxAccount
                                 type="email"
                                 placeholder="Email"
-                                autocomplete="email"
+                                autoComplete="email"
                                 value={email}
-                                onChange={(e) => {
-                                    setEmail(e.target.value)
-                                }}
+                                onChange={(e) => setEmail(e.target.value)}
                                 marginBottom="-mb-1"
                             >
-                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
+                                <svg
+                                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                    aria-hidden="true"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 16"
+                                >
                                     <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z" />
                                     <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z" />
                                 </svg>
                             </InputBoxAccount>
-                            <InputBoxAccount
-                                type="password"
-                                placeholder="Password"
-                                autocomplete="password"
-                                value={password}
-                                onChange={(e) => {
-                                    setPassword(e.target.value)
-                                }}
-
-                            >
-                                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor" viewBox="0 0 20 16">
-                                    <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
-                                    <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-                                </svg>
-                            </InputBoxAccount>
+                            <div className="relative mt-3">
+                                <InputBoxAccount
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Password"
+                                    autoComplete="current-password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                >
+                                    <svg
+                                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                                        aria-hidden="true"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 16"
+                                    >
+                                        <path d="M0 8a4 4 0 0 1 7.465-2H14a.5.5 0 0 1 .354.146l1.5 1.5a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0L13 9.207l-.646.647a.5.5 0 0 1-.708 0L11 9.207l-.646.647a.5.5 0 0 1-.708 0L9 9.207l-.646.647A.5.5 0 0 1 8 10h-.535A4 4 0 0 1 0 8zm4-3a3 3 0 1 0 2.712 4.285A.5.5 0 0 1 7.163 9h.63l.853-.854a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.793-.793-1-1h-6.63a.5.5 0 0 1-.451-.285A3 3 0 0 0 4 5z" />
+                                        <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+                                    </svg>
+                                </InputBoxAccount>
+                                <div className="float-right">
+                                    {showPassword ? (
+                                        <IoMdEyeOff
+                                            className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        />
+                                    ) : (
+                                        <IoMdEye
+                                            className="w-4 h-4 text-gray-500 dark:text-gray-400 cursor-pointer"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        />
+                                    )}
+                                </div>
+                            </div>
                             <div className='flex justify-center'>
                                 <button
                                     className="text-lgu-green bg-white hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-sm px-8 py-2.5 mr-2 mb-2 mt-2"
