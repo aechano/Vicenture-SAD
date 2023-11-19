@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Banner from '../../../components/Banner'
-import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
@@ -8,7 +8,7 @@ import BackToTop from '../../../components/BackToTop';
 import { NavLink } from 'react-router-dom';
 
 
-export default function PlacesToVisit() {
+export default function PlacesToVisit({ userType }) {
     const [search, setSearch] = useState('');
     const navigate = useNavigate();
     const handleKeyDown = (e) => {
@@ -123,13 +123,17 @@ export default function PlacesToVisit() {
                         </button>
                     </div>
                 </div>
-                <div className='w-fit rounded-full ms-5 my-2 float float-right'>
-                    <NavLink
-                    to={PATH_NAME.Tourism.Content + "/add"}
-                    className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
-                        +&nbsp;&nbsp;&nbsp;Create A Post
-                    </NavLink>
-                </div>
+                {userType === USER_TYPES.LguSV ?
+                    <div className='w-fit rounded-full ms-5 my-2 float float-right'>
+                        <NavLink
+                            to={PATH_NAME.Tourism.Content + "/add"}
+                            className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
+                            +&nbsp;&nbsp;&nbsp;Create A Post
+                        </NavLink>
+                    </div>
+                    :
+                    null
+                }
                 <div className='pt-12'>
                     {contents.map((content, index) => {
                         return <TourismCards
@@ -137,7 +141,8 @@ export default function PlacesToVisit() {
                             content={content}
                             onClick={() => {
                                 navigate(PATH_NAME.Tourism.PlacesToVisit + "/" + content.id);
-                                window.scrollTo({ top: 0, left: 0 });}}
+                                window.scrollTo({ top: 0, left: 0 });
+                            }}
                         />;
                     })}
                 </div>
@@ -146,7 +151,7 @@ export default function PlacesToVisit() {
 
 
             </div>
-        <BackToTop />
+            <BackToTop />
         </>
 
     )
