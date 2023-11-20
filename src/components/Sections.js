@@ -69,7 +69,7 @@ export default function Sections(props) {
                             }
                             <div className='h-auto lg:w-9/12 align-middle'>
                                 {/*This is where the main text of the section goes*/}
-                                <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 " + (props.left ? "text-lgu-lime text-justify lg:text-left" : "text-justify text-black lg:text-right")}>
+                                <p className={" m-auto w-auto p-2 sm:p-7 sm:leading-7 " + (props.left ? "text-lgu-lime text-justify lg:text-justify" : "text-justify text-black lg:text-justify")}>
                                     {props.children !== undefined ? props.children : ""}
                                 </p>
                                 {/*If button is needed*/}

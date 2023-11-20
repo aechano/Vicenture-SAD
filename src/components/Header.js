@@ -95,6 +95,10 @@ export default function Header(props) {
         }
     };
 
+    const closeDropdown = () => {
+        setOpenDropdown(null);
+    };
+
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
         setAdminHeader(!PATH_NAME.AdminPages.AllPages.includes(location.pathname))
@@ -178,13 +182,14 @@ export default function Header(props) {
                                                                 <NavLink
                                                                     key={item.name}
                                                                     to={item.href}
-                                                                    onClick={() => window.scrollTo({ top: 0, left: 0 })}
+                                                                    onClick={() => {
+                                                                        closeDropdown(); // Close dropdown when a different navigation item is clicked
+                                                                        window.scrollTo({ top: 0, left: 0 });
+                                                                    }}
                                                                     className={({ isActive }) => {
                                                                         return 'rounded-md px-1 py-2 text-sm text-lgu-lime hover:text-white ' +
                                                                             (isActive ? 'font-medium' : '')
                                                                     }}
-
-
                                                                 >
                                                                     {item.name}
                                                                 </NavLink>

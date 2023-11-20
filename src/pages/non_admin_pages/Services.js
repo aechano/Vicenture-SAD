@@ -463,7 +463,7 @@ export default function Services() {
                 <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
                     <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
                         <div>
-                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/residents.jpg")} />
+                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/residents.jpg")} alt='San Vicente Blood Donation Program' />
                         </div>
                     </div>
                     <div className='p-5'>
@@ -485,7 +485,7 @@ export default function Services() {
                 <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
                     <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
                         <div>
-                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/investors.jpg")} />
+                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/investors.jpg")} alt='Woman in Black Blazer Smiling' />
                         </div>
                     </div>
                     <div className='p-5'>
@@ -525,7 +525,7 @@ export default function Services() {
                 <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
                     <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
                         <div>
-                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/tourist.jpg")} />
+                            <img className='w-auto h-auto rounded-sm' src={require("../../res/img/tourist.jpg")} alt='Man in Hat and with Backpack Standing with Hills behind' />
                         </div>
                     </div>
                     <div className='p-5'>
@@ -612,9 +612,9 @@ export default function Services() {
                         <Collapse isOpened={open === index}>
                             <div className="bg-lgu-lime px-16 pb-10 pt-5 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl">
                                 {office.services.map((service, serviceIndex) => (
-                                    <div key={serviceIndex} className="mb-3">
-                                        <p className="text-xl font-semibold">{service.typeOfService}</p>
-                                        <p className="text-sm">{service.aboutTheService}</p>
+                                    <div key={serviceIndex} className="mb-4">
+                                        <p className="text-xl font-semibold text-justify">{service.typeOfService}</p>
+                                        <p className="text-sm text-justify">{service.aboutTheService}</p>
                                     </div>
                                 ))}
                             </div>
