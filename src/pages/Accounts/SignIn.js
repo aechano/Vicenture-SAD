@@ -64,8 +64,8 @@ export default function SignIn({ previousPage }) {
             localStorage.setItem("email", "lgu_emp_verified@vicenture.com")
         } else {
             localStorage.setItem("accountType", USER_TYPES.Citizen)
-            localStorage.setItem("username", "Sample Citizen")
-            localStorage.setItem("email", "citizen@vicenture.com")
+            localStorage.setItem("username", "Sample_Citizen123")
+            localStorage.setItem("email", email)
         }
         window.dispatchEvent(new Event("storage"));
         var goTo = localStorage.getItem("PREVIOUS_LINK");
