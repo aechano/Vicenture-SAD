@@ -1,9 +1,105 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Banner from '../../../components/Banner';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import BackToTop from '../../../components/BackToTop';
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { Collapse } from 'react-collapse';
+
 
 export default function ElectedOfficials() {
+    // Step 1: Add state
+    const [open, setOpen] = useState(null);
+
+    const toggle = (index) => {
+        // Step 2: Set state
+        if (open === index) {
+            setOpen(null);
+        } else {
+            setOpen(index);
+        }
+    };
+
+    var directoriesData = [
+        {
+            directoryName: "Hon. Vice Mayor Vivian M. Villamor",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Tourism", "Sisterhood and Special Events", "External Affairs"],
+            contactNo: "Contact Number",
+            num: "0930-298-3529",
+        },
+        {
+            directoryName: "Hon. Coun. Luisito G. Bobis",
+            charpersonCommitteeOn: "Chairperson Committee On",
+            list: ["Labor and Employment", "Public Works and Infrastructure", "Accreditation and Civil Society Organizations", "Project Monitoring and Evaluation"],
+            contactNo: "Contact Number",
+            num: "0948-672-2876",
+        },
+        {
+            directoryName: "Hon. Coun. Nestor C. Gonzales",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Food Security and Agriculture", "Housing, Zoning, and Rural/Urban Development", "Energy"],
+            contactNo: "Contact Number",
+            num: "0949-446-9042",
+        },
+        {
+            directoryName: "Hon. Coun. Percival K. Palma",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Laws, Rules, Ethics, Justice, and Good Governance", "Appropriations", "Public Order and Safety", "Disaster Risk Reduction and Management"],
+            contactNo: "Contact Number",
+            num: "0909-687-0012",
+        },
+        {
+            directoryName: "Hon. Coun. Emmanuel R. Opeda",
+            charpersonCommitteeOn: "Chairperson Committee on",
+            list: ["Ways and Means", "Trade and Industry", "Local Economic Enterprises and Public Utilities"],
+            contactNo: "Contact Number",
+            num: "0907-845-9108",
+        },
+        {
+            directoryName: "Hon. Coun. Thamar P. Belista",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Health and Sanitation", "Environmental Protection and Natural Resources", "Solid Waste Management"],
+            contactNo: "Contact Number",
+            num: "0910-901-9645",
+        },
+        {
+            directoryName: "Hon. Coun. Analet G. Villamin",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Education, Culture and Arts", "Social Welfare and Community Development", "Cooperatives"],
+            contactNo: "Contact Number",
+            num: "0950-868-4822",
+        },
+        {
+            directoryName: "Hon. Coun. Mercy L. Magana",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Women and Family Welfare", "Senior Citizens and Persons with Disability Affairs"],
+            contactNo: "Contact Number",
+            num: "0950-868-4666",
+        },
+        {
+            directoryName: "Hon. Coun. Elmer P. San Juan",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Transportation and Communications"],
+            contactNo: "Contact Number",
+            num: "0907-775-6633",
+        },
+        {
+            directoryName: "Hon. Coun. Alberto E. Mera",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Barangay Affairs"],
+            contactNo: "Contact Number",
+            num: "0907-504-1784",
+        },
+        {
+            directoryName: "Hon. Coun. Aldrin R. Alarde",
+            charpersonCommitteeOn: "Chairperson Committee on:",
+            list: ["Youth Affairs and Sports Development"],
+            contactNo: "Contact Number",
+            num: "0907-504-1784",
+        },
+    ];
+
+
     return (
         <>
             <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
@@ -112,15 +208,56 @@ export default function ElectedOfficials() {
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+
+
+                {/*put the directories here */}
+                <div className='pt-5 mb-3 m-5 space-y-6'>
+                    <h1 className='font-bold text-center text-4xl'>Directories</h1>
+                </div>
+                <div className="pt-3 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+            {directoriesData.map((directory, index) => (
+                <div key={index} className="pt-3">
+                    <div
+                        className="bg-lgu-green py-2 p-4 sm:px-16 flex justify-between item-center cursor-pointer rounded-xl"
+                        onClick={() => toggle(index)}
+                    >
+                        <p className="text-2xl mt-2 text-white font-semibold">{directory.directoryName}</p>
+                        <div className="text-5xl text-white">
+                            {open === index ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                        </div>
+                    </div>
+
+                    <Collapse isOpened={open === index}>
+                        <div className="bg-lgu-lime px-16 pb-10 pt-5 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl">
+                            <p className="text-2xl font-bold">{directory.charpersonCommitteeOn}</p>
+
+                            <ul className="text-lg ml-4">
+                                {directory.list.map((item, idx) => (
+                                    <li key={idx} className='list-disc ml-6'>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <p className="text-2xl font-bold mt-6">
+                                {directory.contactNo} 
+                            </p>
+                            <p className="text-lg ml-4">
+                                {directory.num}
+                            </p>
+                        </div>
+                    </Collapse>
+                </div>
+            ))}
+        </div>
+
 
 
             </div>
 
 
-        <BackToTop />
+            <BackToTop />
         </>
     );
 }
