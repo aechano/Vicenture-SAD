@@ -132,7 +132,7 @@ export default function Articles() {
                     <ul className="list-style-none flex justify-center">
                         <li>
                             <NavLink
-                                className="relative block rounded bg-transparent px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                                className="relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"
                                 href="#"
                                 aria-label="Previous" onClick={() => handlePageChange(currentPage - 1)}>
                                 <span aria-hidden="true">&laquo;</span>
@@ -142,13 +142,13 @@ export default function Articles() {
                         <li key={pageNumber}>
                             <NavLink
                                 to={`${PATH_NAME.Articles}/${pageNumber + 1}`} onClick={() => handlePageChange(pageNumber + 1)}
-                                className="relative block rounded bg-transparent px-3 py-1.5 text-lg text-neutral-600 transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                                className="relative block rounded  px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"
                             > {pageNumber + 1} </NavLink>
                         </li>
                         ))}
                         <li>
                             <NavLink
-                                className="relative block rounded bg-transparent px-3 py-1.5 text-lg text-black  transition-all duration-300 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+                                className="relative block rounded px-3 py-1.5 text-lg text-black  transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"
                                 href="#"
                                 aria-label="Next" onClick={() => handlePageChange(currentPage + 1)}
                             ><span aria-hidden="true">&raquo;</span>

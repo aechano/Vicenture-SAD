@@ -55,6 +55,11 @@ const navigation = [
     },
     {
         access: [...USER_TYPES.General, USER_TYPES.Guest],
+        name: 'Forum',
+        href: PATH_NAME.ForumsAndDiscussions
+    },
+    {
+        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Contact Us',
         href: PATH_NAME.ContactUs
     },

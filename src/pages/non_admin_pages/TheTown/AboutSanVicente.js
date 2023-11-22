@@ -55,28 +55,53 @@ export default function AboutSanVicente() {
         }}>
         <div className="absolute inset-0 bg-green-800 bg-opacity-70"></div>
 
-        <div className='p-5 relative z-10'>
-          <h1 className="text-4xl font-bold text-center mt-6 text-white">San Vicente Hymn</h1>
-        </div>
-
-        <div className="text-40 text-center mt-2 italic relative z-10 text-white">
-          <p className="mt-2">Ang luntiang kabundukan, Nitong ating bayang minamahal</p>
-          <p className="mt-2">Tila isang Paraiso, Biyaya sa pamayanan</p>
-          <p className="mt-2">Yamang gubat na taglay, Bulsa ay tubig na Dalisay</p>
-          <p className="mt-2">Ganda ng Talon ng Mananap, Mga turista hinahanap</p>
-          <p className="mt-2">Siyam na nayon, iisang layon, Kalakal at agrikultura</p>
-          <p className="mt-2">Turismo at pagsasaka, Edukasyon dinadakila</p>
-          <p className="mt-2">Sa Silangan at Kanluran, Man-Ogob, Cabanbanan</p>
-          <p className="mt-2">Calabagas, Asdum, Fabrica, Iraya sur, San Jose, anong sigla!</p>
-          <p className="mt-6 mb-2"><b>CHORUS</b></p>
-          <p className="mt-2">O San Vicente, yamang likas natatangi, Kaulara’y kapuri-puri</p>
-          <p className="mt-2">Masayang nagbunbunyi. Pakinabang nito sa pamayanan masaganang buhay</p>
-          <p className="mt-2">Ang kinabukasan asam tagumpay ng bayan</p>
-          <p className="mt-2">Mga tao ay naghahabi, Angking sining at kultura</p>
-          <p className="mt-2">Sayaw Esperanza de San Vicente, Laso de Palo at Española</p>
-          <p className="mt-2">Ang madla’y nagpupugay, At nagkakaisang tunay</p>
-          <p className="mt-2">Sa tulong ng Patrong San Vicente, Sa pag-unlad siyang saksi</p>
-          <p className="mt-3"><b>REPEAT CHORUS TWICE</b></p>
+        <div className='grid grid-rows-2 md:grid-rows-none md:grid-cols-2'>
+          <div className='md:border-r-2 md:border-white'>
+            <div className='p-5 relative z-10'>
+              <h1 className="text-4xl font-bold text-center mt-6 text-white">San Vicente Hymn</h1>
+            </div>
+            <div className="text-40 text-center mt-2 italic relative z-10 text-white">
+              <p className="mt-2">Ang luntiang kabundukan, Nitong ating bayang minamahal</p>
+              <p className="mt-2">Tila isang Paraiso, Biyaya sa pamayanan</p>
+              <p className="mt-2">Yamang gubat na taglay, Bulsa ay tubig na Dalisay</p>
+              <p className="mt-2">Ganda ng Talon ng Mananap, Mga turista hinahanap</p>
+              <p className="mt-2">Siyam na nayon, iisang layon, Kalakal at agrikultura</p>
+              <p className="mt-2">Turismo at pagsasaka, Edukasyon dinadakila</p>
+              <p className="mt-2">Sa Silangan at Kanluran, Man-Ogob, Cabanbanan</p>
+              <p className="mt-2">Calabagas, Asdum, Fabrica, Iraya sur, San Jose, anong sigla!</p>
+              <p className="mt-6 mb-2"><b>CHORUS</b></p>
+              <p className="mt-2">O San Vicente, yamang likas natatangi, Kaulara’y kapuri-puri</p>
+              <p className="mt-2">Masayang nagbunbunyi. Pakinabang nito sa pamayanan masaganang buhay</p>
+              <p className="mt-2">Ang kinabukasan asam tagumpay ng bayan</p>
+              <p className="mt-2">Mga tao ay naghahabi, Angking sining at kultura</p>
+              <p className="mt-2">Sayaw Esperanza de San Vicente, Laso de Palo at Española</p>
+              <p className="mt-2">Ang madla’y nagpupugay, At nagkakaisang tunay</p>
+              <p className="mt-2">Sa tulong ng Patrong San Vicente, Sa pag-unlad siyang saksi</p>
+              <p className="mt-3"><b>REPEAT CHORUS TWICE</b></p>
+            </div>
+          </div>
+          <div>
+            <div className='p-5 relative z-10'>
+              <h1 className="text-4xl font-bold text-center mt-6 text-white">Hymno Camarines Norte</h1>
+            </div>
+            <div className="text-40 text-center mt-2 italic relative z-10 text-white">
+              <p className="mt-3">Lupang Payapa Hilagang Bikol tangway nagpupugay</p>
+              <p className="mt-3">Lakbayin maharlikang da'at Bagasbas paliparan</p>
+              <p className="mt-3">Labindalwang bayan, likas ang yama't makasaysayan</p>
+              <p className="mt-3">Basud bantog ang Laniton pakidigma sa mga dayuhan.</p>
+              <p className="mt-3">Capalonga Jesus Nazareno pinandarayuhan.</p>
+              <p className="mt-3">Daet natayo unang bantayog sa bansa ni Rizal.</p>
+              <p className="mt-3">Labo at Paracale yama'y minang ginto at bakal</p>
+              <p className="mt-3">Mercedes pangingisda industriyang pangkalakalan.</p>
+              <p className="mt-3">Panganba't Vinzons dal'wang bayaning martir na ngalan.</p>
+              <p className="mt-3">San Lorenzo't San Vicente, pag-asa'y Formosang pinyahan.</p>
+              <p className="mt-3">Santa Elena at Talisay produkto'y pansakahan.</p>
+              <p className="mt-3">Mamamayan magkaisa, halina't magtulungan</p>
+              <p className="mt-3">kasama'y dalangin laging pagpalain ng Maykapal.</p>
+              <p className="mt-3">Sulong Camarines Norte, kaunlarang asam kamtan,</p>
+              <p className="mt-3">Camarines Norte, dangal ng kabikulan, isigaw, MABUHAY!</p>
+            </div>
+          </div>
         </div>
       </div>
 
