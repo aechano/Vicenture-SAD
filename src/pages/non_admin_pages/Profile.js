@@ -92,7 +92,7 @@ export default function Profile({ userType }) {
             <div className="my-0 mx-auto flex flex-col items-center w-full max-w-[800px] mb-2.5 mt-[-70px] border-2 border-solid border-lgu-green rounded-[14px]">
                 <div className='text 2xl font-bold m-0 p-5 bg-lgu-green text-white w-full rounded-t-[10px]'>Profile</div>
                 <div className='w-[200px] h-[200px] border-4 border-solid border-lgu-green rounded-[50%] my-5'>
-                    <img src={require("./../../res/debug_img/userpfp1.png")} style={{ width: '100%', height: '100%', borderRadius: '50%' }} alt={user.username} />
+                    <img src={require("./../../res/img/icon.png")} style={{ width: '100%', height: '100%', borderRadius: '50%' }} alt={user.username} />
                 </div>
                 <div style={profileInfoStyle}>
                     <div style={labelStyle}>Email:</div>

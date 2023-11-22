@@ -3,7 +3,7 @@ import { LguSvAddEditContent } from '../../components/LguSvAddEditContent';
 import { useParams } from 'react-router';
 
 export default function PlacesToVisitContent() {
-    const categories = ['Resorts', 'Restaurants', 'Nature'];
+    const categories = ['Nature', 'Restaurants', 'Resorts', 'Cafe', 'Schools'];
     const {method, contentID} = useParams();
 
     var content = {

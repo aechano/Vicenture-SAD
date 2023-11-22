@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Banner from '../../../components/Banner';
 import SocialMedia from '../../../components/SocialMedia';
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
@@ -7,6 +7,12 @@ import BackToTop from '../../../components/BackToTop';
 import RevealOnScroll from '../../../components/RevealOnScroll';
 
 export default function SanVicenteTourism() {
+  const [isSurveyOpen, setSurveyOpen] = useState(true);
+
+  const closeSurvey = () => {
+    setSurveyOpen(false);
+  };
+
   return (
     <div >
       <div className='relative inline-block'>
@@ -26,6 +32,21 @@ export default function SanVicenteTourism() {
 
       </div>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-28 space-y-10'>
+        <div className="pt-4" style={{ position: "relative" }}>
+          {isSurveyOpen && (
+            <>
+              <button
+                onClick={closeSurvey}
+                className="absolute top-0 right-0 p-2 text-white cursor-pointer"
+              >
+                Close
+              </button>
+              <NavLink to={PATH_NAME.Survey} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
+                <img src={require("../../../res/img/survey.png")} alt="" />
+              </NavLink>
+            </>
+          )}
+        </div>
         <div className="w-auto p-4">
           <video className="w-full h-full p-4 shadow-md rounded-lg border-2 border-lgu-green" autoPlay loop controls muted>
             <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />

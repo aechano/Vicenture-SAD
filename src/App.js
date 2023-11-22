@@ -52,9 +52,11 @@ import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
 import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsToInvestContent';
+import Toast from './components/Toast';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    const [showToast, setShowToast] = useState(true);
 
     window.addEventListener('storage', () => {
         setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);

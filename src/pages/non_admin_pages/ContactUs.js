@@ -123,9 +123,19 @@ export default function ContactUs({ userType }) {
             email: "lgusanvicente4609@gmail.com",
             number: "0947-570-3958 / 0907-041-8513",
             location: "Menro Office, SV Agro-Cultural and Sports Complex, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V - Bicol [/su_spoiler",
+            subitems: [
+                {
+                  key: 14,
+                  offices: "Municipal Traffic & Public Safety Office",
+                  head: "MR. NOLI F. BERNALDEZ",
+                  email: "lgusanvicente@gmail.com",
+                  number: "09085365963",
+                  location: "G/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V - Bicol",
+                },
+              ],
         },
         {
-            key: 14,
+            key: 15,
             offices: "San Vicente Tourism Office",
             head: "MS. CINDY Y. TALDO",
             email: "lgusanvicente@gmail.com",
@@ -133,7 +143,7 @@ export default function ContactUs({ userType }) {
             location: "G/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V - Bicol",
         },
         {
-            key: 15,
+            key: 16,
             offices: "Mayor's Office",
             head: "N/A",
             email: "N/A",
@@ -141,7 +151,7 @@ export default function ContactUs({ userType }) {
             location: "2/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V – Bicol",
         },
         {
-            key: 16,
+            key: 17,
             offices: "Vice-Mayor's Office",
             head: "N/A",
             email: "N/A",
@@ -149,7 +159,7 @@ export default function ContactUs({ userType }) {
             location: "2/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V – Bicol",
         },
         {
-            key: 3,
+            key: 18,
             offices: "Sangguniang Bayan Office",
             head: "N/A",
             email: "sbsanvicente4609@gmail.com",
@@ -157,7 +167,7 @@ export default function ContactUs({ userType }) {
             location: "2/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V – Bicol",
         },
         {
-            key: 17,
+            key: 19,
             offices: "Municipal Traffic and Public Safety Office",
             head: "Noli F. Bernaldez",
             email: "sanvicentemtpso@gmail.com",

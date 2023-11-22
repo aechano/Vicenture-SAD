@@ -10,6 +10,17 @@ import { NavLink } from 'react-router-dom';
 
 export default function PlacesToVisit({ userType }) {
     const [search, setSearch] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategory(category);
+        setSearch(category);
+        setShowDropdown(false);
+    };
+
+    const categories = ['Nature', 'Restaurants', 'Resorts', 'Cafe', 'Schools'];
+
     const navigate = useNavigate();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -115,10 +126,25 @@ export default function PlacesToVisit({ userType }) {
                                 required
                                 onKeyDown={handleKeyDown}
                             />
+                            {showDropdown && (
+                                <div className="absolute mt-2 w-full bg-white border border-lgu-green rounded-md shadow-lg">
+                                    <ul>
+                                        {categories.map((category) => (
+                                            <li
+                                                key={category}
+                                                className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                                                onClick={() => handleCategoryClick(category)}
+                                            >
+                                                {category}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </form>
                     <div className='pt-2 text-2xl'>
-                        <button>
+                        <button onClick={() => setShowDropdown(!showDropdown)}>
                             <FaFilter />
                         </button>
                     </div>
