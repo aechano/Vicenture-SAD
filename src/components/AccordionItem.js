@@ -6,7 +6,7 @@ const AccordionItem = ({ open, toggle, data }) => {
     return (
         <div className="pt-3">
             <div className="bg-lgu-green py-2 p-4 sm:px-16 flex justify-between item-center cursor-pointer rounded-xl" onClick={toggle}>
-                <p className="text-md text-white font-semibold">{data.offices}</p>
+                <p className="text-md text-white font-semibold mt-1">{data.offices}</p>
                 <div className="text-3xl text-white ">
                     {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
 
