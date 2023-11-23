@@ -32,7 +32,7 @@ export default function SanVicenteTourism() {
 
       </div>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-28 space-y-10'>
-        <div className="pt-4" style={{ position: "relative" }}>
+        <div className="hidden sm:block pt-4" style={{ position: "relative" }}>
           {isSurveyOpen && (
             <>
               <button
@@ -57,11 +57,11 @@ export default function SanVicenteTourism() {
           <div className='m-4 pb-10'>
             <div className='relative'>
               <img src={require('../../../res/img/tara.png')} className='rounded-md' />
-              <div className='absolute bottom-16 left-40'>
-                <a href="#_" className="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+              <div className='hidden lg:block absolute bottom-16 left-40'>
+                <NavLink to={PATH_NAME.TheTown.Offices} className="inline-flex items-center justify-center w-full px-8 py-4 text-base font-bold leading-6 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
                   Go to Tourism Office
-                </a>
-              </div>
+                </NavLink>
+              </div>  
             </div>
           </div>
         </RevealOnScroll>
@@ -73,10 +73,10 @@ export default function SanVicenteTourism() {
           }}>
           <div className="absolute inset-0 bg-gray-600 bg-opacity-70"></div>
           <div>
-            <iframe className='relative z-10 p-5' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15478.451159498574!2d122.85636726278433!3d14.10002034256915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3398a5c6ea69eca5%3A0x8eb101096d9967b5!2sSan%20Vicente%2C%20Camarines%20Norte!5e0!3m2!1sen!2sph!4v1700071816660!5m2!1sen!2sph" width="600" height="450" style={{ border: '0' }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe className=' hidden sm:block relative z-10 p-5' src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15478.451159498574!2d122.85636726278433!3d14.10002034256915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3398a5c6ea69eca5%3A0x8eb101096d9967b5!2sSan%20Vicente%2C%20Camarines%20Norte!5e0!3m2!1sen!2sph!4v1700071816660!5m2!1sen!2sph" width="600" height="450" style={{ border: '0' }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
 
-          <div className='p-5 text self-end relative z-10 text-white'>
+          <div className='sm:hidden lg:block p-5 text self-end relative z-10 text-white'>
             <h1 className='font-bold text-5xl'>Find the Town</h1>
             <h1 className='font-bold text-4xl'>of</h1>
             <h1 className='font-bold text-4xl'>Discovery and Adventure</h1>
@@ -99,8 +99,8 @@ export default function SanVicenteTourism() {
                 <p className="text-black text-left pt-14 leading-10 pr-5">
                   Welcome to the picturesque paradise of San Vicente, Camarines Norte! With its pristine waterfalls, lush landscapes, and vibrant culture, San Vicente offers a unique blend of adventure and relaxation. Let me be your gateway to the best of San Vicente, ensuring you experience the most authentic and memorable moments. To book your adventure, simply start by filling out our convenient online form that you can submit to our humble office, and let's embark on a fantastic journey together!
                 </p>
-              </div>
-              <div className="absolute left-0 -bottom-14 m-5">
+              </div>  
+              <div className="absolute left-0 sm:-bottom-14 m-5 -bottom-20 ">
                 <NavLink to={PATH_NAME.Tourism.OnlineForm} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                   Go to Our Online Form
                   <svg
@@ -139,7 +139,7 @@ export default function SanVicenteTourism() {
           </div>
         </RevealOnScroll>
 
-        <div className='flex justify-center space-x-5 pb-16 relative z-10 p-5'>
+        <div className='block md:flex md:flex-wrap justify-center space-x-0 space-y-2 md:space-y-0 lg:space-x-5 pb-16 relative z-10 p-5'>
 
           <RevealOnScroll>
             <div class="relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700">
