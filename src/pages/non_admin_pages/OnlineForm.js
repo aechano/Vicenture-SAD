@@ -49,6 +49,19 @@ export default function OnlineForm() {
         console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, names, message });
     };
 
+    const handleTextareaChange = (e) => {
+        const enteredValue = e.target.value;
+        setNames(enteredValue);
+    };
+
+    const handleTextareaBlur = () => {
+        // Count the number of names separated by commas
+        const namesArray = names.split(',').map(name => name.trim());
+        const numberOfPeople = namesArray.filter(name => name !== '').length;
+
+        // Set the count to the 'people' state
+        setPeople(numberOfPeople);
+    };
 
     return (
         <>
@@ -72,7 +85,11 @@ export default function OnlineForm() {
                                         placeholder="First Name"
                                         value={fname}
                                         onChange={(e) => {
-                                            setfname(e.target.value);
+                                            // Validate input using a regular expression
+                                            const validInput = /^[a-zA-Z]+$/;
+                                            if (validInput.test(e.target.value) || e.target.value === "") {
+                                                setfname(e.target.value);
+                                            }
                                         }}
                                     />
                                     <label
@@ -90,7 +107,11 @@ export default function OnlineForm() {
                                         placeholder="Middle Name"
                                         value={midName}
                                         onChange={(e) => {
-                                            setmidName(e.target.value);
+                                            // Validate input using a regular expression
+                                            const validInput = /^[a-zA-Z]+$/;
+                                            if (validInput.test(e.target.value) || e.target.value === "") {
+                                                setmidName(e.target.value);
+                                            }
                                         }}
                                     />
                                     <label
@@ -109,7 +130,11 @@ export default function OnlineForm() {
                                         placeholder="Last Name"
                                         value={lname}
                                         onChange={(e) => {
-                                            setlname(e.target.value);
+                                            // Validate input using a regular expression
+                                            const validInput = /^[a-zA-Z]+$/;
+                                            if (validInput.test(e.target.value) || e.target.value === "") {
+                                                setlname(e.target.value);
+                                            }
                                         }}
                                     />
                                     <label
@@ -121,7 +146,6 @@ export default function OnlineForm() {
                                 </div>
                                 <div className="relative mb-3 mx-2">
                                     <input
-                                        required
                                         type="email"
                                         className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="email"
@@ -147,7 +171,14 @@ export default function OnlineForm() {
                                         placeholder="Phone Number"
                                         value={phoneNum}
                                         onChange={(e) => {
-                                            setphoneNum(e.target.value);
+                                            // Allow only numbers
+                                            const enteredValue = e.target.value;
+                                            const numericValue = enteredValue.replace(/\D/g, ''); // Remove non-numeric characters
+
+                                            // Limit to a maximum of 11 characters
+                                            const truncatedValue = numericValue.slice(0, 11);
+
+                                            setphoneNum(truncatedValue);
                                         }}
                                     />
                                     <label
@@ -184,7 +215,11 @@ export default function OnlineForm() {
                                         placeholder="Duration of Stay (in days)"
                                         value={duration}
                                         onChange={(e) => {
-                                            setDuration(e.target.value);
+                                            // Ensure the entered value is a non-negative number
+                                            const enteredValue = e.target.value;
+                                            const nonNegativeValue = Math.max(0, enteredValue);
+
+                                            setDuration(nonNegativeValue);
                                         }}
                                     />
                                     <label
@@ -196,22 +231,19 @@ export default function OnlineForm() {
                                 </div>
                                 <div className="relative mb-3 mx-2">
                                     <input
-                                        required
-                                        type="number"
-                                        className="peer m-0 block h-[58px] w-80 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
+                                        className="break-words m-0 block h-[58px] w-96 rounded border border-solid border-black bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
                                         id="people"
-                                        placeholder="Number of People"
+                                        placeholder="# of people (list the names below to count)"
                                         value={people}
+                                        readOnly
                                         onChange={(e) => {
-                                            setPeople(e.target.value);
+                                            // Ensure the entered value is a non-negative number
+                                            const enteredValue = e.target.value;
+                                            const nonNegativeValue = Math.max(0, enteredValue);
+
+                                            setPeople(nonNegativeValue);
                                         }}
                                     />
-                                    <label
-                                        htmlFor="people"
-                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
-                                    >
-                                        Number of people
-                                    </label>
                                 </div>
                             </div>
 
@@ -222,9 +254,8 @@ export default function OnlineForm() {
                                 id="names"
                                 placeholder="List the full names of individuals who will be traveling, separating each name with a comma."
                                 value={names}
-                                onChange={(e) => {
-                                    setNames(e.target.value);
-                                }}
+                                onChange={handleTextareaChange}
+                                onBlur={handleTextareaBlur}  // Added onBlur event to trigger count when leaving textarea
                             />
                         </div>
                         <div className="relative mb-3 mx-2">
@@ -280,11 +311,14 @@ const generatePDF = (
     // Background Logo
     const logo = new Image();
     logo.src = require("../../res/img/logo.png");
-    doc.addImage(logo, "JPEG", 10, 10, 40, 40);
+    doc.addImage(logo, "JPEG", 10, 5, 40, 40);
 
     // Set the properties of the PDF document
     doc.setFontSize(16);
-    doc.text("Tourism Office Online Form", 60, 30);
+    doc.setFont("helvetica", "bold");
+    doc.text("Municipality of San Vicente", 60, 20);
+    doc.text("Camarines Norte", 60, 30);
+    doc.text("Tourism Office Online Form", 60, 40);
 
     // Add form data to the PDF in table form
     const tableData = [

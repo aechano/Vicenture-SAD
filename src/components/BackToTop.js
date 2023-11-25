@@ -33,7 +33,7 @@ const BackToTop = () => {
       {showBackToTopButton && (
         <button
           onClick={handleBackToTop}
-          className="fixed bottom-4 right-4 border-black text-black text-4xl p-2 rounded-full cursor-pointer"
+          className="fixed bottom-24 right-5 border-black text-black text-4xl p-2 rounded-full cursor-pointer"
         >
           <div className="w-12 h-12 flex items-center justify-center rounded-full bg-black text-white text-3xl">
             {/* Center the arrow inside the circle */}

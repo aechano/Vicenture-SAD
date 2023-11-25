@@ -8,7 +8,7 @@ export default function Transparency() {
     var view = [
       {
         head: "Financial Data",
-        pdfView: require("../../res/pdf/MC.pdf"),
+        pdfView: require("../../res/pdf/sample.pdf"),
       },
       {
         head: "Procurement",
