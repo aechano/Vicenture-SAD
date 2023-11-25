@@ -13,6 +13,7 @@ export default function Services() {
 
     const [search, setSearch] = useState('');
     const [open, setOpen] = useState(null);
+    const [subOpen, setSubOpen] = useState(false);
 
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -22,6 +23,13 @@ export default function Services() {
         }
     };
 
+    const subToggle = (index) => {
+        if (subOpen === index) {
+            setSubOpen(null);
+        } else {
+            setSubOpen(index);
+        }
+    }
 
     const toggle = (index) => {
         if (open === index) {
@@ -38,6 +46,13 @@ export default function Services() {
                 {
                     typeOfService: 'Registering Births and Issuance of Certificate of Live Birth',
                     aboutTheService: "The birth of a child shall be registered with in (30) days from the time of birth at the Office of the Civil Registrar of the city/municipality where the birth occurred.",
+                    subitems: [
+                        {
+                            name: "Requirements and Procedures",
+                            req: "N/A",
+                            proc: "N/A"
+                        },
+                    ],
                 },
                 {
                     typeOfService: "Registering Foundlings",
@@ -83,7 +98,15 @@ export default function Services() {
                 {
                     typeOfService: "Issuance of Certified Copies of Legislative Documents, Certifications, Minutes, Affidavits, etc.",
                     aboutTheService: "Issuance of vital documents on the basis of resolutions and ordinances adopted and enacted which belong of right and benefits to the people, as well as the abstract of legislative appropriations authorized, and all such non-legislative nature such as concurrence of appointments, authorization and empowerment contracts, and the awarding of legislative franchise.",
+                    subitems: [
+                        {
+                            name: "Requirements and Procedures",
+                            req: "N/A",
+                            proc: "N/A"
+                        },
+                    ],
                 },
+                
             ],
         },
         {
@@ -137,6 +160,24 @@ export default function Services() {
                 {
                     typeOfService: "Waste to Goods Program ",
                     aboutTheService: "Plastic wastes inserted and compacted in a plastic bottle of coke or pepsi also known as Eco-bottle is an environmentally friendly project of the municipality to reduce plastic litters along walkways and bodies of water thus making the surrounding clean and healthy to live in. This also helps provide alternative source of food(rice) among residents and providing school supplies to students who exchange or redeemed their Eco-bottles to MENR Office.",
+                },
+            ],
+        },
+        {
+            office: "Municipal Traffic & Public Safety Office",
+            services: [
+                {
+                    typeOfService: "N/A",
+                    aboutTheService: "N/A",
+                },
+            ],
+        },
+        {
+            office: "Municipal Disaster Risk Reduction and Management Office (MDRRMO)",
+            services: [
+                {
+                    typeOfService: "N/A",
+                    aboutTheService: "N/A",
                 },
             ],
         },
@@ -426,6 +467,50 @@ export default function Services() {
                 },
             ],
         },
+        {
+            office: "Municipal Traffic and Public Safety Office",
+            services: [
+                {
+                    typeOfService: "Public Safety and Order",
+                    aboutTheService:
+                        <ul>
+                            <li>Provide Man-power and Security to all Public Events/Edifices and crowd control</li>
+                            <li className='mt-2'>Conduct of Road Clearing Operations along San Vicente to Daet Road and Spillway De- Clogging.</li>
+                            <li className='mt-2'>Conduct of Bio-Security and Preventive activities as ANIMAL CHEKCPOINT measure for Large Cattle and Swine Products</li>
+                            <li className='mt-2'>Checking of Trucking Business for their renewal and redeem of their Annual Business Permit.</li>
+                            <li className='mt-2'>Inspection of Public Utility Vehicle, i,e, SVTODA(TRICYCLE) and SVPODA(PEDICAB) during annual renewal for Road Worthiness and Passenger’s Safety.</li>
+                            <li className='mt-2'>Augmentation during collection and imposing of Municipal Ordinance # 11 series 2016(Environmental Fee Collection for Local Tourist bound to Mananap Resort and other Recreational Place of San Vicente.)</li>
+                        </ul>,
+                },
+                {
+                    typeOfService: "Traffic Road and Safety",
+                    aboutTheService: <ul>
+                        <li className='mt-2'>
+                            Conduct of Regular Checkpoint within the vicinity of San Vicente, mostly for Public Utility Vehicle, Private Owned vehicle and non-compliant for existing traffic rules and regulations.
+                        </li>
+                        <li className='mt-2'>
+                            Putting up and maintenance of Traffic Sign-ages, Road Humps, Pedestrian Warning along Provincial Road within the vicinity of San Vicente.
+                        </li>
+                    </ul>,
+                },
+                {
+                    typeOfService: "Emergency and Crisis Management",
+                    aboutTheService: "Provide man power and crowd control/security/ assistance to MDRRMO during disaster.",
+                },
+                {
+                    typeOfService: "Miscellaneous Services",
+                    aboutTheService:
+                        <ul>
+                            <li className='mt-2'>
+                                Conducting Inspection for applying Permit to Cut of Softwood trees.
+                            </li>
+                            <li className='mt-2'>
+                                Releasing of LGU-Property such as tables and chairs, Industrial Fan, etc.
+                            </li>
+                        </ul>,
+                },
+            ],
+        },
 
 
 
@@ -591,10 +676,9 @@ export default function Services() {
 
 
                 </div>
-
-
-
             </div>
+
+
 
             <div className="pt-3 mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 {servicesData.map((office, index) => (
@@ -615,8 +699,22 @@ export default function Services() {
                                     <div key={serviceIndex} className="mb-4">
                                         <p className="text-xl font-semibold text-justify">{service.typeOfService}</p>
                                         <p className="text-sm text-justify">{service.aboutTheService}</p>
+
+                                        {service.subitems && (
+                                            <div className="mt-4">
+                                                {service.subitems.map((subitem, index) => (
+                                                    <ServiceAccordionItem
+                                                        key={index}
+                                                        open={index === subOpen} // Pass the same open state as the parent
+                                                        toggle={() => subToggle(index)} // Pass the toggle function of the parent
+                                                        data={subitem}
+                                                    />
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 ))}
+
                             </div>
                         </Collapse>
                     </div>
@@ -624,5 +722,26 @@ export default function Services() {
             </div>
             <BackToTop />
         </>
+    );
+}
+
+function ServiceAccordionItem({ open, toggle, data }) {
+    return (
+        <div className="">
+            <div className="bg-lgu-green py-2 p-4 sm:px-6 flex justify-between item-center cursor-pointer rounded-xl" onClick={toggle}>
+                <p className="text-md text-white font-semibold mt-1">{data.name}</p>
+                <div className="text-3xl text-white ">
+                    {open ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                </div>
+            </div>
+
+            <Collapse isOpened={open}>
+                <div className="bg-lgu-lime px-16 pb-10 pt-5 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl">
+                    <p>Requirements: {data.req}</p>
+                    <p>Procedures: {data.proc}</p>
+                   
+                </div>
+            </Collapse>
+        </div>
     );
 }

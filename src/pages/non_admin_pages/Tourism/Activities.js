@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import Banner from '../../../components/Banner'
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
@@ -10,6 +10,17 @@ import { NavLink } from 'react-router-dom';
 
 export default function Activities() {
     const [search, setSearch] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategory(category);
+        setSearch(category);
+        setShowDropdown(false);
+    };
+
+    const categories = ['Festivals', 'Hiking', 'Outing', 'Events', 'Vacations'];
+
     const navigate = useNavigate();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -114,16 +125,34 @@ export default function Activities() {
                                 required
                                 onKeyDown={handleKeyDown}
                             />
+                            {showDropdown && (
+                                <div className="absolute mt-2 w-full bg-white border border-lgu-green rounded-md shadow-lg">
+                                    <ul>
+                                        {categories.map((category) => (
+                                            <li
+                                                key={category}
+                                                className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                                                onClick={() => handleCategoryClick(category)}
+                                            >
+                                                {category}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </form>
-                    <div className='text-4xl'>
-                        <FaFilter />
+                    <div className='pt-2 text-2xl'>
+                        <button onClick={() => setShowDropdown(!showDropdown)}>
+                            <FaFilter />
+                        </button>
+
                     </div>
                 </div>
                 <div className='w-fit rounded-full ms-5 my-2 float float-right'>
                     <NavLink
-                    to={PATH_NAME.Tourism.Content + "/add"}
-                    className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
+                        to={PATH_NAME.Tourism.Content + "/add"}
+                        className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
                         +&nbsp;&nbsp;&nbsp;Create A Post
                     </NavLink>
                 </div>

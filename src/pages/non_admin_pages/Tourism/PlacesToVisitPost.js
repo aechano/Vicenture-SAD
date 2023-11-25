@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import CommentingSystem from '../../../components/CommentingSystem';
 import BackToTop from '../../../components/BackToTop';
+import StarRating from '../../../components/StarRating';
+
 
 export default function PlacesToVisitPost() {
     const { contentID } = useParams();
+    const [userRating, setUserRating] = useState(0);
+
+    const handleRatingChange = (newRating) => {
+      setUserRating(newRating);
+      // Handle any additional logic when the rating changes
+    };
+
     return (
         <div className='w-full bg-gray-400 py-20'>
             <div className='w-3/4 mx-auto p-10 shadow-md bg-gray-100 rounded-3xl'>
@@ -19,9 +28,19 @@ export default function PlacesToVisitPost() {
                     </div>
                 </div>
                 <p className='mt-6'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis ... Donec ultricies neque a eros tempor fermentum. Integer id imperdiet lorem. Praesent fermentum pulvinar fermentum. Donec auctor tellus velit, vitae hendrerit justo ultricies sit amet. Cras ac imperdiet mauris. Suspendisse at auctor lorem, et pharetra magna. Donec justo ante, finibus sed commodo non, ultrices at nulla. Donec vestibulum faucibus turpis iaculis dignissim.</p>
+
+                <div>
+                <p className='text-left mt-9 text-lg font-bold ml-1'>Rate it!</p>
+
+                </div>
+                {/* Use the StarRating component */}
+                <StarRating totalStars={5} onRatingChange={handleRatingChange} />
+
+
+
                 <CommentingSystem content={contentID} />
             </div>
-        <BackToTop />
+            <BackToTop />
         </div>
     );
 }

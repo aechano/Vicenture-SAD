@@ -8,13 +8,14 @@ const PATH_NAME = {
         },
         list: ["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"]
     },
-    AdminPages: {
+    AdminPages:{
         AdminAnalytics: "/analytics",
         AdminHomepage: "/adminHomepage",
         AdminAboutSV: "/adminAboutSV",
         AdminMunicipalityProfile: "/adminMunicipalityProfile",
+        AdminMunicipalityProgram: "/adminMunicipalityProgram",
         AdminElectedOfficial: "/adminElectedOfficial",
-        AdminCharter: "/adminCharter",
+        AdminCharter: "/adminCitizenCharter",
         AdminToVisit: "/adminToVisit",
         AdminActivities: "/adminActivities",
         AdminTransparency: "/adminTransparency",

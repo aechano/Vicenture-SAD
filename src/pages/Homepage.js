@@ -5,10 +5,27 @@ import BackToTop from "../components/BackToTop";
 import { NavLink } from "react-router-dom";
 import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
 import CalendarModal from "../components/CalendarModal";
+import CarouselComponent from "../components/CarouselComponent";
 
 function Homepage({ userType }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [isSurveyOpen, setSurveyOpen] = useState(true);
+
+    const closeSurvey = () => {
+        setSurveyOpen(false);
+    };
+
+
+    const images = [
+        require("./../res/img/1.png"),
+        require("./../res/img/2.png"),
+        require("./../res/img/3.png"),
+        require("./../res/img/4.png"),
+        require("./../res/img/5.png"),
+        // Add more image URLs as needed
+    ];
+
 
     const openModal = () => {
         console.log("Opening modals");
@@ -54,6 +71,21 @@ function Homepage({ userType }) {
             {/* Event Section */}
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+                <div className="pb-5" style={{ position: "relative" }}>
+                    {isSurveyOpen && (
+                        <>
+                            <button
+                                onClick={closeSurvey}
+                                className="absolute top-0 right-0 p-2 text-white cursor-pointer"
+                            >
+                                Close
+                            </button>
+                            <NavLink to={PATH_NAME.Survey} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
+                                <img src={require("./../res/img/survey.png")} alt="" />
+                            </NavLink>
+                        </>
+                    )}
+                </div>
                 <div>
                     <div className="sm:flex items-center">
                         <h1 className="text-center font-bold p-0 text-2xl mb-0 mt-0 lg:text-4xl md:p-2">What's Happening?</h1>
@@ -150,7 +182,14 @@ function Homepage({ userType }) {
                         </NavLink>
                     </div>
                 </div>
+
             </div>
+
+            <div className="relative mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+                <img src={require("./../res/img/highlights.png")} alt="" />
+                <CarouselComponent images={images} />
+            </div>
+
 
             {/* About San Vicente */}
 

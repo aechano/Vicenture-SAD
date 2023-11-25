@@ -11,6 +11,8 @@ import adminHomepage from './pages/AdminPages/adminHomepage';
 import adminAboutSV from './pages/AdminPages/adminAboutSV';
 import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
 import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
+import adminMunicipalityProgram from './pages/AdminPages/adminMunicipalityProgram';
+import adminCitizenCharter from './pages/AdminPages/adminCitizenCharter';
 import AdminTransparency from './pages/AdminPages/adminTransparency';
 import adminReportedContents from './pages/AdminPages/adminReportedContents';
 import { adminEmergencies } from './pages/AdminPages/adminEmergencies';
@@ -51,11 +53,17 @@ import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
 import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsToInvestContent';
+import Toast from './components/Toast';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
 function App() {
-    const [userType, setUserType] = useState(USER_TYPES.Guest);
+    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    const [showToast, setShowToast] = useState(true);
+
+    window.addEventListener('storage', () => {
+        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    })
 
     function updateUserType(){
         var token = Cookies.get("token");
@@ -84,9 +92,14 @@ function App() {
                         <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
                         <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
                         <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile />} />
+                        <Route path={PATH_NAME.AdminPages.adminMunicipalityProgram} element={<adminMunicipalityProgram />} />
+                        <Route path={PATH_NAME.AdminPages.adminCitizen} element={<adminCitizenCharter />} />
                         <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
                         <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
                         <Route path={PATH_NAME.AdminPages.adminReportedContents} element={<adminReportedContents />} />
+
+                        
+                        
 
 
                         <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />

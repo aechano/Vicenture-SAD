@@ -18,7 +18,7 @@ export default function History() {
                         alt="Mananap Falls"
                         className="float-left mr-4 my-2 w-auto max-h-96"
                     />
-                    <div className="text-35">
+                    <div className="text-35 text-justify">
                         <p className='mb-3 mt-1'>Long before Ambos Camarines was finally divided into provinces of Camarines Norte and Camarines Sur in 1919, the town of San Vicente had been existing for more than a century. Based on the document Memoria de la Provincia de Camarines Norte from the Records Management and Archives Office in Manila, San Vicente was created in 1790. The document provided details of Camarines Norte such as the creation, situation, communications, products, bodies of water, climate, and poblacions. There was no exact date of the creation except for the year and a recorded population of 1,187.</p>
                         <p className='mb-3'>The historical origin of the municipality of San Vicente has some religious elements.   The town originated as a barrio known as San Antonio, located southwest of Daet.It was founded in 1771 when Fray Antonio de Luna, OFM was the Bishop of Nueva Caceres who favored the expansion of the Franciscan Missions in Daet. However, when the bishop died on April 16, 1771, the Franciscans subsequently left the mission. During the time, there were vigorous attempts for secularization in many parts of the country, including the Diocese of Nueva Caceres.   It was then when religious were prevented from expanding their missions and the parishes were filled by seculars.</p>
 

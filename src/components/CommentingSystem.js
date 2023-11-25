@@ -85,6 +85,7 @@ export default function CommentingSystem({ contentID }) {
                     Sign In to join the conversation
                 </div>
             }
+            
             {addComment ?
                 <div>
                     {/** comment box */}

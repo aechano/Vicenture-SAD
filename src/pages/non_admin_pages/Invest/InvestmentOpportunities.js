@@ -4,6 +4,7 @@ import BackToTop from '../../../components/BackToTop';
 import { PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import InvestContent from '../../../components/InvestContent';
 import Page403 from '../../Accounts/ErrorPages/Page403';
+import { NavLink } from 'react-router-dom';
 
 export default function InvestmentOpportunities({ userType }) {
 
@@ -32,22 +33,31 @@ export default function InvestmentOpportunities({ userType }) {
 
   ];
 
-  if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist].includes(userType)){
-    return <Page403/>
+  if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist].includes(userType)) {
+    return <Page403 />
   }
 
-    return (
-      <div>
-        <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
-          <p>Investment Opportunities</p>
-        </Banner>
+  return (
+    <div>
+      <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+        <p>Investment Opportunities</p>
+      </Banner>
 
-        <div>
-          {contents.map((data, index) => {
-            return <InvestContent key={index} data={data} />
-          })}
+      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 '>
+        <div className='w-fit rounded-full pl-24 pt-10'>
+          <NavLink
+            to={PATH_NAME.Tourism.Content + "/add"}
+            className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
+            +&nbsp;&nbsp;&nbsp;Create A Post
+          </NavLink>
         </div>
-        <BackToTop />
       </div>
-    )
+      <div className=''>
+        {contents.map((data, index) => {
+          return <InvestContent key={index} data={data} />
+        })}
+      </div>
+      <BackToTop />
+    </div>
+  )
 }

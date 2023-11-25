@@ -10,6 +10,17 @@ import { NavLink } from 'react-router-dom';
 
 export default function PlacesToVisit({ userType }) {
     const [search, setSearch] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const handleCategoryClick = (category) => {
+        setSelectedCategory(category);
+        setSearch(category);
+        setShowDropdown(false);
+    };
+
+    const categories = ['Nature', 'Restaurants', 'Resorts', 'Cafe', 'Schools'];
+
     const navigate = useNavigate();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
@@ -31,36 +42,36 @@ export default function PlacesToVisit({ userType }) {
         },
         {
             id: 2,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/anahaw-resort.jpg"),
+            title: "Anahaw Resort",
+            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
             rate: 2.6,
             vote: 175,
             comments: 74,
         },
         {
             id: 3,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/satu-hati-mini-farm-and-resort.jpg"),
+            title: "Satu Hati Mini Farm & Resort",
+            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
             rate: 4.2,
             vote: 531,
             comments: 63,
         },
         {
             id: 4,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/paraiso-sa-iraya.jpg"),
+            title: "Paraiso sa Iraya",
+            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
             rate: 4.7,
             vote: 213,
             comments: 16,
         },
         {
             id: 5,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
+            pic: require("../../../res/img/lyza-resort.jpg"),
+            title: "Lyza Resort",
+            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
             rate: 3.0,
             vote: 213,
             comments: 16,
@@ -115,10 +126,25 @@ export default function PlacesToVisit({ userType }) {
                                 required
                                 onKeyDown={handleKeyDown}
                             />
+                            {showDropdown && (
+                                <div className="absolute mt-2 w-full bg-white border border-lgu-green rounded-md shadow-lg">
+                                    <ul>
+                                        {categories.map((category) => (
+                                            <li
+                                                key={category}
+                                                className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+                                                onClick={() => handleCategoryClick(category)}
+                                            >
+                                                {category}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
                         </div>
                     </form>
                     <div className='pt-2 text-2xl'>
-                        <button>
+                        <button onClick={() => setShowDropdown(!showDropdown)}>
                             <FaFilter />
                         </button>
                     </div>

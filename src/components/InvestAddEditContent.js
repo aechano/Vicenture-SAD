@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { ImEye } from 'react-icons/im';
+import { NavLink } from 'react-router-dom';
 
 
 function InvestAddEditContent({ title, type, contentBody }) {
     const [selectedFile, setSelectedFile] = useState("No image chosen");
 
     const [content, setContent] = useState(contentBody === undefined ? '' : contentBody.content);
-
-
 
 
 return (
@@ -145,10 +144,10 @@ return (
                     </div>
                 </div>
                 <div className='flex justify-between pb-5'>
-                    <div className='flex items-center'>
+                    <NavLink className='flex items-center'>
                         <ImEye />
                         <p className='p-2 text-sm font-semibold'>Preview</p>
-                    </div>
+                    </NavLink>
                     <div className='flex'>
                         <div className="pr-2">
                             <button type="submit"

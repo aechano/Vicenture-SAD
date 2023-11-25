@@ -57,11 +57,6 @@ const navigation = [
     },
     {
         access: [...USER_TYPES.General, USER_TYPES.Guest],
-        name: 'Forum',
-        href: PATH_NAME.ForumsAndDiscussions
-    },
-    {
-        access: [...USER_TYPES.General, USER_TYPES.Guest],
         name: 'Contact Us',
         href: PATH_NAME.ContactUs
     },
@@ -273,7 +268,7 @@ export default function Header(props) {
                                                                 <span className="sr-only">Open user menu</span>
                                                                 <img
                                                                     className="h-10 w-auto rounded-full"
-                                                                    src={require("../res/debug_img/userpfp1.png")}
+                                                                    src={require("../res/img/icon.png")}
                                                                     alt=""
                                                                 />
                                                             </Menu.Button>
@@ -305,6 +300,16 @@ export default function Header(props) {
                                                                             className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
                                                                         >
                                                                             Messages
+                                                                        </NavLink>
+                                                                    )}
+                                                                </Menu.Item>
+                                                                <Menu.Item>
+                                                                    {({ active }) => (
+                                                                        <NavLink
+                                                                            to={PATH_NAME.ForumsAndDiscussions}
+                                                                            className={'block px-4 py-2 text-sm text-gray-700 ' + (active ? 'bg-gray-100' : '')}
+                                                                        >
+                                                                            Forum
                                                                         </NavLink>
                                                                     )}
                                                                 </Menu.Item>
