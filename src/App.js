@@ -12,6 +12,8 @@ import adminHomepage from './pages/AdminPages/adminHomepage';
 import adminAboutSV from './pages/AdminPages/adminAboutSV';
 import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
 import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
+import adminMunicipalityProgram from './pages/AdminPages/adminMunicipalityProgram';
+import adminCitizenCharter from './pages/AdminPages/adminCitizenCharter';
 import AdminTransparency from './pages/AdminPages/adminTransparency';
 import adminReportedContents from './pages/AdminPages/adminReportedContents';
 import { adminEmergencies } from './pages/AdminPages/adminEmergencies';
@@ -77,9 +79,14 @@ function App() {
                         <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
                         <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
                         <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile />} />
+                        <Route path={PATH_NAME.AdminPages.adminMunicipalityProgram} element={<adminMunicipalityProgram />} />
+                        <Route path={PATH_NAME.AdminPages.adminCitizen} element={<adminCitizenCharter />} />
                         <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
                         <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
                         <Route path={PATH_NAME.AdminPages.adminReportedContents} element={<adminReportedContents />} />
+
+                        
+                        
 
 
                         <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />

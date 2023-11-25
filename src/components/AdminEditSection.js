@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function PreviewHomepage() {
+function AdminEditSection({header}) {
   const [isBannerTitleSelected, setIsBannerTitleSelected] = useState(false);
   const [isBannerImageSelected, setIsBannerImageSelected] = useState(false);
   const [bannerImage, setBannerImage] = useState(null);
@@ -29,7 +29,7 @@ function PreviewHomepage() {
     <div className="flex items-center justify-center">
       {/* Edit section for homepage */}
       <div className="w-1/4 p-4 bg-lgu-lime rounded-md mt-8" style={{ height: "500px", overflowY: "auto", overflowX: "hidden" }}>
-        <h1 className="text-3xl font-bold mb-4">Homepage</h1>
+        <h1 className="text-3xl font-bold mb-4">{header}</h1>
         
         {/* Banner Title */}
         <div className="flex items-center mt-2 mb-4">
@@ -172,4 +172,4 @@ function PreviewHomepage() {
   );
 }
 
-export default PreviewHomepage;
+export default AdminEditSection;
