@@ -2,75 +2,34 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
-import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
-import { jwtDecode } from 'jwt-decode'; import { RxCross2 } from 'react-icons/rx';
+import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
+import { RxCross2 } from 'react-icons/rx';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
+import Cookies from 'js-cookie';
 
 
-export default function SignIn({ previousPage }) {
+export default function SignIn() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [showPassword, setShowPassword] = useState(false); // New state to track password visibility
-    const [userAccount, setUserAccount] = useState();
     const navigate = useNavigate();
 
     function checkCredentials(e) {
         e.preventDefault();
-        /*
         axios.post(API.SignIn, { "email": email, "password": password })
             .then((response) => response.data)
             .then(data => {
                 if (data == null) {
                     console.log("Sign in failed.")
                 } else {
-                    localStorage.setItem("token", data.token)
-                    localStorage.setItem("refresh", data.refreshToken)
-                    var payload = jwtDecode(data.refreshToken)
-                    localStorage.setItem("accountType", payload.AccountType)
-                    localStorage.setItem("username", payload.Username)
-                    localStorage.setItem("email", payload.sub)
-                    window.dispatchEvent(new Event("storage"));
-                    navigate(PATH_NAME.Home);
+                    Cookies.set("token", data.token, {expires: 7});
+                    Cookies.set("refresh", data.refreshToken);
+                    window.dispatchEvent(new Event("cookies"));
+                    var goTo = Cookies.get("PREVIOUS_LINK");
+                    Cookies.remove("PREVIOUS_LINK");
+                    navigate(goTo !== undefined ? goTo : "/");
                 }
             })
-        */
-        if (email === "lgu_office@vicenture.com" && password === "vicenture_office") {
-            localStorage.setItem("accountType", USER_TYPES.LguSV)
-            localStorage.setItem("username", "Office Sample")
-            localStorage.setItem("email", "lgu_office@vicenture.com")
-        } else if (email === "lgu_admin@vicenture.com" && password === "vicenture_admin") {
-            localStorage.setItem("accountType", USER_TYPES.Admin)
-            localStorage.setItem("username", "Vicenture Admin")
-            localStorage.setItem("email", "lgu_admin@vicenture.com")
-        } else if (email === "investor@vicenture.com" && password === "investor") {
-            localStorage.setItem("accountType", USER_TYPES.Investor)
-            localStorage.setItem("username", "Sample Investor")
-            localStorage.setItem("email", "investor@vicenture.com")
-        } else if (email === "tourist@vicenture.com" && password === "tourist") {
-            localStorage.setItem("accountType", USER_TYPES.Tourist)
-            localStorage.setItem("username", "Sample Tourist")
-            localStorage.setItem("email", "tourist@vicenture.com")
-        } else if (email === "citizen@vicenture.com" && password === "citizen") {
-            localStorage.setItem("accountType", USER_TYPES.Citizen)
-            localStorage.setItem("username", "Sample Citizen")
-            localStorage.setItem("email", "citizen@vicenture.com")
-        } else if (email === "lgu_employee@vicenture.com" && password === "lgu_employee") {
-            localStorage.setItem("accountType", USER_TYPES.Citizen)
-            localStorage.setItem("username", "Sample Employee (Unverified)")
-            localStorage.setItem("email", "lgu_employee@vicenture.com")
-        } else if (email === "lgu_emp_verified@vicenture.com" && password === "lgu_employee") {
-            localStorage.setItem("accountType", USER_TYPES.Investor)
-            localStorage.setItem("username", "Sample Employee (Verified)")
-            localStorage.setItem("email", "lgu_emp_verified@vicenture.com")
-        } else {
-            localStorage.setItem("accountType", USER_TYPES.Citizen)
-            localStorage.setItem("username", "Sample_Citizen123")
-            localStorage.setItem("email", email)
-        }
-        window.dispatchEvent(new Event("storage"));
-        var goTo = localStorage.getItem("PREVIOUS_LINK");
-        localStorage.setItem("PREVIOUS_LINK", "/");
-        navigate(goTo !== undefined ? goTo : "/");
     }
     return (
         <section className="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
@@ -152,10 +111,7 @@ export default function SignIn({ previousPage }) {
                             <div className='text-center mr-5 mb-5 text-white'>
                                 Don't have an account? &nbsp;
                                 <NavLink
-                                    to={{
-                                        pathname: PATH_NAME.Accounts.SignUp.SignUp,
-                                        state: { previousPage: previousPage }
-                                    }}
+                                    to={PATH_NAME.Accounts.SignUp.SignUp}
                                     className='text-lgu-lime bold'>
                                     Sign Up
                                 </NavLink>

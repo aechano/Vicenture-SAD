@@ -5,8 +5,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { InputBoxAccount } from '../../../components/InputBox';
 import { API, PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from 'react-icons/rx'
+import Cookies from 'js-cookie';
 
-export default function SignUpLGU({ previousPage, state }) {
+export default function SignUpInvestor({ initialData }) {
 
     const navigate = useNavigate();
 
@@ -34,7 +35,7 @@ export default function SignUpLGU({ previousPage, state }) {
         now that input is valid, let's store it in the database.
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
-        /*
+
         axios.post(API.SignUp, {
             "lastName": lastName,
             "firstName": firstName,
@@ -43,23 +44,27 @@ export default function SignUpLGU({ previousPage, state }) {
             "businessSector": businessSector,
             "company": company,
             "accounts": {
-                "email": state.email,
-                "password": state.password,
-                "username": state.username,
-                "accountType": state.role,
-                "lastActiveDate": state.lastActiveDate,
-                "accountCreationDate": state.accountCreationDate
+                "email": initialData.email,
+                "password": initialData.password,
+                "userName": initialData.username,
+                "accountType": initialData.role,
+                "lastActiveDate": initialData.lastActiveDate,
+                "accountCreationDate": initialData.accountCreationDate
             }
-        });
-        */
-
-        localStorage.setItem("accountType", USER_TYPES.Investor)
-        localStorage.setItem("username", data.username)
-        localStorage.setItem("email", data.email)
-        window.dispatchEvent(new Event("storage"));
-        var goTo = localStorage.getItem("PREVIOUS_LINK");
-        localStorage.setItem("PREVIOUS_LINK", "/");
-        navigate(goTo!==undefined?goTo:"/");
+        })
+            .then((response) => response.data)
+            .then(data => {
+                if (data == null) {
+                    console.log("Sign up failed.")
+                } else {
+                    Cookies.set("token", data.token, {expires: 7});
+                    Cookies.set("refresh", data.refreshToken);
+                    window.dispatchEvent(new Event("cookies"));
+                    var goTo = Cookies.get("PREVIOUS_LINK");
+                    Cookies.remove("PREVIOUS_LINK");
+                    navigate(goTo !== undefined ? goTo : "/");
+                }
+            })
     }
     return (
         <section className="bg-gray-900 p-32" style={{ backgroundImage: "url(" + require('../../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
@@ -77,7 +82,7 @@ export default function SignUpLGU({ previousPage, state }) {
                     <NavLink
                         to={{
                             pathname: PATH_NAME.Accounts.SignUp.SignUp,
-                            state: { previousPage: previousPage, initialData:state }
+                            state: { initialData: initialData }
                         }}
                         className='float-left text-lgu-lime p-3 w-fit mr-0 ml-auto'>
                         Back
@@ -166,10 +171,7 @@ export default function SignUpLGU({ previousPage, state }) {
                         <div className='text-center mr-5 mb-5 text-white'>
                             Already have an account? &nbsp;
                             <NavLink
-                                to={{
-                                    pathname: PATH_NAME.Accounts.SignIn,
-                                    state: { previousPage: previousPage }
-                                }}
+                                to={PATH_NAME.Accounts.SignIn}
                                 className='text-lgu-lime bold'>
                                 Sign In
                             </NavLink>

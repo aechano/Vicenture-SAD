@@ -3,11 +3,12 @@ import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
-import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from "react-icons/rx";
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
+import Cookies from 'js-cookie';
 
-export default function SignUp({ previousPage, initialData }) {
+export default function SignUp({ initialData }) {
     const [email, setEmail] = useState(initialData ? initialData.email : null);
     const [username, setUsername] = useState(initialData ? initialData.username : null);
     const [password, setPassword] = useState('');
@@ -64,25 +65,38 @@ export default function SignUp({ previousPage, initialData }) {
         now that input is valid, let's store it in the database.
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
+
         if (button === "Create Account") { //if this is a citizen or tourist account
             setUserAccount({
                 "email": email,
                 "password": password,
-                "username": username,
+                "userName": username,
                 "accountType": role,
                 "lastActiveDate": Date.now(),
                 "accountCreationDate": Date.now()
             });
 
-            //axios.post(API.SignUp, userAccount);
-
-            localStorage.setItem("accountType", USER_TYPES.Tourist)
-            localStorage.setItem("username", username)
-            localStorage.setItem("email", email)
-            window.dispatchEvent(new Event("storage"));
-            var goTo = localStorage.getItem("PREVIOUS_LINK");
-            localStorage.setItem("PREVIOUS_LINK", "/");
-            navigate(goTo !== undefined ? goTo : "/");
+            axios.post(API.SignUp, {
+                "email": email,
+                "password": password,
+                "userName": username,
+                "accountType": role,
+                "lastActiveDate": Date.now(),
+                "accountCreationDate": Date.now()
+            })
+                .then((response) => response.data)
+                .then(data => {
+                    if (data == null) {
+                        console.log("Sign up failed.")
+                    } else {
+                        Cookies.set("token", data.token, {expires: 7});
+                        Cookies.set("refresh", data.refreshToken);
+                        window.dispatchEvent(new Event("cookies"));
+                        var goTo = Cookies.get("PREVIOUS_LINK");
+                        Cookies.remove("PREVIOUS_LINK");
+                        navigate(goTo !== undefined ? goTo : "/");
+                    }
+                })
         } else { //if this is an investor or lgu account
             var currentData = {
                 email: email,
@@ -92,11 +106,11 @@ export default function SignUp({ previousPage, initialData }) {
                 lastActiveDate: Date.now(),
                 accountCreationDate: Date.now()
             }
-            if (role === "2") {
-                navigate(PATH_NAME.Accounts.SignUp.INVESTOR, { state: currentData, previousPage: previousPage });
-            } else {
-                navigate(PATH_NAME.Accounts.SignUp.LGU, { state: currentData, previousPage: previousPage });
-            }
+            navigate(PATH_NAME.Accounts.SignUp.INVESTOR, {
+                state: {
+                    initialData: currentData
+                }
+            });
         }
     }
     return (
@@ -241,7 +255,7 @@ export default function SignUp({ previousPage, initialData }) {
                                         value={role}
                                         onChange={(e) => {
                                             setRole(e.target.value);
-                                            setButton(e.target.value === "2" || e.target.value === "3" ? "Continue" : "Create Account");
+                                            setButton(e.target.value === "2" ? "Continue" : "Create Account");
                                         }}
                                         className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-4"
                                         required
@@ -250,7 +264,6 @@ export default function SignUp({ previousPage, initialData }) {
                                         <option value="0">San Vicente Citizens</option>
                                         <option value="1">Tourists</option>
                                         <option value="2">Investors</option>
-                                        <option value="3">LGU San Vicente</option>
                                     </select>
                                 </div>
                             </div>
@@ -267,10 +280,7 @@ export default function SignUp({ previousPage, initialData }) {
                         <div className='text-center mr-5 mb-5 text-white'>
                             Already have an account? &nbsp;
                             <NavLink
-                                to={{
-                                    pathname: PATH_NAME.Accounts.SignIn,
-                                    state: { previousPage: previousPage }
-                                }}
+                                to={PATH_NAME.Accounts.SignIn}
                                 className='text-lgu-lime bold'>
                                 Sign In
                             </NavLink>

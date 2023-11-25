@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 export default function Profile({ userType }) {
+    var token = Cookies.get("token");
+    if (token){
+        var payload = jwtDecode(token);
+    }
     const user = {
-        email: localStorage.getItem("email"),
-        username: localStorage.getItem("username"),
+        email: payload.sub,
+        username: payload.Username,
         businessSector: "Agriculture",
         company: "Cargill Inc",
         office: "Tourism Office",

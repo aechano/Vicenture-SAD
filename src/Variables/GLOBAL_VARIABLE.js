@@ -76,9 +76,9 @@ const USER_TYPES = {
     Citizen: "SV_CITIZEN",
     Tourist: "TOURIST",
     Investor: "INVESTOR",
-    LguSV: "LGU_SV",
+    LguSV: "LGU_SV_MAIN",
     Admin: "ADMIN",
-    General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU_SV", "ADMIN"]
+    General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU_SV_MAIN", "ADMIN"]
 }
 const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", ...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];

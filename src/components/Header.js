@@ -5,6 +5,8 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 import { NO_HEADER, PATH_NAME, USER_TYPES } from './../Variables/GLOBAL_VARIABLE';
 import 'tailwindcss/tailwind.css';
+import Cookies from 'js-cookie';
+
 const navigation = [
     {
         access: [...USER_TYPES.General, USER_TYPES.Guest],
@@ -210,7 +212,7 @@ export default function Header(props) {
                                                                 }}
                                                                 onClick={() => {
                                                                     window.scrollTo({ top: 0, left: 0 });
-                                                                    localStorage.setItem("PREVIOUS_LINK", location.pathname);
+                                                                    Cookies.set("PREVIOUS_LINK", location.pathname);
                                                                 }}
                                                                 className={({ isActive }) => {
                                                                     return 'rounded-md px-10 py-2 text-sm text-lgu-lime hover:text-white ' +
@@ -322,12 +324,13 @@ export default function Header(props) {
                                                                             to={PATH_NAME.Accounts.SignIn}
                                                                             className='block px-4 py-2 text-sm text-gray-700'
                                                                             onClick={() => {
-                                                                                localStorage.clear();
-                                                                                localStorage.setItem("PREVIOUS_LINK", location.pathname);
-                                                                                window.dispatchEvent(new Event("storage"));
+                                                                                Cookies.remove("token");
+                                                                                Cookies.remove("refresh");
+                                                                                window.dispatchEvent(new Event("cookies"));
+                                                                                Cookies.set("PREVIOUS_LINK", location.pathname);
                                                                             }}
                                                                         >
-                                                                            Sign out
+                                                                            Sign Out
                                                                         </NavLink>
                                                                     )}
                                                                 </Menu.Item>

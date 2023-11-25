@@ -5,7 +5,6 @@ import SignUp from './pages/Accounts/SignUp';
 import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import Banner from './components/Banner';
-import SignUpLGU from './pages/Accounts/SignUpDetails/SignUpLGU';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
 import adminHomepage from './pages/AdminPages/adminHomepage';
@@ -52,13 +51,24 @@ import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
 import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsToInvestContent';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 function App() {
-    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
+    const [userType, setUserType] = useState(USER_TYPES.Guest);
 
-    window.addEventListener('storage', () => {
-        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
-    })
+    function updateUserType(){
+        var token = Cookies.get("token");
+        if (token){
+            var payload = jwtDecode(token);
+            setUserType(payload.AccountType);
+        } else {
+            setUserType(USER_TYPES.Guest)
+        }
+    }
+
+    useEffect(()=>{updateUserType()});
+    window.addEventListener('cookies', () => {updateUserType()});
 
     return (
         <div className="App">
@@ -69,7 +79,6 @@ function App() {
 
                         <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
-                        <Route path={PATH_NAME.Accounts.SignUp.LGU} element={<SignUpLGU />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
                         <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
                         <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
