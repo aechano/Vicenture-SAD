@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import AboutSanVicente from "../../pages/non_admin_pages/TheTown/AboutSanVicente";
+import MunicipalityPrograms from "../../pages/non_admin_pages/TheTown/MunicipalityPrograms";
 import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 
-const AdminAboutSVComponent = () => {
+const AdminMunicipalityProgramComponent = () => {
   const [isBannerTitleSelected, setIsBannerTitleSelected] = useState(false);
   const [isBannerImageSelected, setIsBannerImageSelected] = useState(false);
   const [bannerImage, setBannerImage] = useState(null);
@@ -44,8 +44,8 @@ const AdminAboutSVComponent = () => {
 
   return (
     <div className="flex">
-      <div className="w-1/4 ml-8 mb-2 p-4 bg-lgu-lime rounded-md mt-12" style={{ height: "550px", overflowY: "auto", overflowX: "hidden" }}>
-        <h1 className="text-3xl font-bold mb-4">About San Vicente</h1>
+      <div className="w-1/3 ml-8 mb-2 p-4 bg-lgu-lime rounded-md mt-12" style={{ height: "550px", overflowY: "auto", overflowX: "hidden" }}>
+        <h1 className="text-3xl font-bold mb-4">Municipality Programs</h1>
         <div className="flex items-center mt-2 mb-4">
           <input
             type="checkbox"
@@ -176,11 +176,11 @@ const AdminAboutSVComponent = () => {
           </div>
       </div>
 
-      <div className="ml-2 mt-24 w-1/2 max-w-screen-lg flex-shrink-0 h-96 overflow-auto border-2 border-gray-500 rounded shadow-lg">
-        <AboutSanVicente userType={USER_TYPES.Admin} />
+      <div className="ml-2 mt-24 w-2/3 max-w-screen-lg flex-shrink-0 h-96 overflow-auto border-2 border-gray-500 rounded shadow-lg">
+        <MunicipalityPrograms userType={USER_TYPES.Admin} />
       </div>
     </div>
   );
 };
 
-export default AdminAboutSVComponent;
+export default AdminMunicipalityProgramComponent;

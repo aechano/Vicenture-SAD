@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from 'react-router-dom';
 import { HiDotsHorizontal } from 'react-icons/hi'
+import { PATH_NAME, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
 
 export default function InvestContent({ data }) {
 
@@ -14,6 +15,7 @@ export default function InvestContent({ data }) {
 
     return (
         <>
+
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
                 <div
                     className="block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] bg-lgu-green m-5 w-5/6 mx-auto">

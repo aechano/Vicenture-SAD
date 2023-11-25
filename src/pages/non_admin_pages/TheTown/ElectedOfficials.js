@@ -116,7 +116,7 @@ export default function ElectedOfficials() {
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/kai.png")}
+                                    src={require("../../../res/img/tempOfficials.png")}
                                     alt="Mayor"
                                 />
                             </div>
@@ -135,7 +135,7 @@ export default function ElectedOfficials() {
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/angelo.png")}
+                                    src={require("../../../res/img/tempOfficials.png")}
                                     alt=""
                                 />
                             </div>
@@ -158,7 +158,7 @@ export default function ElectedOfficials() {
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/angelo.png")}
+                                    src={require("../../../res/img/tempOfficials.png")}
                                     alt=""
                                 />
                             </div>
@@ -176,7 +176,7 @@ export default function ElectedOfficials() {
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/angelo.png")}
+                                    src={require("../../../res/img/tempOfficials.png")}
                                     alt=""
                                 />
                             </div>
@@ -194,7 +194,7 @@ export default function ElectedOfficials() {
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/angelo.png")}
+                                    src={require("../../../res/img/tempOfficials.png")}
                                     alt=""
                                 />
                             </div>

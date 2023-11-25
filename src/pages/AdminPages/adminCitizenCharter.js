@@ -96,14 +96,12 @@ const ItemSidebar = ({ items, onItemSelected, onAddItem, onEditItem }) => {
 };
 
 // Main TransparencyContent component
-export function MunicipalityProfileContent() {
+export function AdminCitizenCharterContent() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [customItemName, setCustomItemName] = useState('');
   const [itemSidebarItems, setItemSidebarItems] = useState([
-    'Financial Data',
-    'Project Report',
-    'Sales Data',
+  
   ]);
   const [feedbackMessage, setFeedbackMessage] = useState('');
   const [isEditItemClicked, setIsEditItemClicked] = useState(false);
@@ -171,7 +169,7 @@ export function MunicipalityProfileContent() {
   return (
     <div className="flex flex-col">
       {/* Title */}
-      <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Municipality Profile</h1>
+      <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Citizen Charter</h1>
 
       {/* Main content container */}
       <div className="flex">
