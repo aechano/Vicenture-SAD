@@ -164,11 +164,46 @@ export default function Services() {
             ],
         },
         {
-            office: "Municipal Traffic & Public Safety Office",
+            office: "Municipal Traffic and Public Safety Office",
             services: [
                 {
-                    typeOfService: "N/A",
-                    aboutTheService: "N/A",
+                    typeOfService: "Public Safety and Order",
+                    aboutTheService:
+                        <ul>
+                            <li>Provide Man-power and Security to all Public Events/Edifices and crowd control</li>
+                            <li className='mt-2'>Conduct of Road Clearing Operations along San Vicente to Daet Road and Spillway De- Clogging.</li>
+                            <li className='mt-2'>Conduct of Bio-Security and Preventive activities as ANIMAL CHEKCPOINT measure for Large Cattle and Swine Products</li>
+                            <li className='mt-2'>Checking of Trucking Business for their renewal and redeem of their Annual Business Permit.</li>
+                            <li className='mt-2'>Inspection of Public Utility Vehicle, i,e, SVTODA(TRICYCLE) and SVPODA(PEDICAB) during annual renewal for Road Worthiness and Passenger’s Safety.</li>
+                            <li className='mt-2'>Augmentation during collection and imposing of Municipal Ordinance # 11 series 2016(Environmental Fee Collection for Local Tourist bound to Mananap Resort and other Recreational Place of San Vicente.)</li>
+                        </ul>,
+                },
+                {
+                    typeOfService: "Traffic Road and Safety",
+                    aboutTheService: <ul>
+                        <li className='mt-2'>
+                            Conduct of Regular Checkpoint within the vicinity of San Vicente, mostly for Public Utility Vehicle, Private Owned vehicle and non-compliant for existing traffic rules and regulations.
+                        </li>
+                        <li className='mt-2'>
+                            Putting up and maintenance of Traffic Sign-ages, Road Humps, Pedestrian Warning along Provincial Road within the vicinity of San Vicente.
+                        </li>
+                    </ul>,
+                },
+                {
+                    typeOfService: "Emergency and Crisis Management",
+                    aboutTheService: "Provide man power and crowd control/security/ assistance to MDRRMO during disaster.",
+                },
+                {
+                    typeOfService: "Miscellaneous Services",
+                    aboutTheService:
+                        <ul>
+                            <li className='mt-2'>
+                                Conducting Inspection for applying Permit to Cut of Softwood trees.
+                            </li>
+                            <li className='mt-2'>
+                                Releasing of LGU-Property such as tables and chairs, Industrial Fan, etc.
+                            </li>
+                        </ul>,
                 },
             ],
         },
@@ -467,50 +502,7 @@ export default function Services() {
                 },
             ],
         },
-        {
-            office: "Municipal Traffic and Public Safety Office",
-            services: [
-                {
-                    typeOfService: "Public Safety and Order",
-                    aboutTheService:
-                        <ul>
-                            <li>Provide Man-power and Security to all Public Events/Edifices and crowd control</li>
-                            <li className='mt-2'>Conduct of Road Clearing Operations along San Vicente to Daet Road and Spillway De- Clogging.</li>
-                            <li className='mt-2'>Conduct of Bio-Security and Preventive activities as ANIMAL CHEKCPOINT measure for Large Cattle and Swine Products</li>
-                            <li className='mt-2'>Checking of Trucking Business for their renewal and redeem of their Annual Business Permit.</li>
-                            <li className='mt-2'>Inspection of Public Utility Vehicle, i,e, SVTODA(TRICYCLE) and SVPODA(PEDICAB) during annual renewal for Road Worthiness and Passenger’s Safety.</li>
-                            <li className='mt-2'>Augmentation during collection and imposing of Municipal Ordinance # 11 series 2016(Environmental Fee Collection for Local Tourist bound to Mananap Resort and other Recreational Place of San Vicente.)</li>
-                        </ul>,
-                },
-                {
-                    typeOfService: "Traffic Road and Safety",
-                    aboutTheService: <ul>
-                        <li className='mt-2'>
-                            Conduct of Regular Checkpoint within the vicinity of San Vicente, mostly for Public Utility Vehicle, Private Owned vehicle and non-compliant for existing traffic rules and regulations.
-                        </li>
-                        <li className='mt-2'>
-                            Putting up and maintenance of Traffic Sign-ages, Road Humps, Pedestrian Warning along Provincial Road within the vicinity of San Vicente.
-                        </li>
-                    </ul>,
-                },
-                {
-                    typeOfService: "Emergency and Crisis Management",
-                    aboutTheService: "Provide man power and crowd control/security/ assistance to MDRRMO during disaster.",
-                },
-                {
-                    typeOfService: "Miscellaneous Services",
-                    aboutTheService:
-                        <ul>
-                            <li className='mt-2'>
-                                Conducting Inspection for applying Permit to Cut of Softwood trees.
-                            </li>
-                            <li className='mt-2'>
-                                Releasing of LGU-Property such as tables and chairs, Industrial Fan, etc.
-                            </li>
-                        </ul>,
-                },
-            ],
-        },
+        
 
 
 
