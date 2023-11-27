@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Collapse } from 'react-collapse';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
@@ -34,10 +34,27 @@ export default function Services() {
     const toggle = (index) => {
         if (open === index) {
             setOpen(null);
+            setSubOpen(null); // Close sub-dropdown when closing main dropdown
         } else {
             setOpen(index);
         }
     };
+
+    const handleDocumentClick = (e) => {
+        // Close sub-dropdown when clicking outside the dropdown area
+        if (!e.target.closest('.dropdown')) {
+            setSubOpen(null);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleDocumentClick);
+
+        return () => {
+            document.removeEventListener('click', handleDocumentClick);
+        };
+    }, []);
+
 
     const servicesData = [
         {

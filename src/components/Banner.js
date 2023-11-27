@@ -50,11 +50,11 @@ export default function Banner(props) {
                         </div>
                     }
                     {/*If banner has a searchbar for general searching*/}
-                    {props.searchBar ?
+                    {/*{props.searchBar ?
                         <form className={"w-7/12 lg:w-5/12 pt-4 " + (isCommonBanner ? "my-auto" : "mt-5")}>
                             <div class="relative">
                                 {/*SVG image of a magnifying glass*/}
-                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                {/*<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                     <svg
                                         class="w-4 h-4 text-gray-500 dark:text-gray-400"
                                         aria-hidden="true"
@@ -71,7 +71,7 @@ export default function Banner(props) {
                                     </svg>
                                 </div>
                                 {/*Search input box*/}
-                                <input
+                               {/* <input
                                     type="search"
                                     class="block w-full p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
                                     placeholder="Search"
