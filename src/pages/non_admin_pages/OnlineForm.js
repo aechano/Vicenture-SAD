@@ -231,11 +231,12 @@ export default function OnlineForm() {
                                 </div>
                                 <div className="relative mb-3 mx-2">
                                     <input
-                                        className="break-words m-0 block h-[58px] w-96 rounded border border-solid border-black bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                        required
+                                        type="number"
+                                        className="peer m-0 block h-[58px] w-96 rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-transparent focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
                                         id="people"
-                                        placeholder="# of people (list the names below to count)"
+                                        placeholder="# of People (list the names below to count)"
                                         value={people}
-                                        readOnly
                                         onChange={(e) => {
                                             // Ensure the entered value is a non-negative number
                                             const enteredValue = e.target.value;
@@ -244,6 +245,12 @@ export default function OnlineForm() {
                                             setPeople(nonNegativeValue);
                                         }}
                                     />
+                                    <label
+                                        htmlFor="people"
+                                        className="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-neutral-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-gray-300 dark:peer-focus:text-primary"
+                                    >
+                                        # of People (list the names below to count)
+                                    </label>
                                 </div>
                             </div>
 

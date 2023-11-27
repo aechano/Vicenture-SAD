@@ -5,6 +5,7 @@ import AccordionItem from '../../components/AccordionItem';
 import { IoLocation } from 'react-icons/io5';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { MdEmail, MdFacebook } from 'react-icons/md';
+import BackToTop from '../../components/BackToTop';
 
 
 
@@ -125,14 +126,14 @@ export default function ContactUs({ userType }) {
             location: "Menro Office, SV Agro-Cultural and Sports Complex, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V - Bicol [/su_spoiler",
             subitems: [
                 {
-                  key: 14,
-                  offices: "Municipal Traffic & Public Safety Office",
-                  head: "MR. NOLI F. BERNALDEZ",
-                  email: "lgusanvicente@gmail.com",
-                  number: "09085365963",
-                  location: "G/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V - Bicol",
+                    key: 14,
+                    offices: "Municipal Traffic & Public Safety Office",
+                    head: "MR. NOLI F. BERNALDEZ",
+                    email: "lgusanvicente@gmail.com",
+                    number: "09085365963",
+                    location: "G/F, Municipal Hall, F. Zaño St., Brgy. Kanluran, San Vicente, Camarines Norte, Region V - Bicol",
                 },
-              ],
+            ],
         },
         {
             key: 15,
@@ -186,7 +187,7 @@ export default function ContactUs({ userType }) {
                     <h1 className='font-bold text-center text-4xl'>Emergency Hotlines</h1>
                     <img src={require('../../res/img/hotlines.png')} alt='Hotlines' />
                 </div>
-                
+
                 <div className='pt-5 m-5 space-y-6'>
                     <h1 className='font-bold text-center text-4xl'>Municipal Offices Contacts</h1>
 
@@ -196,7 +197,7 @@ export default function ContactUs({ userType }) {
                         })}
                     </div>
                 </div>
-                <GetInTouch userType={userType}/>
+                <GetInTouch userType={userType} />
             </div>
         </>
     );
@@ -237,7 +238,7 @@ function GetInTouch({ userType }) {
                     <p className='font-semibold text-2xl'>San Vicente, Camarines Norte,</p>
                     <p className='font-semibold text-2xl'>Philippines</p>
                     <div className='flex justify-center md:justify-end items-center space-x-2 select-none cursor-pointer'
-                        onClick={()=>window.open("https://www.google.com/maps/place/4V4F%2BJ6F,+San+Vicente,+Camarines+Norte/", '_blank').focus()}>
+                        onClick={() => window.open("https://www.google.com/maps/place/4V4F%2BJ6F,+San+Vicente,+Camarines+Norte/", '_blank').focus()}>
                         <IoLocation className='hidden lg:flex' />
                         <p className='font-normal text-xl'>4V4F+J6F, San Vicente, Camarines Norte</p>
                     </div>
@@ -246,12 +247,12 @@ function GetInTouch({ userType }) {
                         <p className='font-normal text-xl'>+63 9985470485</p>
                     </div>
                     <div className='flex justify-center md:justify-end items-center space-x-2 select-none cursor-pointer'
-                        onClick={()=>window.open("mailto:lgusanvicente4609@yahoo.com", '_blank').focus()}>
+                        onClick={() => window.open("mailto:lgusanvicente4609@yahoo.com", '_blank').focus()}>
                         <MdEmail className='hidden lg:flex' />
                         <p className='font-normal text-xl'>lgusanvicente4609@yahoo.com</p>
                     </div>
                     <div className='flex justify-center md:justify-end items-center space-x-2 select-none cursor-pointer'
-                        onClick={()=>window.open("https://www.facebook.com/sanvicentecamarinesnorte/", '_blank').focus()}>
+                        onClick={() => window.open("https://www.facebook.com/sanvicentecamarinesnorte/", '_blank').focus()}>
                         <MdFacebook className='hidden lg:flex' />
                         <p className='font-normal text-xl flex-col'>/sanvicentecamarinesnorte</p>
                     </div>
@@ -306,20 +307,20 @@ function GetInTouch({ userType }) {
                             </div>
 
                             {
-                                userType===USER_TYPES.Guest?
-                                <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
-                                    <input
-                                        required
-                                        type="email"
-                                        className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)} />
-                                </div>
-                                :
-                                null
+                                userType === USER_TYPES.Guest ?
+                                    <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
+                                        <input
+                                            required
+                                            type="email"
+                                            className="block min-h-[auto] rounded border border-1 w-full bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                            placeholder="Email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)} />
+                                    </div>
+                                    :
+                                    null
                             }
-                            
+
                             <div className="relative mb-6 mt-5" data-te-input-wrapper-init>
                                 <input
                                     required
@@ -370,6 +371,7 @@ function GetInTouch({ userType }) {
                     </div>
                 </div>
             </div>
+            <BackToTop />
         </div>
     )
 }

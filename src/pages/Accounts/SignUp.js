@@ -89,7 +89,7 @@ export default function SignUp({ initialData }) {
                     if (data == null) {
                         console.log("Sign up failed.")
                     } else {
-                        Cookies.set("token", data.token, {expires: 7});
+                        Cookies.set("token", data.token, { expires: 7 });
                         Cookies.set("refresh", data.refreshToken);
                         window.dispatchEvent(new Event("cookies"));
                         var goTo = Cookies.get("PREVIOUS_LINK");
@@ -291,8 +291,12 @@ export default function SignUp({ initialData }) {
                                         <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
                                     </div>
                                     <div class="ml-3 text-sm">
-                                        <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
-                                        I have already reviewed the <a class="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Privacy Policy</a></label>
+                                        <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">
+                                            I have already reviewed the{' '}
+                                            <NavLink to={PATH_NAME.PrivacyPolicy} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+                                                Privacy Policy
+                                            </NavLink>
+                                        </label>
 
                                     </div>
                                 </div>
