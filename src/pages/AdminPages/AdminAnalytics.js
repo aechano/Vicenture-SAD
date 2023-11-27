@@ -19,378 +19,378 @@ import AdminReasonsToInvest from './AdminInvest/adminReasonsToInvest';
 
 
 
-  export default function AdminAnalytics({ userType }) {
-      const [dashboardItems, setDashboardItems] = useState([
-      {
-        id: 'AdminAnalytics',
-        label: 'Analytics',
-        iconAnalytics: <FaChartBar />,
-        content: <div></div>,
-      },
-    ]);
+export default function AdminAnalytics({ userType }) {
+  const [dashboardItems, setDashboardItems] = useState([
+    {
+      id: 'AdminAnalytics',
+      label: 'Analytics',
+      iconAnalytics: <FaChartBar />,
+      content: <div></div>,
+    },
+  ]);
 
-    const [pagesItems] = useState([
-      {
-        id: 'adminHomepage',
-        label: '🏠Homepage',
-        iconHomepage: <FaHome />,
-        content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4"></h1>,
-      },
-      {
-        id: 'town',
-        label: '🏬 The Town ▼',
-        iconTown: <FaBuilding/>,
-        subItemsTown: [
-          { label: 'About San Vicente', content: <AdminAboutSVComponent/> },
-          { label: 'Municipality Profile', content: <MunicipalityProfileContent/>},
-          { label: 'Municipality Programs', content: <AdminMunicipalityProgramComponent/>},
-          { label: 'Elected Officials', content: <AdminElectedOfficialsContent/> },
-          { label: 'Offices', content: <AdminOffices/> },
-          { label: 'Citizen Charter', content: <AdminCitizenCharterContent/> },
-        ],
-      },
-      {
-        id: 'tourism',
-        label: '🏖️ Tourism ▼',
-        iconTourism: <FaMountain/>,
-        subItemsTourism: [
-          { label: 'Places To Visit', content: <AdminPlacesToVisit/>},
-          { label: 'Activities', content:<AdminActivities/> },
-          { label: 'Promotional Contents', content:<div>wala pa</div> },
-        ],
-      },
-      {
-        id: 'invest',
-        label: '💵 Invest ▼',
-        subItemsInvest: [
-          { label: 'Investment Opportunities', content:  <AdminInvestOpportunities/> },
-          { label: 'Reasons To Invest', content: <AdminReasonsToInvest/> },
-        ],
-      },
-      {
-        id: 'transparency',
-        label: '📜Transparency',
-        content:<TransparencyComponent />,
-        iconTransparency: <FaHandPaper/>,
-      },
-    ]);
+  const [pagesItems] = useState([
+    {
+      id: 'adminHomepage',
+      label: '🏠Homepage',
+      iconHomepage: <FaHome />,
+      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4"></h1>,
+    },
+    {
+      id: 'town',
+      label: '🏬 The Town ▼',
+      iconTown: <FaBuilding />,
+      subItemsTown: [
+        { label: 'About San Vicente', content: <AdminAboutSVComponent /> },
+        { label: 'Municipality Profile', content: <MunicipalityProfileContent /> },
+        { label: 'Municipality Programs', content: <AdminMunicipalityProgramComponent /> },
+        { label: 'Elected Officials', content: <AdminElectedOfficialsContent /> },
+        { label: 'Offices', content: <AdminOffices /> },
+        { label: 'Citizen Charter', content: <AdminCitizenCharterContent /> },
+      ],
+    },
+    {
+      id: 'tourism',
+      label: '🏖️ Tourism ▼',
+      iconTourism: <FaMountain />,
+      subItemsTourism: [
+        { label: 'Places To Visit', content: <AdminPlacesToVisit /> },
+        { label: 'Activities', content: <AdminActivities /> },
+        { label: 'San Vicente Tourism', content: <div>wala pa</div> },
+      ],
+    },
+    {
+      id: 'invest',
+      label: '💵 Invest ▼',
+      subItemsInvest: [
+        { label: 'Investment Opportunities', content: <AdminInvestOpportunities /> },
+        { label: 'Reasons To Invest', content: <AdminReasonsToInvest /> },
+      ],
+    },
+    {
+      id: 'transparency',
+      label: '📜Transparency',
+      content: <TransparencyComponent />,
+      iconTransparency: <FaHandPaper />,
+    },
+  ]);
 
-    const [formsItems] = useState([
-      {
-        id: 'onlineSurvey',
-        label: 'Online Survey',
-        iconSurvey: <FaPencilAlt />,
-        content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Online Survey</h1>,
-      },
-    ]);
+  const [formsItems] = useState([
+    {
+      id: 'onlineSurvey',
+      label: 'Online Survey',
+      iconSurvey: <FaPencilAlt />,
+      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Online Survey</h1>,
+    },
+  ]);
 
-    const [othersItems] = useState([
-      {
-        id: 'liveStreaming',
-        label: 'Live Streaming',
-        iconLive:<FaFileVideo/>,
-        content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Live Streaming</h1>,
-      },
-      {
-        id: 'emergencies',
-        label: 'Emergencies',
-        iconEmergency:<FaStop/>,
-        content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Emergencies</h1>,
-        content: <AdminEmergenciesComponent />,
-      },
-      {
-        id: 'reportedContents',
-        label: 'Reported Contents',
-        iconReportedContent: <FaDesktop/>,
-        content: <AdminReportedContentsComponent />,
-      },
-    ]);
+  const [othersItems] = useState([
+    {
+      id: 'liveStreaming',
+      label: 'Live Streaming',
+      iconLive: <FaFileVideo />,
+      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Live Streaming</h1>,
+    },
+    {
+      id: 'emergencies',
+      label: 'Emergencies',
+      iconEmergency: <FaStop />,
+      content: <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Emergencies</h1>,
+      content: <AdminEmergenciesComponent />,
+    },
+    {
+      id: 'reportedContents',
+      label: 'Reported Contents',
+      iconReportedContent: <FaDesktop />,
+      content: <AdminReportedContentsComponent />,
+    },
+  ]);
 
-    const [dashboardContentWidth, setDashboardContentWidth] = useState('w-3/4');
-    const [selectedOption, setSelectedOption] = useState("AdminAnalytics");
-  
-
-    const [showTownOptions, setShowTownOptions] = useState(false);
-    const [showTourismOptions, setShowTourismOptions] = useState(false);
-    const [showInvestOptions, setShowInvestOptions] = useState(false);
-    const [selectedSubItemContent, setSelectedSubItemContent] = useState(null);
-    const [townDropdownOpen, setTownDropdownOpen] = useState(false);
-    const [tourismDropdownOpen, setTourismDropdownOpen] = useState(false);
-    const [investDropdownOpen, setInvestDropdownOpen] = useState(false);
-    
-    const [selectedTownSubItem, setSelectedTownSubItem] = useState("town");
-    const [selectedTourismSubItem, setSelectedTourismSubItem] = useState("tourism");
-    const [selectedInvestSubItem, setSelectedInvestSubItem] = useState("invest");
-    const [isSubItemClick, setIsSubItemClick] = useState(false);
+  const [dashboardContentWidth, setDashboardContentWidth] = useState('w-3/4');
+  const [selectedOption, setSelectedOption] = useState("AdminAnalytics");
 
 
-    const townRef = useRef();
-    const tourismRef = useRef();
-    const investRef = useRef();
-    const dashboardRef = useRef();
+  const [showTownOptions, setShowTownOptions] = useState(false);
+  const [showTourismOptions, setShowTourismOptions] = useState(false);
+  const [showInvestOptions, setShowInvestOptions] = useState(false);
+  const [selectedSubItemContent, setSelectedSubItemContent] = useState(null);
+  const [townDropdownOpen, setTownDropdownOpen] = useState(false);
+  const [tourismDropdownOpen, setTourismDropdownOpen] = useState(false);
+  const [investDropdownOpen, setInvestDropdownOpen] = useState(false);
+
+  const [selectedTownSubItem, setSelectedTownSubItem] = useState("town");
+  const [selectedTourismSubItem, setSelectedTourismSubItem] = useState("tourism");
+  const [selectedInvestSubItem, setSelectedInvestSubItem] = useState("invest");
+  const [isSubItemClick, setIsSubItemClick] = useState(false);
 
 
-    useEffect(() => {
-  const handleOutsideClick = (event) => {
-    if (!dashboardRef.current.contains(event.target)) {
-          // Set the default selected option based on user type
-          if (userType === USER_TYPES.Admin) {
-            setSelectedOption("AdminAnalytics");
-          } else if (userType === USER_TYPES.LGU) {
-            setSelectedOption("adminHomepage");
-          }
-          setSelectedTownSubItem(null);
-          setShowTownOptions(false);
-          setShowTourismOptions(false);
-          setShowInvestOptions(false);
-          
+  const townRef = useRef();
+  const tourismRef = useRef();
+  const investRef = useRef();
+  const dashboardRef = useRef();
 
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!dashboardRef.current.contains(event.target)) {
+        // Set the default selected option based on user type
+        if (userType === USER_TYPES.Admin) {
+          setSelectedOption("AdminAnalytics");
+        } else if (userType === USER_TYPES.LGU) {
+          setSelectedOption("adminHomepage");
         }
-      };
+        setSelectedTownSubItem(null);
+        setShowTownOptions(false);
+        setShowTourismOptions(false);
+        setShowInvestOptions(false);
 
-      document.addEventListener('click', handleOutsideClick);
 
-      return () => {
-        document.removeEventListener('click', handleOutsideClick);
-      };
-    }, [userType]);
-
-    const handleOptionClick = (option) => {
-      setShowTownOptions(option.id === 'town');
-      setShowTourismOptions(option.id === 'tourism');
-      setShowInvestOptions(option.id === 'invest');
-      setTownDropdownOpen(option.id === 'town');
-      setTourismDropdownOpen(option.id === 'tourism');
-      setInvestDropdownOpen(option.id === 'invest');
-      setDashboardContentWidth(option.id === 'adminHomepage' ? 'w-full' : 'w-3/4');
-      
-    
-      // Update isSelected property for all items
-      setDashboardItems((prevItems) =>
-        prevItems.map((item) => ({ ...item, isSelected: item.id === option.id }))
-      );
-
-      // Check if it's a main item or sub-item click
-      if (option.id !== selectedOption) {
-        // Set the content only if it's not the current selected option
-        setSelectedSubItemContent(
-          option.subItemsTown || option.subItemsTourism || option.subItemsInvest ? null : option.content
-        );
-        setSelectedOption(option.id);
       }
     };
 
-    const handleTownSubItemClick = (subItem, event) => {
-      event.stopPropagation();  
-      setSelectedTownSubItem(subItem);
-      setSelectedSubItemContent(subItem.content);
-      setIsSubItemClick(true);
-      // Additional logic specific to the "town" section if needed
-    };
+    document.addEventListener('click', handleOutsideClick);
 
-    const handleTourismSubItemClick = (subItem, event) => {
-      event.stopPropagation();
-      setSelectedTourismSubItem(subItem);
-      setSelectedSubItemContent(subItem.content);
-      setIsSubItemClick(true);
-      // Additional logic specific to the "tourism" section if needed
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
     };
-    
-    const handleInvestSubItemClick = (subItem, event) => {
-      event.stopPropagation();
-      setSelectedInvestSubItem(subItem);
-      setSelectedSubItemContent(subItem.content);
-      setIsSubItemClick(true);
-      // Additional logic specific to the "invest" section if needed
-    };
+  }, [userType]);
 
-    const renderSubItems = (subItems, ref, option) => {
-      const isTownOption = option.id === 'town';
-      const isTourismOption = option.id === 'tourism';
-      const isInvestOption = option.id === 'invest';
-      
-    
-      return (
-        <div className={`ml-6 ${isTownOption || isTourismOption || isInvestOption ? 'dropdown-submenu' : ''}`} ref={ref}>
-          {(isTownOption && townDropdownOpen) || (isTourismOption && tourismDropdownOpen) || (isInvestOption && investDropdownOpen) ? (
-            <div className="dropdown">
-              <div className="dropdown-content">
-                {/* Filter out title items */}
-                {subItems
-                  .filter((subItem) => !subItem.isTitle)
-                  .map((subItem) => (
-                    <div
-                      key={subItem.label}
-                      className={`text-base text-lgu-green cursor-pointer font-normal ${selectedTownSubItem === subItem ? 'normal' : 'normal'}`}
-                      onClick={(event) => handleTownSubItemClick(subItem, event)}
-                    >
-                      {subItem.label}
-                    </div>
-                  ))}
-              </div>
-            </div>
-          ) : null}
-        </div>
+  const handleOptionClick = (option) => {
+    setShowTownOptions(option.id === 'town');
+    setShowTourismOptions(option.id === 'tourism');
+    setShowInvestOptions(option.id === 'invest');
+    setTownDropdownOpen(option.id === 'town');
+    setTourismDropdownOpen(option.id === 'tourism');
+    setInvestDropdownOpen(option.id === 'invest');
+    setDashboardContentWidth(option.id === 'adminHomepage' ? 'w-full' : 'w-3/4');
+
+
+    // Update isSelected property for all items
+    setDashboardItems((prevItems) =>
+      prevItems.map((item) => ({ ...item, isSelected: item.id === option.id }))
+    );
+
+    // Check if it's a main item or sub-item click
+    if (option.id !== selectedOption) {
+      // Set the content only if it's not the current selected option
+      setSelectedSubItemContent(
+        option.subItemsTown || option.subItemsTourism || option.subItemsInvest ? null : option.content
       );
-    };
+      setSelectedOption(option.id);
+    }
+  };
 
-    const renderContent = () => {
-      const lowerCaseSelectedOption = selectedOption.toLowerCase();
-    
-      const isItemSelected = (item) => item.id.toLowerCase() === lowerCaseSelectedOption;
-    
-      if (lowerCaseSelectedOption === 'adminanalytics') {
-        return <RenderAnalyticsContent />;
-      } else if (lowerCaseSelectedOption === 'adminhomepage') {
-        return <PreviewHomepage />;
-      }
-    
-      const selectedItem = [...dashboardItems, ...pagesItems, ...formsItems, ...othersItems].find(
-        (item) => item.id.toLowerCase() === lowerCaseSelectedOption
-      );
-    
-      // Check if the selected item has sub-items
-      if (selectedItem && selectedItem.subItemsTown) {
-        return (
-          <div className={`flex ${dashboardContentWidth}`}>
-            {selectedSubItemContent || selectedItem.subItemsTown.content}
-          </div>
-        );
-      } else if (selectedItem && selectedItem.subItemsTourism) {
-        return (
-          <div className={`flex ${dashboardContentWidth}`}>
-            {selectedSubItemContent || selectedItem.subItemsTourism.content}
-          </div>
-        );
-      } else if (selectedItem && selectedItem.subItemsInvest) {
-        return (
-          <div className={`flex ${dashboardContentWidth}`}>
-            {selectedSubItemContent || selectedItem.subItemsInvest.content}
-          </div>
-        );
-      }
-    
-      return selectedItem ? (
-        <div className={`flex ${dashboardContentWidth}`}>
-          {selectedItem.subItemsTown && showTownOptions && (
-            <div className="ml-6 dropdown-submenu">
-              <div className="dropdown">
-                <div className="dropdown-content">
-                  {selectedItem.subItemsTown.map((subItem) => (
-                    <div
-                      key={subItem.label}
-                      className={`text-base text-lgu-green cursor-pointer font-bold ${isItemSelected(subItem) ? 'normal' : 'normal'}`}
-                      onClick={(event) => handleTownSubItemClick(subItem, event)}
-                    >
-                      {subItem.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
+  const handleTownSubItemClick = (subItem, event) => {
+    event.stopPropagation();
+    setSelectedTownSubItem(subItem);
+    setSelectedSubItemContent(subItem.content);
+    setIsSubItemClick(true);
+    // Additional logic specific to the "town" section if needed
+  };
+
+  const handleTourismSubItemClick = (subItem, event) => {
+    event.stopPropagation();
+    setSelectedTourismSubItem(subItem);
+    setSelectedSubItemContent(subItem.content);
+    setIsSubItemClick(true);
+    // Additional logic specific to the "tourism" section if needed
+  };
+
+  const handleInvestSubItemClick = (subItem, event) => {
+    event.stopPropagation();
+    setSelectedInvestSubItem(subItem);
+    setSelectedSubItemContent(subItem.content);
+    setIsSubItemClick(true);
+    // Additional logic specific to the "invest" section if needed
+  };
+
+  const renderSubItems = (subItems, ref, option) => {
+    const isTownOption = option.id === 'town';
+    const isTourismOption = option.id === 'tourism';
+    const isInvestOption = option.id === 'invest';
+
+
+    return (
+      <div className={`ml-6 ${isTownOption || isTourismOption || isInvestOption ? 'dropdown-submenu' : ''}`} ref={ref}>
+        {(isTownOption && townDropdownOpen) || (isTourismOption && tourismDropdownOpen) || (isInvestOption && investDropdownOpen) ? (
+          <div className="dropdown">
+            <div className="dropdown-content">
+              {/* Filter out title items */}
+              {subItems
+                .filter((subItem) => !subItem.isTitle)
+                .map((subItem) => (
+                  <div
+                    key={subItem.label}
+                    className={`text-base text-lgu-green cursor-pointer font-normal ${selectedTownSubItem === subItem ? 'normal' : 'normal'}`}
+                    onClick={(event) => handleTownSubItemClick(subItem, event)}
+                  >
+                    {subItem.label}
+                  </div>
+                ))}
             </div>
-          )}
-          {selectedItem.subItemsTourism && showTourismOptions && (
-            <div className="ml-6 dropdown-submenu">
-              <div className="dropdown">
-                <div className="dropdown-content">
-                  {selectedItem.subItemsTourism.map((subItem) => (
-                    <div
-                      key={subItem.label}
-                      className={`text-base text-lgu-green cursor-pointer font-bold ${isItemSelected(subItem) ? 'normal' : 'normal'}`}
-                      onClick={(event) => handleTourismSubItemClick(subItem, event)}
-                    >
-                      {subItem.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-          {selectedItem.subItemsInvest && showInvestOptions && (
-            <div className="ml-6 dropdown-submenu">
-              <div className="dropdown">
-                <div className="dropdown-content">
-                  {selectedItem.subItemsInvest.map((subItem) => (
-                    <div
-                      key={subItem.label}
-                      className={`text-base text-lgu-green cursor-pointer font-bold ${isItemSelected(subItem) ? 'normal' : 'normal'}`}
-                      onClick={(event) => handleInvestSubItemClick(subItem, event)}
-                    >
-                      {subItem.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-          {selectedSubItemContent || selectedItem.content}
-        </div>
-      ) : null;
-    };
-    
-    
-    if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist, USER_TYPES.Investor, USER_TYPES.LguSV].includes(userType)) {
-      return <Page403 />;
+          </div>
+        ) : null}
+      </div>
+    );
+  };
+
+  const renderContent = () => {
+    const lowerCaseSelectedOption = selectedOption.toLowerCase();
+
+    const isItemSelected = (item) => item.id.toLowerCase() === lowerCaseSelectedOption;
+
+    if (lowerCaseSelectedOption === 'adminanalytics') {
+      return <RenderAnalyticsContent />;
+    } else if (lowerCaseSelectedOption === 'adminhomepage') {
+      return <PreviewHomepage />;
     }
 
-return (
-  <div className="flex" ref={dashboardRef}>
-    <div className="bg-lgu-yellow w-1/5 p-4">
-      <div className="text-xl font-bold text-80733D mt-4">Dashboard</div>
-      {dashboardItems.map((item) => (
-    <div
-      key={item.id}
-      className={`cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
-      onClick={() => handleOptionClick(item)}
-    >
-      <span className="mr-2 icon-large">{item.iconAnalytics}</span>
-      {item.label}
+    const selectedItem = [...dashboardItems, ...pagesItems, ...formsItems, ...othersItems].find(
+      (item) => item.id.toLowerCase() === lowerCaseSelectedOption
+    );
+
+    // Check if the selected item has sub-items
+    if (selectedItem && selectedItem.subItemsTown) {
+      return (
+        <div className={`flex ${dashboardContentWidth}`}>
+          {selectedSubItemContent || selectedItem.subItemsTown.content}
+        </div>
+      );
+    } else if (selectedItem && selectedItem.subItemsTourism) {
+      return (
+        <div className={`flex ${dashboardContentWidth}`}>
+          {selectedSubItemContent || selectedItem.subItemsTourism.content}
+        </div>
+      );
+    } else if (selectedItem && selectedItem.subItemsInvest) {
+      return (
+        <div className={`flex ${dashboardContentWidth}`}>
+          {selectedSubItemContent || selectedItem.subItemsInvest.content}
+        </div>
+      );
+    }
+
+    return selectedItem ? (
+      <div className={`flex ${dashboardContentWidth}`}>
+        {selectedItem.subItemsTown && showTownOptions && (
+          <div className="ml-6 dropdown-submenu">
+            <div className="dropdown">
+              <div className="dropdown-content">
+                {selectedItem.subItemsTown.map((subItem) => (
+                  <div
+                    key={subItem.label}
+                    className={`text-base text-lgu-green cursor-pointer font-bold ${isItemSelected(subItem) ? 'normal' : 'normal'}`}
+                    onClick={(event) => handleTownSubItemClick(subItem, event)}
+                  >
+                    {subItem.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        {selectedItem.subItemsTourism && showTourismOptions && (
+          <div className="ml-6 dropdown-submenu">
+            <div className="dropdown">
+              <div className="dropdown-content">
+                {selectedItem.subItemsTourism.map((subItem) => (
+                  <div
+                    key={subItem.label}
+                    className={`text-base text-lgu-green cursor-pointer font-bold ${isItemSelected(subItem) ? 'normal' : 'normal'}`}
+                    onClick={(event) => handleTourismSubItemClick(subItem, event)}
+                  >
+                    {subItem.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        {selectedItem.subItemsInvest && showInvestOptions && (
+          <div className="ml-6 dropdown-submenu">
+            <div className="dropdown">
+              <div className="dropdown-content">
+                {selectedItem.subItemsInvest.map((subItem) => (
+                  <div
+                    key={subItem.label}
+                    className={`text-base text-lgu-green cursor-pointer font-bold ${isItemSelected(subItem) ? 'normal' : 'normal'}`}
+                    onClick={(event) => handleInvestSubItemClick(subItem, event)}
+                  >
+                    {subItem.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        {selectedSubItemContent || selectedItem.content}
+      </div>
+    ) : null;
+  };
+
+
+  if ([USER_TYPES.Citizen, USER_TYPES.Guest, USER_TYPES.Tourist, USER_TYPES.Investor, USER_TYPES.LguSV].includes(userType)) {
+    return <Page403 />;
+  }
+
+  return (
+    <div className="flex" ref={dashboardRef}>
+      <div className="bg-lgu-yellow w-1/5 p-4">
+        <div className="text-xl font-bold text-80733D mt-4">Dashboard</div>
+        {dashboardItems.map((item) => (
+          <div
+            key={item.id}
+            className={`cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
+            onClick={() => handleOptionClick(item)}
+          >
+            <span className="mr-2 icon-large">{item.iconAnalytics}</span>
+            {item.label}
+          </div>
+        ))}
+
+
+        <div className="text-xl font-bold text-80733D mt-6">Pages</div>
+        {pagesItems.map((item) => (
+          <div
+            key={item.id}
+            className={`cursor-pointer text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
+            onClick={() => handleOptionClick(item)}
+          >
+            {item.label}
+            {item.id === 'town' && renderSubItems(item.subItemsTown, townRef, item)}
+            {item.id === 'tourism' && renderSubItems(item.subItemsTourism, tourismRef, item)}
+            {item.id === 'invest' && renderSubItems(item.subItemsInvest, investRef, item)}
+          </div>
+        ))}
+
+        <div className="text-xl font-bold text-80733D mt-6">Forms</div>
+        {formsItems.map((item) => (
+          <div
+            key={item.id}
+            className={`cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
+            onClick={() => handleOptionClick(item)}
+          >
+            <span className="mr-2 icon-large">{item.iconSurvey}</span>
+            {item.label}
+          </div>
+        ))}
+
+        <div className="text-xl font-bold text-80733D mt-6">Others</div>
+        {othersItems.map((item) => (
+          <div
+            key={item.id}
+            className={`cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
+            onClick={() => handleOptionClick(item)}
+          >
+            <span className="mr-2 icon-large">{item.iconLive}{item.iconEmergency}{item.iconReportedContent}</span>
+            {item.label}
+          </div>
+        ))}
+      </div>
+
+      {renderContent()}
     </div>
-  ))}
-
-
-      <div className="text-xl font-bold text-80733D mt-6">Pages</div>
-      {pagesItems.map((item) => (
-        <div
-          key={item.id}
-          className={`cursor-pointer text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
-          onClick={() => handleOptionClick(item)}
-        >
-          {item.label}
-          {item.id === 'town' && renderSubItems(item.subItemsTown, townRef, item)}
-          {item.id === 'tourism' && renderSubItems(item.subItemsTourism, tourismRef, item)}
-          {item.id === 'invest' && renderSubItems(item.subItemsInvest, investRef, item)}
-        </div>
-      ))}
-
-      <div className="text-xl font-bold text-80733D mt-6">Forms</div>
-      {formsItems.map((item) => (
-        <div
-          key={item.id}
-          className={`cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
-          onClick={() => handleOptionClick(item)}
-        >
-          <span className="mr-2 icon-large">{item.iconSurvey}</span>
-          {item.label}
-        </div>
-      ))}
-
-      <div className="text-xl font-bold text-80733D mt-6">Others</div>
-      {othersItems.map((item) => (
-        <div
-          key={item.id}
-          className={`cursor-pointer flex items-center text-base text-lgu-green font-bold ml-4 ${item.isSelected ? 'underline' : ''}`}
-          onClick={() => handleOptionClick(item)}
-        >
-        <span className="mr-2 icon-large">{item.iconLive}{item.iconEmergency}{item.iconReportedContent}</span>
-          {item.label}
-        </div>
-      ))}
-    </div>
-
-    {renderContent()}
-  </div>
-);
+  );
 
   function RenderAnalyticsContent() {
     return (
@@ -467,7 +467,7 @@ return (
       <div className="flex items-center justify-center">
         {/* Edit section for homepage */}
         <div className="w-1/4 p-4 bg-lgu-lime rounded-md mt-8" style={{ height: "500px", overflowY: "auto", overflowX: "hidden" }}>
-        <h1 className="text-3xl font-bold mb-4">Homepage</h1>
+          <h1 className="text-3xl font-bold mb-4">Homepage</h1>
           <div className="flex items-center mt-2 mb-4">
             {/* Checkbox for banner title */}
             <input
@@ -616,4 +616,5 @@ return (
         <TransparencyContent />
       </div>
     );
-    }}
+  }
+}
