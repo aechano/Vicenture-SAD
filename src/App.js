@@ -128,8 +128,9 @@ function App() {
 
                         <Route path={PATH_NAME.Survey} element={<Survey userType={userType} />} />
                         <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType} />} />
-                        <Route path="/articles" element={<Articles userType={userType} />} />
-                        <Route path="/article/:articleID" element={<ArticleContent userType={userType} />} />
+                        <Route path={PATH_NAME.Articles} element={<Articles userType={userType} />} />
+                        <Route path={PATH_NAME.Articles + "/:page"} element={<Articles userType={userType} />} />
+                        <Route path={PATH_NAME.ArticleContent} element={<ArticleContent userType={userType} />} />
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions userType={userType} />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost userType={userType} />} />

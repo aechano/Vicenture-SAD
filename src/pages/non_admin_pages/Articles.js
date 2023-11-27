@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import Banner from "../../components/Banner";
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
 import { NavLink } from 'react-router-dom';
@@ -92,10 +92,17 @@ export default function Articles() {
     const totalPages = Math.ceil(contents.length / articlesPerPage);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handlePageChange = (newPage) => {
         navigate(`/articles/${newPage}`);
     };
+
+    useEffect(() => {
+        if (location.pathname === PATH_NAME.Articles) {
+            navigate('/articles/1');
+        }
+    }, [location.pathname, navigate]);
 
 
     return (
@@ -133,29 +140,51 @@ export default function Articles() {
                     <ul className="list-style-none flex justify-center">
                         <li>
                             <NavLink
-                                className="relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"
-                                href="#"
-                                aria-label="Previous" onClick={() => handlePageChange(currentPage - 1)}>
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                                to={`/articles/${currentPage - 1}`}
+                                onClick={() => {
+                                    if (currentPage > 1) {
+                                        handlePageChange(currentPage - 1);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="Previous"
+                            >
                                 <span aria-hidden="true">&laquo;</span>
                             </NavLink>
                         </li>
+
                         {[...Array(totalPages).keys()].map((pageNumber) => (
                             <li key={pageNumber}>
                                 <NavLink
                                     to={`/articles/${pageNumber + 1}`}
-                                    onClick={() => handlePageChange(pageNumber + 1)}
-                                    className="relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"
+                                    onClick={() => {
+                                        handlePageChange(pageNumber + 1);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }}
+                                    className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${pageNumber + 1 === currentPage ? 'bg-neutral-200' : ''
+                                        }`}
                                 >
                                     {pageNumber + 1}
                                 </NavLink>
                             </li>
                         ))}
+
                         <li>
                             <NavLink
-                                className="relative block rounded px-3 py-1.5 text-lg text-black  transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white"
-                                href="#"
-                                aria-label="Next" onClick={() => handlePageChange(currentPage + 1)}
-                            ><span aria-hidden="true">&raquo;</span>
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                                to={`/articles/${currentPage + 1}`}
+                                onClick={() => {
+                                    if (currentPage < totalPages) {
+                                        handlePageChange(currentPage + 1);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="Next"
+                            >
+                                <span aria-hidden="true">&raquo;</span>
                             </NavLink>
                         </li>
                     </ul>

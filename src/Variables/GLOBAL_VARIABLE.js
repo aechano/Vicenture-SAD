@@ -62,9 +62,9 @@ const PATH_NAME = {
     Survey: "/surveys",
     SampleSurvey: "/sample-survey",
     Services: "/services",
-    Debug: "/debug",
+    Debug: "/debug", 
     Articles: "/articles",
-    ArticleContent: "/articles/:articleID",
+    ArticleContent: "/article/:articleID",
 
     AddOffices: "/the-town/offices/add-offices", 
 }
