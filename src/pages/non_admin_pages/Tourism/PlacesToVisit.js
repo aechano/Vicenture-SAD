@@ -60,7 +60,7 @@ export default function PlacesToVisit({ userType }) {
         },
         {
             id: 4,
-            pic: require("../../../res/img/paraiso-sa-iraya.jpg"),
+            pic: require("../../../res/img/paraiso-sa-iraya.png"),
             title: "Paraiso sa Iraya",
             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
             rate: 4.7,

@@ -37,7 +37,7 @@ export default function PlacesToVisitPost() {
         },
         {
             id: 4,
-            pic: require("../../../res/img/paraiso-sa-iraya.jpg"),
+            pic: require("../../../res/img/paraiso-sa-iraya.png"),
             title: "Paraiso sa Iraya",
             address: "3R3G+HVX, San Vicente, Camarines Norte",
             contact: " /mananapfallsSVCN",
