@@ -56,6 +56,7 @@ import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsT
 import Toast from './components/Toast';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
+import PrivacyPolicy from './pages/non_admin_pages/PrivacyPolicy';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -123,6 +124,7 @@ function App() {
                         <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />
 
                         <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType} />} />
+                        <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy userType={userType} />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey userType={userType} />} />
                         <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType} />} />

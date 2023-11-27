@@ -549,8 +549,8 @@ export default function Services() {
                             <h1 className='text-2xl lg:text-5xl font-bold pb-4'>RESIDENTS</h1>
                         </div>
                         <div className="sm:flex-grow sm:border-b-2 sm:border-gray-900"></div>
-                        <p className='font-semibold pt-4'>Title Goes Here...</p>
-                        <p className='text-sm pt-4 text-justify leading-6'>It engages its enemies using psychic powers. Each of its three heads fires off psychokinetic energy, tripling its power.Weezing alternately shrinks and inflates its twin bodies to mix together toxic gases inside. The more the gases are mixed, the more powerful the toxins become. The Pokémon also becomes more putrid.Geodude that have lived a long life have had all their edges smoothed out until they’re totally round. They also have a calm, quiet disposition.</p>
+                        <p className='font-semibold pt-4'>Discover the beauty of San Vicente, Camarines Norte: Your Beautiful Hometown</p>
+                        <p className='text-sm pt-4 text-justify leading-6'>Hello, fellow residents of San Vicente! You know, San Vicente is not just a town; it's a place you can be proud of and call home. With the beauty of nature here, you'll experience a peaceful and lovely environment perfect for everyday living. As a resident, you have the privilege of being part of a vibrant community, where neighbors become friends, and everyone comes together for various celebrations. The town's fertile land provides opportunities for work and a good life, while its convenient location makes it easy to navigate and explore. In San Vicente, you can enjoy a quality lifestyle in your beautiful hometown, surrounded by the beauty of nature and the warmth of a lively community.</p>
                         <div className='pt-8'>
                             <NavLink to={PATH_NAME.TheTown.CitizensCharter} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
                                 Go to Citizen Charter
@@ -571,8 +571,8 @@ export default function Services() {
                             <h1 className='text-2xl lg:text-5xl font-bold pb-4'>INVESTORS</h1>
                         </div>
                         <div className="sm:flex-grow sm:border-b-2 sm:border-gray-900"></div>
-                        <p className='font-semibold pt-4'>Title Goes Here...</p>
-                        <p className='text-sm pt-4 text-justify leading-6'>It engages its enemies using psychic powers. Each of its three heads fires off psychokinetic energy, tripling its power.</p>
+                        <p className='font-semibold pt-4'>Unlock Investment Opportunities in San Vicente, Camarines Norte: Abundant Products and Promising Destinations.</p>
+                        <p className='text-sm pt-4 text-justify leading-6'>San Vicente in Camarines Norte, Philippines, presents a wealth of investment opportunities that are sure to captivate discerning investors. With its diverse range of agricultural products, including coconut, and fruits, San Vicente offers a fertile ground for agribusiness ventures. The town's strategic location, with access to major roads and ports, makes it a viable hub for trade and distribution. Furthermore, San Vicente's natural attractions, such as the enchanting Mananap Falls, have the potential to drive tourism and hospitality investments. With its rich resources, favorable location, and promising destinations, San Vicente beckons investors to explore its potential and engage in ventures that will contribute to its growth and prosperity.</p>
                         <div className='flex flex-wrap space-x-2 pt-5'>
                             <div className="pt-2">
                                 <a href={require("../../res/pdf/Geographic-Location.pdf")} download="Geographic-Location.pdf" class="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-blue-500 border border-transparent rounded-full md:w-auto hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600">
@@ -612,8 +612,8 @@ export default function Services() {
                         </div>
 
                         <div className="sm:flex-grow sm:border-b-2 sm:border-gray-900"></div>
-                        <p className='font-semibold pt-4'>Title Goes Here...</p>
-                        <p className='text-sm pt-4 text-justify leading-6'>It engages its enemies using psychic powers. Each of its three heads fires off psychokinetic energy, tripling its power.Weezing alternately shrinks and inflates its twin bodies to mix together toxic gases inside. The more the gases are mixed, the more powerful the toxins become. The Pokémon also becomes more putrid.Geodude that have lived a long life have had all their edges smoothed out until they’re totally round. They also have a calm, quiet disposition.</p>
+                        <p className='font-semibold pt-4'>Discover the Breathtaking Beauty of Nature Falls in San Vicente, Camarines Norte.</p>
+                        <p className='text-sm pt-4 text-justify leading-6'>Tucked away in the captivating province of Camarines Norte, Philippines, San Vicente is home to a hidden gem that will leave you speechless - Mananap Falls. This magnificent waterfall is surrounded by lush greenery, creating a mesmerizing and peaceful scene that invites you to connect with nature's beauty. Once you arrive at Mananap Falls, you'll be greeted by the sight of water gracefully plunging into a crystal-clear pool below. Take a moment to dip in the refreshing water, soak up the natural serenity, and capture memories that will last a lifetime. What makes San even more special is that it actually consists of 7 different waterfalls, each with its own unique charm and beauty. So, when you visit, make sure to explore all 7 falls to truly appreciate the magnificence of this hidden gem. Visiting Mananap Falls in San Vicente is an opportunity to witness the awe-inspiring beauty of this natural wonder and embark on an unforgettable adventure.</p>
                         <div className='pt-8'>
                             <NavLink to={PATH_NAME.Tourism.SanVicente} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="inline-flex w-full px-8 py-2 text-base font-bold leading-4 text-white bg-lgu-green border border-transparent rounded-full md:w-auto hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
                                 View San Vicente Tourism
@@ -689,6 +689,7 @@ export default function Services() {
                             <div className="bg-lgu-lime px-16 pb-10 pt-5 rounded-tr-xl rounded-tl-xl rounded-br-xl rounded-bl-xl">
                                 {office.services.map((service, serviceIndex) => (
                                     <div key={serviceIndex} className="mb-4">
+                                        
                                         <p className="text-xl font-semibold text-justify">{service.typeOfService}</p>
                                         <p className="text-sm text-justify">{service.aboutTheService}</p>
 
