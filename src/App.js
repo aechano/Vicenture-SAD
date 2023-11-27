@@ -115,10 +115,15 @@ function App() {
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType} />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm userType={userType} />} />
+
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} /> {/** Try only */}
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:page"} element={<PlacesToVisit userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisitPost + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} />
+
+
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.Activities + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.Activities + "/:page"} element={<Activities userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.ActivitiesPost + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType} />} />
                         <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />

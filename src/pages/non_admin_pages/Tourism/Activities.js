@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import Banner from '../../../components/Banner'
 import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
@@ -6,9 +6,14 @@ import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
 import { NavLink } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 
 
 export default function Activities() {
+    const activitiesPerPage = 5;
+    const { page = 1 } = useParams();
+    const currentPage = parseInt(page, 10);
+
     const [search, setSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -21,7 +26,6 @@ export default function Activities() {
 
     const categories = ['Festivals', 'Hiking', 'Outing', 'Events', 'Vacations'];
 
-    const navigate = useNavigate();
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -42,8 +46,8 @@ export default function Activities() {
         },
         {
             id: 2,
-            pic: require("../../../res/img/mapIcon.png"),
-            title: "Abasig Matognon Natural Biotic Area (Hiking)",
+            pic: require("../../../res/img/mananap.jpg"),
+            title: "Mananap Falls",
             body: "Experience this 8.0-km out-and-back trail near San Vicente, Camarines Norte. Generally considered a moderately challenging route, it takes an average of 2 h 22 min to complete. This trail is great for birding, hiking, and mountain biking, and it's unlikely you'll encounter many other people while exploring.",
             rate: 4.7,
             vote: 213,
@@ -86,6 +90,27 @@ export default function Activities() {
             comments: 16,
         },
     ];
+
+    // Calculate the start and end indices for the current page
+    const startIndex = (currentPage - 1) * activitiesPerPage;
+    const endIndex = startIndex + activitiesPerPage;
+
+    const currentActivities = contents.slice(startIndex, endIndex);
+
+    const totalPages = Math.ceil(contents.length / activitiesPerPage);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const handlePageChange = (newPage) => {
+        navigate(`/tourism/activities/${newPage}`);
+    };
+
+    useEffect(() => {
+        if (location.pathname === PATH_NAME.Tourism.Activities) {
+            navigate('/tourism/activities/1');
+        }
+    }, [location.pathname, navigate]);
 
     return (
         <>
@@ -157,17 +182,70 @@ export default function Activities() {
                     </NavLink>
                 </div>
                 <div className='pt-12'>
-                    {contents.map((content, index) => {
+                    {currentActivities.map((content, index) => {
                         return <TourismCards
                             key={index}
                             content={content}
                             onClick={() => {
-                                navigate(PATH_NAME.Tourism.Activities + "/" + content.id);
+                                navigate(PATH_NAME.Tourism.ActivitiesPost + "/" + content.id);
                                 window.scrollTo({ top: 0, left: 0 });
                             }}
                         />;
                     })}
                 </div>
+                <nav aria-label="Page navigation example">
+                    <ul className="list-style-none flex justify-center">
+                        <li>
+                            <NavLink
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                                to={`/tourism/activities/${currentPage - 1}`}
+                                onClick={() => {
+                                    if (currentPage > 1) {
+                                        handlePageChange(currentPage - 1);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="Previous"
+                            >
+                                <span aria-hidden="true">&laquo;</span>
+                            </NavLink>
+                        </li>
+
+                        {[...Array(totalPages).keys()].map((pageNumber) => (
+                            <li key={pageNumber}>
+                                <NavLink
+                                    to={`/tourism/activities/${pageNumber + 1}`}
+                                    onClick={() => {
+                                        handlePageChange(pageNumber + 1);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }}
+                                    className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${pageNumber + 1 === currentPage ? 'bg-neutral-200' : ''
+                                        }`}
+                                >
+                                    {pageNumber + 1}
+                                </NavLink>
+                            </li>
+                        ))}
+
+                        <li>
+                            <NavLink
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                                to={`/tourism/activities/${currentPage + 1}`}
+                                onClick={() => {
+                                    if (currentPage < totalPages) {
+                                        handlePageChange(currentPage + 1);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="Next"
+                            >
+                                <span aria-hidden="true">&raquo;</span>
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>
 
 
 
