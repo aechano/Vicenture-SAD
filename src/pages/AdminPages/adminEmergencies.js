@@ -2,7 +2,7 @@ import React from "react";
 
 export default function AdminEmergenciesComponent() {
     return (
-        <div>
+        <div className="ml-10 mt-6 mb-6 w-full flex-shrink-0 h-full overflow-auto" >
 
             <h1 className="text-3xl font-bold mb-4 mt-8 ml-4">Emergency Alert</h1>
             <div className="flex flex-wrap justify-stretch">
@@ -42,7 +42,7 @@ export default function AdminEmergenciesComponent() {
             <div className="pt-5 flex justify-end py-4">
                 <button
                     type="submit"
-                    className="text-lgu-lime bg-lgu-green hover:bg-lime-900 focus:ring-1 focus:outline-none focus:ring-lime-900 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-lime-900 dark:focus:ring-lime-900"
+                    className="text-black hover:text-white bg-lgu-green hover:bg-lime-900 focus:ring-1 focus:outline-none focus:ring-lime-900 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-lime-900 dark:focus:ring-lime-900"
                 >
                     Send Message
                 </button>
