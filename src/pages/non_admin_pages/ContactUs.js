@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from '../../components/Banner';
-import { PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import AccordionItem from '../../components/AccordionItem';
 import { IoLocation } from 'react-icons/io5';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { MdEmail, MdFacebook } from 'react-icons/md';
 import BackToTop from '../../components/BackToTop';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 
 
@@ -197,30 +200,48 @@ export default function ContactUs({ userType }) {
                         })}
                     </div>
                 </div>
-                <GetInTouch userType={userType} />
+                <GetInTouch/>
             </div>
         </>
     );
 }
-function GetInTouch({ userType }) {
+function GetInTouch() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('General Inquiry');
+    
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
     // Define state variables for form inputs
-    const [email, setEmail] = useState(localStorage.getItem('email'));
+    const [email, setEmail] = useState();
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
     const [sendCopy, setSendCopy] = useState(false);
+    const [userType, setUserType] = useState()
+
+    useEffect(() => {
+        var payload = jwtDecode(Cookies.get("token"));
+        setEmail(payload.sub);
+        setUserType(payload.accountType); 
+    }, [])
 
     // Function to handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
         // You can perform form submission logic here
-        console.log('Form submitted:', { subject, message, sendCopy });
+        axios.post(API.FeedbackPost, {
+            "email": email,
+            "title":subject,
+            "feedback":message,
+            "type":selectedOption,
+            "timestamp": Date.now()
+        })
+        alert("Feedback sent!");
+        setSubject("");
+        setMessage("");
+        setSelectedOption("General Inquiry");
     };
 
     const handleOptionSelect = (option) => {
