@@ -347,7 +347,7 @@ export default function Header(props) {
                                     </div>
                                 </div>
                                 <Disclosure.Panel>
-                                    <div className="block">
+                                    <div className="block ml-4">
                                         <div className="flex flex-col mr-5">
                                             {navigation.map((item) =>
                                                 item.subItems ? ( // Check if it's a dropdown item
@@ -365,7 +365,7 @@ export default function Header(props) {
                                                             />
                                                         </button>
                                                         {openDropdown === item.name && (
-                                                            <div className="py-2 bg-lgu-green absolute right-0 rounded-md">
+                                                            <div className="py-2 bg-lgu-green relative ml-4">
                                                                 {item.subItems.map((subItem) => (
                                                                     <NavLink
                                                                         key={subItem.name}
@@ -374,7 +374,6 @@ export default function Header(props) {
                                                                             return "block rounded-md px-1 py-2 text-sm text-lgu-lime hover:text-white whitespace-nowrap overflow-hidden text-overflow-ellipsis " +
                                                                                 (isActive ? "font-medium" : "")
                                                                         }}
-
                                                                     >
                                                                         {subItem.name}
                                                                     </NavLink>
