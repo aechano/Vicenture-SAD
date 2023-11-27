@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Banner from "../../components/Banner";
-import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
+import { API, PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
 import Popconfirm from "../../components/PopConfirm";
+import axios from "axios";
 
 export default function OnlineForm() {
 
@@ -22,7 +23,7 @@ export default function OnlineForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setShowPopconfirm(true);
-
+        
         // Generate and download the PDF, passing the form data as arguments
 
     };
@@ -46,7 +47,19 @@ export default function OnlineForm() {
         setNames('');
         setMessage('');
 
-        console.log('Form submitted:', { email, fname, midName, lname, phoneNum, date, duration, people, names, message });
+        axios.post(API.TourismOnlineFormPost, {
+            "email": email,
+            "firstName": fname,
+            "middleInitial": midName,
+            "lastName": lname,
+            "phoneNumber": phoneNum,
+            "tourDate": new Date(date).getTime(),
+            "durationOfStay":duration,
+            "numberOfPeople":people,
+            "people":names,
+            "specialRequest":message
+        })
+        alert("Request sent!\nPlease print this form and present it to the Municipal Tourism Office of San Vicente. Thank you!")
     };
 
     const handleTextareaChange = (e) => {

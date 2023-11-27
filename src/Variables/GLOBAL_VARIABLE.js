@@ -76,7 +76,9 @@ const API = {
     SignUp: SERVER_ADDRESS+"/api/v1/auth/signup",
     SignIn: SERVER_ADDRESS+"/api/v1/auth/signin",
     FeedbackPost: SERVER_ADDRESS+"/api/v1/public/feedback",
-    FeedbackGet: SERVER_ADDRESS+"api/v1/admin/get-feedback"
+    FeedbackGet: SERVER_ADDRESS+"/api/v1/admin/get-feedback",
+    TourismOnlineFormGet: SERVER_ADDRESS+"/api/v1/lgu/tof",
+    TourismOnlineFormPost: SERVER_ADDRESS+"/api/v1/public/tof",
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS+"/ws"
