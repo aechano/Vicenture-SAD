@@ -2,20 +2,25 @@ import React, { useState, useEffect } from "react";
 import Sections from "../components/Sections";
 import Banner from "../components/Banner";
 import BackToTop from "../components/BackToTop";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
 import CalendarModal from "../components/CalendarModal";
 import CarouselComponent from "../components/CarouselComponent";
+import ChatIcon from "../components/ChatIcon";
 
 function Homepage({ userType }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
     const [isSurveyOpen, setSurveyOpen] = useState(true);
 
+    const location = useLocation();
+
+    // Check if the current location is the homepage
+    const isHomepage = location.pathname === '/';
+
     const closeSurvey = () => {
         setSurveyOpen(false);
     };
-
 
     const images = [
         require("./../res/img/1.png"),
@@ -68,6 +73,11 @@ function Homepage({ userType }) {
                 </h1>
             </Banner>
 
+            <div>
+                {/* Other components */}
+                {isHomepage && <ChatIcon />}
+            </div>
+
             {/* Event Section */}
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
@@ -94,7 +104,7 @@ function Homepage({ userType }) {
                     <div className="lg:flex">
                         <div className="space-y-2 md:space-y-0 lg:space-y-2 md:space-x-2 lg:space-x-0  md:flex lg:block lg:w-[18rem] lg:p-4 mt-5">
                             <div className="p-4 rounded-2xl border-2 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                                <div className="border-b-2 border-[#0000002d] rounded-md bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold">
+                                <div className="border-b-2 border-[#0000002d] rounded-md bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold text-center">
                                     Emergency
                                 </div>
                                 <div className="p-6">
@@ -123,7 +133,7 @@ function Homepage({ userType }) {
                                 <CalendarModal isOpen={isModalOpen} onRequestClose={closeModal} />
                             </div>
 
-                        </div>
+                        </div>  
                         <div className="lg:flex-1 pb-4">
                             <video class="w-full h-full p-4" autoPlay loop controls muted>
                                 <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />

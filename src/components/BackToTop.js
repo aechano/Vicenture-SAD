@@ -1,9 +1,11 @@
 // BackToTop.js
 
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const BackToTop = () => {
   const [showBackToTopButton, setShowBackToTopButton] = useState(false);
+  const location = useLocation();
 
   // Scroll to the top of the page when the "Back to Top" button is clicked.
   const handleBackToTop = () => {
@@ -27,13 +29,18 @@ const BackToTop = () => {
     };
   }, []);
 
+
+  // Determine if it's the homepage
+  const isHomepage = location.pathname === '/';
+
   return (
     <div>
       {/* Back to Top button */}
       {showBackToTopButton && (
         <button
           onClick={handleBackToTop}
-          className="fixed bottom-4 right-4 border-black text-black text-4xl p-2 rounded-full cursor-pointer"
+          className={`fixed bottom-24 right-5 border-black text-black text-4xl p-2 rounded-full cursor-pointer ${isHomepage ? 'bottom-24 right-5' : 'bottom-4 right-4' 
+            }`}
         >
           <div className="w-12 h-12 flex items-center justify-center rounded-full bg-black text-white text-3xl">
             {/* Center the arrow inside the circle */}

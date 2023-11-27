@@ -42,7 +42,9 @@ const PATH_NAME = {
         SanVicente: "/tourism/san-vicente-tourism",
         OnlineForm: "/tourism/san-vicente-tourism/online-form",
         PlacesToVisit: "/tourism/places-to-visit",
+        PlacesToVisitPost:"/tourism/place-to-visit",
         Activities: "/tourism/activities",
+        ActivitiesPost:"/tourism/activity",
         Content: "/tourism/places-to-visit/content",
     },
 
@@ -62,11 +64,11 @@ const PATH_NAME = {
     Survey: "/surveys",
     SampleSurvey: "/sample-survey",
     Services: "/services",
-    Debug: "/debug",
+    Debug: "/debug", 
     Articles: "/articles",
-    ArticleContent: "/articles/:articleID",
+    ArticleContent: "/article/:articleID",
 
-    AddOffices: "/the-town/offices/add-offices",  
+    AddOffices: "/the-town/offices/add-offices", 
 }
 
 const SERVER_ADDRESS = "http://localhost:8080"

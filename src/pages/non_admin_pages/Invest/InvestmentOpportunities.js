@@ -43,13 +43,15 @@ export default function InvestmentOpportunities({ userType }) {
         <p>Investment Opportunities</p>
       </Banner>
 
-      <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 '>
-        <div className='w-fit rounded-full pl-24 pt-10'>
-          <NavLink
-            to={PATH_NAME.Tourism.Content + "/add"}
-            className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
-            +&nbsp;&nbsp;&nbsp;Create A Post
-          </NavLink>
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+        <div className="flex justify-end m-5 w-5/6 mx-auto pt-10">
+          <div className='w-fit rounded-full'>
+            <NavLink
+              to={PATH_NAME.Tourism.Content + "/add"} 
+              className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
+              +&nbsp;&nbsp;&nbsp;Create A Post
+            </NavLink>
+          </div>
         </div>
       </div>
       <div className=''>

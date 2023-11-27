@@ -235,8 +235,36 @@ export default function Offices() {
       </Banner>
 
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5'>
+
+        <div className='grid grid-rows-3 sm:grid-rows-none sm:inline-flex pb-5 justify-center sm:justify-content-end md:space-x-3'>
+          <div className='w-fit rounded-full mt-7 mx-auto sm:mx-0 sm:ml-auto'>
+            <NavLink
+              to={PATH_NAME.Tourism.Content + "/add"}
+              className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
+              Add Office
+            </NavLink>
+          </div>
+          <div className='w-fit rounded-full mt-7 mx-auto sm:mx-0 sm:ml-auto'>
+            <NavLink
+              to={PATH_NAME.Tourism.Content + "/add"}
+              className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
+              Edit Office
+            </NavLink>
+          </div>
+          <div className='w-fit rounded-full mt-7 mx-auto sm:mx-0 sm:ml-auto'>
+            <NavLink
+              to={PATH_NAME.Tourism.Content + "/add"}
+              className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
+              Delete Office
+            </NavLink>
+          </div>
+
+
+        </div>
+
+
         {/* Sidebar */}
-        <div className="block md:flex md:flex-row md:mt-20 md:mb-20">
+        <div className="block md:flex md:flex-row md:mt-7 md:mb-20">
           <div className="bg-lgu-yellow p-4 w-full md:w-1/3 md:mr-6 mb-6 md:mb-0" style={{ maxHeight: '900px', overflowY: 'auto' }}>
             <ul>
               {officeData.map((office, index) => (

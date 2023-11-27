@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router';
 export default function Profile({ userType }) {
     const navigate = useNavigate()
     var token = Cookies.get("token");
-    if (token){
+    if (token) {
         var payload = jwtDecode(token);
     } else {
         navigate(PATH_NAME.Home);
@@ -19,6 +19,66 @@ export default function Profile({ userType }) {
         company: "Cargill Inc",
         office: "Tourism Office",
         position: "Head Officer"
+    };
+
+    const [newProfilePicture, setNewProfilePicture] = useState(null);
+    const [isTextClicked, setIsTextClicked] = useState(false); 
+    const [editing, setEditing] = useState(false);
+    const [newEmail, setNewEmail] = useState(user.email);
+    const [newUsername, setNewUsername] = useState(user.username);
+    const [newBusinessSector, setBusinessSector] = useState(user.businessSector);
+    const [newCompany, setCompany] = useState(user.company);
+    const [newOffice, setOffice] = useState(user.office);
+    const [newPosition, setPosition] = useState(user.position);
+
+    const handleEditClick = () => {
+        setEditing(true);
+    };
+
+    const handleTextClick = () => {
+        // Add logic for handling the text click (e.g., open file input)
+        setIsTextClicked(true);
+    };
+
+    const handleCancelClick = () => {
+        setNewEmail(user.email);
+        setNewUsername(user.username);
+        setBusinessSector(user.businessSector);
+        setCompany(user.company);
+        setOffice(user.office);
+        setPosition(user.position);
+        setNewProfilePicture(null); // Reset the profile picture state
+        setEditing(false);
+        setIsTextClicked(false);
+    };
+
+    const handleSaveClick = () => {
+        // Implement the logic to save the changes (e.g., send a request to the server)
+        // You can use state (newEmail, newUsername, newProfilePicture) to send the updated data to the server
+
+        // Example: Send new profile picture to the server
+        if (newProfilePicture) {
+            const formData = new FormData();
+            formData.append('profilePicture', newProfilePicture);
+
+            fetch('/api/updateProfilePicture', {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server
+                    console.log('Profile picture updated successfully:', data);
+                })
+                .catch(error => {
+                    console.error('Error updating profile picture:', error);
+                });
+        }
+
+        setEditing(false);
     };
 
     const profileInfoStyle = {
@@ -69,40 +129,32 @@ export default function Profile({ userType }) {
         marginLeft: '40px',
     };
 
-    const [editing, setEditing] = useState(false);
-    const [newEmail, setNewEmail] = useState(user.email);
-    const [newUsername, setNewUsername] = useState(user.username);
-    const [newBusinessSector, setBusinessSector] = useState(user.businessSector);
-    const [newCompany, setCompany] = useState(user.company);
-    const [newOffice, setOffice] = useState(user.office);
-    const [newPosition, setPosition] = useState(user.position);
-
-    const handleEditClick = () => {
-        setEditing(true);
-    };
-
-    const handleCancelClick = () => {
-        setNewEmail(user.email);
-        setNewUsername(user.username);
-        setBusinessSector(user.businessSector);
-        setCompany(user.company);
-        setOffice(user.office);
-        setPosition(user.position);
-        setEditing(false);
-    };
-
-    const handleSaveClick = () => {
-        // Implement the logic to save the changes (e.g., send a request to the server)
-        // You can use state (newEmail, newUsername) to send the updated data to the server
-        setEditing(false);
-    };
-
     return (
         <div className="flex flex-col items-center justify-center p-20 min-h-screen mt-32">
             <div className="my-0 mx-auto flex flex-col items-center w-full max-w-[800px] mb-2.5 mt-[-70px] border-2 border-solid border-lgu-green rounded-[14px]">
                 <div className='text 2xl font-bold m-0 p-5 bg-lgu-green text-white w-full rounded-t-[10px]'>Profile</div>
                 <div className='w-[200px] h-[200px] border-4 border-solid border-lgu-green rounded-[50%] my-5'>
-                    <img src={require("./../../res/img/icon.png")} style={{ width: '100%', height: '100%', borderRadius: '50%' }} alt={user.username} />
+                    <label htmlFor="profilePictureInput">
+                        <img
+                            src={newProfilePicture ? URL.createObjectURL(newProfilePicture) : require("./../../res/img/icon.png")}
+                            style={{ width: '100%', height: '100%', borderRadius: '50%' }}
+                            alt={user.username}
+                        />
+                        <div className={`items-center mb-4 mt-2 ${isTextClicked ? 'underline' : ''}`}
+                            onClick={handleTextClick}
+                            style={{ cursor: 'pointer' }}>
+                            {editing && <span>Change Profile Picture</span>}
+                        </div>
+                    </label>
+                    {editing && (
+                        <input
+                            type="file"
+                            id="profilePictureInput"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={(e) => setNewProfilePicture(e.target.files[0])}
+                        />
+                    )}
                 </div>
                 <div style={profileInfoStyle}>
                     <div style={labelStyle}>Email:</div>
@@ -130,27 +182,27 @@ export default function Profile({ userType }) {
                     {
                         [USER_TYPES.Investor, USER_TYPES.LguSV].includes(userType) ?
                             <>
-                                <div style={labelStyle}>{userType===USER_TYPES.LguSV?"Office: ":"Business Sector: "}</div>
+                                <div style={labelStyle}>{userType === USER_TYPES.LguSV ? "Office: " : "Business Sector: "}</div>
                                 {editing ? (
                                     <input
                                         type="text"
-                                        value={userType===USER_TYPES.LguSV?newOffice:newBusinessSector}
-                                        onChange={(e) => userType===USER_TYPES.LguSV?setOffice(e.target.value):setBusinessSector(e.target.value)}
+                                        value={userType === USER_TYPES.LguSV ? newOffice : newBusinessSector}
+                                        onChange={(e) => userType === USER_TYPES.LguSV ? setOffice(e.target.value) : setBusinessSector(e.target.value)}
                                         style={smallInputStyle}
                                     />)
                                     :
-                                    (<p style={detailStyle}>{userType===USER_TYPES.LguSV?newOffice:newBusinessSector}</p>)
+                                    (<p style={detailStyle}>{userType === USER_TYPES.LguSV ? newOffice : newBusinessSector}</p>)
                                 }
-                                <div style={labelStyle}>{userType===USER_TYPES.LguSV?"Position: ":"Company: "}</div>
+                                <div style={labelStyle}>{userType === USER_TYPES.LguSV ? "Position: " : "Company: "}</div>
                                 {editing ?
                                     <input
                                         type="text"
-                                        value={userType===USER_TYPES.LguSV?newPosition:newCompany}
-                                        onChange={(e) => userType===USER_TYPES.LguSV?setPosition(e.target.value):setCompany(e.target.value)}
+                                        value={userType === USER_TYPES.LguSV ? newPosition : newCompany}
+                                        onChange={(e) => userType === USER_TYPES.LguSV ? setPosition(e.target.value) : setCompany(e.target.value)}
                                         style={smallInputStyle}
                                     />
                                     :
-                                    <p style={detailStyle}>{userType===USER_TYPES.LguSV?newPosition:newCompany}</p>
+                                    <p style={detailStyle}>{userType === USER_TYPES.LguSV ? newPosition : newCompany}</p>
                                 }
                             </>
                             :

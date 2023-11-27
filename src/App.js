@@ -1,6 +1,6 @@
 import './index.css';
 import Header from './components/Header';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import SignUp from './pages/Accounts/SignUp';
 import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
@@ -55,6 +55,7 @@ import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsT
 import Toast from './components/Toast';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
+import PrivacyPolicy from './pages/non_admin_pages/PrivacyPolicy';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -109,20 +110,27 @@ function App() {
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType} />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm userType={userType} />} />
+
                         <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} /> {/** Try only */}
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:page"} element={<PlacesToVisit userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisitPost + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} />
+
+
                         <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.Activities + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.Activities + "/:page"} element={<Activities userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.ActivitiesPost + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType} />} />
                         <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />
 
                         <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType} />} />
+                        <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy userType={userType} />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey userType={userType} />} />
                         <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType} />} />
-                        <Route path="/articles" element={<Articles userType={userType} />} />
-                        <Route path="/article/:articleID" element={<ArticleContent userType={userType} />} />
+                        <Route path={PATH_NAME.Articles} element={<Articles userType={userType} />} />
+                        <Route path={PATH_NAME.Articles + "/:page"} element={<Articles userType={userType} />} />
+                        <Route path={PATH_NAME.ArticleContent} element={<ArticleContent userType={userType} />} />
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions userType={userType} />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost userType={userType} />} />
