@@ -225,7 +225,7 @@ function Post({ content }) {
                     <tr>
                         <td></td> {/** Keep the cells below the image empty */}
                         <td>
-                            <div className='flex w-full justify-center'>
+                            <div className='flex overflow-x-auto justify-start'>
                                 {content.bodyImgs !== undefined ?
                                     content.bodyImgs.map((img, index) => {
                                         if (index < 3) {
@@ -235,6 +235,7 @@ function Post({ content }) {
                                                     src={img.src}
                                                     alt={img.alt}
                                                     className='w-40 h-40 m-2 shadow-md'
+                                                    
                                                 />
                                             )
                                         } else if (index === 3) {

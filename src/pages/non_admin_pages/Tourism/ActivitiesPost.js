@@ -77,10 +77,11 @@ export default function ActivitiesPost() {
     return (
         <div className='w-full bg-gray-400 py-20'>
             <div className='w-3/4 mx-auto p-10 shadow-md bg-gray-100 rounded-3xl'>
-                <div className='flex items-center'>
-                    <img src={content.pic} alt={content.title?content.title:null} className='h-auto max-w-md rounded-lg' />
-                    <div className='ml-4'>
-                        <h1 className='text-4xl font-bold mt-2'>{content.title?content.title:null}</h1>
+            <div className='flex flex-col md:flex-row items-center'>
+                    <img src={content.pic} alt={content.title?content.title:null} className='w-full h-auto max-w-md rounded-lg object-cover mb-4 md:mb-0 md:mr-4' />
+                    
+                    <div className='text-center md:text-left'>
+                        <h1 className='text-2xl md:text-4xl font-bold mb-2'>{content.title?content.title:null}</h1>
                         <p className='mt-4'><b>Address:</b> {content.address?content.address:null}
                         </p>
                         <p className='mt-1'><b>Contact:</b> <a href="/mananapfallsSVCN">{content.contact?content.contact:null}</a>
