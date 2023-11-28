@@ -8,6 +8,7 @@ import { MdReport } from 'react-icons/md'
 import { Outlet } from 'react-router'
 import Body from '../../classifiers/Body'
 import { NavLink } from 'react-router-dom'
+import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
 
 export default function Admin() {
 
@@ -19,49 +20,49 @@ export default function Admin() {
                     <div className='w-11/12 h-1 bg-lgu-green rounded-full mt-5' /> {/** just a line below all the categories */}
                     <div className='overflow-y-auto max-h-[65vh]'>
                         <SidebarItems
-                            title={{ name: "Analytics", to: "analytics" }}
+                            title={{ name: "Analytics", to: PATH_NAME.AdminPages.Analytics }}
                             icon={<FaChartBar className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "The Town", to: "the-town" }}
+                            title={{ name: "The Town", to: PATH_NAME.AdminPages.TheTown }}
                             subtitles={[
-                                { name: "Municipality Profile", to: "municipality-profile" },
-                                { name: "Elected Officials", to: "elected-officials" },
-                                { name: "Offices", to: "offices" },
-                                { name: "Citizen Charter", to: "citizen-charter" }
+                                { name: "Municipality Profile", to: PATH_NAME.AdminPages.MunicipalityProfile },
+                                { name: "Elected Officials", to: PATH_NAME.AdminPages.ElectedOfficials },
+                                { name: "Offices", to: PATH_NAME.AdminPages.Offices },
+                                { name: "Citizen Charter", to: PATH_NAME.AdminPages.CitizensCharter }
                             ]}
                             icon={<BsFillHousesFill className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "Tourism", to: "tourism" }}
+                            title={{ name: "Tourism", to: PATH_NAME.AdminPages.Tourism }}
                             subtitles={[
-                                { name: "Places To Visit", to: "places-to-visit" },
-                                { name: "Activities", to: "activities" }
+                                { name: "Places To Visit", to: PATH_NAME.AdminPages.PlacesToVisit },
+                                { name: "Activities", to: PATH_NAME.AdminPages.Activities }
                             ]}
                             icon={<TbTrees className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "Invest", to: "invest" }}
+                            title={{ name: "Invest", to: PATH_NAME.AdminPages.Invest }}
                             subtitles={[
-                                { name: "Investment Opportunities", to: "investment-opportunities" },
-                                { name: "Reasons To Invest", to: "reasons-to-invest" }
+                                { name: "Investment Opportunities", to: PATH_NAME.AdminPages.InvestmentOpportunities },
+                                { name: "Reasons To Invest", to: PATH_NAME.AdminPages.ReasonsToInvest }
                             ]}
                             icon={<TbCoins className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "Online Survey", to: "online-survey" }}
+                            title={{ name: "Online Survey", to: PATH_NAME.AdminPages.OnlineSurvey }}
                             icon={<RiSurveyFill className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "Emergency", to: "emergency" }}
+                            title={{ name: "Emergency", to: PATH_NAME.AdminPages.Emergency }}
                             icon={<GiSiren className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "Transparency", to: "transparency" }}
+                            title={{ name: "Transparency", to: PATH_NAME.AdminPages.Transparency }}
                             icon={<FaScroll className='h-auto' />}
                         />
                         <SidebarItems
-                            title={{ name: "Reported Contents", to: "reported-contents" }}
+                            title={{ name: "Reported Contents", to: PATH_NAME.AdminPages.ReportedContents }}
                             icon={<MdReport className='h-auto' />}
                         />
                     </div>

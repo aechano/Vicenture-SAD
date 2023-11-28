@@ -1,27 +1,17 @@
 import './index.css';
 import Header from './components/Header';
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignUp from './pages/Accounts/SignUp';
 import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
-import Banner from './components/Banner';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
-import adminHomepage from './pages/AdminPages/adminHomepage';
-import adminAboutSV from './pages/AdminPages/adminAboutSV';
-import adminElectedOfficial from './pages/AdminPages/adminElectedOfficial';
-import adminMunicipalityProfile from './pages/AdminPages/adminMunicipalityProfile';
-import adminMunicipalityProgram from './pages/AdminPages/adminMunicipalityProgram';
-import adminCitizenCharter from './pages/AdminPages/adminCitizenCharter';
-import AdminTransparency from './pages/AdminPages/adminTransparency';
-import adminReportedContents from './pages/AdminPages/adminReportedContents';
-import { adminEmergencies } from './pages/AdminPages/adminEmergencies';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
 import ContactUs from './pages/non_admin_pages/ContactUs';
 import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
-import MunicipalityPrograms, {SportContent} from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
+import MunicipalityPrograms, { SportContent } from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
 import History from './pages/non_admin_pages/TheTown/History';
 import PlacesToVisit from './pages/non_admin_pages/Tourism/PlacesToVisit';
 import Activities from './pages/non_admin_pages/Tourism/Activities';
@@ -46,29 +36,42 @@ import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
 import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
-import SignInPrompt from './components/SignInPrompt';
 import Page404 from './pages/Accounts/ErrorPages/Page404';
 import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
 import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsToInvestContent';
-import Toast from './components/Toast';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import PrivacyPolicy from './pages/non_admin_pages/PrivacyPolicy';
 import Admin from './pages/AdminPages/Admin';
+import Analytics from './pages/AdminPages/AdminPages/Analytics';
+import AdminTheTownBase from './pages/AdminPages/AdminPages/TheTown/Base';
+import AdminTourismBase from './pages/AdminPages/AdminPages/Tourism/Base';
+import AdminInvestBase from './pages/AdminPages/AdminPages/Invest/Base';
+import AdminOnlineSurvey from './pages/AdminPages/AdminPages/AdminOnlineSurvey';
+import AdminEmergency from './pages/AdminPages/AdminPages/AdminEmergency';
+import AdminTransparency from './pages/AdminPages/AdminPages/AdminTransparency';
+import AdminReportedContents from './pages/AdminPages/AdminPages/AdminReportedContents';
+import AdminReasonsToInvest from './pages/AdminPages/AdminPages/Invest/AdminReasonsToInvest';
+import AdminInvestmentOpportunities from './pages/AdminPages/AdminPages/Invest/AdminInvestmentOpportunities';
+import AdminPlacesToVisit from './pages/AdminPages/AdminPages/Tourism/AdminPlacesToVisit';
+import AdminActivities from './pages/AdminPages/AdminPages/Tourism/AdminActivities';
+import AdminMunicipalityProfile from './pages/AdminPages/AdminPages/TheTown/AdminMunicipalityProfile';
+import AdminElectedOfficials from './pages/AdminPages/AdminPages/TheTown/AdminElectedOfficials';
+import AdminOffices from './pages/AdminPages/AdminPages/TheTown/AdminOffices';
+import AdminCitizensCharter from './pages/AdminPages/AdminPages/TheTown/AdminCitizensCharter';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
-    const [showToast, setShowToast] = useState(true);
 
     window.addEventListener('storage', () => {
         setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
     })
 
-    function updateUserType(){
+    function updateUserType() {
         var token = Cookies.get("token");
-        if (token){
+        if (token) {
             var payload = jwtDecode(token);
             setUserType(payload.AccountType);
         } else {
@@ -76,8 +79,8 @@ function App() {
         }
     }
 
-    useEffect(()=>{updateUserType()});
-    window.addEventListener('cookies', () => {updateUserType()});
+    useEffect(() => { updateUserType() });
+    window.addEventListener('cookies', () => { updateUserType() });
 
     return (
         <div className="App">
@@ -89,20 +92,6 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
-
-                        <Route path={PATH_NAME.AdminPages.Admin} element={<Admin/>}>
-                        
-                        </Route>
-
-                        <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
-                        <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
-                        <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />
-                        <Route path={PATH_NAME.AdminPages.adminMunicipalityProfile} element={<adminMunicipalityProfile />} />
-                        <Route path={PATH_NAME.AdminPages.adminMunicipalityProgram} element={<adminMunicipalityProgram />} />
-                        <Route path={PATH_NAME.AdminPages.adminCitizen} element={<adminCitizenCharter />} />
-                        <Route path={PATH_NAME.AdminPages.adminElectedOfficial} element={<adminElectedOfficial />} />
-                        <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
-                        <Route path={PATH_NAME.AdminPages.adminReportedContents} element={<adminReportedContents />} />
 
                         <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />
                         <Route path={PATH_NAME.TheTown.History} element={<History />} />
@@ -127,7 +116,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.ActivitiesPost + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
 
                         <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType} />} />
-                        <Route path={PATH_NAME.Services} element={<Services userType={userType}/>} />
+                        <Route path={PATH_NAME.Services} element={<Services userType={userType} />} />
 
                         <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType} />} />
                         <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy userType={userType} />} />
@@ -156,10 +145,30 @@ function App() {
                         <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent userType={userType} />} />
                         <Route path={PATH_NAME.AddOffices} element={<Offices_Add userType={userType} />} />
 
-
+                        <Route path={PATH_NAME.AdminPages.Admin} element={<Admin />}>
+                            <Route path={PATH_NAME.AdminPages.Analytics} element={<Analytics />} />
+                            <Route path={PATH_NAME.AdminPages.TheTown} element={<AdminTheTownBase />} >
+                                <Route path={PATH_NAME.AdminPages.MunicipalityProfile} element={<AdminMunicipalityProfile />} />
+                                <Route path={PATH_NAME.AdminPages.ElectedOfficials} element={<AdminElectedOfficials />} />
+                                <Route path={PATH_NAME.AdminPages.Offices} element={<AdminOffices />} />
+                                <Route path={PATH_NAME.AdminPages.CitizensCharter} element={<AdminCitizensCharter />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.Tourism} element={<AdminTourismBase />} >
+                                <Route path={PATH_NAME.AdminPages.PlacesToVisit} element={<AdminPlacesToVisit />} />
+                                <Route path={PATH_NAME.AdminPages.Activities} element={<AdminActivities />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.Invest} element={<AdminInvestBase />}>
+                                <Route path={PATH_NAME.AdminPages.InvestmentOpportunities} element={<AdminInvestmentOpportunities />} />
+                                <Route path={PATH_NAME.AdminPages.ReasonsToInvest} element={<AdminReasonsToInvest />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.OnlineSurvey} element={<AdminOnlineSurvey />} />
+                            <Route path={PATH_NAME.AdminPages.Emergency} element={<AdminEmergency />} />
+                            <Route path={PATH_NAME.AdminPages.Transparency} element={<AdminTransparency />} />
+                            <Route path={PATH_NAME.AdminPages.ReportedContents} element={<AdminReportedContents />} />
+                        </Route>
 
                         <Route path='/debug' element={<Page403 />} />
-                        <Route path='/*' element={<Page404/>} />
+                        <Route path='/*' element={<Page404 />} />
                     </Routes>
                 </Header>
             </BrowserRouter>

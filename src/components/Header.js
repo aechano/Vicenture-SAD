@@ -103,7 +103,7 @@ export default function Header(props) {
 
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
-        setAdminHeader(!PATH_NAME.AdminPages.AllPages.includes(location.pathname))
+        setAdminHeader(!location.pathname.startsWith(PATH_NAME.AdminPages.Admin))
     }, [location]);
 
 
