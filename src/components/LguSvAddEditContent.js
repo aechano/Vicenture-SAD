@@ -5,7 +5,7 @@ import ChipsInputComponent from './ChipsInputComponent';
 import { ImEye } from 'react-icons/im'
 import { NavLink } from 'react-router-dom';
 
-function LguSvAddEditContent({ title, categories, type, contentType, contentBody }) {
+function LguSvAddEditContent({ title, categories, setCategories, type, contentType, contentBody }) {
 
     const [selectedFile, setSelectedFile] = useState("No image chosen");
     const [showDropdown, setShowDropdown] = useState(false);
@@ -27,10 +27,20 @@ function LguSvAddEditContent({ title, categories, type, contentType, contentBody
 
     const handleAddCategory = () => {
         if (newCategory.trim() !== '') {
-            setContentCategory([...categories, newCategory]);
+            // Reset the newCategory state
             setNewCategory('');
+    
+            // Update the categories prop with the new category
+            const updatedCategories = [...categories, newCategory];
+    
+            // Update both contentCategory and categories props only if needed
+            if (contentCategory === 'Select Category') {
+                setContentCategory(newCategory);
+            }
+            setCategories(updatedCategories);
         }
     };
+    
 
 
     return (
