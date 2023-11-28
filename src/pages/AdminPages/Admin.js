@@ -98,7 +98,7 @@ export default function Admin() {
                                             <img
                                                 src={require("./../../res/img/waterfall.png")}
                                                 className='w-40 h-40 opacity-50 mt-32' />
-                                            <p className='mt-5 select-none'>Admin Panel</p>
+                                            <p className='mt-5 select-none'>Admin Dashboard</p>
                                         </div>
                                     </div>
                                     :
