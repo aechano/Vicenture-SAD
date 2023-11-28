@@ -17,13 +17,12 @@ export default function SanVicenteTourism() {
           bannerType="special"
         >
         </Banner>
-        <RevealOnScroll>
-          <div className='absolute -bottom-28 left-1/2 transform -translate-x-1/2 rounded-xl max-w-4xl w-full h-auto bg-lgu-green '>
-            <h1 className='text-3xl font-bold text-center text-lgu-lime pt-5'>Visit San Vicente</h1>
-            <p className='text-center text-lgu-lime p-5'>Explore the serene charm of San Vicente, Camarines Norte – a hidden gem where nature's beauty meets tranquil simplicity. Immerse yourself in the welcoming community and discover the wonders of Mananap Falls, a pristine oasis nestled deep within lush forests and towering mountains. Take a refreshing plunge into its crystal-clear, ice-cold waters, embark on a rafting adventure, and dare to climb to the top of the falls. Don't miss the thrill of the jumping point. Visit San Vicente today and experience the unspoiled beauty and thrilling adventures that await!</p>
-          </div>
-        </RevealOnScroll>
 
+        <div className='absolute -bottom-28 left-1/2 transform -translate-x-1/2 rounded-xl max-w-4xl w-full h-auto bg-lgu-green '>
+          <h1 className='text-3xl font-bold text-center text-lgu-lime pt-5'>Visit San Vicente</h1>
+          <p className='text-center text-lgu-lime p-5'>Explore the serene charm of San Vicente, Camarines Norte – a hidden gem where nature's beauty meets tranquil simplicity. Immerse yourself in the welcoming community and discover the wonders of Mananap Falls, a pristine oasis nestled deep within lush forests and towering mountains. Take a refreshing plunge into its crystal-clear, ice-cold waters, embark on a rafting adventure, and dare to climb to the top of the falls. Don't miss the thrill of the jumping point. Visit San Vicente today and experience the unspoiled beauty and thrilling adventures that await!</p>
+        </div>
+        
       </div>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-28 space-y-5'>
         <div className="w-auto p-4">
@@ -220,7 +219,7 @@ export default function SanVicenteTourism() {
                   Contribute your enthusiasm and expertise by participating in various sports festivals
                 </h2>
                 <div className="mx-auto m-5">
-                  <NavLink to={PATH_NAME.Tourism.Activities} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                  <NavLink to={PATH_NAME.TheTown.MunicipalityPrograms} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                     Go to Sports Activities
                     <svg
                       className="w-3.5 h-3.5 ml-2"

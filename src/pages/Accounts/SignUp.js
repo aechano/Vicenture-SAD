@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ export default function SignUp() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false); //for confirm password
     const [role, setRole] = useState(location.state?.initialData ? location.state.initialData.role : null);
-    const [button, setButton] = useState(location.state?.initialData ? location.state.initialData.role === "2"? 'Continue': 'Create Account' : 'Create Account');
+    const [button, setButton] = useState(location.state?.initialData ? location.state.initialData.role === "2" ? 'Continue' : 'Create Account' : 'Create Account');
     const navigate = useNavigate();
 
     const [emailError, setEmailError] = useState('');
@@ -26,6 +26,7 @@ export default function SignUp() {
     const [passwordError, setPasswordError] = useState('');
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
     const [roleError, setRoleError] = useState('');
+    const [showErrors, setShowErrors] = useState(false);
 
     function evaluateAnswers(e) {
         e.preventDefault();
@@ -60,7 +61,15 @@ export default function SignUp() {
             validInputs = false;
         }
 
+        if (!validInputs) {
+            setShowErrors(true);
+            setTimeout(() => {
+                setShowErrors(false);
+            }, 10000); // Hide errors after 10 seconds
+        }
+
         if (!validInputs) return;
+
 
         /*
         now that input is valid, let's store it in the database.
@@ -105,6 +114,14 @@ export default function SignUp() {
             });
         }
     }
+
+    useEffect(() => {
+        // Clean up errors when the component unmounts
+        return () => {
+            setShowErrors(false);
+        };
+    }, []);
+
     return (
         <section class="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -123,12 +140,15 @@ export default function SignUp() {
                             Create an account
                         </h1>
                         <form className="space-y-2 md:space-y-6 max-w-md mx-auto" onSubmit={evaluateAnswers}>
-                            {emailError && <div className="text-red-600">{emailError}</div>}
-                            {usernameError && <div className="text-red-600">{usernameError}</div>}
-                            {passwordError && <div className="text-red-600">{passwordError}</div>}
-                            {confirmPasswordError && <div className="text-red-600">{confirmPasswordError}</div>}
-                            {roleError && <div className="text-red-600">{roleError}</div>}
-
+                            {showErrors && (
+                                <>
+                                    {emailError && <div className="text-center text-red-600">{emailError}</div>}
+                                    {usernameError && <div className="text-center text-red-600">{usernameError}</div>}
+                                    {passwordError && <div className="text-center text-red-600">{passwordError}</div>}
+                                    {confirmPasswordError && <div className="text-center text-red-600">{confirmPasswordError}</div>}
+                                    {roleError && <div className="text-center text-red-600">{roleError}</div>}
+                                </>
+                            )}
                             <InputBoxAccount
                                 placeholder="Username"
                                 value={username}
@@ -267,7 +287,7 @@ export default function SignUp() {
                                     <div class="ml-3 text-sm">
                                         <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
                                             I've given consent for my information to be utilized for analytical purposes.
-                                            </label>
+                                        </label>
                                     </div>
                                 </div>
                                 <div className='flex'>
@@ -277,7 +297,7 @@ export default function SignUp() {
                                     <div class="ml-3 text-sm">
                                         <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
                                             I consented my data to be collected
-                                            </label>
+                                        </label>
                                     </div>
                                 </div>
                                 <div className='flex'>
