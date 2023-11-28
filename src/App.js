@@ -56,6 +56,7 @@ import Toast from './components/Toast';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import PrivacyPolicy from './pages/non_admin_pages/PrivacyPolicy';
+import Admin from './pages/AdminPages/Admin';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -88,6 +89,11 @@ function App() {
                         <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
                         <Route path={PATH_NAME.Accounts.SignUp.INVESTOR} element={<SignUpInvestor />} />
+
+                        <Route path={PATH_NAME.AdminPages.Admin} element={<Admin/>}>
+                        
+                        </Route>
+
                         <Route path={PATH_NAME.AdminPages.AdminAnalytics} element={<AdminAnalytics />} />
                         <Route path={PATH_NAME.AdminPages.adminHomepage} element={<adminHomepage />} />
                         <Route path={PATH_NAME.AdminPages.adminAboutSV} element={<adminAboutSV />} />

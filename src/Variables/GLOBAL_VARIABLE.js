@@ -9,6 +9,7 @@ const PATH_NAME = {
         list: ["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"]
     },
     AdminPages:{
+        Admin: "/admin",
         AdminAnalytics: "/analytics",
         AdminHomepage: "/adminHomepage",
         AdminAboutSV: "/adminAboutSV",
@@ -94,7 +95,7 @@ const USER_TYPES = {
     EndUsers: ["SV_CITIZEN", "TOURIST", "INVESTOR", "GUEST"],
     General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU_SV_MAIN", "ADMIN"]
 }
-const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", ...PATH_NAME.Accounts.list];
+const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", PATH_NAME.AdminPages.Admin+"/*", ...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
 
 export { PATH_NAME, API, NO_FOOTER, NO_HEADER, USER_TYPES, SOCKET };
