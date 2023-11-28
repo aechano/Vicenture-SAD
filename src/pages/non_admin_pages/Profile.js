@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import { PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router';
 
 export default function Profile({ userType }) {
+    const navigate = useNavigate()
     var token = Cookies.get("token");
     if (token) {
         var payload = jwtDecode(token);
+    } else {
+        navigate(PATH_NAME.Home);
     }
     const user = {
         email: payload.sub,

@@ -44,7 +44,6 @@ import Transparency from './pages/non_admin_pages/Transparency';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
-import { RedirectMessages } from './components/redirect-webpages';
 import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
 import SignInPrompt from './components/SignInPrompt';
@@ -99,10 +98,6 @@ function App() {
                         <Route path={PATH_NAME.AdminPages.adminEmergencies} element={<adminEmergencies />} />
                         <Route path={PATH_NAME.AdminPages.adminReportedContents} element={<adminReportedContents />} />
 
-                        
-                        
-
-
                         <Route path={PATH_NAME.TheTown.About} element={<AboutSanVicente />} />
                         <Route path={PATH_NAME.TheTown.History} element={<History />} />
                         <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo />} />
@@ -140,8 +135,8 @@ function App() {
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions userType={userType} />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost userType={userType} />} />
 
-                        <Route path={PATH_NAME.Messages + "/:conversationID"} element={<Messaging userType={userType} />} />
-                        <Route path={PATH_NAME.Messages} element={<RedirectMessages userType={userType} />} />
+                        <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging userType={userType} />} />
+                        <Route path={PATH_NAME.Messages} element={<Messaging userType={userType} />} />
                         <Route path={PATH_NAME.Profile} element={<Profile userType={userType} />} />
 
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType} />} />

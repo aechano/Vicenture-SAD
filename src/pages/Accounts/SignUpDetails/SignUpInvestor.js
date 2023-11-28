@@ -7,7 +7,7 @@ import { API, PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from 'react-icons/rx'
 import Cookies from 'js-cookie';
 
-export default function SignUpInvestor({ initialData }) {
+export default function SignUpInvestor() {
 
     const navigate = useNavigate();
 
@@ -16,7 +16,6 @@ export default function SignUpInvestor({ initialData }) {
 
     useEffect(() => {
         if (data === null) navigate(PATH_NAME.Accounts.SignUp.SignUp);
-        else console.log(data);
     }, []);
 
     const [firstName, setFirstName] = useState();
@@ -35,7 +34,6 @@ export default function SignUpInvestor({ initialData }) {
         now that input is valid, let's store it in the database.
         kulang pa ito since need pa natin irecheck ang email through an OTP, pero okay na to for now.
         */
-
         axios.post(API.SignUp, {
             "lastName": lastName,
             "firstName": firstName,
@@ -43,14 +41,12 @@ export default function SignUpInvestor({ initialData }) {
             "nameExtension": nameExt,
             "businessSector": businessSector,
             "company": company,
-            "accounts": {
-                "email": initialData.email,
-                "password": initialData.password,
-                "userName": initialData.username,
-                "accountType": initialData.role,
-                "lastActiveDate": initialData.lastActiveDate,
-                "accountCreationDate": initialData.accountCreationDate
-            }
+            "email": location.state.initialData.email,
+            "password": location.state.initialData.password,
+            "userName": location.state.initialData.username,
+            "accountType": location.state.initialData.role,
+            "lastActiveDate": location.state.initialData.lastActiveDate,
+            "accountCreationDate": location.state.initialData.accountCreationDate
         })
             .then((response) => response.data)
             .then(data => {
@@ -80,11 +76,9 @@ export default function SignUpInvestor({ initialData }) {
                         <RxCross2 />
                     </NavLink>
                     <NavLink
-                        to={{
-                            pathname: PATH_NAME.Accounts.SignUp.SignUp,
-                            state: { initialData: initialData }
-                        }}
-                        className='float-left text-lgu-lime p-3 w-fit mr-0 ml-auto'>
+                        to={PATH_NAME.Accounts.SignUp.SignUp}
+                        state={{initialData: location.state.initialData}}
+                        className='float-left text-lgu-lime p-3 w-fit mr-0 ml-auto select-none cursor-pointer'>
                         Back
                     </NavLink>
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

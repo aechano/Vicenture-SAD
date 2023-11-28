@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { InputBoxAccount } from '../../components/InputBox';
 import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
@@ -8,16 +8,17 @@ import { RxCross2 } from "react-icons/rx";
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
 import Cookies from 'js-cookie';
 
-export default function SignUp({ initialData }) {
-    const [email, setEmail] = useState(initialData ? initialData.email : null);
-    const [username, setUsername] = useState(initialData ? initialData.username : null);
+export default function SignUp() {
+    const location = useLocation();
+    console.log(location);
+    const [email, setEmail] = useState(location.state?.initialData ? location.state.initialData.email : null);
+    const [username, setUsername] = useState(location.state?.initialData ? location.state.initialData.username : null);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false); //for confirm password
-    const [role, setRole] = useState(initialData ? initialData.role : null);
-    const [userAccount, setUserAccount] = useState();
-    const [button, setButton] = useState('Create Account');
+    const [role, setRole] = useState(location.state?.initialData ? location.state.initialData.role : null);
+    const [button, setButton] = useState(location.state?.initialData ? location.state.initialData.role === "2"? 'Continue': 'Create Account' : 'Create Account');
     const navigate = useNavigate();
 
     const [emailError, setEmailError] = useState('');
@@ -67,14 +68,6 @@ export default function SignUp({ initialData }) {
         */
 
         if (button === "Create Account") { //if this is a citizen or tourist account
-            setUserAccount({
-                "email": email,
-                "password": password,
-                "userName": username,
-                "accountType": role,
-                "lastActiveDate": Date.now(),
-                "accountCreationDate": Date.now()
-            });
 
             axios.post(API.SignUp, {
                 "email": email,
@@ -98,17 +91,16 @@ export default function SignUp({ initialData }) {
                     }
                 })
         } else { //if this is an investor or lgu account
-            var currentData = {
-                email: email,
-                password: password,
-                username: username,
-                role: role,
-                lastActiveDate: Date.now(),
-                accountCreationDate: Date.now()
-            }
             navigate(PATH_NAME.Accounts.SignUp.INVESTOR, {
                 state: {
-                    initialData: currentData
+                    initialData: {
+                        email: email,
+                        password: password,
+                        username: username,
+                        role: role,
+                        lastActiveDate: Date.now(),
+                        accountCreationDate: Date.now()
+                    }
                 }
             });
         }
@@ -274,7 +266,8 @@ export default function SignUp({ initialData }) {
                                     </div>
                                     <div class="ml-3 text-sm">
                                         <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
-                                            I've given consent for my information to be utilized for analytical purposes.</label>
+                                            I've given consent for my information to be utilized for analytical purposes.
+                                            </label>
                                     </div>
                                 </div>
                                 <div className='flex'>
@@ -283,7 +276,8 @@ export default function SignUp({ initialData }) {
                                     </div>
                                     <div class="ml-3 text-sm">
                                         <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
-                                            I consented my data to be collected</label>
+                                            I consented my data to be collected
+                                            </label>
                                     </div>
                                 </div>
                                 <div className='flex'>

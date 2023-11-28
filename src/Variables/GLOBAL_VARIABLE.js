@@ -70,10 +70,20 @@ const PATH_NAME = {
 
     AddOffices: "/the-town/offices/add-offices", 
 }
+
+const SERVER_ADDRESS = "http://localhost:8080"
 const API = {
-    SignUp: "http://localhost:8080/api/v1/auth/signup",
-    SignIn: "http://localhost:8080/api/v1/auth/signin",
+    SignUp: SERVER_ADDRESS+"/api/v1/auth/signup",
+    SignIn: SERVER_ADDRESS+"/api/v1/auth/signin",
+    FeedbackPost: SERVER_ADDRESS+"/api/v1/public/feedback",
+    FeedbackGet: SERVER_ADDRESS+"/api/v1/admin/get-feedback",
+    TourismOnlineFormGet: SERVER_ADDRESS+"/api/v1/lgu/tof",
+    TourismOnlineFormPost: SERVER_ADDRESS+"/api/v1/public/tof",
 }
+const SOCKET = {
+    Messaging: SERVER_ADDRESS+"/ws"
+}
+
 const USER_TYPES = {
     Guest: "GUEST",
     Citizen: "SV_CITIZEN",
@@ -81,9 +91,10 @@ const USER_TYPES = {
     Investor: "INVESTOR",
     LguSV: "LGU_SV_MAIN",
     Admin: "ADMIN",
+    EndUsers: ["SV_CITIZEN", "TOURIST", "INVESTOR", "GUEST"],
     General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU_SV_MAIN", "ADMIN"]
 }
 const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", ...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
 
-export { PATH_NAME, API, NO_FOOTER, NO_HEADER, USER_TYPES };
+export { PATH_NAME, API, NO_FOOTER, NO_HEADER, USER_TYPES, SOCKET };
