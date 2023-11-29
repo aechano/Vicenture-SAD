@@ -67,6 +67,8 @@ import AdminGeneralArticles from './pages/AdminPages/AdminPages/AdminGeneralArti
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
 
+    const [surveyPopup, setSurveyPopup] = useState(true);
+
     window.addEventListener('storage', () => {
         setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
     })
@@ -89,7 +91,7 @@ function App() {
             <BrowserRouter>
                 <Header userType={userType}>
                     <Routes>
-                        <Route path={PATH_NAME.Home} element={<Homepage userType={userType} />} />
+                        <Route path={PATH_NAME.Home} element={<Homepage userType={userType} surveyShowing={surveyPopup} setSurveyShowing={setSurveyPopup}/>} />
 
                         <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />

@@ -9,7 +9,7 @@ import CarouselComponent from "../components/CarouselComponent";
 import ChatIcon from "../components/ChatIcon";
 import SurveyIcon from "../components/SurveyIcon";
 
-function Homepage({ userType }) {
+function Homepage({ userType, surveyShowing, setSurveyShowing }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -47,12 +47,11 @@ function Homepage({ userType }) {
         year: 'numeric',
     });
 
-    const [extraSlot, setExtraSlot] = useState(3);
-    const [surveyClose, setSurveyClose] = useState(false);
+    const [surveyClose, setSurveyClose] = useState(!surveyShowing);
     const [backToTopShowing, setBackToTopShowing] = useState(false);
     const handleSurveyClose = () => {
-        setExtraSlot(2);
         setSurveyClose(true);
+        setSurveyShowing(false);
     }
 
     return (
