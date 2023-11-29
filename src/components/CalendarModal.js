@@ -11,6 +11,9 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
   const [events, setEvents] = useState([]); // State for managing events
 
   const [selectedEventDate, setSelectedEventDate] = useState(null);
+  const [selectedEventDetails, setSelectedEventDetails] = useState(null);
+  const [eventDetailsModalOpen, setEventDetailsModalOpen] = useState(false);
+
 
   const handleDateSelect = (selectInfo) => {
     console.log("Select Info:", selectInfo);
@@ -53,6 +56,38 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
     console.log("Updated events:", events); // Add this log statement
   };
 
+  const handleEventClick = (clickInfo) => {
+    // When an event is clicked, set the details and open the event details modal
+    setSelectedEventDetails(clickInfo.event);
+    setEventDetailsModalOpen(true);
+  };
+
+  const EventDetailsModal = () => {
+    // Modal for displaying event details
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="bg-lgu-lime p-4 shadow-md rounded-md">
+          <h2 className="text-lg font-semibold mb-4">Event Name</h2>
+          {selectedEventDetails && (
+            <>
+              <p>Title: {selectedEventDetails.title}</p>
+              {/* Add more details as needed */}
+            </>
+          )}
+          <div className="mt-4 flex justify-end">
+            <button
+              className="px-4 py-2 bg-lgu-green text-white rounded-md"
+              onClick={() => setEventDetailsModalOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+
   return (
     <>
       {isOpen ? (
@@ -66,7 +101,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                   <h3 className="text-xl font-semibold">Calendar</h3>
                   <button
                     type="button"
-                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    className="text-gray-400 bg-lgu-lime hover:bg-lgu-green hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                     data-modal-hide="static-modal"
                     onClick={onRequestClose}
                   >
@@ -97,6 +132,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                     selectable={true}
                     select={handleDateSelect}
                     events={events}  // Make sure to pass the events state to the FullCalendar component
+                    eventClick={handleEventClick} // Add eventClick prop
                   />
                 </div>
               </div>
@@ -109,7 +145,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
       {/* Event Modal */}
       {eventModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="bg-white p-4 shadow-md rounded-md">
+          <div className="bg-lgu-lime p-4 shadow-md rounded-md">
             <h2 className="text-lg font-semibold mb-4">Create Event</h2>
             <p>{selectedDate && selectedDate.toLocaleDateString()}</p>
             <input
@@ -121,13 +157,13 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
             />
             <div className="mt-4 flex justify-end">
               <button
-                className="mr-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+                className="mr-2 px-4 py-2 bg-lgu-green text-white rounded-md"
                 onClick={handleCreateEvent}
               >
                 OK
               </button>
               <button
-                className="px-4 py-2 border border-gray-300 rounded-md"
+                className="px-4 py-2 border border-gray-300 bg-lgu-yellow text-white rounded-md"
                 onClick={handleEventModalClose}
               >
                 Cancel
@@ -136,6 +172,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
           </div>
         </div>
       )}
+      {eventDetailsModalOpen && <EventDetailsModal />}
     </>
   );
 }
