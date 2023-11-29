@@ -19,6 +19,7 @@ function Homepage({ userType, surveyShowing, setSurveyShowing }) {
         require("./../res/img/3.png"),
         require("./../res/img/4.png"),
         require("./../res/img/5.png"),
+        require("./../res/img/6.png"),
         // Add more image URLs as needed
     ];
 
