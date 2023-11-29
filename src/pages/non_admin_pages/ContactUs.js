@@ -12,7 +12,7 @@ import { jwtDecode } from 'jwt-decode';
 
 
 
-export default function ContactUs({ userType }) {
+export default function ContactUs() {
 
     const [open, setOpen] = useState(false);
     const toggle = (index) => {
@@ -224,7 +224,7 @@ function GetInTouch() {
     useEffect(() => {
         var token = Cookies.get("token")
         if (token) {
-            var payload = jwtDecode();
+            var payload = jwtDecode(token);
             setEmail(payload.sub);
             setUserType(payload.accountType);
         }

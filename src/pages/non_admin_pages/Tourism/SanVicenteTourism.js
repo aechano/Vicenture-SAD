@@ -117,134 +117,174 @@ export default function SanVicenteTourism() {
 
 
       <div className='relative bg-fixed bg-cover'
-        style={{
-          backgroundImage: "url(" + require("../../../res/img/tourism_cover.jpg") + ")",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}>
-        <div className="absolute inset-0 bg-gray-600 bg-opacity-70"></div>
-        <RevealOnScroll>
-          <div className="text-center pt-5 pb-5">
-            <h1 className="lg:text-5xl font-bold p-0 text-4xl md:p-2 mb-0 mt-0 relative z-10 text-white">CONTENT FEEDS</h1>
-          </div>
-        </RevealOnScroll>
+            style={{
+            backgroundImage: "url(" + require("../../../res/img/tourism_cover.jpg") + ")",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            }}>
 
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 md:flex md:flex-wrap md:justify-center relative z-10 p-5'>
+            <div className="absolute inset-0 bg-gray-600 bg-opacity-70"></div>
+                    <RevealOnScroll>
+                    <div className="text-center pt-5 pb-5">
+                        <h1 className="lg:text-5xl font-bold p-0 text-4xl md:p-2 mb-0 mt-0 relative z-10 text-white">Must Have for Your Next Chapter</h1>
+                    </div>
+                    </RevealOnScroll>
 
-          <RevealOnScroll>
-            <div class="relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
-              <div class="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
-                style={{
-                  backgroundImage: "url(" + require('../../../res/img/sample_falls.jpeg') + ")",
-                }}
-              >
-                <div class="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
-              </div>
-              <div class="relative p-6 md:px-12 md:py-14">
-                <h2 class="mb-6 block text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
-                  Wanna Know our Tourist Spots, Festivals, and Resorts?
-                </h2>
-                <div className="mx-auto m-5">
-                  <NavLink to={PATH_NAME.Tourism.PlacesToVisit} onClick={() => window.scrollTo({ top: 0, left: 0 })} className=" transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                    Go to Places To Visit
-                    <svg
-                      className="w-3.5 h-3.5 ml-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
+                    
+            <div className='grid grid-cols-1 md:grid-cols-4 gap-10 md:flex md:flex-wrap md:justify-center relative z-10 p-5'>
+
+                
+            <RevealOnScroll>
+                <div class="relative grid h-[30rem] w-full max-w-[21rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
+                    <div class="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
+                    style={{
+                        backgroundImage: "url(" + require('../../../res/img/business_invest.jpeg') + ")",
+                    }}
                     >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                      />
-                    </svg>
-                  </NavLink>
+                    <div class="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
+                    </div>
+                    <div class="relative p-6 md:px-12 md:py-14">
+                    <h2 class="mb-6 block text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                    Invest Wisely, Thrive Lavishly at San Vicente, Awaits You!
+                    </h2>
+                    <div className="mx-auto m-5">
+                        <NavLink to={PATH_NAME.Invest.InvestmentOpportunities} onClick={() => window.scrollTo({ top: 0, left: 0 })} className=" transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                        Go to Invest Page
+                        <svg
+                            className="w-3.5 h-3.5 ml-2"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 10"
+                        >
+                            <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                            />
+                        </svg>
+                        </NavLink>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </RevealOnScroll>
-
-          <RevealOnScroll>
-            <div class="relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
-              <div class="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
-                style={{
-                  backgroundImage: "url(" + require('../../../res/img/hiking.jpg') + ")",
-                }}
-              >
-                <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
-              </div>
-              <div className="relative p-6 md:px-12 md:py-14">
-                <h2 className="mb-6 block text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
-                  Let's embark on exciting adventures and engage in enjoyable activities!
-                </h2>
-                <div className="mx-auto m-5">
-                  <NavLink to={PATH_NAME.Tourism.Activities} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                    Go to Activities
-                    <svg
-                      className="w-3.5 h-3.5 ml-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
+                </RevealOnScroll>
+                <RevealOnScroll>
+                <div class="relative grid h-[30rem] w-full max-w-[21rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
+                    <div class="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
+                    style={{
+                        backgroundImage: "url(" + require('../../../res/img/sample_falls.jpeg') + ")",
+                    }}
                     >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                      />
-                    </svg>
-                  </NavLink>
+                    <div class="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
+                    </div>
+                    <div class="relative p-6 md:px-12 md:py-14">
+                    <h2 class="mb-6 block text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                        Wanna Know our Tourist Spots, Festivals, and Resorts?
+                    </h2>
+                    <div className="mx-auto m-5">
+                        <NavLink to={PATH_NAME.Tourism.PlacesToVisit} onClick={() => window.scrollTo({ top: 0, left: 0 })} className=" transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                        Go to Places To Visit
+                        <svg
+                            className="w-3.5 h-3.5 ml-2"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 10"
+                        >
+                            <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                            />
+                        </svg>
+                        </NavLink>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </RevealOnScroll>
+                </RevealOnScroll>
 
-          <RevealOnScroll>
-            <div className="relative grid h-[40rem] w-full max-w-[28rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
-              <div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
-                style={{
-                  backgroundImage: "url(" + require('../../../res/img/dunk.jpeg') + ")",
-                }}
-              >
-                <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
-              </div>
-              <div className="relative p-6 md:px-12 md:py-14">
-                <h2 className="mb-6 block text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
-                  Contribute your enthusiasm and expertise by participating in various sports festivals
-                </h2>
-                <div className="mx-auto m-5">
-                  <NavLink to={PATH_NAME.TheTown.MunicipalityPrograms} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                    Go to Sports Activities
-                    <svg
-                      className="w-3.5 h-3.5 ml-2"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 10"
+                <RevealOnScroll>
+                <div class="relative grid h-[30rem] w-full max-w-[21rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
+                    <div class="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
+                    style={{
+                        backgroundImage: "url(" + require('../../../res/img/hiking.jpg') + ")",
+                    }}
                     >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9"
-                      />
-                    </svg>
-                  </NavLink>
+                    <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
+                    </div>
+                    <div className="relative p-6 md:px-12 md:py-14">
+                    <h2 className="mb-6 block text-4xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                        Let's embark on exciting adventures and engage in enjoyable activities!
+                    </h2>
+                    <div className="mx-auto m-5">
+                        <NavLink to={PATH_NAME.Tourism.Activities} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                        Go to Activities
+                        <svg
+                            className="w-3.5 h-3.5 ml-2"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 10"
+                        >
+                            <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                            />
+                        </svg>
+                        </NavLink>
+                    </div>
+                    </div>
                 </div>
-              </div>
+                </RevealOnScroll>
 
+                <RevealOnScroll>
+                <div className="relative grid h-[30rem] w-full max-w-[21rem] flex-col items-end justify-center overflow-hidden rounded-xl bg-white bg-clip-border text-center text-gray-700 mx-auto">
+                    <div className="absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-none"
+                    style={{
+                        backgroundImage: "url(" + require('../../../res/img/dunk.jpeg') + ")",
+                    }}
+                    >
+                    <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50"></div>
+                    </div>
+                    <div className="relative p-6 md:px-12 md:py-14">
+                    <h2 className="mb-6 block text-3xl font-medium leading-[1.5] tracking-normal text-white antialiased">
+                        Contribute your enthusiasm and expertise by joining in various sports festivals
+                    </h2>
+                    <div className="mx-auto m-2">
+                        <NavLink to={PATH_NAME.TheTown.MunicipalityPrograms} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                        Go to Sports Activities
+                        <svg
+                            className="w-3.5 h-3 ml-3"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 14 10"
+                        >
+                            <path
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9"
+                            />
+                        </svg>
+                        </NavLink>
+                    </div>
+                    </div>
+
+
+                </div>
+                </RevealOnScroll>
+                </div>
 
             </div>
-          </RevealOnScroll>
-        </div>
-      </div>
 
       <div className=''>
         <div className="text-center pt-5 pb-5">
