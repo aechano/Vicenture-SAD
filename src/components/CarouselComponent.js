@@ -24,7 +24,7 @@ const CarouselComponent = ({ images, autoSlideInterval = 3000 }) => {
     }, [currentIndex, autoSlideInterval, images.length]);
 
     return (
-        <div className="relative mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+        <div className="w-full object-cover h-screen lg:h-auto">
             <div className="relative overflow-hidden">
                 <div className="flex transition-transform duration-300 ease-in-out transform -translate-x-full" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {images.map((image, index) => (
