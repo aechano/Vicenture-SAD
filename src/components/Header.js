@@ -103,7 +103,7 @@ export default function Header(props) {
 
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
-        setAdminHeader(!PATH_NAME.AdminPages.AllPages.includes(location.pathname))
+        setAdminHeader(!location.pathname.startsWith(PATH_NAME.AdminPages.Admin))
     }, [location]);
 
 
@@ -405,7 +405,7 @@ export default function Header(props) {
                     <div className='mt-20' />
                     {props.userType === USER_TYPES.Admin && adminHeader ?
                         < div className="block w-full h-[50px] bg-lgu-yellow ps-5 pt-2">
-                            <p className="select-none">You are logged in as an admin. <span className="text-lgu-green underline leading-[50px] cursor-pointer" onClick={() => navigate(PATH_NAME.AdminPages.AdminAnalytics)}>Click here to go to admin dashboard</span>.</p>
+                            <p className="select-none">You are logged in as an admin. <span className="text-lgu-green underline leading-[50px] cursor-pointer" onClick={() => navigate(PATH_NAME.AdminPages.Admin)}>Click here to go to admin dashboard</span>.</p>
                         </div>
                         :
                         null

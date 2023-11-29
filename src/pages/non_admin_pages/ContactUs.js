@@ -200,7 +200,7 @@ export default function ContactUs({ userType }) {
                         })}
                     </div>
                 </div>
-                <GetInTouch/>
+                <GetInTouch />
             </div>
         </>
     );
@@ -208,7 +208,7 @@ export default function ContactUs({ userType }) {
 function GetInTouch() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState('General Inquiry');
-    
+
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
@@ -222,9 +222,12 @@ function GetInTouch() {
     const [userType, setUserType] = useState()
 
     useEffect(() => {
-        var payload = jwtDecode(Cookies.get("token"));
-        setEmail(payload.sub);
-        setUserType(payload.accountType); 
+        var token = Cookies.get("token")
+        if (token) {
+            var payload = jwtDecode();
+            setEmail(payload.sub);
+            setUserType(payload.accountType);
+        }
     }, [])
 
     // Function to handle form submission
@@ -233,9 +236,9 @@ function GetInTouch() {
         // You can perform form submission logic here
         axios.post(API.FeedbackPost, {
             "email": email,
-            "title":subject,
-            "feedback":message,
-            "type":selectedOption,
+            "title": subject,
+            "feedback": message,
+            "type": selectedOption,
             "timestamp": Date.now()
         })
         alert("Feedback sent!");

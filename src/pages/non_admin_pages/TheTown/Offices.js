@@ -241,13 +241,6 @@ export default function Offices() {
             <NavLink
               to={PATH_NAME.Tourism.Content + "/add"}
               className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
-              Add Office
-            </NavLink>
-          </div>
-          <div className='w-fit rounded-full mt-7 mx-auto sm:mx-0 sm:ml-auto'>
-            <NavLink
-              to={PATH_NAME.Tourism.Content + "/add"}
-              className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
               Edit Office
             </NavLink>
           </div>
@@ -257,7 +250,7 @@ export default function Offices() {
               className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
               Delete Office
             </NavLink>
-          </div>
+          </div>  
 
 
         </div>

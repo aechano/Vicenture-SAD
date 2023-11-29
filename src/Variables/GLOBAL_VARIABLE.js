@@ -9,20 +9,25 @@ const PATH_NAME = {
         list: ["/sign-in", "/sign-up", "/sign-up/lgu", "/sign-up/investor"]
     },
     AdminPages:{
-        AdminAnalytics: "/analytics",
-        AdminHomepage: "/adminHomepage",
-        AdminAboutSV: "/adminAboutSV",
-        AdminMunicipalityProfile: "/adminMunicipalityProfile",
-        AdminMunicipalityProgram: "/adminMunicipalityProgram",
-        AdminElectedOfficial: "/adminElectedOfficial",
-        AdminCharter: "/adminCitizenCharter",
-        AdminToVisit: "/adminToVisit",
-        AdminActivities: "/adminActivities",
-        AdminTransparency: "/adminTransparency",
-        adminEmergencies:"/adminEmergencies",
-        adminReportedContents: "/reportedContents",
-        AllPages: ["/analytics", "/adminHomepage", "/adminAboutSV", "/adminMunicipalityProfile",
-            "/adminElectedOfficial", "/adminCharter", "/adminToVisit", "/adminActivities", "/adminEmergencies", "/reportedContents",]
+        Admin: "/admin",
+        Analytics: "analytics",
+        TheTown: "the-town",
+        MunicipalityProfile: "municipality-profile",
+        ElectedOfficials: "elected-officials",
+        Offices:"offices",
+        CitizensCharter:"citizen-charter",
+        Tourism:"tourism",
+        PlacesToVisit:"places-to-visit",
+        Activities:"activities",
+        Invest:"invest",
+        InvestmentOpportunities:"investment-opportunities",
+        ReasonsToInvest:"reasons-to-invest",
+        OnlineSurvey:"online-survey",
+        Emergency:"emergency",
+        Transparency:"transparency",
+        ReportedContents:"reported-contents",
+        GeneralArticles:"general-articles",
+        SportsTourismArticles:"sports-tourism"
     },
     Home: "/",
     TheTown: {
@@ -94,7 +99,7 @@ const USER_TYPES = {
     EndUsers: ["SV_CITIZEN", "TOURIST", "INVESTOR", "GUEST"],
     General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU_SV_MAIN", "ADMIN"]
 }
-const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", ...PATH_NAME.Accounts.list];
+const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", PATH_NAME.AdminPages.Admin+"/*", ...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
 
 export { PATH_NAME, API, NO_FOOTER, NO_HEADER, USER_TYPES, SOCKET };

@@ -1,16 +1,51 @@
 import React, { useState } from "react";
 import { BsImage } from 'react-icons/bs'
 import { ImEye } from 'react-icons/im'
+import { IoClose } from "react-icons/io5";
 
 export default function Offices_Add() {
 
     const [Department, setDepartment] = useState('');
+    const [Head, setHead] = useState('');
     const [Hotline, setHotline] = useState('');
     const [phoneNum, setphoneNum] = useState('');
     const [email, setEmail] = useState('');
     const [fbPage, setFBPage] = useState('');
     const [chart, setChart] = useState('');
     const [street, setStreet] = useState('');
+
+    const [isOpen, setIsOpen] = useState(false);
+    const [services, setServices] = useState([]);
+    const [newService, setNewService] = useState('');
+    const [selectedService, setSelectedService] = useState('')
+    const [serviceTextDescription, setServiceTextDescription] = useState({});
+    const [serviceTextRequirements, setServiceTextRequirements] = useState({});
+
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const addService = () => {
+        if (newService.trim() !== '') {
+            setServices([...services, newService]);
+            setNewService('');
+        }
+    };
+
+    const selectService = (service) => {
+        setSelectedService(service);
+        setIsOpen(false);
+    };
+
+    const handleTextChangeDescription = (e) => {
+        const updatedServiceText = { ...serviceTextDescription, [selectedService]: e.target.value };
+        setServiceTextDescription(updatedServiceText);
+    };
+
+    const handleTextChangeRequirements = (e) => {
+        const updatedServiceText = { ...serviceTextRequirements, [selectedService]: e.target.value };
+        setServiceTextRequirements(updatedServiceText);
+    };
 
     // Function to handle file input change
     const handleFileChange = (e) => {
@@ -25,6 +60,15 @@ export default function Offices_Add() {
         document.getElementById('fileInput').click();
     }
 
+    const deleteService = (e, service) => {
+        e.stopPropagation(); // Prevent the click event from reaching the div (selectService)
+        const updatedServices = services.filter((s) => s !== service);
+        setServices(updatedServices);
+        if (selectedService === service) {
+            // Clear selectedService if it is the one being deleted
+            setSelectedService('');
+        }
+    };
 
     return (
         <>
@@ -44,6 +88,17 @@ export default function Offices_Add() {
                                         placeholder="Office"
                                         value={Department}
                                         onChange={(e) => setDepartment(e.target.value)} />
+                                </div>
+                                <h1 className='text-md font-bold pb-1'>Head</h1>
+                                <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
+                                    <input
+                                        required
+                                        type="text"
+                                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                                        id="dep"
+                                        placeholder="Head"
+                                        value={Head}
+                                        onChange={(e) => setHead(e.target.value)} />
                                 </div>
                                 <h1 className='text-md font-bold pb-1'>Contacts</h1>
                                 <div className="relative mb-2 mt-1 text-left" data-te-input-wrapper-init>
@@ -126,12 +181,95 @@ export default function Offices_Add() {
                                     <h1 className='text-md font-bold pb-1'>Location</h1>
                                     <textarea id="message" rows="4" className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black" placeholder="Write the office location here..."></textarea>
                                 </div>
+                            </div>
+                        </div>
 
+                        <div className="m-5">
+                            <div className="relative inline-block text-left">
+                                <div>
+                                    <button
+                                        type="button"
+                                        onClick={toggleDropdown}
+                                        className="h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400 flex justify-between items-center"
+                                    >
+                                        <span>{selectedService || 'Select a service'}</span>
+                                        <svg
+                                            className={`h-5 w-5 transition-transform transform ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 11.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                {isOpen && (
+                                    <div className="origin-top-right absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                                        <div className="py-1">
+                                            {services.map((service, index) => (
+                                                <div key={index} className="flex justify-between items-center px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100">
+                                                    <div onClick={() => selectService(service)}>{service}</div>
+                                                    <button
+                                                        onClick={(e) => deleteService(e, service)}
+                                                        className="text-red-500 hover:text-red-700 focus:outline-none"
+                                                    >
+                                                        <IoClose />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="px-4 py-2">
+                                            <input
+                                                type="text"
+                                                value={newService}
+                                                onChange={(e) => setNewService(e.target.value)}
+                                                placeholder="Enter a new service"
+                                                className="border border-gray-300 px-2 py-1 w-full"
+                                            />
+                                        </div>
+
+                                        <div className="px-4 py-2">
+                                            <button
+                                                type="button"
+                                                onClick={addService}
+                                                className="bg-lgu-green text-white px-4 py-2 rounded"
+                                            >
+                                                Add Service
+                                            </button>
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
+                            <div>
+                                <textarea
+                                    id="messageDescription"
+                                    rows="6"
+                                    className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
+                                    placeholder="Service Description"
+                                    value={serviceTextDescription[selectedService] || ''}
+                                    onChange={handleTextChangeDescription}
+                                />
+                            </div>
 
-
+                            <div>
+                                <textarea
+                                    id="messageRequirements"
+                                    rows="6"
+                                    className="block mt-1 mb-2 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
+                                    placeholder="Service Requirements and Procedures"
+                                    value={serviceTextRequirements[selectedService] || ''}
+                                    onChange={handleTextChangeRequirements}
+                                />
+                            </div>
                         </div>
+
                         <div className='flex justify-between pb-5 pt-5'>
                             <div className='flex items-center px-5'>
                                 <ImEye />
