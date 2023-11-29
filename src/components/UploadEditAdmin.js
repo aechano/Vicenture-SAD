@@ -96,7 +96,7 @@ const ItemSidebar = ({ items, onItemSelected, onAddItem, onEditItem }) => {
 };
 
 // Main TransparencyContent component
-export default function AdminMunicipalityProfile() {
+export default function UploadEditAdmin({header}) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [customItemName, setCustomItemName] = useState('');
@@ -171,7 +171,7 @@ export default function AdminMunicipalityProfile() {
   return (
     <div className="flex flex-col">
       {/* Title */}
-      <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Municipality Profile</h1>
+      <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">{header}</h1>
 
       {/* Main content container */}
       <div className="flex">

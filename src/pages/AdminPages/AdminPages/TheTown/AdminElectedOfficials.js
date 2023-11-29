@@ -1,9 +1,8 @@
 import React from 'react'
+import UploadEditAdmin from '../../../../components/UploadEditAdmin'
 
 export default function AdminElectedOfficials() {
     return (
-        <div className='p-10'>
-            Elected Officials
-        </div>
+    <UploadEditAdmin header="Elected Officials"/>
     )
 }

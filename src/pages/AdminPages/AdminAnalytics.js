@@ -11,7 +11,6 @@ import { MunicipalityProfileContent } from './adminMunicipalityProfile';
 import AdminMunicipalityProgramComponent from './adminMunicipalityProgram';
 import { AdminElectedOfficialsContent } from './adminElectedOfficial';
 import { AdminCitizenCharterContent } from './adminCitizenCharter';
-import AdminOffices from './adminOffices';
 import AdminPlacesToVisit from './AdminTourism/adminPlacesToVisit';
 import AdminActivities from './AdminTourism/adminActivities';
 import AdminInvestOpportunities from './AdminInvest/adminInvestOpportunities';
@@ -45,7 +44,6 @@ export default function AdminAnalytics({ userType }) {
         { label: 'Municipality Profile', content: <MunicipalityProfileContent /> },
         { label: 'Municipality Programs', content: <AdminMunicipalityProgramComponent /> },
         { label: 'Elected Officials', content: <AdminElectedOfficialsContent /> },
-        { label: 'Offices', content: <AdminOffices /> },
         { label: 'Citizen Charter', content: <AdminCitizenCharterContent /> },
       ],
     },
