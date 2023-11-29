@@ -59,19 +59,10 @@ function Homepage({ userType }) {
     return (
         <div>
             {/* Hero Section */}
-            <Banner
-                src={require("./../res/img/LGU-PERS.jpg")}
-                alt="Image of San Vicente LGU Municipal Building"
-                searchBar={true}
-                bannerType="special"
-            >
-                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mb-0 mt-0">
-                    Welcome to San Vicente,
-                </h1>
-                <h1 className="lg:text-6xl font-bold p-0 md:text-5xl text-2xl md:p-2 mt-0">
-                    Camarines Norte!
-                </h1>
-            </Banner>
+            <div className="w-full object-cover h-screen lg:h-auto">
+                <CarouselComponent images={images} />
+                {/* <img src={require("./../res/img/LGU-PERS.jpg")}/> */}
+            </div>
 
             <div>
                 {/* Other components */}
@@ -81,21 +72,7 @@ function Homepage({ userType }) {
             {/* Event Section */}
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                <div className="pb-5" style={{ position: "relative" }}>
-                    {isSurveyOpen && (
-                        <>
-                            <button
-                                onClick={closeSurvey}
-                                className="absolute top-0 right-0 p-2 text-white cursor-pointer"
-                            >
-                                Close
-                            </button>
-                            <NavLink to={PATH_NAME.Survey} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-                                <img src={require("./../res/img/survey.png")} alt="" />
-                            </NavLink>
-                        </>
-                    )}
-                </div>
+                
                 <div>
                     <div className="sm:flex items-center">
                         <h1 className="text-center font-bold p-0 text-2xl mb-0 mt-0 lg:text-4xl md:p-2">What's Happening?</h1>
@@ -195,10 +172,7 @@ function Homepage({ userType }) {
 
             </div>
 
-            <div className="relative mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                <img src={require("./../res/img/highlights.png")} alt="" />
-                <CarouselComponent images={images} />
-            </div>
+
 
 
             {/* About San Vicente */}
