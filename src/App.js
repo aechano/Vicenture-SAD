@@ -61,6 +61,8 @@ import AdminMunicipalityProfile from './pages/AdminPages/AdminPages/TheTown/Admi
 import AdminElectedOfficials from './pages/AdminPages/AdminPages/TheTown/AdminElectedOfficials';
 import AdminOffices from './pages/AdminPages/AdminPages/TheTown/AdminOffices';
 import AdminCitizensCharter from './pages/AdminPages/AdminPages/TheTown/AdminCitizensCharter';
+import AdminSportsTourismArticles from './pages/AdminPages/AdminPages/AdminSportsTourismArticles';
+import AdminGeneralArticles from './pages/AdminPages/AdminPages/AdminGeneralArticles';
 
 function App() {
     const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
@@ -162,6 +164,8 @@ function App() {
                                 <Route path={PATH_NAME.AdminPages.ReasonsToInvest} element={<AdminReasonsToInvest />} />
                             </Route>
                             <Route path={PATH_NAME.AdminPages.OnlineSurvey} element={<AdminOnlineSurvey />} />
+                            <Route path={PATH_NAME.AdminPages.GeneralArticles} element={<AdminGeneralArticles />} />
+                            <Route path={PATH_NAME.AdminPages.SportsTourismArticles} element={<AdminSportsTourismArticles/>} />
                             <Route path={PATH_NAME.AdminPages.Emergency} element={<AdminEmergency />} />
                             <Route path={PATH_NAME.AdminPages.Transparency} element={<AdminTransparency />} />
                             <Route path={PATH_NAME.AdminPages.ReportedContents} element={<AdminReportedContents />} />

@@ -7,20 +7,11 @@ import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
 import CalendarModal from "../components/CalendarModal";
 import CarouselComponent from "../components/CarouselComponent";
 import ChatIcon from "../components/ChatIcon";
+import SurveyIcon from "../components/SurveyIcon";
 
 function Homepage({ userType }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
-    const [isSurveyOpen, setSurveyOpen] = useState(true);
-
-    const location = useLocation();
-
-    // Check if the current location is the homepage
-    const isHomepage = location.pathname === '/';
-
-    const closeSurvey = () => {
-        setSurveyOpen(false);
-    };
 
     const images = [
         require("./../res/img/1.png"),
@@ -56,6 +47,14 @@ function Homepage({ userType }) {
         year: 'numeric',
     });
 
+    const [extraSlot, setExtraSlot] = useState(3);
+    const [surveyClose, setSurveyClose] = useState(false);
+    const [backToTopShowing, setBackToTopShowing] = useState(false);
+    const handleSurveyClose = () => {
+        setExtraSlot(2);
+        setSurveyClose(true);
+    }
+
     return (
         <div>
             {/* Hero Section */}
@@ -75,27 +74,20 @@ function Homepage({ userType }) {
 
             <div>
                 {/* Other components */}
-                {isHomepage && <ChatIcon />}
+                <ChatIcon />
+                {
+                    surveyClose ?
+                        null
+                        :
+                        <SurveyIcon setClose={handleSurveyClose} backToTopShowing={backToTopShowing}/>
+                }
+                <BackToTop setShowing={setBackToTopShowing} loc="homepage"/>
             </div>
 
             {/* Event Section */}
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                <div className="pb-5" style={{ position: "relative" }}>
-                    {isSurveyOpen && (
-                        <>
-                            <button
-                                onClick={closeSurvey}
-                                className="absolute top-0 right-0 p-2 text-white cursor-pointer"
-                            >
-                                Close
-                            </button>
-                            <NavLink to={PATH_NAME.Survey} onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-                                <img src={require("./../res/img/survey.png")} alt="" />
-                            </NavLink>
-                        </>
-                    )}
-                </div>
+
                 <div>
                     <div className="sm:flex items-center">
                         <h1 className="text-center font-bold p-0 text-2xl mb-0 mt-0 lg:text-4xl md:p-2">What's Happening?</h1>
@@ -133,7 +125,7 @@ function Homepage({ userType }) {
                                 <CalendarModal isOpen={isModalOpen} onRequestClose={closeModal} />
                             </div>
 
-                        </div>  
+                        </div>
                         <div className="lg:flex-1 pb-4">
                             <video class="w-full h-full p-4" autoPlay loop controls muted>
                                 <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
@@ -215,11 +207,7 @@ function Homepage({ userType }) {
                 Journey through the captivating tapestry of San Vicente, Camarines Norte, where time and culture intertwine to unveil a rich and enchanting tale. This hidden gem, with its roots dating back to the late 18th century, is a place of history, traditions, and breathtaking natural beauty. As you stroll through its historic streets, you'll be transported to an era of colonial architecture and cobblestone pathways, each telling a story of its own. San Vicente isn't just a location on a map; it's a living connection to the past, where the spirits of the ancestors seem to guide your way. This town embodies the enduring spirit of the Filipino people, celebrated through ancient festivals, rituals, and vibrant traditions that have thrived for generations. And the beauty of San Vicente's landscapes, from pristine coastlines meeting the Pacific's azure waters to lush mountains and untamed wilderness, will leave you in awe.
             </Sections>
 
-
-
-
             {/* Tourism Section */}
-
 
             <Sections
                 title="Your Tourism Escape"
@@ -266,9 +254,6 @@ function Homepage({ userType }) {
                 href="/forums" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                 Engage in the vibrant conversations surrounding San Vicente, Camarines Norte, as you join our forums and discussions. Connect with fellow travelers, adventurers, and culture enthusiasts to share experiences, gather recommendations, and embrace diverse perspectives within our community. Explore the rich culture, history, and natural wonders of this coastal town through these insightful dialogues, finding inspiration for your next adventure. Join us now and immerse yourself in a world of captivating stories and connections waiting to be discovered in San Vicente, Camarines Norte.
             </Sections>
-
-
-            <BackToTop />
         </div>
 
     );

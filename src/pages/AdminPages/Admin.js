@@ -73,6 +73,14 @@ export default function Admin() {
                                 icon={<RiSurveyFill className='h-auto' />}
                             />
                             <SidebarItems
+                                title={{ name: "General Articles", to: PATH_NAME.AdminPages.GeneralArticles }}
+                                icon={<MdReport className='h-auto' />}
+                            />
+                            <SidebarItems
+                                title={{ name: "Sports Tourism Articles", to: PATH_NAME.AdminPages.SportsTourismArticles }}
+                                icon={<MdReport className='h-auto' />}
+                            />
+                            <SidebarItems
                                 title={{ name: "Emergency", to: PATH_NAME.AdminPages.Emergency }}
                                 icon={<GiSiren className='h-auto' />}
                             />

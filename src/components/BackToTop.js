@@ -1,55 +1,48 @@
-// BackToTop.js
-
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
-const BackToTop = () => {
-  const [showBackToTopButton, setShowBackToTopButton] = useState(false);
-  const location = useLocation();
+export default function BackToTop({ loc, setShowing }) {
+    const [showBackToTopButton, setShowBackToTopButton] = useState(false);
 
-  // Scroll to the top of the page when the "Back to Top" button is clicked.
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  // Handle scrolling and decide when to show the button.
-  const handleScroll = () => {
-    if (window.scrollY > 300) {
-      setShowBackToTopButton(true);
-    } else {
-      setShowBackToTopButton(false);
-    }
-  };
-
-  // Add a scroll event listener to call handleScroll when the user scrolls.
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
+    // Scroll to the top of the page when the "Back to Top" button is clicked.
+    const handleBackToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-  }, []);
 
+    // Handle scrolling and decide when to show the button.
+    const handleScroll = () => {
+        if (window.scrollY > 300) {
+            setShowBackToTopButton(true);
+            if (setShowing){
+                setShowing(true);
+            }
+        } else {
+            setShowBackToTopButton(false);
+            if (setShowing){
+                setShowing(false);
+            }
+        }
+    };
 
-  // Determine if it's the homepage
-  const isHomepage = location.pathname === '/';
+    // Add a scroll event listener to call handleScroll when the user scrolls.
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
-  return (
-    <div>
-      {/* Back to Top button */}
-      {showBackToTopButton && (
-        <button
-          onClick={handleBackToTop}
-          className={`fixed bottom-24 right-5 border-black text-black text-4xl p-2 rounded-full cursor-pointer ${isHomepage ? 'bottom-24 right-5' : 'bottom-4 right-4' 
-            }`}
-        >
-          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-black text-white text-3xl">
-            {/* Center the arrow inside the circle */}
-            &uarr; {/* Use the up arrow character */}
-          </div>
-        </button>
-      )}
-    </div>
-  );
-};
-
-export default BackToTop;
+    return (
+        <div>
+            {showBackToTopButton && (
+                <button
+                    onClick={handleBackToTop}
+                    className={`fixed border-black text-black text-4xl rounded-full cursor-pointer ${loc === "homepage" ? 'bottom-24 right-4' : 'bottom-4 right-4'}`}
+                >
+                    <div className="w-12 h-12 flex items-center justify-center rounded-full bg-black text-white text-3xl">
+                        &uarr;
+                    </div>
+                </button>
+            )}
+        </div>
+    );
+}

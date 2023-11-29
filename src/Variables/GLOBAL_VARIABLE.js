@@ -26,6 +26,8 @@ const PATH_NAME = {
         Emergency:"emergency",
         Transparency:"transparency",
         ReportedContents:"reported-contents",
+        GeneralArticles:"general-articles",
+        SportsTourismArticles:"sports-tourism"
     },
     Home: "/",
     TheTown: {
