@@ -22,7 +22,7 @@ export default function Sections(props) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
     return (
-        <div className={"mt-10 pb-4 " + (props.left ? "bg-gradient-to-r from-green-600 via-green-700 to-green-800" : "")}> {/*If this is a left-type component, make the background green*/}
+        <div className={"pt-10 pb-4 " + (props.left ? "bg-gradient-to-r from-green-600 via-green-700 to-green-800" : "")}> {/*If this is a left-type component, make the background green*/}
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5 ">
                 <RevealOnScroll>
                     <div className="sm:flex items-center pt-5">
