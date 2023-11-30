@@ -1,9 +1,9 @@
 import React from 'react'
+import UploadEditAdmin from '../../../../components/UploadEditAdmin'
 
 export default function AdminCitizensCharter() {
     return (
-        <div className='p-10'>
-            Citizens Charter
-        </div>
+        <UploadEditAdmin header="Citizen's Charter"/>
+    
     )
 }

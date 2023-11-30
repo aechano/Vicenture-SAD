@@ -1,9 +1,8 @@
 import React from 'react'
+import UploadEditAdmin from '../../../components/UploadEditAdmin'
 
 export default function AdminTransparency() {
     return (
-        <div className='p-10'>
-            Transparency
-        </div>
+    <UploadEditAdmin header="Transparency"/>
     )
 }

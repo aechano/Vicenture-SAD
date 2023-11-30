@@ -139,9 +139,16 @@ function App() {
                         <Route path={PATH_NAME.Profile} element={<Profile userType={userType} />} />
 
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType} />} />
-                        <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:page"} element={<InvestmentOpportunities userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.InvestmentOpportunitiesContent + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType} />} />
+
+
                         <Route path={PATH_NAME.Invest.ReasonsToInvest} element={<ReasonsToInvest userType={userType} />} />
-                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:contentID"} element={<ReasonsToInvestContent userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:page"} element={<ReasonsToInvest userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.ReasonsToInvestContent + "/:contentID"} element={<ReasonsToInvestContent userType={userType} />} />
+
+
+
                         <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
 
 
