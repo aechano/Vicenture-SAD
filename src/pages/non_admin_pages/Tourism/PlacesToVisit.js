@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Banner from '../../../components/Banner'
 import { PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
@@ -19,7 +20,8 @@ export default function PlacesToVisit({ userType }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const [totalPages, setTotalPages] = useState(31); //Math.ceil(contents.length / placesPerPage)
+    const [totalPages, setTotalPages] = useState(1); //Math.ceil(contents.length / placesPerPage)
+    const [bottomPageNumbers, setBottomPageNumbers] = useState([]);
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
@@ -42,10 +44,21 @@ export default function PlacesToVisit({ userType }) {
     };
 
     useEffect(() => {
+        // redirect to first page
         if (location.pathname === PATH_NAME.Tourism.PlacesToVisit) {
             navigate('/tourism/places-to-visit/1');
         }
-    }, [location.pathname, navigate]);
+        // generate bottom page numbers
+        var newBottomPageNumbers = [currentPage];
+        if (currentPage > 1) {
+            newBottomPageNumbers.push(currentPage - 1);
+        }
+        if (currentPage + 1 <= totalPages) {
+            newBottomPageNumbers.push(currentPage + 1);
+        }
+        newBottomPageNumbers.sort();
+        setBottomPageNumbers(newBottomPageNumbers);
+    }, [location.pathname]);
 
     return (
         <>
@@ -80,8 +93,11 @@ export default function PlacesToVisit({ userType }) {
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
                                 placeholder="Search"
                                 value={search}
+                                onFocus={()=>setShowDropdown(true)}
+                                onBlur={()=>setShowDropdown(false)}
                                 onChange={(e) => {
                                     setSearch(e.target.value)
+                                    setShowDropdown(false);
                                 }}
                                 required
                                 onKeyDown={handleKeyDown}
@@ -143,53 +159,80 @@ export default function PlacesToVisit({ userType }) {
                 <nav aria-label="Page navigation example">
                     <ul className="list-style-none flex justify-center">
                         <li>
-                            <NavLink
-                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
-                                    }`}
-                                to={`/tourism/places-to-visit/${currentPage - 1}`}
+                            <button
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 onClick={() => {
                                     if (currentPage > 1) {
-                                        handlePageChange(currentPage - 1);
+                                        navigate('/tourism/places-to-visit/1')
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="Start"
+                            >
+                                <MdKeyboardDoubleArrowLeft/>
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                                onClick={() => {
+                                    if (currentPage > 1) {
+                                        navigate(`/tourism/places-to-visit/${currentPage - 1}`)
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
                                 aria-label="Previous"
                             >
-                                <span aria-hidden="true">&laquo;</span>
-                            </NavLink>
+                                <MdKeyboardArrowLeft/>
+                            </button>
                         </li>
 
-                        {[...Array(totalPages).keys()].map((pageNumber) => (
-                            <li key={pageNumber}>
+                        {bottomPageNumbers.map((page, index) => (
+                            <li key={index}>
                                 <NavLink
-                                    to={`/tourism/places-to-visit/${pageNumber + 1}`}
+                                    to={`/tourism/places-to-visit/${page}`}
                                     onClick={() => {
-                                        handlePageChange(pageNumber + 1);
+                                        handlePageChange(page);
                                         window.scrollTo({ top: 0, left: 0 });
                                     }}
-                                    className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${pageNumber + 1 === currentPage ? 'bg-neutral-200' : ''
+                                    className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${page === currentPage ? 'bg-neutral-200' : ''
                                         }`}
                                 >
-                                    {pageNumber + 1}
+                                    {page}
                                 </NavLink>
                             </li>
                         ))}
 
                         <li>
-                            <NavLink
+                            <button
                                 className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
-                                to={`/tourism/places-to-visit/${currentPage + 1}`}
                                 onClick={() => {
                                     if (currentPage < totalPages) {
-                                        handlePageChange(currentPage + 1);
+                                        navigate(`/tourism/places-to-visit/${currentPage + 1}`);
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
                                 aria-label="Next"
                             >
-                                <span aria-hidden="true">&raquo;</span>
-                            </NavLink>
+                                <MdKeyboardArrowRight/>
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                                onClick={() => {
+                                    if (currentPage < totalPages) {
+                                        navigate(`/tourism/places-to-visit/${totalPages}`);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="End"
+                            >
+                                <MdKeyboardDoubleArrowRight/>
+                            </button>
                         </li>
                     </ul>
                 </nav>
