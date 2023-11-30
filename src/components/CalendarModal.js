@@ -13,7 +13,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
   const [selectedEventDate, setSelectedEventDate] = useState(null);
   const [selectedEventDetails, setSelectedEventDetails] = useState(null);
   const [eventDetailsModalOpen, setEventDetailsModalOpen] = useState(false);
-
+  const [isEditMode, setIsEditMode] = useState(false); // State for tracking edit mode
 
   const handleDateSelect = (selectInfo) => {
     console.log("Select Info:", selectInfo);
@@ -30,7 +30,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
   const handleEventModalClose = () => {
     setEventModalOpen(false);
-    setEventTitle("");
+    //setEventTitle("");
   };
 
   const handleCreateEvent = () => {
@@ -44,39 +44,124 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
   };
 
   const updateEvents = (date, title) => {
-    // Create a new event object
+    // Create a new event object with a unique identifier
     const newEvent = {
+      id: generateUniqueId(), // Use a function to generate a unique ID
       title: title,
       start: date,
       allDay: true, // Assuming events are all-day
     };
+
     // Update the state with the new events
     setEvents((prevEvents) => [...prevEvents, newEvent]);
 
     console.log("Updated events:", events); // Add this log statement
   };
 
+  // Function to generate a unique ID (you can use a library like `uuid` for this purpose)
+  const generateUniqueId = () => {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  };
+
   const handleEventClick = (clickInfo) => {
     // When an event is clicked, set the details and open the event details modal
     setSelectedEventDetails(clickInfo.event);
+    setIsEditMode(false); // Reset edit mode when clicking on a new event
+    setEventTitle(""); // Clear the event title input
     setEventDetailsModalOpen(true);
   };
 
   const EventDetailsModal = () => {
     // Modal for displaying event details
+
+    const handleDeleteEvent = () => {
+      if (selectedEventDetails) {
+        // Filter out the selected event and update the events state
+        setEvents((prevEvents) =>
+          prevEvents.filter((event) => event.id !== selectedEventDetails.id)
+        );
+
+        // Close the event details modal
+        setEventDetailsModalOpen(false);
+      }
+    };
+
+
+    const handleEditEvent = () => {
+      // Set edit mode to true when clicking the edit button
+      setIsEditMode(true);
+    
+      // Populate the input field with the current title of the selected event
+      setEventTitle(selectedEventDetails.title);
+    };
+
+    const handleUpdateEvent = () => {
+      // Update the event details
+      if (selectedEventDetails) {
+        const updatedEvents = events.map((event) =>
+          event.id === selectedEventDetails.id
+            ? { ...event, title: eventTitle }
+            : event
+        );
+        setEvents(updatedEvents);
+        setEventDetailsModalOpen(false);
+        setEventTitle("");
+        setIsEditMode(false);
+      }
+    };
+
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center">
-        <div className="bg-lgu-lime p-4 shadow-md rounded-md">
-          <h2 className="text-lg font-semibold mb-4">Event Name</h2>
+        <div className="bg-lgu-lime p-4 shadow-md rounded-md w-full md:w-3/4">
+          <h2 className="text-lg font-semibold mb-4">
+            {isEditMode ? "Edit Event" : "Event Details"}
+          </h2>
           {selectedEventDetails && (
             <>
-              <p>Title: {selectedEventDetails.title}</p>
+              {isEditMode ? (
+                <input
+                  type="text"
+                  placeholder="Enter event title"
+                  value={eventTitle}
+                  onChange={(e) => setEventTitle(e.target.value)}
+                  className="w-full border p-2 rounded-md mb-4"
+                />
+              ) : (
+                <p className="font-bold text-3xl">
+                  {selectedEventDetails.title}
+                </p>
+              )}
               {/* Add more details as needed */}
             </>
           )}
           <div className="mt-4 flex justify-end">
+            {!isEditMode && (
+              <button
+                className="mr-2 px-4 py-2 bg-lgu-yellow text-white rounded-md"
+                onClick={handleEditEvent}
+              >
+                Edit
+              </button>
+            )}
+            
+            {isEditMode && (
+              <button
+                className="mr-2 px-4 py-2 bg-lgu-yellow text-white rounded-md"
+                onClick={handleUpdateEvent}
+              >
+                Update
+              </button>
+            )}
+            {!isEditMode && (
+              <button
+                className="mr-2 px-4 py-2 bg-red-500 text-white rounded-md"
+                onClick={handleDeleteEvent}
+              >
+                Delete
+              </button>
+            )}
             <button
-              className="px-4 py-2 bg-lgu-green text-white rounded-md"
+              className="mr-2 px-4 py-2 bg-lgu-green text-white rounded-md"
               onClick={() => setEventDetailsModalOpen(false)}
             >
               Close
@@ -86,6 +171,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
       </div>
     );
   };
+
 
 
   return (
@@ -163,7 +249,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 OK
               </button>
               <button
-                className="px-4 py-2 border border-gray-300 bg-lgu-yellow text-white rounded-md"
+                className="mr-2 px-4 py-2 bg-lgu-yellow text-white rounded-md"
                 onClick={handleEventModalClose}
               >
                 Cancel
