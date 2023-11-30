@@ -123,11 +123,11 @@ export default function SignUp() {
     }, []);
 
     return (
-        <section class="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
+        <section class="bg-gray-900 md:p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
                     <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
-                    <span className='pt-3'>SAN VICENTE, CAMARINES NORTE</span>
+                    <span className='md:pt-3 text-center'>SAN VICENTE CAMARINES NORTE</span>
                 </a>
                 <div className="w-full  rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
                     <div className="p-2 space-y-4 md:space-y-6 sm:p-4">
@@ -271,6 +271,7 @@ export default function SignUp() {
                                         }}
                                         className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-4"
                                         required
+                                        style={{ width: '100%' }}
                                     >
                                         <option value="" hidden>Select Role</option>
                                         <option value="0">San Vicente Citizens</option>
@@ -327,7 +328,7 @@ export default function SignUp() {
                             </div>
 
                         </form>
-                        <div className='text-center mr-5 mb-5 text-white'>
+                        <div className='text-center text-white'>
                             Already have an account? &nbsp;
                             <NavLink
                                 to={PATH_NAME.Accounts.SignIn}
