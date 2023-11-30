@@ -12,6 +12,7 @@ module.exports = {
         'lgu-green': '#2D5F2E',
         'lgu-lime': '#B5F8B6',
         'lgu-yellow': '#FFE77B',
+        'calendar': '#008000'
       },
       boxShadow: {
         'chat': 'inset 0 0 5px rgba(0, 0, 0, 0.3)',

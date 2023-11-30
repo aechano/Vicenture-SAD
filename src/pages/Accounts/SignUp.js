@@ -123,11 +123,11 @@ export default function SignUp() {
     }, []);
 
     return (
-        <section class="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
+        <section class="bg-gray-900 md:p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
                     <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
-                    <span className='pt-3'>SAN VICENTE, CAMARINES NORTE</span>
+                    <span className='md:pt-3 text-center'>SAN VICENTE CAMARINES NORTE</span>
                 </a>
                 <div className="w-full  rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
                     <div className="p-2 space-y-4 md:space-y-6 sm:p-4">
@@ -250,7 +250,7 @@ export default function SignUp() {
                                 </div>
                             </div>
                             <div className="flex justify-center">
-                                <div className="relative w-full md:w-4/5 mb-6">
+                                <div className={"relative w-full md:w-4/5 mb-6 "}>
                                     <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                                         <svg
                                             width="20" height="20"
@@ -262,15 +262,15 @@ export default function SignUp() {
                                             <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                                             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                         </svg>
-                                    </div>
-                                    <select
+                                    </div><select
                                         value={role}
                                         onChange={(e) => {
                                             setRole(e.target.value);
                                             setButton(e.target.value === "2" ? "Continue" : "Create Account");
                                         }}
-                                        className="bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full pl-10 p-4"
+                                        className={"bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4 pl-10 "}
                                         required
+                                        style={{ width: '100%' }}
                                     >
                                         <option value="" hidden>Select Role</option>
                                         <option value="0">San Vicente Citizens</option>
@@ -327,7 +327,7 @@ export default function SignUp() {
                             </div>
 
                         </form>
-                        <div className='text-center mr-5 mb-5 text-white'>
+                        <div className='text-center text-white'>
                             Already have an account? &nbsp;
                             <NavLink
                                 to={PATH_NAME.Accounts.SignIn}

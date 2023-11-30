@@ -32,7 +32,7 @@ export default function SignIn() {
             })
     }
     return (
-        <section className="bg-gray-900 p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
+        <section className="bg-gray-900 md:p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", backgroundSize: "cover", minHeight: "100vh" }}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <a href="#" className="flex flex-col items-center mb-6  text-center md:text-2xl font-semibold text-white">
                     <img className="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
@@ -108,7 +108,7 @@ export default function SignIn() {
 
                             </div>
 
-                            <div className='text-center mr-5 mb-5 text-white'>
+                            <div className='text-center mt-2 text-white'>
                                 Don't have an account? &nbsp;
                                 <NavLink
                                     to={PATH_NAME.Accounts.SignUp.SignUp}

@@ -56,7 +56,9 @@ const PATH_NAME = {
     Invest: {
         Invest: "/invest",
         InvestmentOpportunities: "/invest/investment-opportunities",
+        InvestmentOpportunitiesContent: "/invest/investment-opportunity",
         ReasonsToInvest: "/invest/reasons-to-invest",
+        ReasonsToInvestContent:"/invest/reason-to-invest",
         InvestContent: "/invest/reasons-to-invest/content",
     },
 
