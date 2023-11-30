@@ -137,7 +137,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
           <div className="mt-4 flex justify-end">
             {!isEditMode && (
               <button
-                className="mr-2 px-4 py-2 bg-lgu-yellow text-white rounded-md"
+                className="mr-2 px-4 py-2 bg-lgu-yellow text-black rounded-md"
                 onClick={handleEditEvent}
               >
                 Edit
@@ -146,7 +146,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
             
             {isEditMode && (
               <button
-                className="mr-2 px-4 py-2 bg-lgu-yellow text-white rounded-md"
+                className="mr-2 px-4 py-2 bg-lgu-yellow text-black rounded-md"
                 onClick={handleUpdateEvent}
               >
                 Update
@@ -179,7 +179,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
       {isOpen ? (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-            <div className="relative w-1/2 my-6 mx-auto max-w-7xl">
+            <div className="relative w-full md:w-1/2 my-6 mx-auto max-w-7xl">
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
@@ -219,6 +219,10 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                     select={handleDateSelect}
                     events={events}  // Make sure to pass the events state to the FullCalendar component
                     eventClick={handleEventClick} // Add eventClick prop
+                    // className="w-full md:w-1/2 lg:w-1/2 mx-auto max-w-7xl"
+                    eventBackgroundColor="#2D5F2E"
+                    eventBorderColor="#2D5F2E"
+                            
                   />
                 </div>
               </div>
@@ -249,7 +253,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 OK
               </button>
               <button
-                className="mr-2 px-4 py-2 bg-lgu-yellow text-white rounded-md"
+                className="mr-2 px-4 py-2 bg-lgu-yellow text-black rounded-md"
                 onClick={handleEventModalClose}
               >
                 Cancel
