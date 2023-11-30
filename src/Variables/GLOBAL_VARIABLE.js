@@ -78,12 +78,17 @@ const PATH_NAME = {
 
 const SERVER_ADDRESS = "http://localhost:8080"
 const API = {
+    SERVER_ADDRESS:"http://localhost:8080",
     SignUp: SERVER_ADDRESS+"/api/v1/auth/signup",
     SignIn: SERVER_ADDRESS+"/api/v1/auth/signin",
     FeedbackPost: SERVER_ADDRESS+"/api/v1/public/feedback",
     FeedbackGet: SERVER_ADDRESS+"/api/v1/admin/get-feedback",
     TourismOnlineFormGet: SERVER_ADDRESS+"/api/v1/lgu/tof",
     TourismOnlineFormPost: SERVER_ADDRESS+"/api/v1/public/tof",
+    Content: function(method){return SERVER_ADDRESS+"/api/v1/lgu/"+method},
+    ContentDelete: function(id){return SERVER_ADDRESS+"/api/v1/lgu/delete/"+id},
+    GetContentID: function(id){return SERVER_ADDRESS+"/api/v1/public/getContent/"+id},
+    GetContentPages: function(type, id){return SERVER_ADDRESS+"/api/v1/public/getContent/"+type+"/"+id}
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS+"/ws"

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { timeAgo } from '../functionHelpers/Time';
 import { PATH_NAME, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
 import { useNavigate } from 'react-router';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 export default function CommentingSystem({ contentID }) {
     /** 
@@ -12,13 +14,17 @@ export default function CommentingSystem({ contentID }) {
     const [addComment, setAddComment] = useState(false); //used for revealing the comment box
     const [comment, setComment] = useState(); // comment box contents
     const [revealReplies, setRevealReplies] = useState({}); //used to reveal certain amount of replies to a comment
+    const [accountType, setAccountType] = useState(USER_TYPES.Guest);
 
-    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
-    const [isGuest, setIsGuest] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") === USER_TYPES.GUest : true);
-    window.addEventListener('storage', () => {
-        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
-        setIsGuest(localStorage.getItem("accountType") ? localStorage.getItem("accountType") === USER_TYPES.GUest : true)
-    })
+    useEffect(() => {
+        var jwt = Cookies.get("token");
+        if (jwt) {
+            var payload = jwtDecode(jwt);
+            setAccountType(payload.accountType);
+        } else {
+            setAccountType(USER_TYPES.Guest);
+        }
+    }, [])
 
     const modifyRevealedReplies = (commentID, value) => { //handler of multiple states (dictionary in useState)
         setRevealReplies((prevState) => ({ ...prevState, [commentID]: value }));
@@ -72,7 +78,7 @@ export default function CommentingSystem({ contentID }) {
     return (
         <>
             {/** add comment button */}
-            {!isGuest ?
+            {accountType !== USER_TYPES.Guest ?
                 <div
                     className='flex bg-lgu-yellow w-fit p-2 mt-10 rounded-full select-none cursor-pointer hover:brightness-95'
                     onClick={() => setAddComment(!addComment)}>
@@ -85,7 +91,7 @@ export default function CommentingSystem({ contentID }) {
                     Sign In to join the conversation
                 </div>
             }
-            
+
             {addComment ?
                 <div>
                     {/** comment box */}
@@ -115,7 +121,7 @@ export default function CommentingSystem({ contentID }) {
                 {
                     comments.map((comment, index) => {
                         return (
-                            <Comment key={index} comment={comment} revealReplies={revealReplies} setRevealReplies={modifyRevealedReplies} isGuest={isGuest} />
+                            <Comment key={index} comment={comment} revealReplies={revealReplies} setRevealReplies={modifyRevealedReplies} isGuest={accountType === USER_TYPES.Guest} />
                         );
                     })
                 }

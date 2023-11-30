@@ -12,11 +12,14 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 export default function PlacesToVisit({ userType }) {
     const placesPerPage = 5;
     const { page = 1 } = useParams();
-    const currentPage = parseInt(page, 10);
-
+    const currentPage = parseInt(page);
     const [search, setSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [contents, setContents] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [totalPages, setTotalPages] = useState(31); //Math.ceil(contents.length / placesPerPage)
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
@@ -33,128 +36,6 @@ export default function PlacesToVisit({ userType }) {
             //HANDLE SEARCH QUERY HERE.
         }
     };
-
-    var contents = [
-        {
-            id: 1,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 3.8,
-            vote: 200,
-            comments: 42,
-        },
-        {
-            id: 2,
-            pic: require("../../../res/img/anahaw-resort.jpg"),
-            title: "Anahaw Resort",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 2.6,
-            vote: 175,
-            comments: 74,
-        },
-        {
-            id: 3,
-            pic: require("../../../res/img/satu-hati-mini-farm-and-resort.jpg"),
-            title: "Satu Hati Mini Farm & Resort",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 4.2,
-            vote: 531,
-            comments: 63,
-        },
-        {
-            id: 4,
-            pic: require("../../../res/img/paraiso-sa-iraya.png"),
-            title: "Paraiso sa Iraya",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 4.7,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 5,
-            pic: require("../../../res/img/lyza-resort.jpg"),
-            title: "Lyza Resort",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 3.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 6,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 7,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 8,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 9,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 10,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 11,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 12,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-    ];
-
-    // Calculate the start and end indices for the current page
-    const startIndex = (currentPage - 1) * placesPerPage;
-    const endIndex = startIndex + placesPerPage;
-
-    const currentPlaces = contents.slice(startIndex, endIndex);
-
-    const totalPages = Math.ceil(contents.length / placesPerPage);
-
-    const navigate = useNavigate();
-    const location = useLocation();
 
     const handlePageChange = (newPage) => {
         navigate(`/tourism/places-to-visit/${newPage}`);
@@ -222,11 +103,6 @@ export default function PlacesToVisit({ userType }) {
                             )}
                         </div>
                     </form>
-                    <div className='pt-2 text-2xl'>
-                        <button onClick={() => setShowDropdown(!showDropdown)}>
-                            <FaFilter />
-                        </button>
-                    </div>
                 </div>
                 {userType === USER_TYPES.LguSV ?
                     <div className='w-fit rounded-full ms-5 my-2 float float-right'>
@@ -240,16 +116,28 @@ export default function PlacesToVisit({ userType }) {
                     null
                 }
                 <div className='pt-12'>
-                    {currentPlaces.map((content, index) => {
-                        return <TourismCards
-                            key={index}
-                            content={content}
-                            onClick={() => {
-                                navigate(PATH_NAME.Tourism.PlacesToVisitPost + "/" + content.id);
-                                window.scrollTo({ top: 0, left: 0 });
-                            }}
-                        />;
-                    })}
+                    {contents ?
+                        contents?.map((content, index) => {
+                            return <TourismCards
+                                key={index}
+                                content={content}
+                                onClick={() => {
+                                    navigate(PATH_NAME.Tourism.PlacesToVisitPost + "/" + content.id);
+                                    window.scrollTo({ top: 0, left: 0 });
+                                }}
+                            />;
+                        })
+                        :
+                        <div
+                            className='flex min-h-screen w-full justify-center'>
+                            <div className='w-fit'>
+                                <img
+                                    src={require("./../../../res/img/waterfall.png")}
+                                    className='w-40 h-40 opacity-50 mt-32' />
+                                <p className='mt-5 select-none'>No contents to show</p>
+                            </div>
+                        </div>
+                    }
                 </div>
 
                 <nav aria-label="Page navigation example">
