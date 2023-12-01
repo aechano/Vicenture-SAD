@@ -262,15 +262,16 @@ export default function SignUp() {
                                             <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
                                             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                                         </svg>
-                                    </div><select
+                                    </div>
+                                    <select
                                         value={role}
                                         onChange={(e) => {
                                             setRole(e.target.value);
-                                            setButton(e.target.value === "2" ? "Continue" : "Create Account");
+                                            setButton(e.target.value === '2' ? 'Continue' : 'Create Account');
                                         }}
-                                        className={"bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4 pl-10 "}
+                                        className={`bg-white border border-white text-black text-sm rounded-sm focus:ring-green-500 focus:border-green-500 block w-full p-4 pl-10 sm:w-full`}
                                         required
-                                        style={{ width: '100%' }}
+                                        style={{ width: '100%'}}
                                     >
                                         <option value="" hidden>Select Role</option>
                                         <option value="0">San Vicente Citizens</option>
