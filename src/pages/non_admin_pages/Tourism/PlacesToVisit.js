@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Banner from '../../../components/Banner'
 import { PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { FaFilter } from 'react-icons/fa6'
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
@@ -12,11 +13,15 @@ import { useParams, Link, useLocation } from 'react-router-dom';
 export default function PlacesToVisit({ userType }) {
     const placesPerPage = 5;
     const { page = 1 } = useParams();
-    const currentPage = parseInt(page, 10);
-
+    const currentPage = parseInt(page);
     const [search, setSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
+    const [contents, setContents] = useState(null);
     const [showDropdown, setShowDropdown] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const [totalPages, setTotalPages] = useState(1); //Math.ceil(contents.length / placesPerPage)
+    const [bottomPageNumbers, setBottomPageNumbers] = useState([]);
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
@@ -34,137 +39,26 @@ export default function PlacesToVisit({ userType }) {
         }
     };
 
-    var contents = [
-        {
-            id: 1,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 3.8,
-            vote: 200,
-            comments: 42,
-        },
-        {
-            id: 2,
-            pic: require("../../../res/img/anahaw-resort.jpg"),
-            title: "Anahaw Resort",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 2.6,
-            vote: 175,
-            comments: 74,
-        },
-        {
-            id: 3,
-            pic: require("../../../res/img/satu-hati-mini-farm-and-resort.jpg"),
-            title: "Satu Hati Mini Farm & Resort",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 4.2,
-            vote: 531,
-            comments: 63,
-        },
-        {
-            id: 4,
-            pic: require("../../../res/img/paraiso-sa-iraya.png"),
-            title: "Paraiso sa Iraya",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 4.7,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 5,
-            pic: require("../../../res/img/lyza-resort.jpg"),
-            title: "Lyza Resort",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis tincidunt ex. Cras accumsan tempor venenatis. Phasellus a iaculis lectus. Vivamus vitae elit non urna luctus gravida. Nullam turpis. Donec ultricies neque a eros tempor fermentum.",
-            rate: 3.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 6,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 7,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 8,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 9,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 10,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 11,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-        {
-            id: 12,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-            rate: 4.0,
-            vote: 213,
-            comments: 16,
-        },
-    ];
-
-    // Calculate the start and end indices for the current page
-    const startIndex = (currentPage - 1) * placesPerPage;
-    const endIndex = startIndex + placesPerPage;
-
-    const currentPlaces = contents.slice(startIndex, endIndex);
-
-    const totalPages = Math.ceil(contents.length / placesPerPage);
-
-    const navigate = useNavigate();
-    const location = useLocation();
-
     const handlePageChange = (newPage) => {
         navigate(`/tourism/places-to-visit/${newPage}`);
     };
 
     useEffect(() => {
+        // redirect to first page
         if (location.pathname === PATH_NAME.Tourism.PlacesToVisit) {
             navigate('/tourism/places-to-visit/1');
         }
-    }, [location.pathname, navigate]);
+        // generate bottom page numbers
+        var newBottomPageNumbers = [currentPage];
+        if (currentPage > 1) {
+            newBottomPageNumbers.push(currentPage - 1);
+        }
+        if (currentPage + 1 <= totalPages) {
+            newBottomPageNumbers.push(currentPage + 1);
+        }
+        newBottomPageNumbers.sort();
+        setBottomPageNumbers(newBottomPageNumbers);
+    }, [location.pathname]);
 
     return (
         <>
@@ -199,8 +93,11 @@ export default function PlacesToVisit({ userType }) {
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
                                 placeholder="Search"
                                 value={search}
+                                onFocus={()=>setShowDropdown(true)}
+                                onBlur={()=>setShowDropdown(false)}
                                 onChange={(e) => {
                                     setSearch(e.target.value)
+                                    setShowDropdown(false);
                                 }}
                                 required
                                 onKeyDown={handleKeyDown}
@@ -222,11 +119,6 @@ export default function PlacesToVisit({ userType }) {
                             )}
                         </div>
                     </form>
-                    <div className='pt-2 text-2xl'>
-                        <button onClick={() => setShowDropdown(!showDropdown)}>
-                            <FaFilter />
-                        </button>
-                    </div>
                 </div>
                 {userType === USER_TYPES.LguSV ?
                     <div className='w-fit rounded-full ms-5 my-2 float float-right'>
@@ -240,68 +132,107 @@ export default function PlacesToVisit({ userType }) {
                     null
                 }
                 <div className='pt-12'>
-                    {currentPlaces.map((content, index) => {
-                        return <TourismCards
-                            key={index}
-                            content={content}
-                            onClick={() => {
-                                navigate(PATH_NAME.Tourism.PlacesToVisitPost + "/" + content.id);
-                                window.scrollTo({ top: 0, left: 0 });
-                            }}
-                        />;
-                    })}
+                    {contents ?
+                        contents?.map((content, index) => {
+                            return <TourismCards
+                                key={index}
+                                content={content}
+                                onClick={() => {
+                                    navigate(PATH_NAME.Tourism.PlacesToVisitPost + "/" + content.id);
+                                    window.scrollTo({ top: 0, left: 0 });
+                                }}
+                            />;
+                        })
+                        :
+                        <div
+                            className='flex min-h-screen w-full justify-center'>
+                            <div className='w-fit'>
+                                <img
+                                    src={require("./../../../res/img/waterfall.png")}
+                                    className='w-40 h-40 opacity-50 mt-32' />
+                                <p className='mt-5 select-none'>No contents to show</p>
+                            </div>
+                        </div>
+                    }
                 </div>
 
                 <nav aria-label="Page navigation example">
                     <ul className="list-style-none flex justify-center">
                         <li>
-                            <NavLink
-                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
-                                    }`}
-                                to={`/tourism/places-to-visit/${currentPage - 1}`}
+                            <button
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 onClick={() => {
                                     if (currentPage > 1) {
-                                        handlePageChange(currentPage - 1);
+                                        navigate('/tourism/places-to-visit/1')
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="Start"
+                            >
+                                <MdKeyboardDoubleArrowLeft/>
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                                onClick={() => {
+                                    if (currentPage > 1) {
+                                        navigate(`/tourism/places-to-visit/${currentPage - 1}`)
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
                                 aria-label="Previous"
                             >
-                                <span aria-hidden="true">&laquo;</span>
-                            </NavLink>
+                                <MdKeyboardArrowLeft/>
+                            </button>
                         </li>
 
-                        {[...Array(totalPages).keys()].map((pageNumber) => (
-                            <li key={pageNumber}>
+                        {bottomPageNumbers.map((page, index) => (
+                            <li key={index}>
                                 <NavLink
-                                    to={`/tourism/places-to-visit/${pageNumber + 1}`}
+                                    to={`/tourism/places-to-visit/${page}`}
                                     onClick={() => {
-                                        handlePageChange(pageNumber + 1);
+                                        handlePageChange(page);
                                         window.scrollTo({ top: 0, left: 0 });
                                     }}
-                                    className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${pageNumber + 1 === currentPage ? 'bg-neutral-200' : ''
+                                    className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${page === currentPage ? 'bg-neutral-200' : ''
                                         }`}
                                 >
-                                    {pageNumber + 1}
+                                    {page}
                                 </NavLink>
                             </li>
                         ))}
 
                         <li>
-                            <NavLink
+                            <button
                                 className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
                                     }`}
-                                to={`/tourism/places-to-visit/${currentPage + 1}`}
                                 onClick={() => {
                                     if (currentPage < totalPages) {
-                                        handlePageChange(currentPage + 1);
+                                        navigate(`/tourism/places-to-visit/${currentPage + 1}`);
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
                                 aria-label="Next"
                             >
-                                <span aria-hidden="true">&raquo;</span>
-                            </NavLink>
+                                <MdKeyboardArrowRight/>
+                            </button>
+                        </li>
+                        <li>
+                            <button
+                                className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
+                                onClick={() => {
+                                    if (currentPage < totalPages) {
+                                        navigate(`/tourism/places-to-visit/${totalPages}`);
+                                        window.scrollTo({ top: 0, left: 0 });
+                                    }
+                                }}
+                                aria-label="End"
+                            >
+                                <MdKeyboardDoubleArrowRight/>
+                            </button>
                         </li>
                     </ul>
                 </nav>
