@@ -100,7 +100,8 @@ const API = {
     setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating",
     getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id },
     addMunProfile: SERVER_ADDRESS + ADMIN + "/add-mun_profile",
-    viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile"
+    viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile",
+    publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"
@@ -111,10 +112,10 @@ const USER_TYPES = {
     Citizen: "SV_CITIZEN",
     Tourist: "TOURIST",
     Investor: "INVESTOR",
-    LguSV: "LGU_SV_MAIN",
+    LguSV: "LGU",
     Admin: "ADMIN",
     EndUsers: ["SV_CITIZEN", "TOURIST", "INVESTOR", "GUEST"],
-    General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU_SV_MAIN", "ADMIN"]
+    General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU", "ADMIN"]
 }
 const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", PATH_NAME.AdminPages.Admin + "/*", ...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
