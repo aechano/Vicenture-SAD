@@ -15,6 +15,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const images = [
+        require("./../res/img/0.png"),
         require("./../res/img/1.png"),
         require("./../res/img/2.png"),
         require("./../res/img/3.png"),
