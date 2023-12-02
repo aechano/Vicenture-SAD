@@ -15,7 +15,7 @@ export default function CommentingSystem({ contentID }) {
     const [comment, setComment] = useState(); // comment box contents
     const [revealReplies, setRevealReplies] = useState({}); //used to reveal certain amount of replies to a comment
     const [accountType, setAccountType] = useState(USER_TYPES.Guest);
-
+    const [comments, setComments] = useState([]);
     useEffect(() => {
         var jwt = Cookies.get("token");
         if (jwt) {
@@ -31,44 +31,6 @@ export default function CommentingSystem({ contentID }) {
     };
 
     const navigate = useNavigate();
-
-    // sample comments
-    var comments = [
-        {
-            commentID: contentID + "-1",
-            username: "Th3Skyler08",
-            userPFP: require("./../res/debug_img/userpfp5.png"),
-            comment: "Coolio~!",
-            bodyImgs: [require("./../res/debug_img/xenia_content_imgs1.png"), require("./../res/debug_img/xenia_content_imgs2.png"), require("./../res/debug_img/xenia_content_imgs3.png"), require("./../res/debug_img/xenia_content_imgs2.png"), require("./../res/debug_img/xenia_content_imgs1.png")],
-            timestamp: Date.now() - 30 * 1000,
-            replies: [
-                {
-                    replyID: contentID + "-1-1",
-                    username: "Fr4ncyyy",
-                    userPFP: require("./../res/debug_img/userpfp3.png"),
-                    reply: "True!",
-                    bodyImgs: [],
-                    timestamp: Date.now() - 15 * 1000
-                },
-                {
-                    replyID: contentID + "-1-2",
-                    username: "Ghe3lo_",
-                    userPFP: require("./../res/debug_img/userpfp1.png"),
-                    reply: "I Agree!",
-                    bodyImgs: [],
-                    timestamp: Date.now() - 10 * 1000
-                },
-                {
-                    replyID: contentID + "-1-3",
-                    username: "X3_nia",
-                    userPFP: require("./../res/debug_img/userpfp2.png"),
-                    reply: "nahh... nah...",
-                    bodyImgs: [],
-                    timestamp: Date.now() - 5 * 1000
-                },
-            ]
-        }
-    ]
 
     // create initial contents for revealReplies
     useEffect(() => {
@@ -118,12 +80,16 @@ export default function CommentingSystem({ contentID }) {
             <p className='text-gray-700 mt-10'>Comments</p>
             {/** display comments */}
             <div className='px-10 mt-5'>
-                {
+                {comments.length > 0 ?
                     comments.map((comment, index) => {
                         return (
                             <Comment key={index} comment={comment} revealReplies={revealReplies} setRevealReplies={modifyRevealedReplies} isGuest={accountType === USER_TYPES.Guest} />
                         );
                     })
+                    :
+                    <div>
+                        Be the first to comment!
+                    </div>
                 }
             </div>
         </>
