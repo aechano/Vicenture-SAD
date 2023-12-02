@@ -21,6 +21,13 @@ export default function ElectedOfficials() {
 
     var directoriesData = [
         {
+            directoryName: "Hon. Mayor Ma. Jhoanna C. Ong",
+            charpersonCommitteeOn: "",
+            list: [],
+            contactNo: "Contact Number",
+            num: "0930-298-3529",
+        },
+        {
             directoryName: "Hon. Vice Mayor Vivian M. Villamor",
             charpersonCommitteeOn: "Chairperson Committee on:",
             list: ["Tourism", "Sisterhood and Special Events", "External Affairs"],
@@ -116,16 +123,16 @@ export default function ElectedOfficials() {
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/tempOfficials.png")}
+                                    src={require("../../../res/img/mayor.JPG")}
                                     alt="Mayor"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
                                 <p className="text-lg text-black text-center font-bold">
-                                    Kai L. Yaneza
+                                    Ma. Jhoanna C. Ong
                                 </p>
                                 <p className="text-sm text-black text-center font-bold">
-                                    Vice Mayor
+                                    Mayor
                                 </p>
                             </div>
                         </div>

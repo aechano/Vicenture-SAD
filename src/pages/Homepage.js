@@ -15,6 +15,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     const [currentDate, setCurrentDate] = useState(new Date());
 
     const images = [
+        require("./../res/img/0.png"),
         require("./../res/img/1.png"),
         require("./../res/img/2.png"),
         require("./../res/img/3.png"),
@@ -59,7 +60,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     return (
         <div>
             {/* Hero Section */}
-            <div className="w-full object-cover h-screen lg:h-auto">
+            <div>
                 <CarouselComponent images={images} />
                 {/* <img src={require("./../res/img/LGU-PERS.jpg")}/> */}
             </div>

@@ -17,6 +17,14 @@ export default function Survey() {
     }
 
     var contents = [
+
+        {
+            image: require("../../res/img/rain.png"),
+            title: "Heavy Rainfall Preparedness",
+            desc: "The 'Heavy Rainfall Preparedness' survey for San Vicente citizens aims to assess our community's readiness for heavy rainfall events, focusing on awareness, preparedness measures, and suggestions for improvement. Your insights are vital in enhancing disaster preparedness and ensuring the safety of all residents. Please participate through the provided online survey link or in-person at local events, and help us build a more resilient San Vicente. Thank you for your active participation.",
+            formLink: 'https://forms.gle/ihBAARqd4mwkS4AM7',
+        },
+
         {
             image: require("../../res/img/rain.png"),
             title: "Heavy Rainfall Preparedness",

@@ -27,7 +27,7 @@ export default function SanVicenteTourism() {
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-28 space-y-5'>
         <div className="w-auto p-4">
           <video className="w-full h-full p-4 shadow-md rounded-lg border-2 border-lgu-green" autoPlay loop controls muted>
-            <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
+            <source src={require("../../../res/vid/san-vicente.mp4")} type="video/mp4" />
           </video>
         </div>
 
