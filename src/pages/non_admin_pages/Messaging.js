@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 import SockJS from 'sockjs-client';
 import { over } from 'stompjs';
 
-export default function Messaging({ userType }) {
+export default function Messaging() {
     const navigate = useNavigate();
     const chatContainerRef = useRef();
     const [currentChat, setCurrentChat] = useState();
@@ -19,6 +19,7 @@ export default function Messaging({ userType }) {
 
     useEffect(() => {
         var token = Cookies.get("token");
+        var userType = null;
         if (token) {
             var payload = jwtDecode(token);
             setEmail(payload.sub)
@@ -27,9 +28,6 @@ export default function Messaging({ userType }) {
             navigate(PATH_NAME.Home);
         }
         var type = USER_TYPES.EndUsers.includes(userType) ? "Offices" : "EndUser"
-        setChatType(type);
-        console.log(type);
-        console.log(userType);
 
         if (type === "EndUser") {
             // retrieve all users that contacted this office

@@ -3,9 +3,10 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Footer from './Footer';
-import { NO_HEADER, PATH_NAME, USER_TYPES } from './../Variables/GLOBAL_VARIABLE';
+import { API, NO_HEADER, PATH_NAME, USER_TYPES } from './../Variables/GLOBAL_VARIABLE';
 import 'tailwindcss/tailwind.css';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 const navigation = [
     {
@@ -104,6 +105,7 @@ export default function Header(props) {
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
         setAdminHeader(!location.pathname.startsWith(PATH_NAME.AdminPages.Admin))
+        axios.post(API.analyticsWebpageVisit, {"webpageLink": location.pathname});
     }, [location]);
 
 

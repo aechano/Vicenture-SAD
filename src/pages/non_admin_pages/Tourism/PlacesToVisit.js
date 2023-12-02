@@ -8,9 +8,11 @@ import BackToTop from '../../../components/BackToTop';
 import { NavLink } from 'react-router-dom';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
+import Cookies from 'js-cookie';
 
 
-export default function PlacesToVisit({ userType }) {
+export default function PlacesToVisit() {
     const placesPerPage = 5;
     const { page = 1 } = useParams();
     const currentPage = parseInt(page);
@@ -22,6 +24,16 @@ export default function PlacesToVisit({ userType }) {
     const location = useLocation();
     const [totalPages, setTotalPages] = useState(1);
     const [bottomPageNumbers, setBottomPageNumbers] = useState([]);
+    const [userType, setuserType] = useState()
+
+    useEffect(() => {
+        var jwt = Cookies.get("token");
+        if (jwt) {
+            var payload = jwtDecode(jwt);
+            setuserType(payload.accountType);
+        }
+    }, [])
+
 
     const handleCategoryClick = (category) => {
         setSelectedCategory(category);
@@ -56,7 +68,7 @@ export default function PlacesToVisit({ userType }) {
         if (location.pathname === PATH_NAME.Tourism.PlacesToVisit) {
             navigate('/tourism/places-to-visit/1');
         }
-        
+
         // generate bottom page numbers
         var newBottomPageNumbers = [currentPage];
         if (currentPage > 1) {
@@ -69,12 +81,12 @@ export default function PlacesToVisit({ userType }) {
         setBottomPageNumbers(newBottomPageNumbers);
 
         // get contents for each pages
-        axios.get(API.GetContentPages("places-to-visit", currentPage-1), {})
-        .then((response) => response.data)
-        .then((data) => {
-            console.log(data);
-            setContents(data);
-        });
+        axios.get(API.GetContentPages("places-to-visit", currentPage - 1), {})
+            .then((response) => response.data)
+            .then((data) => {
+                console.log(data);
+                setContents(data);
+            });
 
     }, [location.pathname, totalPages]);
 
