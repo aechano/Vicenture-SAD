@@ -1,13 +1,13 @@
 import React from 'react'
-import InvestAddEditContent from '../../../../components/InvestAddEditContent';
+import InvestAddEditPage from '../../../lgu_sv_access/AddEditReasonsToInvestContent';
 
-export default function AdminInvestmentOpportunities() {
+
+function AdminInvestmentOpportunities() {
   return (
-<div className="ml-10 mt-6 mb-6 w-full flex-shrink-0 h-screen overflow-auto border-2 border-gray-500 rounded shadow-lg">
-      {/* Use the imported component*/}
-      <InvestAddEditContent title="Investment Opportunities" type="ADD" contentBody={{}} />
-    </div>
-  )
+    <InvestAddEditPage title="Investment Opportunities" type="ADD" contentBody={{}} />
+  );
 }
+
+export default AdminInvestmentOpportunities
 
 

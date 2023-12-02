@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -73,6 +73,14 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
   const EventDetailsModal = () => {
     // Modal for displaying event details
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+      if (isEditMode) {
+        // Focus the input field when entering edit mode
+        inputRef.current.focus();
+      }
+    }, [isEditMode]);
 
     const handleDeleteEvent = () => {
       if (selectedEventDetails) {
@@ -93,6 +101,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
       // Populate the input field with the current title of the selected event
       setEventTitle(selectedEventDetails.title);
+      setEventDetailsModalOpen(true);
     };
 
     const handleUpdateEvent = () => {
@@ -125,6 +134,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                   value={eventTitle}
                   onChange={(e) => setEventTitle(e.target.value)}
                   className="w-full border p-2 rounded-md mb-4"
+                  ref={inputRef}
                 />
               ) : (
                 <p className="font-bold text-3xl">

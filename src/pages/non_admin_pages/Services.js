@@ -617,7 +617,7 @@ export default function Services() {
                 </div>
 
                 <div className=' grid grid-rows-2 sm:grid-rows-none md:grid-cols-2 gap-8 pb-10'>
-                    <div class=" p-3 pb-10 border rounded-lg shadow bg-slate-200 border-gray-100">
+                    <div className=" p-3 border rounded-lg shadow bg-slate-200 border-gray-100">
                         <div>
                             <img className='w-auto h-auto rounded-sm' src={require("../../res/img/tourist.jpg")} alt='Man in Hat and with Backpack Standing with Hills behind' />
                         </div>
