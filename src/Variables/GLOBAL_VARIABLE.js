@@ -97,7 +97,8 @@ const API = {
     GetContentCount: SERVER_ADDRESS + PUBLIC + "/getContent/count",
     GetContentPages: function (type, id) { return SERVER_ADDRESS + PUBLIC + "/getContent/" + type + "/" + id },
     contentRating: function (id) { return SERVER_ADDRESS + PUBLIC + "/contentRating/" + id },
-    setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating"
+    setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating",
+    getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id }
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

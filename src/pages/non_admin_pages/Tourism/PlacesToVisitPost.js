@@ -3,102 +3,120 @@ import { useParams } from 'react-router';
 import CommentingSystem from '../../../components/CommentingSystem';
 import BackToTop from '../../../components/BackToTop';
 import StarRating from '../../../components/StarRating';
+import axios from 'axios';
+import { API } from '../../../Variables/GLOBAL_VARIABLE';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 
 export default function PlacesToVisitPost() {
     const { contentID } = useParams();
     const [userRating, setUserRating] = useState(0);
-    const [content, setContent] = useState({});
+    const [email, setEmail] = useState();
+    const [contentRating, setContentRating] = useState({ rating: 0.0, votes: 0 });
+    const [mainImage, setMainImage] = useState({ pic: null, alt: null });
+    const [data, setData] = useState({
+        contentID: null,
+        email: null,
+        title: null,
+        body: null,
+        type: null,
+        uploadDate: null,
+        mediaIDs: [
+            {
+                mediaID: null,
+                image: null,
+                altText: null,
+                timestamp: null
+            }
+        ],
+        tagIDs: [
+            {
+                tagID: null,
+                tag: null
+            }
+        ],
+        map: {
+            mapID: null,
+            link: null,
+            locationName: null
+        },
+        contact: null
+    })
 
-    var contents = [
-        {
-            id: 1,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            address: "3R3G+HVX, San Vicente, Camarines Norte",
-            contact: " /mananapfallsSVCN",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-        },
-        {
-            id: 2,
-            pic: require("../../../res/img/anahaw-resort.jpg"),
-            title: "Anahaw Resort",
-            address: "3R3G+HVX, San Vicente, Camarines Norte",
-            contact: " /mananapfallsSVCN",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-        },
-        {
-            id: 3,
-            pic: require("../../../res/img/satu-hati-mini-farm-and-resort.jpg"),
-            title: "Satu Hati Mini Farm & Resort",
-            address: "3R3G+HVX, San Vicente, Camarines Norte",
-            contact: " /mananapfallsSVCN",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-        },
-        {
-            id: 4,
-            pic: require("../../../res/img/paraiso-sa-iraya.png"),
-            title: "Paraiso sa Iraya",
-            address: "3R3G+HVX, San Vicente, Camarines Norte",
-            contact: " /mananapfallsSVCN",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-        },
-        {
-            id: 5,
-            pic: require("../../../res/img/lyza-resort.jpg"),
-            title: "Lyza Resort",
-            address: "3R3G+HVX, San Vicente, Camarines Norte",
-            contact: " /mananapfallsSVCN",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-        },
-        {
-            id: 6,
-            pic: require("../../../res/img/mananap.jpg"),
-            title: "Mananap Falls",
-            address: "3R3G+HVX, San Vicente, Camarines Norte",
-            contact: " /mananapfallsSVCN",
-            body: "Mananap is a 60-feet high waterfalls with a deep swimming pool basin. The place is ideal for swimming, fishing, camping and just getting away from the busy and noisy city life. It is a 2 km hike from the town of Barangay Fabrica in San Vicente, Camarines Norte.",
-        },
-    ];
+    useEffect(() => {
+        axios.get(API.GetContentID(contentID), {})
+            .then((response) => response.data)
+            .then((data) => {
+                setData(data);
+            });
 
-    useEffect(()=>{
-        for (var content of contents){
-            if (content.id === parseInt(contentID)){
-                setContent(content);
+        for (var mediaID of data.mediaIDs) {
+            if (mediaID.altText === "&thumbnail;") {
+                setMainImage({
+                    pic: mediaID.image,
+                    alt: mediaID.altText
+                })
                 break;
             }
         }
-    }, [])
+
+        axios.get(API.contentRating(contentID), {})
+            .then((response) => response.data)
+            .then((data) => {
+                setContentRating({
+                    rating: data.rating !== "NaN" ? data.rating : 0.0,
+                    votes: data.votes ? data.votes : 0
+                });
+            });
+
+        var token = Cookies.get("token");
+        if (token) {
+            var payload = jwtDecode(token);
+            setEmail(payload.sub);
+        }
+        
+        axios.get(API.getMyContentRating(contentID), {}, { headers: { "Authorization": `Bearer ${Cookies.get("token")}` } })
+            .then((response) => response.data)
+            .then((data) => {
+                contentRating(data);
+            })
+        }, [])
 
     const handleRatingChange = (newRating) => {
         setUserRating(newRating);
-        // Handle any additional logic when the rating changes
+        if (newRating) {
+            axios.post(API.setContentRating, {
+                "email": email,
+                "contents": parseInt(contentID),
+                "rating": newRating
+            }, { headers: { "Authorization": `Bearer ${Cookies.get("token")}` } });
+        }
     };
 
     return (
         <div className='w-full bg-gray-400 py-20'>
             <div className='w-3/4 mx-auto p-10 shadow-md bg-gray-100 rounded-3xl'>
-            <div className='flex flex-col md:flex-row items-center'>
-            <img src={content.pic} alt={content.title ? content.title : null} className='w-full h-auto max-w-md rounded-lg object-cover mb-4 md:mb-0 md:mr-4' />
-
-            <div className='text-center md:text-left'>
-                <h1 className='text-2xl md:text-4xl font-bold mb-2'>{content.title ? content.title : null}</h1>
-                <p className='mb-2'><b>Address:</b>{content.address ? content.address : null}</p>
-                <p><b>Contact:</b> <a href="/mananapfallsSVCN">{content.contact ? content.contact : null}</a></p>
+                <div className='flex flex-col md:flex-row items-center'>
+                    {mainImage.pic ?
+                        <img src={mainImage.pic} alt={mainImage.alt} className='w-full h-auto max-w-md rounded-lg object-cover mb-4 md:mb-0 md:mr-4' />
+                        :
+                        null
+                    }
+                    <div className='text-center md:text-left'>
+                        <h1 className='text-2xl md:text-4xl font-bold mb-2'>{data.title ? data.title : null}</h1>
+                        <p className='mb-2'><b>Address:</b><a href={data.link} target='_blank'>{data.map ? data.map.locationName : null}</a></p>
+                        <p><b>Contact:</b> <a href="/mananapfallsSVCN">{data.contact ? data.contact : null}</a></p>
+                    </div>
                 </div>
-             </div>
 
-                <p className='mt-6'>{content.body?content.body:null}</p>
-
+                <p className='mt-6'>{data.body ? data.body : null}</p>
                 <div>
                     <p className='text-left mt-9 text-lg font-bold ml-1'>Rate it!</p>
-
                 </div>
                 {/* Use the StarRating component */}
                 <StarRating totalStars={5} onRatingChange={handleRatingChange} />
-
-
-
+                <p>{contentRating.rating} stars / {contentRating.votes} votes</p>
                 <CommentingSystem content={contentID} />
             </div>
             <BackToTop />

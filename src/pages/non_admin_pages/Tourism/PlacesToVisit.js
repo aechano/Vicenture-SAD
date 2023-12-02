@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Banner from '../../../components/Banner'
-import { PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
-import { FaFilter } from 'react-icons/fa6'
+import { API, PATH_NAME, USER_TYPES } from '../../../Variables/GLOBAL_VARIABLE';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from "react-icons/md";
 import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
 import { NavLink } from 'react-router-dom';
 import { useParams, Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function PlacesToVisit({ userType }) {
@@ -20,7 +20,7 @@ export default function PlacesToVisit({ userType }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const [totalPages, setTotalPages] = useState(1); //Math.ceil(contents.length / placesPerPage)
+    const [totalPages, setTotalPages] = useState(1);
     const [bottomPageNumbers, setBottomPageNumbers] = useState([]);
 
     const handleCategoryClick = (category) => {
@@ -44,10 +44,19 @@ export default function PlacesToVisit({ userType }) {
     };
 
     useEffect(() => {
+        axios.get(API.GetContentCount, {})
+            .then((response) => response.data)
+            .then((data) => {
+                setTotalPages(data ? Math.ceil(data / placesPerPage) : 1);
+            });
+    }, [])
+
+    useEffect(() => {
         // redirect to first page
         if (location.pathname === PATH_NAME.Tourism.PlacesToVisit) {
             navigate('/tourism/places-to-visit/1');
         }
+        
         // generate bottom page numbers
         var newBottomPageNumbers = [currentPage];
         if (currentPage > 1) {
@@ -58,7 +67,16 @@ export default function PlacesToVisit({ userType }) {
         }
         newBottomPageNumbers.sort();
         setBottomPageNumbers(newBottomPageNumbers);
-    }, [location.pathname]);
+
+        // get contents for each pages
+        axios.get(API.GetContentPages("places-to-visit", currentPage-1), {})
+        .then((response) => response.data)
+        .then((data) => {
+            console.log(data);
+            setContents(data);
+        });
+
+    }, [location.pathname, totalPages]);
 
     return (
         <>
@@ -93,8 +111,8 @@ export default function PlacesToVisit({ userType }) {
                                 class="block w-full p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
                                 placeholder="Search"
                                 value={search}
-                                onFocus={()=>setShowDropdown(true)}
-                                onBlur={()=>setShowDropdown(false)}
+                                onFocus={() => setShowDropdown(true)}
+                                onBlur={() => setShowDropdown(false)}
                                 onChange={(e) => {
                                     setSearch(e.target.value)
                                     setShowDropdown(false);
@@ -120,7 +138,7 @@ export default function PlacesToVisit({ userType }) {
                         </div>
                     </form>
                 </div>
-                {userType === USER_TYPES.LguSV ?
+                {[USER_TYPES.LguSV, USER_TYPES.Admin].includes(userType) ?
                     <div className='w-fit rounded-full ms-5 my-2 float float-right'>
                         <NavLink
                             to={PATH_NAME.Tourism.Content + "/add"}
@@ -137,8 +155,9 @@ export default function PlacesToVisit({ userType }) {
                             return <TourismCards
                                 key={index}
                                 content={content}
+                                userType={userType}
                                 onClick={() => {
-                                    navigate(PATH_NAME.Tourism.PlacesToVisitPost + "/" + content.id);
+                                    navigate(PATH_NAME.Tourism.PlacesToVisitPost + "/" + content.contentID);
                                     window.scrollTo({ top: 0, left: 0 });
                                 }}
                             />;
@@ -169,7 +188,7 @@ export default function PlacesToVisit({ userType }) {
                                 }}
                                 aria-label="Start"
                             >
-                                <MdKeyboardDoubleArrowLeft/>
+                                <MdKeyboardDoubleArrowLeft />
                             </button>
                         </li>
                         <li>
@@ -184,7 +203,7 @@ export default function PlacesToVisit({ userType }) {
                                 }}
                                 aria-label="Previous"
                             >
-                                <MdKeyboardArrowLeft/>
+                                <MdKeyboardArrowLeft />
                             </button>
                         </li>
 
@@ -216,7 +235,7 @@ export default function PlacesToVisit({ userType }) {
                                 }}
                                 aria-label="Next"
                             >
-                                <MdKeyboardArrowRight/>
+                                <MdKeyboardArrowRight />
                             </button>
                         </li>
                         <li>
@@ -231,7 +250,7 @@ export default function PlacesToVisit({ userType }) {
                                 }}
                                 aria-label="End"
                             >
-                                <MdKeyboardDoubleArrowRight/>
+                                <MdKeyboardDoubleArrowRight />
                             </button>
                         </li>
                     </ul>
