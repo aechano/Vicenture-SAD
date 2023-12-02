@@ -30,6 +30,11 @@ export default function MunicipalityPrograms() {
             title: "Sport Activity",
             body: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
         },
+        {
+            id: 4,
+            title: "Sport Activity",
+            body: "Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.",
+        },
     ]
     return (
         <div>
