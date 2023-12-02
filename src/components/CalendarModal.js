@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -73,6 +73,14 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
   const EventDetailsModal = () => {
     // Modal for displaying event details
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+      if (isEditMode) {
+        // Focus the input field when entering edit mode
+        inputRef.current.focus();
+      }
+    }, [isEditMode]);
 
     const handleDeleteEvent = () => {
       if (selectedEventDetails) {
@@ -90,9 +98,10 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
     const handleEditEvent = () => {
       // Set edit mode to true when clicking the edit button
       setIsEditMode(true);
-    
+
       // Populate the input field with the current title of the selected event
       setEventTitle(selectedEventDetails.title);
+      setEventDetailsModalOpen(true);
     };
 
     const handleUpdateEvent = () => {
@@ -125,13 +134,13 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                   value={eventTitle}
                   onChange={(e) => setEventTitle(e.target.value)}
                   className="w-full border p-2 rounded-md mb-4"
+                  ref={inputRef}
                 />
               ) : (
                 <p className="font-bold text-3xl">
                   {selectedEventDetails.title}
                 </p>
               )}
-              {/* Add more details as needed */}
             </>
           )}
           <div className="mt-4 flex justify-end">
@@ -143,7 +152,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 Edit
               </button>
             )}
-            
+
             {isEditMode && (
               <button
                 className="mr-2 px-4 py-2 bg-lgu-yellow text-black rounded-md"
@@ -222,7 +231,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                     // className="w-full md:w-1/2 lg:w-1/2 mx-auto max-w-7xl"
                     eventBackgroundColor="#2D5F2E"
                     eventBorderColor="#2D5F2E"
-                            
+
                   />
                 </div>
               </div>

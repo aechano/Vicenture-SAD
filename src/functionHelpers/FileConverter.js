@@ -1,20 +1,23 @@
-function FileToBytes(file, callback) {
+function fileToBase64(file, callback) {
     const reader = new FileReader();
-    reader.readAsArrayBuffer(file);
+
     reader.onload = function () {
-        callback(new Uint8Array(reader.result));
-    }
+        const base64String = reader.result.split(',')[1]; // Extract the base64 data part
+        callback(base64String);
+    };
+
+    reader.readAsDataURL(file);
 }
 
-function BytesToFile(bytes) { //to be used when necessary
+function BytesToFile(bytes, fileName = 'file') {
     const blob = new Blob([bytes], { type: 'application/octet-stream' });
-    const newFile = new File([blob], `${new Date()}`, { lastModified: new Date() });
+    const newFile = new File([blob], fileName, { lastModified: new Date() });
     return newFile;
 }
 
-function BytesToLink(bytes) { //to be used on src like <img src={link}/>
+function BytesToLink(bytes) {
     const blob = new Blob([bytes], { type: 'application/octet-stream' });
     return URL.createObjectURL(blob);
 }
 
-export { FileToBytes, BytesToFile, BytesToLink };
+export { fileToBase64, BytesToFile, BytesToLink };

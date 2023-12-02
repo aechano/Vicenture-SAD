@@ -98,7 +98,9 @@ const API = {
     GetContentPages: function (type, id) { return SERVER_ADDRESS + PUBLIC + "/getContent/" + type + "/" + id },
     contentRating: function (id) { return SERVER_ADDRESS + PUBLIC + "/contentRating/" + id },
     setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating",
-    getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id }
+    getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id },
+    addMunProfile: SERVER_ADDRESS + ADMIN + "/add-mun_profile",
+    viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile"
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

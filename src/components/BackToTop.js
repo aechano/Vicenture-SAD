@@ -36,7 +36,7 @@ export default function BackToTop({ loc, setShowing }) {
             {showBackToTopButton && (
                 <button
                     onClick={handleBackToTop}
-                    className={`fixed border-black text-black text-4xl rounded-full cursor-pointer ${loc === "homepage" ? 'bottom-24 right-4' : 'bottom-4 right-4'}`}
+                    className={`fixed border-black text-black text-4xl rounded-full cursor-pointer z-10 ${loc === "homepage" ? 'bottom-24 right-4' : 'bottom-4 right-4'}`}
                 >
                     <div className="w-12 h-12 flex items-center justify-center rounded-full bg-black text-white text-3xl">
                         &uarr;
