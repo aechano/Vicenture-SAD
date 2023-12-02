@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 
 // Component for Layer 1 and Layer 2 content
-const Layer12Content = ({ name, position, number, file, setName, setPosition, setNumber, setFile }) => (
+const Layer12Content = ({ name, position, number, file, comm, setName, setPosition, setNumber, setFile, setComm }) => (
     <div className='mt-10'>
         <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
             Name
@@ -40,7 +40,9 @@ const Layer12Content = ({ name, position, number, file, setName, setPosition, se
                 id="messageDescription"
                 rows="6"
                 className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
-                placeholder="Health Officer, Community Awareness, Sanitary, Education"
+                placeholder="Please put a comma to indicate their individuality. For example: Health Officer, Community Awareness, Sanitary, Education"
+                value={comm}
+                onChange={(e) => setComm(e.target.value)}
             />
         </div>
 
@@ -66,115 +68,130 @@ const Layer12Content = ({ name, position, number, file, setName, setPosition, se
             id="file"
             accept='image/png, image/jpeg'
             name="file"
-            value={file}
-            onChange={(e) => setFile(e.target.value)}
+            onChange={(e) => setFile(e.target.files[0])}
             className="mt-1 p-2 h-14 w-80 border border-lgu-green rounded-md w-l focus:outline-none focus:border-lgu-green"
         />
     </div>
 );
 
-const Layer34Content = ({ name, position, number, file, setName, setPosition, setNumber, setFile, pageIndex, setPageIndex }) => (
-    <div className='mt-10'>
+function Layer34Content({ name, position, number, file, comm, setName, setPosition, setNumber, setFile, setComm, pageIndex, setPageIndex }) {
+    const hiddenFileInput = useRef(null);
+    
+    useEffect(() => {
+        console.log(file[pageIndex].name)
+        hiddenFileInput.current.value = file[pageIndex].name?"":"";
+    }, [file]);
+    return (
         <div className='mt-10'>
-            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                Name
-            </label>
-            <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-                <input
-                    required
-                    type="text"
-                    className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                    id="name"
-                    placeholder="John Doe"
-                    value={name[pageIndex]}
-                    onChange={(e) => {
-                        var newNames = [...name]
-                        newNames[pageIndex] = e.target.value;
-                        setName(newNames);
+            <div className='mt-10'>
+                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                    Name
+                </label>
+                <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
+                    <input
+                        required
+                        type="text"
+                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                        id="name"
+                        placeholder="John Doe"
+                        value={name[pageIndex]}
+                        onChange={(e) => {
+                            var newNames = [...name]
+                            newNames[pageIndex] = e.target.value;
+                            setName(newNames);
                         }} />
-            </div>
+                </div>
 
-            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                Position
-            </label>
-            <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-                <input
-                    required
-                    type="text"
-                    className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                    id="pos"
-                    placeholder="Position"
-                    value={position[pageIndex]}
-                    onChange={(e) => {
-                        var newPosition = [...position]
-                        newPosition[pageIndex] = e.target.value;
-                        setPosition(newPosition);
-                        }} /> 
-            </div>
+                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                    Position
+                </label>
+                <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
+                    <input
+                        required
+                        type="text"
+                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                        id="pos"
+                        placeholder="Position"
+                        value={position[pageIndex]}
+                        onChange={(e) => {
+                            var newPosition = [...position]
+                            newPosition[pageIndex] = e.target.value;
+                            setPosition(newPosition);
+                        }} />
+                </div>
 
-            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                Commitee
-            </label>
-            <div>
-                <textarea
-                    id="messageDescription"
-                    rows="6"
-                    className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
-                    placeholder="Health Officer, Community Awareness, Sanitary, Education"
-                    onChange={(e) => {
-                        var newComm = [...comm]
-                        newNames[pageIndex] = e.target.value;
-                        setName(newNames);
+                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                    Commitee
+                </label>
+                <div>
+                    <textarea
+                        id="messageDescription"
+                        rows="6"
+                        className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
+                        placeholder="Health Officer, Community Awareness, Sanitary, Education"
+                        value={comm[pageIndex]}
+                        onChange={(e) => {
+                            var newComm = [...comm]
+                            newComm[pageIndex] = e.target.value;
+                            setComm(newComm);
                         }}
+                    />
+                </div>
+
+                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                    Contact Number
+                </label>
+                <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
+                    <input
+                        required
+                        type="text"
+                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
+                        id="pos"
+                        placeholder="09123456789"
+                        value={number[pageIndex]}
+                        onChange={(e) => {
+                            var newNumber = [...number]
+                            newNumber[pageIndex] = e.target.value;
+                            setNumber(newNumber);
+                        }} />
+                </div>
+
+                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                    Upload File
+                </label>
+                <input
+                    type="file"
+                    ref={hiddenFileInput}
+                    id="file"
+                    accept='image/png, image/jpeg'
+                    name="file"
+                    onChange={(e) => {
+                        var newFile = [...file]
+                        newFile[pageIndex] = e.target.files[0];
+                        setFile(newFile);
+                    }}
+                    className="mt-1 p-2 h-14 w-80 border border-lgu-green rounded-md w-l focus:outline-none focus:border-lgu-green"
                 />
             </div>
-
-            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                Contact Number
-            </label>
-            <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-                <input
-                    required
-                    type="text"
-                    className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                    id="pos"
-                    placeholder="09123456789"
-                    value={number[pageIndex]}
-                    onChange={(e) => setNumber(e.target.value)} />
+            {/* Navigation for Layer 3 and Layer 4 */}
+            <div className="flex justify-between mt-4">
+                <button
+                    onClick={() => setPageIndex((prev) => Math.max(prev - 1, 0))}
+                    className="bg-lgu-green text-white px-4 py-2 rounded-md"
+                >
+                    Prev
+                </button>
+                <span>{pageIndex + 1}/3</span>
+                <button
+                    onClick={() => setPageIndex((prev) => Math.min(prev + 1, 2))}
+                    className="bg-lgu-green text-white px-4 py-2 rounded-md"
+                >
+                    Next
+                </button>
             </div>
-
-            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                Upload File
-            </label>
-            <input
-                type="file"
-                id="file"
-                accept='image/png, image/jpeg'
-                name="file"
-                value={file[pageIndex]}
-                onChange={(e) => setFile(e.target.value)}
-                className="mt-1 p-2 h-14 w-80 border border-lgu-green rounded-md w-l focus:outline-none focus:border-lgu-green"
-            />
         </div>
-
-        {/* Navigation for Layer 3 and Layer 4 */}
-        <div className="flex justify-between mt-4">
-            <button
-                onClick={() => setPageIndex((prev) => Math.max(prev - 1, 0))}
-                className="bg-lgu-green text-white px-4 py-2 rounded-md"
-            >
-                Prev
-            </button>
-            <span>{pageIndex + 1}/3</span>
-            <button
-                onClick={() => setPageIndex((prev) => Math.min(prev + 1, 2))}
-                className="bg-lgu-green text-white px-4 py-2 rounded-md"
-            >
-                Next
-            </button>
-        </div>
-    </div>
-);
+    );
+}
 
 export default function AdminElectedOfficials() {
     const [selectedLayer, setSelectedLayer] = useState(null);
@@ -185,18 +202,21 @@ export default function AdminElectedOfficials() {
     const [position1, setPosition1] = useState('');
     const [number1, setNumber1] = useState('');
     const [file1, setFile1] = useState('');
+    const [comm1, setComm1] = useState('');
 
     // States for Layer 2
     const [name2, setName2] = useState('');
     const [position2, setPosition2] = useState('');
     const [number2, setNumber2] = useState('');
     const [file2, setFile2] = useState('');
+    const [comm2, setComm2] = useState('');
 
     // States for Layer 3
     const [name3, setName3] = useState(['', '', '']);
     const [position3, setPosition3] = useState(['', '', '']);
     const [number3, setNumber3] = useState(['', '', '']);
     const [file3, setFile3] = useState(['', '', '']);
+    const [comm3, setComm3] = useState('');
 
     // Page index for Layer 3 and 4
     const [pageIndex, setPageIndex] = useState(0);
@@ -260,10 +280,13 @@ export default function AdminElectedOfficials() {
                         position={position1}
                         number={number1}
                         file={file1}
+                        comm={comm1}
                         setName={setName1}
                         setPosition={setPosition1}
                         setNumber={setNumber1}
                         setFile={setFile1}
+                        setComm={setComm1}
+
                     />
                 )}
 
@@ -273,10 +296,12 @@ export default function AdminElectedOfficials() {
                         position={position2}
                         number={number2}
                         file={file2}
+                        comm={comm2}
                         setName={setName2}
                         setPosition={setPosition2}
                         setNumber={setNumber2}
                         setFile={setFile2}
+                        setComm={setComm2}
                     />
                 )}
 
@@ -286,12 +311,14 @@ export default function AdminElectedOfficials() {
                         position={position3}
                         number={number3}
                         file={file3}
+                        comm={comm3}
                         setName={setName3}
                         setPosition={setPosition3}
                         setNumber={setNumber3}
                         setFile={setFile3}
                         pageIndex={pageIndex}
                         setPageIndex={setPageIndex}
+                        setComm={setComm3}
                     />
                 )}
             </div>
