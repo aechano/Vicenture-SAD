@@ -527,7 +527,7 @@ export default function Services() {
 
     return (
         <>
-            <Banner bannerType="common" src={require("../../res/img/LGU-PERS.jpg")} alt="LGU" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+            <Banner bannerType="common" src={require("../../res/img/i-love-sv.png")} alt="LGU" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
                 <p>Services</p>
             </Banner>
 

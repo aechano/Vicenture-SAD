@@ -36,13 +36,13 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
         setModalOpen(false);
     };
 
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         setCurrentDate(new Date());
-    //     }, 1000); // Update every second
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentDate(new Date());
+        }, 1000); // Update every second
 
-    //     return () => clearInterval(intervalId); // Cleanup on component unmount
-    // }, []);
+        return () => clearInterval(intervalId); // Cleanup on component unmount
+    }, []);
 
     const formattedDate = currentDate.toLocaleDateString(undefined, {
         month: 'long',
@@ -110,7 +110,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                                         <div className="text-5xl font-bold">{currentDate.getDate()}</div>
                                         <div className="text-sm">Current Day</div>
                                         <div className="text-lg mt-2">
-                                            {currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit'})}
+                                            {currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit'})}
                                         </div>
                                     </div>
                                 </button>
@@ -120,7 +120,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                         </div>
                         <div className="lg:flex-1 pb-4">
                             <video class="w-full h-full p-4" autoPlay loop controls muted>
-                                <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
+                                <source src={require("./../res/vid/san-vicente.mp4")} type="video/mp4" />
                             </video>
                         </div>
                     </div>

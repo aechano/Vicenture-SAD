@@ -11,7 +11,7 @@ export default function SanVicenteTourism() {
     <div >
       <div className='relative inline-block'>
         <Banner
-          src={require("../../../res/img/LGU-PERS.jpg")}
+          src={require("../../../res/img/i-love-sv.png")}
           alt="Image of San Vicente LGU Municipal Building"
           searchBar={false}
           bannerType="special"
