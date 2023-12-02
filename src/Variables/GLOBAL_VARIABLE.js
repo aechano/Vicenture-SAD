@@ -102,6 +102,8 @@ const API = {
     addMunProfile: SERVER_ADDRESS + ADMIN + "/add-mun_profile",
     viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile",
     publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
+    analyticsWebpageVisit: SERVER_ADDRESS + PUBLIC + "/analytics/webpage_visit",
+    analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics"
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

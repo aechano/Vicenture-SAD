@@ -60,7 +60,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     return (
         <div>
             {/* Hero Section */}
-            <div className="w-full object-cover h-screen lg:h-auto">
+            <div>
                 <CarouselComponent images={images} />
                 {/* <img src={require("./../res/img/LGU-PERS.jpg")}/> */}
             </div>

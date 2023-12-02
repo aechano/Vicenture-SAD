@@ -4,11 +4,13 @@ import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router';
 
-export default function Profile({ userType }) {
+export default function Profile() {
+    const [userType, setUserType] = useState(USER_TYPES.Guest)
     const navigate = useNavigate()
     var token = Cookies.get("token");
     if (token) {
         var payload = jwtDecode(token);
+        setUserType(payload.accountType);
     } else {
         navigate(PATH_NAME.Home);
     }

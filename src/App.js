@@ -34,7 +34,6 @@ import Transparency from './pages/non_admin_pages/Transparency';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
-import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
 import Page404 from './pages/Accounts/ErrorPages/Page404';
 import Page403 from './pages/Accounts/ErrorPages/Page403';
@@ -65,13 +64,8 @@ import AdminSportsTourismArticles from './pages/AdminPages/AdminPages/AdminSport
 import AdminGeneralArticles from './pages/AdminPages/AdminPages/AdminGeneralArticles';
 
 function App() {
-    const [userType, setUserType] = useState(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
-
+    const [userType, setUserType] = useState(USER_TYPES.Guest);
     const [surveyPopup, setSurveyPopup] = useState(true);
-
-    window.addEventListener('storage', () => {
-        setUserType(localStorage.getItem("accountType") ? localStorage.getItem("accountType") : USER_TYPES.Guest);
-    })
 
     function updateUserType() {
         var token = Cookies.get("token");
@@ -83,7 +77,7 @@ function App() {
         }
     }
 
-    useEffect(() => { updateUserType() });
+    useEffect(() => { updateUserType() }, []);
     window.addEventListener('cookies', () => { updateUserType() });
 
     return (
@@ -107,36 +101,34 @@ function App() {
                         <Route path={PATH_NAME.TheTown.CitizensCharter} element={<CitizensCharter />} />
                         <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials />} />
 
-                        <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
+                        <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:page"} element={<PlacesToVisit />} />
+                        <Route path={PATH_NAME.Tourism.PlacesToVisitPost + "/:contentID"} element={<PlacesToVisitPost />} />
 
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit} element={<PlacesToVisit userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisit + "/:page"} element={<PlacesToVisit userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.PlacesToVisitPost + "/:contentID"} element={<PlacesToVisitPost userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.Activities} element={<Activities />} />
+                        <Route path={PATH_NAME.Tourism.Activities + "/:page"} element={<Activities />} />
+                        <Route path={PATH_NAME.Tourism.ActivitiesPost + "/:contentID"} element={<ActivitiesPost />} />
 
+                        <Route path={PATH_NAME.ContactUs} element={<ContactUs />} />
+                        <Route path={PATH_NAME.Services} element={<Services />} />
 
-                        <Route path={PATH_NAME.Tourism.Activities} element={<Activities userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.Activities + "/:page"} element={<Activities userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.ActivitiesPost + "/:contentID"} element={<ActivitiesPost userType={userType} />} />
+                        <Route path={PATH_NAME.Transparency} element={<Transparency />} />
+                        <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy />} />
 
-                        <Route path={PATH_NAME.ContactUs} element={<ContactUs userType={userType} />} />
-                        <Route path={PATH_NAME.Services} element={<Services userType={userType} />} />
+                        <Route path={PATH_NAME.Survey} element={<Survey />} />
+                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage />} />
+                        <Route path={PATH_NAME.Articles} element={<Articles  />} />
+                        <Route path={PATH_NAME.Articles + "/:page"} element={<Articles />} />
+                        <Route path={PATH_NAME.ArticleContent} element={<ArticleContent />} />
 
-                        <Route path={PATH_NAME.Transparency} element={<Transparency userType={userType} />} />
-                        <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy userType={userType} />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
-                        <Route path={PATH_NAME.Survey} element={<Survey userType={userType} />} />
-                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType} />} />
-                        <Route path={PATH_NAME.Articles} element={<Articles userType={userType} />} />
-                        <Route path={PATH_NAME.Articles + "/:page"} element={<Articles userType={userType} />} />
-                        <Route path={PATH_NAME.ArticleContent} element={<ArticleContent userType={userType} />} />
-
-                        <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions userType={userType} />} />
-                        <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost userType={userType} />} />
-
-                        <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging userType={userType} />} />
-                        <Route path={PATH_NAME.Messages} element={<Messaging userType={userType} />} />
-                        <Route path={PATH_NAME.Profile} element={<Profile userType={userType} />} />
+                        <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages} element={<Messaging />} />
+                        <Route path={PATH_NAME.Profile} element={<Profile />} />
 
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType} />} />
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:page"} element={<InvestmentOpportunities userType={userType} />} />
@@ -149,11 +141,11 @@ function App() {
 
 
 
-                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
+                        <Route path={PATH_NAME.Invest.Invest + "/:type/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
 
 
-                        <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent userType={userType} />} />
-                        <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent userType={userType} />} />
+                        <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent />} />
+                        <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent />} />
                         <Route path={PATH_NAME.AddOffices} element={<Offices_Add userType={userType} />} />
 
                         <Route path={PATH_NAME.AdminPages.Admin} element={<Admin />}>
