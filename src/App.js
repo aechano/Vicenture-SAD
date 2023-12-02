@@ -34,7 +34,6 @@ import Transparency from './pages/non_admin_pages/Transparency';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
-import SurveyPage from './pages/non_admin_pages/SurveyPage';
 import { useEffect, useState } from 'react';
 import Page404 from './pages/Accounts/ErrorPages/Page404';
 import Page403 from './pages/Accounts/ErrorPages/Page403';
@@ -126,7 +125,6 @@ function App() {
                         <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy userType={userType} />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey userType={userType} />} />
-                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage userType={userType} />} />
                         <Route path={PATH_NAME.Articles} element={<Articles userType={userType} />} />
                         <Route path={PATH_NAME.Articles + "/:page"} element={<Articles userType={userType} />} />
                         <Route path={PATH_NAME.ArticleContent} element={<ArticleContent userType={userType} />} />
@@ -149,8 +147,7 @@ function App() {
 
 
 
-                        <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
-
+                        <Route path={PATH_NAME.Invest.Invest + "/:type/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
 
                         <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent userType={userType} />} />
                         <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent userType={userType} />} />

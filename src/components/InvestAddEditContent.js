@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
-import { ImEye } from 'react-icons/im';
+import { ImEye, ImPlus,ImCross } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
-
 
 function InvestAddEditContent({ title, type, contentBody }) {
     const [selectedFile, setSelectedFile] = useState("No image chosen");
 
     const [content, setContent] = useState(contentBody === undefined ? '' : contentBody.content);
+    const [additionalContents, setAdditionalContents] = useState(['']); // Initialize with one text area
 
+    const addContentArea = () => {
+        setAdditionalContents([...additionalContents, '']);
+    };
+    const removeContentArea = (index) => {
+        const updatedContents = [...additionalContents];
+        updatedContents.splice(index, 1);
+        setAdditionalContents(updatedContents);
+    };
+    
 
 return (
     <div className='flex flex-col items-center justify-center p-20 min-h-screen'>
         <div className="mx-auto flex flex-col items-center w-full max-w-7xl mb-10 border-2 border-lgu-green rounded-2xl">
             <div className="text-2xl font-bold bg-lgu-green text-white p-4 w-full rounded-tl-xl rounded-tr-xl">{title}</div>
+            <button
+          className="absolute top-0 right-0 p-2 text-white cursor-pointer"
+          onClick={() => removeContentArea(additionalContents.length - 1)}
+        >
+          <ImCross />
+        </button>
             <div className="w-48 h-48 border-4 border-lgu-green rounded-xl mb-2 mt-4">
                 <img src={require("./../res/img/camera.png")} alt="camera icon" className="w-full h-full rounded-xl" />
             </div>
@@ -60,6 +75,9 @@ return (
                     </div>
                 </div>
                 <div>
+                     {/* Additional text area */}
+                
+
                     <div className="w-full mb-4 border border-gray-200 rounded-lg dark:border-gray-600">
                         <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                             <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600">
@@ -143,6 +161,39 @@ return (
                         </div>
                     </div>
                 </div>
+                {/* Render additional text areas dynamically */}
+                {additionalContents.map((value, index) => (
+                    <div key={index} className="w-full mb-4 border border-gray-200 rounded-lg dark:border-gray-600">
+                        <label htmlFor={`additional-content-${index}`} className="sr-only">Additional Content</label>
+                        <textarea
+                            id={`additional-content-${index}`}
+                            rows="8"
+                            className="block w-full p-2 text-sm text-gray-800 bg-white border-0 focus:ring-0 dark:text-black dark:placeholder-gray-400"
+                            placeholder="Write additional content..."
+                            value={value}
+                            onChange={(e) => {
+                                const updatedContents = [...additionalContents];
+                                updatedContents[index] = e.target.value;
+                                setAdditionalContents(updatedContents);
+                            }}
+                        ></textarea>
+                    <button
+                    className="absolute top-0 right-0 p-2 text-gray-500 cursor-pointer"
+                    onClick={() => removeContentArea(index)}
+                    >
+                    <ImCross />
+                    </button>
+                    </div>
+                ))}
+
+                <button
+                    type="button"
+                    onClick={addContentArea}
+                    className="flex items-center space-x-2 text-lgu-green cursor-pointer"
+                >
+                    <ImPlus />
+                    <span>Add Another Text Area</span>
+                </button>
                 <div className='flex justify-between pb-5'>
                     <NavLink className='flex items-center'>
                         <ImEye />
