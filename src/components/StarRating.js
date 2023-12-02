@@ -1,9 +1,14 @@
 // StarRating.js
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const StarRating = ({ totalStars = 5, onRatingChange }) => {
-    const [rating, setRating] = useState(0);
+const StarRating = ({ totalStars = 5, onRatingChange, initialStars }) => {
+    const [rating, setRating] = useState();
+
+    useEffect(() => {
+        setRating(initialStars.rating);
+    }, [initialStars])
+    
 
     const handleClick = (selectedRating) => {
         // If the same star is clicked again, reset the rating

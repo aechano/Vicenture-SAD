@@ -11,7 +11,7 @@ import { jwtDecode } from 'jwt-decode';
 
 export default function PlacesToVisitPost() {
     const { contentID } = useParams();
-    const [userRating, setUserRating] = useState(0);
+    const [userRating, setUserRating] = useState({});
     const [email, setEmail] = useState();
     const [contentRating, setContentRating] = useState({ rating: 0.0, votes: 0 });
     const [mainImage, setMainImage] = useState({ pic: null, alt: null });
@@ -75,16 +75,36 @@ export default function PlacesToVisitPost() {
             var payload = jwtDecode(token);
             setEmail(payload.sub);
         }
-        
-        axios.get(API.getMyContentRating(contentID), {}, { headers: { "Authorization": `Bearer ${Cookies.get("token")}` } })
+
+        axios.get(API.getMyContentRating(contentID), {
+            headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+            withCredentials: true
+        })
             .then((response) => response.data)
             .then((data) => {
-                contentRating(data);
+                console.log(data);
+                setUserRating(data);
             })
-        }, [])
+    }, [])
 
     const handleRatingChange = (newRating) => {
-        setUserRating(newRating);
+        if (userRating.rating === 0) {
+            var ratingSum = (contentRating.rating * contentRating.votes) + newRating;
+            var aveRating = ratingSum / (contentRating.votes + 1)
+            setContentRating({ contentID: contentID, rating: aveRating, votes: contentRating.votes + 1 });
+        } else {
+            if (newRating === 0) {
+                var ratingSum = (contentRating.rating * contentRating.votes) + newRating - userRating.rating;
+                var aveRating = ratingSum / (contentRating.votes - 1)
+                setContentRating({ contentID: contentID, rating: aveRating, votes: contentRating.votes - 1 });
+            } else {
+                var ratingSum = (contentRating.rating * contentRating.votes) + newRating - userRating.rating;
+                var aveRating = ratingSum / contentRating.votes
+                setContentRating({ contentID: contentID, rating: aveRating, votes: contentRating.votes });
+            }
+        }
+        setUserRating({ contentID: contentID, rating: newRating, votes: 1 });
+
         if (newRating) {
             axios.post(API.setContentRating, {
                 "email": email,
@@ -115,7 +135,7 @@ export default function PlacesToVisitPost() {
                     <p className='text-left mt-9 text-lg font-bold ml-1'>Rate it!</p>
                 </div>
                 {/* Use the StarRating component */}
-                <StarRating totalStars={5} onRatingChange={handleRatingChange} />
+                <StarRating totalStars={5} onRatingChange={handleRatingChange} initialStars={userRating} />
                 <p>{contentRating.rating} stars / {contentRating.votes} votes</p>
                 <CommentingSystem content={contentID} />
             </div>
