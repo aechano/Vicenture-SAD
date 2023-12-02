@@ -34,7 +34,7 @@ export default function Banner(props) {
             <div className={"w-full relative overflow-hidden " + (isCommonBanner ? "h-80" : "h-full")}>
                 {/*Displays the image from local storage. Will show Municipal Office as default image.*/}
                 <img
-                    src={props.src !== undefined ? props.src : require("./../res/img/LGU-PERS.jpg")}
+                    src={props.src !== undefined ? props.src : require("./../res/img/i-love-sv.png")}
                     alt={props.alt !== undefined ? props.alt : "Municipal Office"}
                     className={"w-full object-cover " + (isCommonBanner ? "h-80" : "h-screen lg:h-auto")}
                 />

@@ -114,7 +114,7 @@ export default function Activities() {
 
     return (
         <>
-            <Banner bannerType="common" src={require("../../../res/img/LGU-PERS.jpg")} alt="LGU" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }]}>
+            <Banner bannerType="common" src={require("../../../res/img/i-love-sv.png")} alt="LGU" searchBar={false} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }, { title: "Tourism" }]}>
                 <p>Activities</p>
             </Banner>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">

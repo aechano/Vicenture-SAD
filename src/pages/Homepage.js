@@ -120,7 +120,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                         </div>
                         <div className="lg:flex-1 pb-4">
                             <video class="w-full h-full p-4" autoPlay loop controls muted>
-                                <source src="https://tecdn.b-cdn.net/img/video/Sail-Away.mp4" type="video/mp4" />
+                                <source src={require("./../res/vid/san-vicente.mp4")} type="video/mp4" />
                             </video>
                         </div>
                     </div>
