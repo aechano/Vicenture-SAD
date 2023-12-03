@@ -119,12 +119,12 @@ export default function ElectedOfficials() {
 
                     <div className='md:flex md:flex-row md:space-x-5 lg:space-x-0 space-y-2 md:space-y-0 lg:space-y-2 lg:block pb-2  '>
                         {/* Container 1 */}
-                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  border-2">
+                        <div className="block w-[18rem] rounded-lg bg-white mb-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
                                     className="rounded-t-lg object-cover w-96 h-52"
-                                    src={require("../../../res/img/mayor.JPG")}
-                                    alt="Mayor"
+                                    src={require("../../../res/img/Hon-Mayor-Ma-Jhoanna-C-Ong.JPG")}
+                                    alt="Hon. Mayor Ma. Jhoanna C. Ong"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -138,17 +138,17 @@ export default function ElectedOfficials() {
                         </div>
 
                         {/* Container 3 */}
-                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border-2">
+                        <div className="block w-[18rem] rounded-lg bg-white mb-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/tempOfficials.png")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-96 h-52"
+                                    src={require("../../../res/img/Hon-Vice-Mayor-Vivian-M-Villamor.JPG")}
+                                    alt="Hon. Vice Mayor Vivian M. Villamor"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
                                 <p className="text-lg text-black text-center font-bold">
-                                    Angelo M. Echano
+                                    Vivian M. Villamor
                                 </p>
                                 <p className="text-sm text-black text-center font-bold">
                                     Vice Mayor
@@ -160,21 +160,21 @@ export default function ElectedOfficials() {
 
 
                     {/* Containers 4, 5, and 6 (Horizontally aligned) */}
-                    <div className="block md:flex md:flex-row md:flex-wrap md:justify-center lg:flex -m-2 ">
+                    <div className="block md:flex md:flex-row md:flex-wrap md:justify-center lg:flex -m-2 mb-5 ">
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/tempOfficials.png")}
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Luisito-G-Bobis.JPG")}
                                     alt=""
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
                                 <p className="text-lg text-black text-center font-bold">
-                                    Angelo M. Echano
+                                    Luisito G. Bobis
                                 </p>
                                 <p className="text-sm text-black text-center font-bold">
-                                    Mayor
+                                    Councilor
                                 </p>
                             </div>
                         </div>
@@ -182,17 +182,17 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/tempOfficials.png")}
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Nestor-C-Gonzales.JPG")}
                                     alt=""
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
                                 <p className="text-lg text-black text-center font-bold">
-                                    Angelo M. Echano
+                                    Nestor C. Gonzales
                                 </p>
                                 <p className="text-sm text-black text-center font-bold">
-                                    Vice Mayor
+                                    Councilor
                                 </p>
                             </div>
                         </div>
@@ -200,21 +200,154 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-52 h-52"
-                                    src={require("../../../res/img/tempOfficials.png")}
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Percival-K-Palma.JPG")}
                                     alt=""
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
                                 <p className="text-lg text-black text-center font-bold">
-                                    Angelo M. Echano
+                                    Percival K. Palma
                                 </p>
                                 <p className="text-sm text-black text-center font-bold">
-                                    Vice Mayor
+                                    Councilor
                                 </p>
                             </div>
                         </div>
                     </div>
+
+                    {/* Layer 4 */}
+                    <div className="block md:flex md:flex-row md:flex-wrap md:justify-center lg:flex -m-2 mb-5 ">
+                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Emmanuel-R-Opeda.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Emmanuel R. Opeda
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Thamar-P-Belista.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Thamar P. Belista
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Analet-G-Villamin.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Analet G. Villamin
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Layer 5 */}
+                    <div className="block md:flex md:flex-row md:flex-wrap md:justify-center lg:flex -m-2 mb-5">
+                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Mercy-L-Magana.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Mercy L. Magana
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Elmer-P-San-Juan.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Elmer P. San Juan
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Alberto-E-Mera.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Albert E. Mera
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Layer 6 */}
+                    <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
+                            <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
+                                <img
+                                    className="rounded-t-lg object-fill w-96 h-52"
+                                    src={require("../../../res/img/Hon-Councilor-Aldrin-R-Alarde.JPG")}
+                                    alt=""
+                                />
+                            </div>
+                            <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
+                                <p className="text-lg text-black text-center font-bold">
+                                    Aldrin R. Alarde
+                                </p>
+                                <p className="text-sm text-black text-center font-bold">
+                                    Councilor
+                                </p>
+                            </div>
+                        </div>
                 </div>
 
 
