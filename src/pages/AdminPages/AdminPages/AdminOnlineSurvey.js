@@ -1,143 +1,356 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import axios from 'axios';
+import { API } from '../../../Variables/GLOBAL_VARIABLE';
+import Cookies from 'js-cookie';
 
-const AdminOnlineSurvey = () => {
-  const [surveyTitle, setSurveyTitle] = useState('');
-  const [surveyDescription, setSurveyDescription] = useState('');
-  const [customFormsLink, setCustomFormsLink] = useState('');
-  const [surveys, setSurveys] = useState([]);
-  const [editIndex, setEditIndex] = useState(null);
-  
+// Link input
+function LinkInput({ onChange }) {
+  return (
+    <div className="mt-4">
+      <label htmlFor="url" className="block text-sm font-medium text-lgu-green">
+        Enter URL
+      </label>
+      <input
+        type="text"
+        id="url"
+        name="url"
+        placeholder="Enter URL"
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-1 p-2 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+      />
+    </div>
+  );
+}
+
+// ItemSidebar component for adding and selecting items
+function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
+  return (
+    <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
+      <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
+      <ul>
+        {items.length > 0 ? (
+          items.map((item, index) => (
+            <li key={index} className="cursor-pointer text-black mb-2 w-full flex">
+              <span onClick={() => onItemSelected(item)} className="flex-1 hover:underline">
+                {item}
+              </span>
+              <span onClick={() => onItemRemove(item)} className="justify-right hover:text-red-500">
+                x
+              </span>
+            </li>
+          ))
+        ) : (
+          <li className="text-gray-600 py-10">No items to show</li>
+        )}
+      </ul>
+
+      <div className="flex w-full justify-center">
+        <button
+          onClick={onAddItem}
+          className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
+        >
+          <FaPlus className="mr-1" /> Add
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Main Survey content component
+export default function AdminOnlineSurvey() {
+  const [itemSidebarItems, setItemSidebarItems] = useState([]);
+  const [items, setItems] = useState([]);
+
+  const [customItemName, setCustomItemName] = useState('');
+  const [linkInput, setLinkInput] = useState('');
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [removeItemModal, setRemoveItemModal] = useState(false);
+
+  const [isAdding, setIsAdding] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const switchMode = (mode) => {
+    setIsAdding(false);
+    setIsEditing(false);
+    if (mode === 'adding') {
+      setIsAdding(true);
+    } else if (mode === 'editing') {
+      setIsEditing(true);
+    }
+  };
 
   useEffect(() => {
-    // Load surveys from localStorage on component mount
-    const savedSurveys = JSON.parse(localStorage.getItem('surveys')) || [];
-    setSurveys(savedSurveys);
+    axios.get(API.postSurvey, {})
+      .then((response) => response.data)
+      .then((data) => {
+        console.log(data);
+        setItems(data);
+        var newItemSidebarItems = [];
+        for (var profile of data) {
+          newItemSidebarItems.push(profile.profileName);
+        }
+        setItemSidebarItems(newItemSidebarItems);
+      });
   }, []);
 
-  useEffect(() => {
-    // Save surveys to localStorage whenever surveys state changes
-    localStorage.setItem('surveys', JSON.stringify(surveys));
-  }, [surveys]);
+  const handleAddItem = () => {
+    resetInputFields();
+    switchMode('adding');
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (editIndex !== null) {
-      // Edit existing survey
-      const updatedSurveys = [...surveys];
-      updatedSurveys[editIndex] = { surveyTitle, surveyDescription, customFormsLink };
-      setSurveys(updatedSurveys);
-      setEditIndex(null);
-    } else {
-      // Add new survey
-      setSurveys([...surveys, { surveyTitle, surveyDescription, customFormsLink }]);
+  const handleSaveAdd = () => {
+    if (itemSidebarItems.includes(customItemName.trim())) {
+      handleFeedbackMessage(customItemName.trim() + ' already exists.');
+      return;
     }
 
-    // Clear form fields
-    setSurveyTitle('');
-    setSurveyDescription('');
-    setCustomFormsLink('');
+    if (customItemName.trim() === '') {
+      handleFeedbackMessage('Please enter a valid item name.');
+      return;
+    }
+
+    if (!linkInput) {
+      handleFeedbackMessage('Please enter a valid URL.');
+      return;
+    }
+
+    setItemSidebarItems([...itemSidebarItems, customItemName]);
+
+    const newItem = { title: customItemName, url: linkInput };
+
+    axios.post(API.getAllSurveys, newItem, {
+      headers: {
+        'Authorization': `Bearer ${Cookies.get('token')}`,
+        'Content-Type': 'application/json', // Set content type to JSON
+      },
+    })
+      .then((response) => response.data)
+      .then((data) => {
+        setItems([...items, data]);
+      })
+      .catch((error) => {
+        console.error('Error in Axios request:', error);
+        // Handle the error, e.g., show an error message to the user
+      });
+
+    resetInputFields();
+    handleFeedbackMessage('Item added successfully!');
   };
 
-  const handleEdit = (index) => {
-    // Set form fields with the values of the selected survey for editing
-    const selectedSurvey = surveys[index];
-    setSurveyTitle(selectedSurvey.surveyTitle);
-    setSurveyDescription(selectedSurvey.surveyDescription);
-    setCustomFormsLink(selectedSurvey.customFormsLink);
-    setEditIndex(index);
+  const handleSaveEdit = () => {
+    var hasChanges = false;
+
+    if (selectedItem.url !== linkInput) {
+      hasChanges = true;
+    }
+
+    if (selectedItem.title !== customItemName) {
+      hasChanges = true;
+    }
+
+    if (hasChanges) {
+      const formData = {
+        profileID: selectedItem.profileID,
+        title: customItemName,
+        url: linkInput,
+      };
+
+      axios.post(API.editProfile, formData, {
+        headers: {
+          'Authorization': `Bearer ${Cookies.get('token')}`,
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.data)
+        .then((data) => {
+          var newItems = [];
+          for (var item of items) {
+            newItems.push(item.profileID === selectedItem.profileID ? data : item);
+          }
+          setItems(newItems);
+
+          var newSidebarItems = [];
+          for (var item of itemSidebarItems) {
+            newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+          }
+          setItemSidebarItems(newSidebarItems);
+        });
+
+      handleFeedbackMessage('Changes saved!');
+      handleCancelMode();
+    } else {
+      handleFeedbackMessage('No changes available.');
+      handleCancelMode();
+    }
   };
 
-  const handleDelete = (index) => {
-    // Delete the selected survey
-    const updatedSurveys = surveys.filter((_, i) => i !== index);
-    setSurveys(updatedSurveys);
-    setEditIndex(null);
+  const handleCancelMode = () => {
+    switchMode('');
+    resetInputFields();
+  };
+
+  const handleFeedbackMessage = (message) => {
+    setFeedbackMessage(message);
+    setTimeout(() => {
+      setFeedbackMessage('');
+    }, 1000);
+  };
+
+  const handleEditItem = () => {
+    if (customItemName.trim() !== '') {
+      const updatedItems = itemSidebarItems.map((item) =>
+        item === selectedItem.profileName ? customItemName : item
+      );
+
+      setItemSidebarItems(updatedItems);
+      resetInputFields(); // Trigger link input reset
+
+      handleFeedbackMessage('Edited successfully!');
+    } else {
+      handleFeedbackMessage('Please enter a valid item name.');
+    }
+  };
+
+  // Function to reset input fields and feedback message
+  const resetInputFields = () => {
+    setSelectedItem(null);
+    setCustomItemName('');
+    setLinkInput('');
+  };
+
+  const handleItemSelected = (item) => {
+    console.log('Item selected:', item);
+
+    setSelectedItem(item);
+    setCustomItemName(item.title);
+    setLinkInput(item.url);
+    setFeedbackMessage('Item selected successfully!');
+    setRemoveItemModal(false); // Close the modal if it's open
   };
 
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold mb-4">Online Survey</h1>
+    <>
+      {removeItemModal ? (
+        <>
+          {/* Modal Content */}
+          <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-32 rounded-10 bg-lgu-green z-70'>
+            {/* Close Button */}
+            <button
+              className='absolute top-0 right-0 p-2 text-white cursor-pointer'
+              onClick={() => {
+                console.log('Close button clicked');
+                setRemoveItemModal(false);
+              }}
+            >
+              X
+            </button>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-lg mb-1" htmlFor="surveyTitle">
-            Survey Title:
-          </label>
-          <input
-            type="text"
-            id="surveyTitle"
-            className="border-2 border-lgu-green rounded w-full p-2"
-            placeholder="Enter survey title..."
-            value={surveyTitle}
-            onChange={(e) => setSurveyTitle(e.target.value)}
-          />
-        </div>
+            <p className='text-white p-4'>Remove item?</p>
 
-        <div className="mb-4">
-          <label className="block text-lg mb-1" htmlFor="surveyDescription">
-            Survey Description:
-          </label>
-          <textarea
-            id="surveyDescription"
-            className="border-2 border-lgu-green rounded w-full p-2"
-            placeholder="Enter survey description..."
-            value={surveyDescription}
-            onChange={(e) => setSurveyDescription(e.target.value)}
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-lg mb-1" htmlFor="customFormsLink">
-            Google Forms Link:
-          </label>
-          <input
-            type="text"
-            id="customFormsLink"
-            className="border-2 border-lgu-green rounded w-full p-2"
-            placeholder="Enter Google Forms link..."
-            value={customFormsLink}
-            onChange={(e) => setCustomFormsLink(e.target.value)}
-          />
-        </div>
-
-        <button type="submit" className="bg-lgu-green text-white p-2 rounded mt-2">
-          {editIndex !== null ? 'Update Survey' : 'Add Survey'}
-        </button>
-      </form>
-
-
-      {/* Display the list of surveys */}
-      <ul>
-        {surveys.map((survey, index) => (
-          <li key={index} className={`border-2 border-lgu-green rounded p-4 mb-4 mt-8 flex justify-between items-center ${
-            editIndex === index ? 'bg-gray-100' : '' // Add background color for the edited survey
-          }`}
-          >
-            <div>
-              <p className="text-lg font-semibold mb-2">{survey.surveyTitle}</p>
-              <p className="mb-2">{survey.surveyDescription}</p>
-              <p className="mb-2">{survey.customFormsLink}</p>
-            </div>
-            <div className="flex space-x-2">
+            <div className='p-3 text-center'>
+              {/* Yes Button */}
               <button
-                onClick={() => handleEdit(index)}
-                className="bg-lgu-green text-white p-2 rounded hover:bg-gray transition duration-300"
+                className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
+                onClick={(e) => {
+                  e.stopPropagation();
+                  var id = selectedItem.profileID;
+                  switchMode('');
+                  resetInputFields();
+                  axios.post(API.deleteProfile(id), {}, {
+                    headers: {
+                      'Authorization': `Bearer ${Cookies.get('token')}`,
+                      withCredentials: true,
+                    },
+                  })
+                    .then((response) => response.data)
+                    .then((data) => {
+                      setItems((prevItems) => prevItems.filter((item) => item.profileID !== id));
+                      setItemSidebarItems((prevItems) => prevItems.filter((item) => item !== selectedItem.profileName));
+
+                      console.log(data);
+                    });
+
+                  handleFeedbackMessage('Item deleted successfully!');
+                  setRemoveItemModal(false);
+                }}
               >
-                Edit
+                Yes
               </button>
+
+              {/* No Button */}
               <button
-                onClick={() => handleDelete(index)}
-                className="bg-red-500 text-white p-2 rounded hover:bg-red-700 transition duration-300"
+                className='bg-red-500 text-white px-4 py-2 rounded'
+                onClick={(e) => {
+                  e.stopPropagation(); // Stop the event from propagating to the overlay
+                  console.log('No button clicked');
+                  // Add your logic for "No" button action here
+                  setRemoveItemModal(false);
+                }}
               >
-                Delete
+                No
               </button>
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        </>
+      ) : null}
+      <div className='flex flex-col'>
+        {/* Title */}
+        <h1 className='text-4xl font-bold mb-2 mt-8 ml-2'>Online Survey</h1>
+
+        {/* Main content container */}
+        <div className='flex'>
+          {/* Item Sidebar */}
+          <ItemSidebar
+            items={itemSidebarItems}
+            onItemSelected={handleItemSelected}
+            onAddItem={handleAddItem}
+            onItemRemove={(item) => {
+              setRemoveItemModal(true);
+              handleItemSelected(item);
+            }}
+            onEditItem={handleEditItem}
+          />
+
+          {/* Right side for link input and preview */}
+          <div className='w-3/4 p-4'>
+            <h2 className='text-2xl font-bold mb-2 mt-8'>
+              {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.profileName : 'Item'}
+            </h2>
+            {/* Input field for custom item name */}
+            <div className='flex'>
+              <input
+                type='text'
+                value={customItemName}
+                onChange={(e) => setCustomItemName(e.target.value)}
+                placeholder={'Enter Item Name'}
+                className='mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green'
+              />
+            </div>
+
+            {/* Link Input */}
+            <LinkInput onChange={setLinkInput} />
+
+            {isAdding || isEditing ? (
+              <div className='mt-5 right-0 float-right'>
+                <button
+                  onClick={isAdding ? handleSaveAdd : handleSaveEdit}
+                  className='bg-lgu-green text-white px-6 py-3 rounded-lg'>
+                  Save {isEditing ? ' Changes' : ''}
+                </button>
+                <button onClick={handleCancelMode} className='ml-5 px-6 py-3 bg-gray-200 rounded-lg'>
+                  Cancel
+                </button>
+              </div>
+            ) : null}
+
+            {/* Feedback message */}
+            {feedbackMessage ? <p className='text-sm text-lgu-green -500 mb-4'>{feedbackMessage}</p> : null}
+          </div>
+        </div>
+      </div>
+    </>
   );
-};
-
-export default AdminOnlineSurvey
+}
