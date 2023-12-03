@@ -122,7 +122,7 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]  border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    className="rounded-t-lg object-cover w-96 h-52"
                                     src={require("../../../res/img/mayor.JPG")}
                                     alt="Mayor"
                                 />

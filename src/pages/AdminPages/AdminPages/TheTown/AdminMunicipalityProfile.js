@@ -5,8 +5,7 @@ import { API } from '../../../../Variables/GLOBAL_VARIABLE';
 import Cookies from 'js-cookie';
 
 // FileUpload component for handling file upload and preview
-function FileUpload({ onFileChange, resetFileInput, initialSelectedFile }) {
-    const [selectedFile, setSelectedFile] = useState(initialSelectedFile ? initialSelectedFile : null);
+function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selectedFile, setSelectedFile }) {
     const fileInputRef = useRef(null);
 
     const handleFileChange = (event) => {
@@ -114,9 +113,26 @@ export default function AdminMunicipalityProfile() {
         for (var itemObject of items) {
             if (itemObject.profileName === item) {
                 setSelectedItem(itemObject);
-                setSelectedFile(itemObject.pdf);
+                if (typeof itemObject.pdf === "object") {
+                    setSelectedFile(itemObject.pdf);
+                } else {
+                    const pdfName = itemObject.pdfName;
+                    const byteCharacters = atob(itemObject.pdf);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+                    // Create a File object from the Blob with the actual filename
+                    const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf' });
+                    setSelectedFile(file);
+                }
+                // Set the selected file
                 setCustomItemName(itemObject.profileName);
                 switchMode('editing');
+
             }
         }
     };
@@ -125,6 +141,7 @@ export default function AdminMunicipalityProfile() {
         axios.get(API.viewMunProfile, {})
             .then((response) => response.data)
             .then((data) => {
+                console.log(data);
                 setItems(data);
                 var newItemSidebarItems = []
                 for (var profile of data) {
@@ -160,6 +177,7 @@ export default function AdminMunicipalityProfile() {
         const formData = new FormData();
         formData.append('profileName', customItemName);
         formData.append('pdf', selectedFile);
+        formData.append('pdfName', selectedFile.name);
 
         axios.post(API.addMunProfile, formData, {
             headers: {
@@ -169,7 +187,7 @@ export default function AdminMunicipalityProfile() {
         })
             .then((response) => response.data)
             .then((data) => {
-                console.log(data);
+                setItems([...items, data])
             });
         resetInputFields();
         handleFeedbackMessage('Item added successfully!');
@@ -188,6 +206,34 @@ export default function AdminMunicipalityProfile() {
 
         if (hasChanges) {
             // TODO: save to axios
+
+            const formData = new FormData();
+            formData.append('profileID', selectedItem.profileID);
+            formData.append('profileName', customItemName);
+            formData.append('pdf', selectedFile);
+            formData.append('pdfName', selectedFile.name);
+
+            axios.post(API.editProfile, formData, {
+                headers: {
+                    'Authorization': `Bearer ${Cookies.get("token")}`,
+                    'Content-Type': 'multipart/form-data', // Important for file uploads
+                }
+            })
+                .then((response) => response.data)
+                .then((data) => {
+                    var newItems = [];
+                    for (var item of items) {
+                        newItems.push(item.profileID === selectedItem.profileID ? data : item);
+                    }
+                    setItems(newItems);
+
+                    var newSidebarItems = [];
+                    for (var item of itemSidebarItems) {
+                        newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+                    }
+                    setItemSidebarItems(newSidebarItems);
+                });
+
             handleFeedbackMessage('Changes saved!');
             handleCancelMode();
         } else {
@@ -236,14 +282,69 @@ export default function AdminMunicipalityProfile() {
         <>
             {removeItemModal ?
                 <>
-                    <div className='fixed w-80 h-32 rounded-10 bg-lgu-green z-70'>
-                        <p>Remove item?</p>
+                    {/* Modal Content */}
+                    <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-32 rounded-10 bg-lgu-green z-70'>
+                        {/* Close Button */}
+                        <button
+                            className='absolute top-0 right-0 p-2 text-white cursor-pointer'
+                            onClick={() => {
+                                console.log('Close button clicked');
+                                setRemoveItemModal(false);
+                            }}
+                        >
+                            X
+                        </button>
+
+                        <p className='text-white p-4'>Remove item?</p>
+
+                        <div className='p-3 text-center'>
+                            {/* Yes Button */}
+                            <button
+                                className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    var id = selectedItem.profileID;
+                                    switchMode("");
+                                    resetInputFields();
+                                    axios.post(API.deleteProfile(id), {}, {
+                                        headers: {
+                                            'Authorization': `Bearer ${Cookies.get("token")}`,
+                                            withCredentials: true
+                                        }
+                                    })
+                                        .then((response) => response.data)
+                                        .then((data) => {
+                                            setItems(prevItems => prevItems.filter(item => item.profileID !== id));
+                                            setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.profileName));
+
+                                            console.log(data)
+                                        });
+
+                                    handleFeedbackMessage('Item deleted successfully!');
+                                    setRemoveItemModal(false);
+                                }}
+                            >
+                                Yes
+                            </button>
+
+                            {/* No Button */}
+                            <button
+                                className='bg-red-500 text-white px-4 py-2 rounded'
+                                onClick={(e) => {
+                                    e.stopPropagation(); // Stop the event from propagating to the overlay
+                                    console.log('No button clicked');
+                                    // Add your logic for "No" button action here
+                                    setRemoveItemModal(false);
+                                }}
+                            >
+                                No
+                            </button>
+                        </div>
+
                     </div>
-                    <div
-                        className='fixed top-24 left-0 right-0 bottom-0 bg-black opacity-50 z-60'
-                        onClick={() => { setRemoveItemModal(false) }}
-                    />
                 </>
+
+
                 :
                 null}
             <div className="flex flex-col">
@@ -257,8 +358,9 @@ export default function AdminMunicipalityProfile() {
                         items={itemSidebarItems}
                         onItemSelected={handleItemSelected}
                         onAddItem={handleAddItem}
-                        onItemRemove={() => {
+                        onItemRemove={(item) => {
                             setRemoveItemModal(true);
+                            handleItemSelected(item);
                         }}
                         onEditItem={handleEditItem}
                     />
@@ -281,7 +383,11 @@ export default function AdminMunicipalityProfile() {
 
                         {/* File Upload with Preview */}
                         <div className="mt-4">
-                            <FileUpload onFileChange={setSelectedFile} resetFileInput={resetFileInput} />
+                            <FileUpload
+                                onFileChange={setSelectedFile}
+                                resetFileInput={resetFileInput}
+                                selectedFile={selectedFile}
+                                setSelectedFile={setSelectedFile} />
                         </div>
 
                         {

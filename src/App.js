@@ -5,7 +5,6 @@ import SignUp from './pages/Accounts/SignUp';
 import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
-import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
