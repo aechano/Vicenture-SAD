@@ -25,14 +25,14 @@ export default function InvestContent({ data }) {
                             src={data.source}
                             alt={data.alt} />
                     </div>
-                    <NavLink to={data.ref} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
+                    <div>
 
                         <div className="p-6">
                             <div className='flex justify-between'>
-                                <h5
+                                <NavLink to={data.ref} onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
                                     className="mb-2 text-3xl font-medium leading-tight text-neutral-50">
                                     {data.title}
-                                </h5>
+                                </NavLink >
                                 <div className='relative' onClick={(event) => event.stopPropagation()}>
                                     <div className='text-2xl' onClick={toggleDropdown}>
                                         <HiDotsHorizontal className="text-white" />
@@ -41,13 +41,10 @@ export default function InvestContent({ data }) {
                                         className={'absolute top-5 -right-2 z-10 block w-32 bg-white border border-gray-300 rounded-lg shadow py-2 px-4' + (isDropdownOpen ? '' : ' hidden')}
                                     >
                                         <div className="mb-2">
-                                            <NavLink to="#">Report</NavLink>
+                                            <NavLink to="#" className={"cursor-pointer"}>Edit</NavLink> {/* Add an "Edit" link */}
                                         </div>
-                                        <div className="mb-2">
-                                            <NavLink to="#">Edit</NavLink> {/* Add an "Edit" link */}
-                                        </div>
-                                        <div>
-                                            <NavLink to="#">Delete</NavLink> {/* Add a "Delete" link */}
+                                        <div className="cursor-pointer">
+                                            <NavLink to="#" className={"cursor-pointer"}>Delete</NavLink> {/* Add a "Delete" link */}
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +57,7 @@ export default function InvestContent({ data }) {
                                 <small className="text-neutral-400 hover:text-lgu-lime">Read more...</small>
                             </p>
                         </div>
-                    </NavLink>
+                    </div>
                 </div>
             </div>
         </>
