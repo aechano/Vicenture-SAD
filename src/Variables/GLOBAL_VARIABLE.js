@@ -103,7 +103,19 @@ const API = {
     viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile",
     publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
     analyticsWebpageVisit: SERVER_ADDRESS + PUBLIC + "/analytics/webpage_visit",
-    analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics"
+    analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
+    deleteProfile: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-mun_profile/" + id },
+    editProfile: SERVER_ADDRESS + ADMIN + "/edit-mun_profile",
+    viewTransparency: SERVER_ADDRESS + PUBLIC + "/view-transparency",
+    addTransparency: SERVER_ADDRESS + ADMIN + "/add-transparency",
+    editTransparency: SERVER_ADDRESS + ADMIN + "/edit-transparency",
+    deleteTransparency: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-transparency/" + id },
+    viewCharter: SERVER_ADDRESS + PUBLIC + "/view-charter",
+    addCharter: SERVER_ADDRESS + ADMIN + "/add-charter",
+    editCharter: SERVER_ADDRESS + ADMIN + "/edit-charter",
+    deleteCharter: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-charter/" + id },
+
+
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

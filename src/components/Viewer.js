@@ -11,7 +11,7 @@ export default function Viewer({ view }) {
     useEffect(() => {
         // Set the initial selected content when the component mounts
         setSelectedContent(view[0]);
-    }, []);
+    }, [view]);
 
     const handleContentClick = (content, index) => {
         setSelectedContent(content);
@@ -57,8 +57,8 @@ export default function Viewer({ view }) {
     const downloadPdf = () => {
         // Create a temporary anchor element to trigger the download
         const link = document.createElement('a');
-        link.href = selectedContent.pdfView;
-        link.download = `${selectedContent.head}.pdf`;
+        link.href = selectedContent?.pdfView;
+        link.download = `${selectedContent?.head}.pdf`;
         link.click();
     };
 
@@ -97,7 +97,7 @@ export default function Viewer({ view }) {
                     </div>
                     <div className='block grow'>
                         <div className="flex items-center justify-between">
-                            <h1 className='pt-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent.head}</h1>
+                            <h1 className='pt-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent?.head}</h1>
                             <button onClick={downloadPdf} className="cursor-pointer ml-3 bg-lgu-green text-lgu-lime hover:bg-lime-900 font-bold py-2 px-4 rounded">
                                 Download
                             </button>
@@ -105,7 +105,7 @@ export default function Viewer({ view }) {
                         {selectedContent && (
                             <div className='rounded shadow-lg shadow-lgu-green'>
                                 <div className='flex justify-end w-full pt-6' ref={pdfRef}>
-                                    <Document file={selectedContent.pdfView} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto">
+                                    <Document file={URL.createObjectURL(selectedContent.pdfView)} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto">
                                         <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
                                     </Document>
                                 </div>

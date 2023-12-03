@@ -5,7 +5,6 @@ import SignUp from './pages/Accounts/SignUp';
 import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
-import AdminAnalytics from './pages/AdminPages/AdminAnalytics';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
 import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
@@ -118,7 +117,6 @@ function App() {
                         <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
-                        {/* <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage />} /> */}
                         <Route path={PATH_NAME.Articles} element={<Articles  />} />
                         <Route path={PATH_NAME.Articles + "/:page"} element={<Articles />} />
                         <Route path={PATH_NAME.ArticleContent} element={<ArticleContent />} />
