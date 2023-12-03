@@ -120,8 +120,9 @@ const API = {
     addOfficials: SERVER_ADDRESS + ADMIN + "/add-officials",
     viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials",
     addAlert: SERVER_ADDRESS + ADMIN + "/add-alert",
-    viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert"
-
+    viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert",
+    updateProfile: SERVER_ADDRESS + GENERAL + "/profile/edit",
+    getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
 
 }
 const SOCKET = {

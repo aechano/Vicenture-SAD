@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 export default function Profile() {
     const [userType, setUserType] = useState(USER_TYPES.Guest)
@@ -36,7 +37,7 @@ export default function Profile() {
         });
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         setNewEmail(user?.email);
         setNewUsername(user?.username);
         setBusinessSector(user?.businessSector);
@@ -71,26 +72,36 @@ export default function Profile() {
         // You can use state (newEmail, newUsername, newProfilePicture) to send the updated data to the server
 
         // Example: Send new profile picture to the server
-        if (newProfilePicture) {
-            const formData = new FormData();
-            formData.append('profilePicture', newProfilePicture);
+        const formData = new FormData();
+        formData.append("profilePicture", newProfilePicture);
+        formData.append("username", newUsername);
 
-            fetch('/api/updateProfilePicture', {
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${Cookies.get("token")}`,
-                },
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response from the server
-                    console.log('Profile picture updated successfully:', data);
-                })
-                .catch(error => {
-                    console.error('Error updating profile picture:', error);
+        axios.post(API.updateProfile, formData, {
+            headers: {
+                "Authorization": `Bearer ${Cookies.get("token")}`,
+                'Content-Type': 'multipart/form-data'
+            },
+            withCredentials: true
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                Cookies.set("token", data.token);
+                Cookies.set("refresh", data.refreshToken);
+                window.dispatchEvent("cookies");
+                window.dispatchEvent("profilePicture");
+                var payload = jwtDecode(data.token);
+                setUser({
+                    email: payload.sub,
+                    username: payload.Username,
+                    businessSector: "Agriculture",
+                    company: "Cargill Inc",
+                    office: "Tourism Office",
+                    position: "Head Officer"
                 });
-        }
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
         setEditing(false);
     };
@@ -141,6 +152,8 @@ export default function Profile() {
     const saveButtonStyle = {
         ...buttonStyle,
         marginLeft: '40px',
+        backgroundColor: '#AAA',
+        color: "#333"
     };
 
     return (
@@ -171,17 +184,13 @@ export default function Profile() {
                     )}
                 </div>
                 <div style={profileInfoStyle}>
-                    <div style={labelStyle}>Email:</div>
-                    {editing ? (
-                        <input
-                            type="text"
-                            value={newEmail}
-                            onChange={(e) => setNewEmail(e.target.value)}
-                            style={smallInputStyle}
-                        />
-                    ) : (
-                        <p style={detailStyle}>{newEmail}</p>
-                    )}
+                    {editing ?
+                        null
+                        :
+                        <>
+                            <div style={labelStyle}>Email:</div>
+                            <p style={detailStyle}>{newEmail}</p>
+                        </>}
                     <div style={labelStyle}>Username:</div>
                     {editing ? (
                         <input
@@ -225,8 +234,8 @@ export default function Profile() {
                 </div>
                 {editing ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <button style={buttonStyle} onClick={handleCancelClick}>Cancel</button>
-                        <button style={saveButtonStyle} onClick={handleSaveClick}>Save Changes</button>
+                        <button style={buttonStyle} onClick={handleSaveClick}>Save Changes</button>
+                        <button style={saveButtonStyle} onClick={handleCancelClick}>Cancel</button>
                     </div>
                 ) : (
                     <button style={buttonStyle} onClick={handleEditClick}>Edit Profile</button>

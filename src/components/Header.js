@@ -71,6 +71,7 @@ export default function Header(props) {
     const [adminHeader, setAdminHeader] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+    const [profilePicture, setProfilePicture] = useState(null);
 
     const notificationDropdownRef = useRef(null);
 
@@ -105,9 +106,33 @@ export default function Header(props) {
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
         setAdminHeader(!location.pathname.startsWith(PATH_NAME.AdminPages.Admin))
-        axios.post(API.analyticsWebpageVisit, {"webpageLink": location.pathname});
+        axios.post(API.analyticsWebpageVisit, { "webpageLink": location.pathname });
     }, [location]);
 
+    function updateUserProfile() {
+        axios.get(API.getProfilePFP, {
+            headers: {
+                "Authorization": `Bearer ${Cookies.get("token")}`
+            },
+            withCredentials: true
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                const byteArray = new Uint8Array(data);
+                const decoder = new TextDecoder('utf-8');
+                const decodedString = decoder.decode(byteArray);
+                const blob = new Blob([byteArray], { type: 'image/png' });
+                const file = new File([blob], 'user_profile.png', { type: 'image/png' });
+                setProfilePicture(file);
+            })
+    }
+    useEffect(() => {
+        var jwt = Cookies.get("token");
+        if (jwt) {
+            updateUserProfile();
+        }
+    }, [])
+    window.addEventListener('profilePicture', () => { updateUserProfile() });
 
     return (
         <>

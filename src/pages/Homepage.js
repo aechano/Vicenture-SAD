@@ -52,13 +52,19 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
         axios.get(API.viewAlert, {}, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get("token")}`,
-            },  
+            },
             withCredentials: true
         })
             .then((response) => response.data)
             .then((data) => {
-                setEmergencyTitle(data[0].alertTitle);
-                setEmergencyContent(data[0].alertMessage);
+                console.log(data);
+                if (data?.length > 0) {
+                    setEmergencyTitle(data[0].alertTitle);
+                    setEmergencyContent(data[0].alertMessage);
+                } else {
+                    setEmergencyTitle("");
+                    setEmergencyContent("No Announcements");
+                }
             })
     }, [])
 
