@@ -118,7 +118,9 @@ const API = {
     editCharter: SERVER_ADDRESS + ADMIN + "/edit-charter",
     deleteCharter: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-charter/" + id },
     addOfficials: SERVER_ADDRESS + ADMIN + "/add-officials",
-    viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials"
+    viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials",
+    addAlert: SERVER_ADDRESS + ADMIN + "/add-alert",
+    viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert"
 
 
 }
