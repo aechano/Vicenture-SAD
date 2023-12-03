@@ -271,10 +271,6 @@ export default function Offices_Add() {
                         </div>
 
                         <div className='flex justify-between pb-5 pt-5'>
-                            <div className='flex items-center px-5'>
-                                <ImEye />
-                                <p className='p-2 text-sm font-semibold'>Preview</p>
-                            </div>
                             <div className='flex'>
                                 <div className="pr-2">
                                     <button type="submit"

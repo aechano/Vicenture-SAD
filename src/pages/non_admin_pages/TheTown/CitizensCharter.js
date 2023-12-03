@@ -46,6 +46,7 @@ export default function CitizensCharter() {
             .then((response) => response.data)
             .then((data) => {
                 var newItems = [];
+                console.log("data printed:")
                 console.log(data)
                 for (var item of data) {
                     const pdfName = item.pdfName;

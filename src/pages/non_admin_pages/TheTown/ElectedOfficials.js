@@ -19,6 +19,8 @@ export default function ElectedOfficials() {
         }
     };
 
+    
+
     var directoriesData = [
         {
             directoryName: "Hon. Mayor Ma. Jhoanna C. Ong",
