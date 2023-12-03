@@ -5,6 +5,7 @@ import { RiSurveyFill } from 'react-icons/ri'
 import { GiSiren } from 'react-icons/gi'
 import { TbCoins, TbTrees } from 'react-icons/tb'
 import { MdReport } from 'react-icons/md'
+import { GrArticle } from "react-icons/gr";
 import { Outlet, useLocation } from 'react-router'
 import Body from '../../classifiers/Body'
 import { NavLink } from 'react-router-dom'
@@ -73,12 +74,8 @@ export default function Admin() {
                                 icon={<RiSurveyFill className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "General Articles", to: PATH_NAME.AdminPages.GeneralArticles }}
-                                icon={<MdReport className='h-auto' />}
-                            />
-                            <SidebarItems
-                                title={{ name: "Sports Tourism Articles", to: PATH_NAME.AdminPages.SportsTourismArticles }}
-                                icon={<MdReport className='h-auto' />}
+                                title={{ name: "Articles", to: PATH_NAME.AdminPages.GeneralArticles }}
+                                icon={<GrArticle className='h-auto' />}
                             />
                             <SidebarItems
                                 title={{ name: "Emergency", to: PATH_NAME.AdminPages.Emergency }}

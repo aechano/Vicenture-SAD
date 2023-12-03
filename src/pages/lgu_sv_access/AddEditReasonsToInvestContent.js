@@ -13,11 +13,11 @@ export default function InvestAddEditPage() {
         var jwt = Cookies.get("token");
         if (jwt) {
             var payload = jwtDecode(jwt);
-            if (payload.accountType === USER_TYPES.EndUsers){
-                return <Page403/>
+            if (payload.accountType === USER_TYPES.EndUsers) {
+                return <Page403 />
             }
         } else {
-            return <Page403/>
+            return <Page403 />
         }
     }, []);
 
