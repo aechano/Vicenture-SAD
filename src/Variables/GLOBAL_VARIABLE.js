@@ -117,6 +117,10 @@ const API = {
     addCharter: SERVER_ADDRESS + ADMIN + "/add-charter",
     editCharter: SERVER_ADDRESS + ADMIN + "/edit-charter",
     deleteCharter: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-charter/" + id },
+    addOfficials: SERVER_ADDRESS + ADMIN + "/add-officials",
+    viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials"
+
+
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

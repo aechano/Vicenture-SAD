@@ -9,15 +9,17 @@ import Page403 from "../Accounts/ErrorPages/Page403";
 import Page404 from "../Accounts/ErrorPages/Page404";
 
 export default function InvestAddEditPage() {
+    const [isFound, setIsFound] = useState(true);
+    const [hasAccess, setHasAccess] = useState(true);
     useEffect(() => {
         var jwt = Cookies.get("token");
         if (jwt) {
             var payload = jwtDecode(jwt);
-            if (payload.accountType === USER_TYPES.EndUsers) {
-                return <Page403 />
+            if (USER_TYPES.EndUsers.includes(payload.AccountType)) {
+                setHasAccess(false);
             }
         } else {
-            return <Page403 />
+            setHasAccess(false);
         }
     }, []);
 
@@ -25,7 +27,7 @@ export default function InvestAddEditPage() {
 
     useEffect(() => {
         if (!["investment-opportunities", "reasons-to-invest"].includes(type)) {
-            return <Page404 />
+            setIsFound(false);
         }
     }, [])
 
@@ -34,10 +36,16 @@ export default function InvestAddEditPage() {
     };
 
     return (
-        <InvestAddEditContent
-            title={(method === "add" ? "Add" : "Edit") + (type === "reasons-to-invest" ? " Reasons To Invest" : type === "investment-opportunities" ? " Investment Opportunities" : null)}
-            type={method === "add" ? "ADD" : "EDIT"}
-            contentBody={contentID !== undefined ? content : undefined}
-        />
+        !hasAccess ?
+            <Page403 />
+            :
+            !isFound ?
+                <Page404 />
+                :
+                <InvestAddEditContent
+                    title={(method === "add" ? "Add" : "Edit") + (type === "reasons-to-invest" ? " Reasons To Invest" : type === "investment-opportunities" ? " Investment Opportunities" : null)}
+                    type={method === "add" ? "ADD" : "EDIT"}
+                    contentBody={contentID !== undefined ? content : undefined}
+                />
     );
 }

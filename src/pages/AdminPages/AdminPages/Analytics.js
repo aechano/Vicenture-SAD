@@ -100,10 +100,10 @@ export default function Analytics() {
 
     useEffect(() => {
         setUserData({
-            labels: newAccounts,
+            labels: newAccountsLabels,
             datasets: [
                 {
-                    data: newAccountsLabels, // Replace with your actual data
+                    data: newAccounts, // Replace with your actual data
                     backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
                     hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
                 },
@@ -122,6 +122,7 @@ export default function Analytics() {
                 data: userData,
             });
         }
+
     }, [userData]);
 
     return (
@@ -148,7 +149,7 @@ export default function Analytics() {
             {/* Second container */}
             <div className="w-10/11 ml-16 mt-4">
                 {/* Container for New User Account and User Account */}
-                <div className="border-2 border-lgu-green w-100 h-80 rounded-md ml-2 mt-16 mb-8 text-center">
+                <div className="border-2 border-lgu-green w-80 h-80 rounded-md ml-2 mt-16 mb-8 text-center">
                     <p className="mt-4 font-bold">Investment Related Activity</p>
                     <div className="ml-2 mt-4 text-sm">
                         <p className='text-center text-md mb-4 font-bold'>MOST VIEWED INVEST CONTENT TYPE</p>
@@ -157,7 +158,7 @@ export default function Analytics() {
                 </div>
 
                 {/* User Account Container */}
-                <div className="border-2 border-lgu-green w-90 h-90 rounded-md ml-2 mt-8 mb-8 text-center">
+                <div className="border-2 border-lgu-green w-80 h-90 rounded-md ml-2 mt-8 mb-8 text-center">
                     <p className="mt-4 font-bold">User Account</p>
 
                     {/* Doughnut Chart Container */}

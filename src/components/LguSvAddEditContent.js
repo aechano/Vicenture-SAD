@@ -214,10 +214,6 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                         </div>
                     </div>
                     <div className='flex justify-between pb-5'>
-                        <NavLink className='flex items-center'>
-                            <ImEye />
-                            <p className='p-2 text-sm font-semibold'>Preview</p>
-                        </NavLink>
                         <div className='flex'>
                             <div className="pr-2">
                                 <button

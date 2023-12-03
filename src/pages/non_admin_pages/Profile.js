@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
@@ -6,32 +6,44 @@ import { useNavigate } from 'react-router';
 
 export default function Profile() {
     const [userType, setUserType] = useState(USER_TYPES.Guest)
-    const navigate = useNavigate()
-    var token = Cookies.get("token");
-    if (token) {
-        var payload = jwtDecode(token);
-        setUserType(payload.accountType);
-    } else {
-        navigate(PATH_NAME.Home);
-    }
-    const user = {
-        email: payload.sub,
-        username: payload.Username,
-        businessSector: "Agriculture",
-        company: "Cargill Inc",
-        office: "Tourism Office",
-        position: "Head Officer"
-    };
-
+    const [user, setUser] = useState();
+    const navigate = useNavigate();
     const [newProfilePicture, setNewProfilePicture] = useState(null);
-    const [isTextClicked, setIsTextClicked] = useState(false); 
+    const [isTextClicked, setIsTextClicked] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [newEmail, setNewEmail] = useState(user.email);
-    const [newUsername, setNewUsername] = useState(user.username);
-    const [newBusinessSector, setBusinessSector] = useState(user.businessSector);
-    const [newCompany, setCompany] = useState(user.company);
-    const [newOffice, setOffice] = useState(user.office);
-    const [newPosition, setPosition] = useState(user.position);
+    const [newEmail, setNewEmail] = useState();
+    const [newUsername, setNewUsername] = useState();
+    const [newBusinessSector, setBusinessSector] = useState();
+    const [newCompany, setCompany] = useState();
+    const [newOffice, setOffice] = useState();
+    const [newPosition, setPosition] = useState();
+    useEffect(() => {
+        var token = Cookies.get("token");
+        if (token) {
+            var payload = jwtDecode(token);
+            setUserType(payload.accountType);
+        } else {
+            navigate(PATH_NAME.Home);
+        }
+
+        setUser({
+            email: payload.sub,
+            username: payload.Username,
+            businessSector: "Agriculture",
+            company: "Cargill Inc",
+            office: "Tourism Office",
+            position: "Head Officer"
+        });
+    }, [])
+
+    useEffect(()=>{
+        setNewEmail(user?.email);
+        setNewUsername(user?.username);
+        setBusinessSector(user?.businessSector);
+        setCompany(user?.company);
+        setOffice(user?.office);
+        setPosition(user?.position);
+    }, [user])
 
     const handleEditClick = () => {
         setEditing(true);
@@ -43,12 +55,12 @@ export default function Profile() {
     };
 
     const handleCancelClick = () => {
-        setNewEmail(user.email);
-        setNewUsername(user.username);
-        setBusinessSector(user.businessSector);
-        setCompany(user.company);
-        setOffice(user.office);
-        setPosition(user.position);
+        setNewEmail(user?.email);
+        setNewUsername(user?.username);
+        setBusinessSector(user?.businessSector);
+        setCompany(user?.company);
+        setOffice(user?.office);
+        setPosition(user?.position);
         setNewProfilePicture(null); // Reset the profile picture state
         setEditing(false);
         setIsTextClicked(false);
@@ -66,7 +78,7 @@ export default function Profile() {
             fetch('/api/updateProfilePicture', {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: `Bearer ${Cookies.get("token")}`,
                 },
                 body: formData,
             })
@@ -140,7 +152,7 @@ export default function Profile() {
                         <img
                             src={newProfilePicture ? URL.createObjectURL(newProfilePicture) : require("./../../res/img/icon.png")}
                             style={{ width: '100%', height: '100%', borderRadius: '50%' }}
-                            alt={user.username}
+                            alt={user?.username}
                         />
                         <div className={`items-center mb-4 mt-2 ${isTextClicked ? 'underline' : ''}`}
                             onClick={handleTextClick}
