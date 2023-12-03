@@ -112,10 +112,12 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                                         <div className="text-sm">Current Day</div>
                                         <div className="text-lg mt-2">
                                             {currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit'})}
+                                            <p className="text-sm mt-2">Click to See Events</p>
                                         </div>
                                     </div>
                                 </button>
                                 <CalendarModal isOpen={isModalOpen} onRequestClose={closeModal} />
+
                             </div>
 
                         </div>
