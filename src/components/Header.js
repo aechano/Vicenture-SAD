@@ -105,7 +105,7 @@ export default function Header(props) {
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
         setAdminHeader(!location.pathname.startsWith(PATH_NAME.AdminPages.Admin))
-        axios.post(API.analyticsWebpageVisit, {"webpageLink": location.pathname});
+        //axios.post(API.analyticsWebpageVisit, {"webpageLink": location.pathname});
     }, [location]);
 
 

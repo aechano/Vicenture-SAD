@@ -118,7 +118,7 @@ function App() {
                         <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
-                        <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage />} />
+                        {/* <Route path={PATH_NAME.SampleSurvey} element={<SurveyPage />} /> */}
                         <Route path={PATH_NAME.Articles} element={<Articles  />} />
                         <Route path={PATH_NAME.Articles + "/:page"} element={<Articles />} />
                         <Route path={PATH_NAME.ArticleContent} element={<ArticleContent />} />
