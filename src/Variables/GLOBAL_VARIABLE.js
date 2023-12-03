@@ -104,6 +104,9 @@ const API = {
     publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
     analyticsWebpageVisit: SERVER_ADDRESS + PUBLIC + "/analytics/webpage_visit",
     analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
+    reportGet: SERVER_ADDRESS + ADMIN + "/reported",
+    report: SERVER_ADDRESS + GENERAL + "/reported",
+    analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
     deleteProfile: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-mun_profile/" + id },
     editProfile: SERVER_ADDRESS + ADMIN + "/edit-mun_profile",
     viewTransparency: SERVER_ADDRESS + PUBLIC + "/view-transparency",
@@ -114,8 +117,6 @@ const API = {
     addCharter: SERVER_ADDRESS + ADMIN + "/add-charter",
     editCharter: SERVER_ADDRESS + ADMIN + "/edit-charter",
     deleteCharter: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-charter/" + id },
-
-
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"
