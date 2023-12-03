@@ -1,60 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from '../../../components/Banner';
-import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import Viewer from '../../../components/Viewer';
 import BackToTop from '../../../components/BackToTop';
+import axios from 'axios';
 
 export default function MunicipalityProfile() {
+    const [view, setView] = useState([]);
 
-  var view = [
-    {
-      head: "Geographic Location",
-      pdfView: require("../../../res/pdf/Geographic-Location.pdf"),
-    },
-    {
-      head: "Physical Features",
-      pdfView: require("../../../res/pdf/Physical-Features.pdf"),
-    },
-    {
-      head: "Human Resources",
-      pdfView: require("../../../res/pdf/Human-Resources.pdf"),
-    },
-    {
-      head: "Social Services",
-      pdfView: require("../../../res/pdf/Social-Services.pdf"),
-    },
-    {
-      head: "Physical Infrastructure and Resources",
-      pdfView: require("../../../res/pdf/Physical-Infrastructure-and-Resources.pdf"),
-    },
-    {
-      head: "Economy",
-      pdfView: require("../../../res/pdf/Economy.pdf"),
-    },
-    {
-      head: "Social Welfare and Other Services",
-      pdfView: require("../../../res/pdf/Social-Welfare-and-Other-Services.pdf"),
-    },
-    {
-      head: "Institutional",
-      pdfView: require("../../../res/pdf/Institutional.pdf"),
-    },
-    {
-      head: "Others",
-      pdfView: require("../../../res/pdf/Others.pdf"),
-    },
-  ];
+    useEffect(() => {
+        axios.get(API.viewMunProfile, {})
+            .then((response) => response.data)
+            .then((data) => {
+                var newItems = [];
+                for (var item of data) {
+                    const pdfName = item.pdfName;
+                    const byteCharacters = atob(item.pdf);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'application/pdf' });
 
-  return (
-    <>
-      <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
-        <p>Municipality Profile</p>
-      </Banner>
+                    const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf' });
+                    newItems.push({ head: item.profileName, pdfView: file });
+                }
+                setView(newItems);
+            });
+    }, []);
 
-      <div>
-        <Viewer view={view}/>
-      </div>
-    <BackToTop/>
-    </>
-  );
+    return (
+        <>
+            <Banner bannerType="common" searchBar={true} breadcrumbs={[{ title: "Home", to: PATH_NAME.Home }]}>
+                <p>Municipality Profile</p>
+            </Banner>
+
+            <div>
+                <Viewer view={view} />
+            </div>
+            <BackToTop />
+        </>
+    );
 }
