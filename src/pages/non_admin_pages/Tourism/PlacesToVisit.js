@@ -18,7 +18,7 @@ export default function PlacesToVisit() {
     const currentPage = parseInt(page);
     const [search, setSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [contents, setContents] = useState(null);
+    const [contents, setContents] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +30,7 @@ export default function PlacesToVisit() {
         var jwt = Cookies.get("token");
         if (jwt) {
             var payload = jwtDecode(jwt);
-            setuserType(payload.accountType);
+            setuserType(payload.AccountType);
         }
     }, [])
 
@@ -162,8 +162,8 @@ export default function PlacesToVisit() {
                     null
                 }
                 <div className='pt-12'>
-                    {contents ?
-                        contents?.map((content, index) => {
+                    {contents?.length > 0 ?
+                        contents.map((content, index) => {
                             return <TourismCards
                                 key={index}
                                 content={content}
