@@ -58,8 +58,8 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
             .then((data) => {
                 console.log(data);
                 if (data?.length > 0) {
-                    setEmergencyTitle(data[0].alertTitle);
-                    setEmergencyContent(data[0].alertMessage);
+                    setEmergencyTitle(data[data.length - 1].alertTitle);
+                    setEmergencyContent(data[data.length - 1].alertMessage);
                 } else {
                     setEmergencyTitle("");
                     setEmergencyContent("No Announcements");
