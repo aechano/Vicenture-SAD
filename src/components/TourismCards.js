@@ -65,16 +65,16 @@ export default function TourismCards({ content, onClick, userType }) {
         !deleted && <>
             <div className="m-3 flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200 select-none cursor-pointer" onClick={onClick}>
                 {image.pic ?
-                    <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-lg m-3 p-2" src={image.pic} alt={image.altText} />
+                    <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-lg m-3 p-2" src={'data:image/jpeg;base64,' + image.pic} alt={image.altText} />
                     :
                     null}
-                <div className="flex flex-col justify-between p-4 leading-normal">
+                <div className="flex flex-col w-full justify-between p-4 leading-normal">
                     <div className='flex justify-between'>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{content.title}</h5>
                         <div className='relative' onClick={(event) => event.stopPropagation()}>
                             {[USER_TYPES.LguSV, USER_TYPES.Admin].includes(userType) ?
                                 <>
-                                    <div className='text-2xl' onClick={toggleDropdown}>
+                                    <div className='text-2xl right-10' onClick={toggleDropdown}>
                                         <HiDotsHorizontal />
                                     </div>
                                     <div

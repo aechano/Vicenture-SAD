@@ -118,12 +118,7 @@ export default function Header(props) {
         })
             .then((response) => response.data)
             .then((data) => {
-                const byteArray = new Uint8Array(data);
-                const decoder = new TextDecoder('utf-8');
-                const decodedString = decoder.decode(byteArray);
-                const blob = new Blob([byteArray], { type: 'image/png' });
-                const file = new File([blob], 'user_profile.png', { type: 'image/png' });
-                setProfilePicture(file);
+                setProfilePicture(data);
             })
     }
     useEffect(() => {
@@ -254,39 +249,7 @@ export default function Header(props) {
                                                 null
                                                 :
                                                 <div className="flex items-center">
-                                                    <button
-                                                        type="button"
-                                                        className="relative p-1 text-lgu-lime hover:text-white"
-                                                        onClick={() => setOpenMobileDropdown('notifications')}
-                                                    >
-                                                        <span className="absolute -inset-1.5" />
-                                                        <span className="sr-only">View notifications</span>
-                                                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                                    </button>
-
-                                                    {/* Notification dropdown */}
-                                                    <Transition
-                                                        as={Fragment}
-                                                        show={openMobileDropdown === 'notifications'}
-                                                        enter="transition ease-out duration-100"
-                                                        enterFrom="transform opacity-0 scale-95"
-                                                        enterTo="transform opacity-100 scale-100"
-                                                        leave="transition ease-in duration-75"
-                                                        leaveFrom="transform opacity-100 scale-100"
-                                                        leaveTo="transform opacity-0 scale-95"
-                                                    >
-                                                        <div
-                                                            ref={notificationDropdownRef}
-                                                            className="absolute bottom-[-4rem] right-0 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                            {/* Replace the content below with your notification items */}
-                                                            <div className="block px-4 py-2 text-sm text-gray-700">
-                                                                Notification 1
-                                                            </div>
-                                                            <div className="block px-4 py-2 text-sm text-gray-700">
-                                                                Notification 2
-                                                            </div>
-                                                        </div>
-                                                    </Transition>
+                                                    
                                                     {/* Profile dropdown */}
                                                     <Menu as="div" className="relative ml-3">
                                                         <div>

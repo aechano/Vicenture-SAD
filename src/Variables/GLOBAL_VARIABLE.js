@@ -123,7 +123,11 @@ const API = {
     viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert",
     updateProfile: SERVER_ADDRESS + GENERAL + "/profile/edit",
     getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
-
+    getComment: function (id) { return SERVER_ADDRESS + PUBLIC + "/comments/" + id },
+    postComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
+    reportContent: SERVER_ADDRESS + GENERAL + "/reported",
+    postSurvey: SERVER_ADDRESS + ADMIN + "/survey",
+    getAllSurveys: SERVER_ADDRESS + PUBLIC + "/surveys",
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

@@ -44,7 +44,6 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
         const intervalId = setInterval(() => {
             setCurrentDate(new Date());
         }, 1000); // Update every second
-
         return () => clearInterval(intervalId); // Cleanup on component unmount
     }, []);
 

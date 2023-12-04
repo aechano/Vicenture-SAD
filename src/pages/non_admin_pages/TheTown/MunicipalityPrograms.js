@@ -69,7 +69,7 @@ export default function MunicipalityPrograms() {
                             <img src={require("../../../res/img/kAWAT-KITA.png")} alt="banner" className="relative z-10 rounded-md" />
                         </div>
                         <div className="sm:flex sm:flex-col relative z-10">
-                            <h1 className="text-4xl font-bold text-left mt-10 pb-6 text-white">SPORTS ACTIVITIES</h1>
+                            <h1 className="text-4xl font-bold text-left mt-10 pb-6 text-white">Sports Activities</h1>
                             <p className="text-white text-md leading-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ullamcorper eget nulla facilisi etiam dignissim. In nulla posuere sollicitudin aliquam ultrices. Varius quam quisque id diam vel quam elementum pulvinar. Eu tincidunt tortor aliquam nulla facilisi cras. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Sed lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum.</p>
                         </div>
                         <div className="grid grid-rows-2 md:grid-rows-none md:grid-cols-2">
@@ -81,8 +81,8 @@ export default function MunicipalityPrograms() {
                                                 to={PATH_NAME.TheTown.MunicipalityPrograms + "/" + content.id}
                                                 className={`block flex-1 p-8 ${index === 0 || index === 3 ? 'bg-lgu-green text-lgu-lime' : 'bg-lgu-yellow text-black'} border rounded-lg shadow`} onClick={() => window.scrollTo({ top: 0, left: 0 })}
                                             >
-                                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-center dark:text-white">{content.title}</h5>
-                                                <p className="font-normal text-center dark:text-white transition-all duration-400 hover:scale-105">{content.body}</p>
+                                                <h5 className="mb-2 text-2xl font-bold tracking-tight text-center">{content.title}</h5>
+                                                <p className="font-normal text-center transition-all duration-400 hover:scale-105">{content.body}</p>
                                             </Link>
                                         </div>
                                     </div>
