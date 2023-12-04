@@ -31,7 +31,7 @@ function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
             <ul>
                 {items.length > 0 ? (
                     items.map((item) => (
-                        <li key={item.simpleSurveyID} className="cursor-pointer text-black mb-2 w-full flex">
+                        <li key={item?.simpleSurveyID} className="cursor-pointer text-black mb-2 w-full flex">
                             <span onClick={() => onItemSelected(item)} className="flex-1 hover:underline">
                                 {item}
                             </span>

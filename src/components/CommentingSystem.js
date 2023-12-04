@@ -145,7 +145,7 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest }) {
                     <tr className=''>
                         <td className='w-10 h-10'> {/** Display the user pfp in the upperleft-most cell */}
                             <img
-                                src={"data:image/jpeg;base64," + comment.commenter.profilePicture}
+                                src={comment.commenter.profilePicture?"data:image/jpeg;base64," + comment.commenter.profilePicture:require("./../res/img/icon.png")}
                                 alt={"Profile picture of " + comment.commenter.accountUsername}
                                 className='rounded-full w-10/12 h-10/12 mx-auto my-auto'
                             />
