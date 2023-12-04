@@ -189,15 +189,6 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                                 null
                         }
                     </div>
-                    {
-                        ["places-to-visit", "activities"].includes(contentType) ?
-                            <div className='pb-4'>
-                                <h1 className='text-sm pb-1'>Tags</h1>
-                                <ChipsInputComponent />
-                            </div>
-                            :
-                            null
-                    }
                     <div>
                         <div className="w-full mb-4 border border-gray-200 rounded-lg dark:border-gray-600">
                             <div className="px-4 py-2 bg-white rounded-b-lg">
