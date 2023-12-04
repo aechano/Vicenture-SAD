@@ -48,12 +48,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     }, []);
 
     useEffect(() => {
-        axios.get(API.viewAlert, {}, {
-            headers: {
-                'Authorization': `Bearer ${Cookies.get("token")}`,
-            },
-            withCredentials: true
-        })
+        axios.get(API.viewAlert)
             .then((response) => response.data)
             .then((data) => {
                 console.log(data);
