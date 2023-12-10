@@ -128,6 +128,7 @@ const API = {
     reportContent: SERVER_ADDRESS + GENERAL + "/reported",
     postSurvey: SERVER_ADDRESS + ADMIN + "/survey",
     getAllSurveys: SERVER_ADDRESS + PUBLIC + "/surveys",
+    addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"
