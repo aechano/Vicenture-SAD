@@ -95,7 +95,6 @@ export default function Offices_Add() {
     };
 
     const saveOffice = () => {
-        console.log("Services:", services);
         const listOffice = [
             {
                 "detailName": "Head",
@@ -128,11 +127,6 @@ export default function Offices_Add() {
                 "image": null
             },
             {
-                "detailName": "Organizational Chart",
-                "detailContent": null,
-                "image": chart
-            },
-            {
                 "detailName": "Mandate",
                 "detailContent": mandate,
                 "image": null
@@ -147,10 +141,10 @@ export default function Offices_Add() {
                 "detailContent": location,
                 "image": null
             },
-        ]
-
+        ];
+    
         const serviceList = [];  // Define serviceList outside of the map function
-
+    
         services.forEach((data) => {
             // Push each service object into serviceList
             serviceList.push({
@@ -160,33 +154,34 @@ export default function Offices_Add() {
                 link: null,
             });
         });
-
-        console.log(serviceList)
-
-        const formData = new FormData();
-        formData.append('officeName', Department);
-        formData.append('address', "");
-        formData.append('services', JSON.stringify(serviceList));  // Convert serviceList to JSON string
-        formData.append('office', JSON.stringify(listOffice));  // Convert listOffice to JSON string
-
-        axios.post(API.addOffice, formData, {
+    
+        axios.post(API.addOffice, {
+            officeName: Department,
+            address: "",
+            services: serviceList, 
+            office: listOffice,    
+        }, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get("token")}`,
-                'Content-Type': 'multipart/form-data', // Important for file uploads
+                'Content-Type': 'application/json',  // Specify content type for the request
             }
         })
-            .then((response) => response.data)
-            .then((data) => {
-                console.log(data);
-                console.log("Added Successfully!")
-            });
-    }
+        .then((response) => response.data)
+        .then((data) => {
+            console.log(data);
+            console.log("Added Successfully!");
+        })
+        .catch((error) => {
+            console.error("Error adding office:", error);
+        });
 
+    };
+    
     return (
         <>
             <div className="flex flex-col items-center justify-center p-20 min-h-screen">
                 <div className="mx-auto flex flex-col items-center w-full max-w-7xl mb-10 border-2 border-lgu-green rounded-2xl">
-                    <div className="text-2xl font-bold bg-lgu-green text-white p-4 w-full rounded-tl-xl rounded-tr-xl">Add Offices</div>
+                    <div className="text-2xl font-bold bg-lgu-green text-white p-4 w-full rounded-tl-xl rounded-tr-xl">Offices</div>
                     <form onSubmit={(e) => {
                         e.preventDefault();
                         saveOffice();
