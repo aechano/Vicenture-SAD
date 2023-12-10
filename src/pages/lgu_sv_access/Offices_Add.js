@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { BsImage } from 'react-icons/bs'
-import { ImEye } from 'react-icons/im'
+import { BsImage } from 'react-icons/bs';
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
 import { API } from "../../Variables/GLOBAL_VARIABLE";
 import Cookies from "js-cookie";
-import { list } from "pdfkit";
 
 export default function Offices_Add() {
 
