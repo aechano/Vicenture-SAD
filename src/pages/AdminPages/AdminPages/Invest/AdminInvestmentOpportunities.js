@@ -3,12 +3,8 @@ import InvestAddEditPage from '../../../lgu_sv_access/AddEditReasonsToInvestCont
 import InvestAddEditContent from '../../../../components/InvestAddEditContent';
 
 
-function AdminInvestmentOpportunities() {
+export default function AdminInvestmentOpportunities() {
   return (
     <InvestAddEditContent title="Investment Opportunities" type="ADD" contentBody={{}} />
   );
 }
-
-export default AdminInvestmentOpportunities
-
-
