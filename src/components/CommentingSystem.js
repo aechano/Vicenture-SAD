@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
+import { ProfanityChecker } from '../functionHelpers/ProfanityChecker';
 
 export default function CommentingSystem({ contentID }) {
     /** 
@@ -18,6 +19,8 @@ export default function CommentingSystem({ contentID }) {
     const [revealReplies, setRevealReplies] = useState({}); //used to reveal certain amount of replies to a comment
     const [accountType, setAccountType] = useState(USER_TYPES.Guest);
     const [comments, setComments] = useState([]);
+    const [filter, setFilter] = useState();
+
     useEffect(() => {
         var jwt = Cookies.get("token");
         if (jwt) {
@@ -32,6 +35,9 @@ export default function CommentingSystem({ contentID }) {
             .then((data) => {
                 setComments(data);
             })
+
+        // set up filter
+        setFilter(new ProfanityChecker());
     }, [])
 
     const modifyRevealedReplies = (commentID, value) => { //handler of multiple states (dictionary in useState)
@@ -45,13 +51,46 @@ export default function CommentingSystem({ contentID }) {
         comments.map((comment) => modifyRevealedReplies(comment.commentID, 1))
     }, [])
 
+    const handleCheckForProfanity = () => {
+        if (filter && comment.length > 0) {
+            return filter.isProfanity(comment);
+        }
+    }
+
+
+    const handleCommentPublish = () => {
+        setAddComment(false);
+        if (handleCheckForProfanity()){
+            alert(`Oops! It looks like there might be some inappropriate language in your comment (word: ${filter.getProfanity(comment)}). If you believe this is a mistake, please let us know.`)
+            setComment("");
+            return;
+        }
+        axios.post(API.postComment, {
+            "contentID": contentID,
+            "comment": comment
+        }, {
+            headers: {
+                "Authorization": `Bearer ${Cookies.get("token")}`
+            },
+            withCredentials: true
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                setComments([...comments, data]);
+                setComment("");
+            })
+    }
+
     return (
         <>
             {/** add comment button */}
             {accountType !== USER_TYPES.Guest ?
                 <div
                     className='flex bg-lgu-yellow w-fit p-2 mt-10 rounded-full select-none cursor-pointer hover:brightness-95'
-                    onClick={() => setAddComment(!addComment)}>
+                    onClick={() => {
+                        setAddComment(!addComment)
+                        setComment("");
+                        }}>
                     + Add a Comment
                 </div>
                 :
@@ -73,24 +112,13 @@ export default function CommentingSystem({ contentID }) {
                     </div>
                     {/** Buttons (cancel and comment) */}
                     <div className='flex mt-3'>
-                        <div className='p-2 outline outline-2 outline-lgu-yellow rounded-full select-none cursor-pointer' onClick={() => setAddComment(false)}>Cancel</div>
-                        <div className='p-2 ml-3 bg-lgu-yellow rounded-full select-none cursor-pointer'
+                        <div className='p-2 outline outline-2 outline-lgu-yellow rounded-full select-none cursor-pointer'
                             onClick={() => {
                                 setAddComment(false);
-                                axios.post(API.postComment, {
-                                    "contentID": contentID,
-                                    "comment": comment
-                                }, {
-                                    headers: {
-                                        "Authorization": `Bearer ${Cookies.get("token")}`
-                                    },
-                                    withCredentials: true
-                                })
-                                    .then((response) => response.data)
-                                    .then((data) => {
-                                        setComments([...comments, data])
-                                    })
-                            }}
+                                setComment("");}}
+                            >Cancel</div>
+                        <div className='p-2 ml-3 bg-lgu-yellow rounded-full select-none cursor-pointer'
+                            onClick={handleCommentPublish}
                         >Comment</div>
                     </div>
                 </div>
@@ -145,7 +173,7 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest }) {
                     <tr className=''>
                         <td className='w-10 h-10'> {/** Display the user pfp in the upperleft-most cell */}
                             <img
-                                src={comment.commenter.profilePicture?"data:image/jpeg;base64," + comment.commenter.profilePicture:require("./../res/img/icon.png")}
+                                src={comment.commenter.profilePicture ? "data:image/jpeg;base64," + comment.commenter.profilePicture : require("./../res/img/icon.png")}
                                 alt={"Profile picture of " + comment.commenter.accountUsername}
                                 className='rounded-full w-10/12 h-10/12 mx-auto my-auto'
                             />

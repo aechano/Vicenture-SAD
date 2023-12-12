@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-import Chart from 'chart.js/auto';
 import axios from 'axios';
 import { API } from '../../../Variables/GLOBAL_VARIABLE';
 import Cookies from 'js-cookie';
+import { Chart } from 'chart.js';
 
 export default function Analytics() {
     const chartRef = useRef(null);
