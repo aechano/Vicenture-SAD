@@ -374,11 +374,22 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
             {/* About San Vicente */}
 
             <Sections
-                left={true}
                 title="Discover San Vicente"
                 src={require("./../res/img/logo.png")}
                 alt="San Vicente Logo"
                 button="About San Vicente"
+                arrow={true}
+                href="/the-town/about" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
+                Journey through the captivating tapestry of San Vicente, Camarines Norte, where time and culture intertwine to unveil a rich and enchanting tale. This hidden gem, with its roots dating back to the late 18th century, is a place of history, traditions, and breathtaking natural beauty. As you stroll through its historic streets, you'll be transported to an era of colonial architecture and cobblestone pathways, each telling a story of its own. San Vicente isn't just a location on a map; it's a living connection to the past, where the spirits of the ancestors seem to guide your way. This town embodies the enduring spirit of the Filipino people, celebrated through ancient festivals, rituals, and vibrant traditions that have thrived for generations. And the beauty of San Vicente's landscapes, from pristine coastlines meeting the Pacific's azure waters to lush mountains and untamed wilderness, will leave you in awe.
+            </Sections>
+
+            {/* Awards and Recognition */}
+            <Sections
+                left={true}
+                title="Awards and Recognitions"
+                src={require("./../res/img/logo.png")}
+                alt="San Vicente Logo"
+                button="See All Awards"
                 arrow={true}
                 href="/the-town/about" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                 Journey through the captivating tapestry of San Vicente, Camarines Norte, where time and culture intertwine to unveil a rich and enchanting tale. This hidden gem, with its roots dating back to the late 18th century, is a place of history, traditions, and breathtaking natural beauty. As you stroll through its historic streets, you'll be transported to an era of colonial architecture and cobblestone pathways, each telling a story of its own. San Vicente isn't just a location on a map; it's a living connection to the past, where the spirits of the ancestors seem to guide your way. This town embodies the enduring spirit of the Filipino people, celebrated through ancient festivals, rituals, and vibrant traditions that have thrived for generations. And the beauty of San Vicente's landscapes, from pristine coastlines meeting the Pacific's azure waters to lush mountains and untamed wilderness, will leave you in awe.
