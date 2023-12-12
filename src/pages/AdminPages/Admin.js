@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { BsFillHousesFill } from 'react-icons/bs'
-import { FaChartBar, FaScroll } from 'react-icons/fa'
+import { FaChartBar, FaHome, FaScroll } from 'react-icons/fa'
 import { RiSurveyFill } from 'react-icons/ri'
 import { GiSiren } from 'react-icons/gi'
 import { TbCoins, TbTrees } from 'react-icons/tb'
@@ -42,6 +42,15 @@ export default function Admin() {
                             <SidebarItems
                                 title={{ name: "Analytics", to: PATH_NAME.AdminPages.Analytics }}
                                 icon={<FaChartBar className='h-auto' />}
+                            />
+                            <SidebarItems
+                                title={{ name: "Homepage", to: PATH_NAME.AdminPages.Homepage }}
+                                subtitles={[
+                                    { name: "Banner", to: PATH_NAME.AdminPages.Banner },
+                                    { name: "Events", to: PATH_NAME.AdminPages.Events },
+                                    { name: "Awards", to: PATH_NAME.AdminPages.Awards }
+                                ]}
+                                icon={<FaHome className='h-auto' />}
                             />
                             <SidebarItems
                                 title={{ name: "The Town", to: PATH_NAME.AdminPages.TheTown }}

@@ -61,6 +61,10 @@ import AdminOffices from './pages/AdminPages/AdminPages/TheTown/AdminOffices';
 import AdminCitizensCharter from './pages/AdminPages/AdminPages/TheTown/AdminCitizensCharter';
 import AdminSportsTourismArticles from './pages/AdminPages/AdminPages/AdminSportsTourismArticles';
 import AdminGeneralArticles from './pages/AdminPages/AdminPages/AdminGeneralArticles';
+import AdminHomepageBase from './pages/AdminPages/AdminPages/Homepage/Base';
+import AdminBanner from './pages/AdminPages/AdminPages/Homepage/AdminBanner';
+import AdminEvents from './pages/AdminPages/AdminPages/Homepage/AdminEvents';
+import AdminAwards from './pages/AdminPages/AdminPages/Homepage/AdminAwards';
 
 function App() {
     const [userType, setUserType] = useState(USER_TYPES.Guest);
@@ -148,6 +152,11 @@ function App() {
 
                         <Route path={PATH_NAME.AdminPages.Admin} element={<Admin />}>
                             <Route path={PATH_NAME.AdminPages.Analytics} element={<Analytics />} />
+                            <Route path={PATH_NAME.AdminPages.Homepage} element={<AdminHomepageBase />}>
+                                <Route path={PATH_NAME.AdminPages.Banner} element={<AdminBanner />} />
+                                <Route path={PATH_NAME.AdminPages.Events} element={<AdminEvents />} />
+                                <Route path={PATH_NAME.AdminPages.Awards} element={<AdminAwards />} />
+                            </Route>
                             <Route path={PATH_NAME.AdminPages.TheTown} element={<AdminTheTownBase />} >
                                 <Route path={PATH_NAME.AdminPages.MunicipalityProfile} element={<AdminMunicipalityProfile />} />
                                 <Route path={PATH_NAME.AdminPages.ElectedOfficials} element={<AdminElectedOfficials />} />

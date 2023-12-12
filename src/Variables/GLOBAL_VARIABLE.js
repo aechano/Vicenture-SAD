@@ -11,6 +11,10 @@ const PATH_NAME = {
     AdminPages: {
         Admin: "/admin",
         Analytics: "analytics",
+        Homepage: "homepage",
+        Banner: "banner",
+        Awards: "awards",
+        Events: "events",
         TheTown: "the-town",
         MunicipalityProfile: "municipality-profile",
         ElectedOfficials: "elected-officials",
