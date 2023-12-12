@@ -127,7 +127,8 @@ const API = {
     postComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
     reportContent: SERVER_ADDRESS + GENERAL + "/reported",
     postSurvey: SERVER_ADDRESS + ADMIN + "/survey",
-    getAllSurveys: SERVER_ADDRESS + PUBLIC + "/surveys",
+    editSurvey: SERVER_ADDRESS + ADMIN +"/edit-survey",
+    getAllSurveys: SERVER_ADDRESS + PUBLIC + "/viewSurveys",
     addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
 }
 const SOCKET = {
