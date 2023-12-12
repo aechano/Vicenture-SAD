@@ -133,7 +133,7 @@ export default function Header(props) {
         <>
             {show ?
                 <>
-                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20 ">
+                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20">
                         {({ open }) => (
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -156,11 +156,18 @@ export default function Header(props) {
                                                 className="flex flex-shrink-0 items-center"
                                                 onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                                                 <img
-                                                    className="h-12 w-auto hidden lg:block"
+                                                    className="h-20 w-auto mt-2 hidden lg:block"
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">San Vicente <br />Camarines Norte</span>
+                                                
+                                                <img
+                                                className="h-20 w-auto ml-2 mt-4 hidden lg:block"
+                                                src={require('./../res/img/finalheader.png')}
+                                                alt="header lgu"
+                                                />
+
+                                                {/*<span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">San Vicente <br />Camarines Norte</span>*/}
                                             </NavLink>
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-5">
