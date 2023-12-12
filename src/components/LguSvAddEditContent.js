@@ -4,17 +4,20 @@ import { TiLocation } from 'react-icons/ti';
 import ChipsInputComponent from './ChipsInputComponent';
 import { ImEye } from 'react-icons/im'
 import { NavLink } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
-function LguSvAddEditContent({ title, categories, setCategories, type, contentType, contentBody }) {
+function LguSvAddEditContent({ title, categories, setCategories, type, contentType, contentBody, onSave }) {
 
     const [selectedFile, setSelectedFile] = useState("No image chosen");
     const [showDropdown, setShowDropdown] = useState(false);
     const [newCategory, setNewCategory] = useState('');
 
-    const [content, setContent] = useState(contentBody === undefined ? '' : contentBody.content);
+    const [content, setContent] = useState(contentBody === undefined ? '' : contentBody.title);
     const [contact, setContact] = useState(contentBody === undefined ? '' : contentBody.contact);
-    const [contentCategory, setContentCategory] = useState(contentBody === undefined ? '' : contentBody.contentCategory);
+    const [contentCategory, setContentCategory] = useState(contentBody === undefined ? '' : contentBody.tags[0]);
     const [location, setLocation] = useState(contentBody === undefined ? '' : contentBody.location);
+    const [body, setBody] = useState(contentBody === undefined ? '' : contentBody.body);
 
     const handleCategoryClick = (category) => {
         setContentCategory(category);
@@ -29,10 +32,10 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
         if (newCategory.trim() !== '') {
             // Reset the newCategory state
             setNewCategory('');
-    
+
             // Update the categories prop with the new category
             const updatedCategories = [...categories, newCategory];
-    
+
             // Update both contentCategory and categories props only if needed
             if (contentCategory === 'Select Category') {
                 setContentCategory(newCategory);
@@ -40,7 +43,27 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
             setCategories(updatedCategories);
         }
     };
-    
+
+    const getData = () => {
+        var jwt = Cookies.get("token");
+        var email;
+        if (jwt) {
+            var payload = jwtDecode(jwt);
+            email = payload.sub;
+            return {
+                email: email,
+                title: content,
+                images: [selectedFile],
+                altTexts: ["&thumbnail;"],
+                contact: contact,
+                tags: [contentCategory],
+                location: location,
+                locationLink: "",
+                body: body,
+                type: "",
+            }
+        }
+    }
 
 
     return (
@@ -59,10 +82,7 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                             id="custom-input"
                             name='custom-input'
                             onChange={(e) => {
-                                const selectedFiles = e.target.files;
-                                const fileCount = selectedFiles.length;
-                                const fileText = fileCount === 1 ? e.target.files[0].name : `${fileCount} files`;
-                                setSelectedFile(fileText);
+                                setSelectedFile(e.target.files[0]);
                             }}
                             hidden
                         />
@@ -74,10 +94,10 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                         >
                             Add Image
                         </label>
-                        <label className="text-xs text-slate-500 pr-2">{selectedFile}</label>
+                        <label className="text-xs text-slate-500 pr-2">{selectedFile.name}</label>
                     </div>
                 </div>
-                <form>
+                <form onSubmit={(e)=>e.preventDefault()}>
                     <div className='grid grid-cols-2 gap-5 mt-5'>
                         <div>
                             <div className="relative mb-6 mt-5 text-left" data-te-input-wrapper-init>
@@ -91,7 +111,7 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                                     onChange={(e) => setContent(e.target.value)} />
                             </div>
                             {
-                                contentType === "TOURISM" ?
+                                ["places-to-visit", "activities"].includes(contentType) ?
                                     <div className="relative">
                                         <button
                                             type="button"
@@ -136,7 +156,7 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                             }
                         </div>
                         {
-                            contentType === "TOURISM" ?
+                            ["places-to-visit", "activities"].includes(contentType) ?
                                 <div>
                                     <div className="relative mb-6 mt-5 text-left" data-te-input-wrapper-init>
                                         <div className="flex items-center h-14 rounded border border-1 w-80 bg-transparent">
@@ -169,58 +189,34 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                                 null
                         }
                     </div>
-                    {
-                        contentType === "TOURISM" ?
-                            <div className='pb-4'>
-                                <h1 className='text-sm pb-1'>Tags</h1>
-                                <ChipsInputComponent />
-                            </div>
-                            :
-                            null
-                    }
                     <div>
                         <div className="w-full mb-4 border border-gray-200 rounded-lg dark:border-gray-600">
-                            <div className="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
-                                <div className="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600">
-                                    <div className="flex items-center space-x-1 sm:pr-4">
-                                        <button type="button" className="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM13.5 6a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm-7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm3.5 9.5A5.5 5.5 0 0 1 4.6 11h10.81A5.5 5.5 0 0 1 10 15.5Z" />
-                                            </svg>
-                                            <span className="sr-only">Add emoji</span>
-                                        </button>
-                                    </div>
-                                    <div className="flex flex-wrap items-center space-x-1 sm:pl-4">
-                                        <button type="button" className="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
-                                            <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 18">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.5 3h9.563M9.5 9h9.563M9.5 15h9.563M1.5 13a2 2 0 1 1 3.321 1.5L1.5 17h5m-5-15 2-1v6m-2 0h4" />
-                                            </svg>
-                                            <span className="sr-only">Add list</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="px-4 py-2 bg-white rounded-b-lg">
                                 <label for="editor" className="sr-only">Publish post</label>
-                                <textarea id="editor" rows="8" className="block w-full p-2 text-sm text-gray-800 bg-white border-0 focus:ring-0 dark:text-black dark:placeholder-gray-400" placeholder="Write an article..." required></textarea>
+                                <textarea
+                                    id="editor"
+                                    rows="8"
+                                    value={body}
+                                    onChange={(e) => setBody(e.target.value)}
+                                    className="block w-full p-2 text-sm text-gray-800 bg-white border-0 focus:ring-0 dark:text-black dark:placeholder-gray-400"
+                                    placeholder="Write an article..."
+                                    required />
                             </div>
                         </div>
                     </div>
                     <div className='flex justify-between pb-5'>
-                        <NavLink className='flex items-center'>
-                            <ImEye />
-                            <p className='p-2 text-sm font-semibold'>Preview</p>
-                        </NavLink>
                         <div className='flex'>
                             <div className="pr-2">
-                                <button type="submit"
+                                <button
                                     onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
                                     className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                                     Cancel
                                 </button>
                             </div>
                             <div>
-                                <button type="submit" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
+                                <button onClick={() => {
+                                    onSave(getData());
+                                }} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
                                     {type === "ADD" ? "Save" : "Save Changes"}
                                 </button>
                             </div>

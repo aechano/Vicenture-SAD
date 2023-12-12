@@ -640,13 +640,13 @@ export default function Services() {
                 </div>
 
                 <div className='grid grid-cols-2'>
-                    <div className='flex items-center justify-center'>
+                    <div className='flex items-center justify-left'>
                         <h1 className='sm:text-3xl font-bold text-center'>View Other Offered Services</h1>
                     </div>
 
-                    <div className='pt-3 px-2 sm:px-6 lg:px-8 m-5 relative'>
+                    {/* <div className='pt-3 px-2 sm:px-6 lg:px-8 m-5 relative'>
 
-                        {/* Search input box */}
+      
                         <div className="relative">
 
                             <input
@@ -681,9 +681,7 @@ export default function Services() {
 
                         </div>
 
-                    </div>
-
-
+                    </div> */}
                 </div>
             </div>
 

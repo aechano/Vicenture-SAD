@@ -71,6 +71,7 @@ export default function Header(props) {
     const [adminHeader, setAdminHeader] = useState(true);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+    const [profilePicture, setProfilePicture] = useState(null);
 
     const notificationDropdownRef = useRef(null);
 
@@ -105,15 +106,34 @@ export default function Header(props) {
     useEffect(() => {
         setShow(!NO_HEADER.includes(location.pathname));
         setAdminHeader(!location.pathname.startsWith(PATH_NAME.AdminPages.Admin))
-        axios.post(API.analyticsWebpageVisit, {"webpageLink": location.pathname});
+        axios.post(API.analyticsWebpageVisit, { "webpageLink": location.pathname });
     }, [location]);
 
+    function updateUserProfile() {
+        axios.get(API.getProfilePFP, {
+            headers: {
+                "Authorization": `Bearer ${Cookies.get("token")}`
+            },
+            withCredentials: true
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                setProfilePicture(data);
+            })
+    }
+    useEffect(() => {
+        var jwt = Cookies.get("token");
+        if (jwt) {
+            updateUserProfile();
+        }
+    }, [])
+    window.addEventListener('profilePicture', () => { updateUserProfile() });
 
     return (
         <>
             {show ?
                 <>
-                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20 ">
+                    <Disclosure as="nav" className="bg-lgu-green fixed top-0 w-full z-50 min-h-20">
                         {({ open }) => (
                             <>
                                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -136,11 +156,18 @@ export default function Header(props) {
                                                 className="flex flex-shrink-0 items-center"
                                                 onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                                                 <img
-                                                    className="h-12 w-auto hidden lg:block"
+                                                    className="h-20 w-auto mt-2 hidden lg:block"
                                                     src={require('./../res/img/logo.png')}
                                                     alt="San Vicente Logo"
                                                 />
-                                                <span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">San Vicente, <br />Camarines Norte</span>
+                                                
+                                                <img
+                                                className="h-20 w-auto ml-2 mt-4 hidden lg:block"
+                                                src={require('./../res/img/finalheader.png')}
+                                                alt="header lgu"
+                                                />
+
+                                                {/*<span className="hidden lg:block text-lgu-lime text-xl ml-10 lg:ml-2 font-bold">San Vicente <br />Camarines Norte</span>*/}
                                             </NavLink>
                                             <div className="hidden lg:block">
                                                 <div className="flex space-x-4 mr-5">
@@ -229,39 +256,7 @@ export default function Header(props) {
                                                 null
                                                 :
                                                 <div className="flex items-center">
-                                                    <button
-                                                        type="button"
-                                                        className="relative p-1 text-lgu-lime hover:text-white"
-                                                        onClick={() => setOpenMobileDropdown('notifications')}
-                                                    >
-                                                        <span className="absolute -inset-1.5" />
-                                                        <span className="sr-only">View notifications</span>
-                                                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                                                    </button>
-
-                                                    {/* Notification dropdown */}
-                                                    <Transition
-                                                        as={Fragment}
-                                                        show={openMobileDropdown === 'notifications'}
-                                                        enter="transition ease-out duration-100"
-                                                        enterFrom="transform opacity-0 scale-95"
-                                                        enterTo="transform opacity-100 scale-100"
-                                                        leave="transition ease-in duration-75"
-                                                        leaveFrom="transform opacity-100 scale-100"
-                                                        leaveTo="transform opacity-0 scale-95"
-                                                    >
-                                                        <div
-                                                            ref={notificationDropdownRef}
-                                                            className="absolute bottom-[-4rem] right-0 mt-2 w-48 origin-top-right rounded-md bg-green-300 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                                            {/* Replace the content below with your notification items */}
-                                                            <div className="block px-4 py-2 text-sm text-gray-700">
-                                                                Notification 1
-                                                            </div>
-                                                            <div className="block px-4 py-2 text-sm text-gray-700">
-                                                                Notification 2
-                                                            </div>
-                                                        </div>
-                                                    </Transition>
+                                                    
                                                     {/* Profile dropdown */}
                                                     <Menu as="div" className="relative ml-3">
                                                         <div>

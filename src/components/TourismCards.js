@@ -5,10 +5,11 @@ import { NavLink } from 'react-router-dom';
 import { API, PATH_NAME, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
 import axios from "axios";
 
-export default function TourismCards({ content, onClick, userType}) {
+export default function TourismCards({ content, onClick, userType }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [image, setImage] = useState({});
-    const [contentRating, setContentRating] = useState({ rating: 0.0, votes: 0 })
+    const [contentRating, setContentRating] = useState({ rating: 0.0, votes: 0 });
+    const [deleted, setDeleted] = useState(false);
 
     const wrapperRef = useRef(null);
 
@@ -55,21 +56,25 @@ export default function TourismCards({ content, onClick, userType}) {
                 });
             });
     }, []);
+
+    const handleDelete = () => {
+        axios.post(API.ContentDelete(content.contentID), {});
+    }
+
     return (
-        <>
+        !deleted && <>
             <div className="m-3 flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200 select-none cursor-pointer" onClick={onClick}>
                 {image.pic ?
-                    <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-lg m-3 p-2" src={image.pic} alt={image.altText} />
+                    <img className="object-cover w-full h-96 md:h-auto md:w-48 md:rounded-lg m-3 p-2" src={'data:image/jpeg;base64,' + image.pic} alt={image.altText} />
                     :
                     null}
-                <div className="flex flex-col justify-between p-4 leading-normal">
+                <div className="flex flex-col w-full justify-between p-4 leading-normal">
                     <div className='flex justify-between'>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black">{content.title}</h5>
                         <div className='relative' onClick={(event) => event.stopPropagation()}>
-                            {userType === USER_TYPES.LguSV
-                                ?
+                            {[USER_TYPES.LguSV, USER_TYPES.Admin].includes(userType) ?
                                 <>
-                                    <div className='text-2xl' onClick={toggleDropdown}>
+                                    <div className='text-2xl right-10' onClick={toggleDropdown}>
                                         <HiDotsHorizontal />
                                     </div>
                                     <div
@@ -78,8 +83,8 @@ export default function TourismCards({ content, onClick, userType}) {
                                     >
                                         <div>
                                             <div className="block">
-                                                <NavLink to={PATH_NAME.Tourism.Content + "/edit/1"} className={"mt-2 block"}>Edit</NavLink> {/* Add an "Edit" link */}
-                                                <NavLink to="#" className={"mt-2 block"}>Delete</NavLink> {/* Add a "Delete" link */}
+                                                {/* Add an "Edit" link */}
+                                                <button onClick={handleDelete} className={"mt-2 block"}>Delete</button>
                                             </div>
                                         </div>
                                     </div>

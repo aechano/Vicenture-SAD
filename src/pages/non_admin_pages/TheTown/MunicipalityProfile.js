@@ -21,9 +21,9 @@ export default function MunicipalityProfile() {
                         byteNumbers[i] = byteCharacters.charCodeAt(i);
                     }
                     const byteArray = new Uint8Array(byteNumbers);
-                    const blob = new Blob([byteArray], { type: 'application/pdf' });
+                    const blob = new Blob([byteArray], { type: 'application/pdf;base64' });
 
-                    const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf' });
+                    const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf;base64' });
                     newItems.push({ head: item.profileName, pdfView: file });
                 }
                 setView(newItems);

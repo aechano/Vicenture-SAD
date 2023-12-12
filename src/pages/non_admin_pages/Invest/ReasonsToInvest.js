@@ -7,13 +7,16 @@ import Page403 from '../../Accounts/ErrorPages/Page403';
 import { NavLink } from 'react-router-dom';
 import { useParams, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 
-export default function ReasonsToInvest({ userType }) {
+export default function ReasonsToInvest() {
 
     const reasonsPerPage = 3;
     const { page = 1 } = useParams();
     const currentPage = parseInt(page, 10);
+    const [userType, setUserType] = useState(USER_TYPES.Guest);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,13 +26,19 @@ export default function ReasonsToInvest({ userType }) {
     };
 
     useEffect(() => {
+        var jwt = Cookies.get("token")
+        if (jwt) {
+            var payload = jwtDecode(jwt);
+            setUserType(payload.AccountType);
+        }
+    }, [])
+
+
+    useEffect(() => {
         if (location.pathname === PATH_NAME.Invest.ReasonsToInvest) {
             navigate('/invest/reasons-to-invest/1');
         }
     }, [location.pathname, navigate]);
-
-
-
 
     var contents = [
         {
@@ -96,17 +105,23 @@ export default function ReasonsToInvest({ userType }) {
                 <p>Reasons to Invest</p>
             </Banner>
 
-            <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                <div className="flex justify-end m-5 w-5/6 mx-auto pt-10">
-                    <div className='w-fit rounded-full'>
-                        <NavLink
-                            to={PATH_NAME.Tourism.Content + "/add"}
-                            className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
-                            +&nbsp;&nbsp;&nbsp;Create A Post
-                        </NavLink>
+            {
+                USER_TYPES.EndUsers.includes(userType) ?
+                    null
+                    :
+                    <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
+                        <div className="flex justify-end m-5 w-5/6 mx-auto pt-10">
+                            <div className='w-fit rounded-full'>
+                                <NavLink
+                                    to={PATH_NAME.Tourism.Content + "/add"}
+                                    className='bg-lgu-yellow text-black w-fit p-3 rounded-full hover:bg-yellow-500'> {/** Button for Creating a post */}
+                                    +&nbsp;&nbsp;&nbsp;Create A Post
+                                </NavLink>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+            }
+
             <div>
                 {currentReasons.map((data, index) => {
                     return <InvestContent key={index} data={data} />

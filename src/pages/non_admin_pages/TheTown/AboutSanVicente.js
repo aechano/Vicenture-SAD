@@ -59,7 +59,7 @@ export default function AboutSanVicente() {
         <div className='grid grid-rows-2 md:grid-rows-none md:grid-cols-2'>
           <div className='md:border-r-2 md:border-white'>
             <div className='p-5 relative z-10'>
-              <h1 className="text-4xl font-bold text-center mt-6 text-white">San Vicente Hymn</h1>
+              <h1 className="text-4xl font-bold text-center mt-6 text-white">Hymno San Vicente</h1>
             </div>
             <div className="text-40 text-center mt-2 italic relative z-10 text-white">
               <p className="mt-2">Ang luntiang kabundukan, Nitong ating bayang minamahal</p>

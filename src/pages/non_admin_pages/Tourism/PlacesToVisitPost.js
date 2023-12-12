@@ -47,19 +47,18 @@ export default function PlacesToVisitPost() {
     useEffect(() => {
         axios.get(API.GetContentID(contentID), {})
             .then((response) => response.data)
-            .then((data) => {
-                setData(data);
+            .then((dataFromDB) => {
+                setData(dataFromDB);
+                for (var mediaID of dataFromDB.mediaIDs) {
+                    if (mediaID.altText === "&thumbnail;") {
+                        setMainImage({
+                            pic: mediaID.image,
+                            alt: mediaID.altText
+                        })
+                        break;
+                    }
+                }
             });
-
-        for (var mediaID of data.mediaIDs) {
-            if (mediaID.altText === "&thumbnail;") {
-                setMainImage({
-                    pic: mediaID.image,
-                    alt: mediaID.altText
-                })
-                break;
-            }
-        }
 
         axios.get(API.contentRating(contentID), {})
             .then((response) => response.data)
@@ -82,10 +81,9 @@ export default function PlacesToVisitPost() {
         })
             .then((response) => response.data)
             .then((data) => {
-                console.log(data);
                 setUserRating(data);
             })
-    }, [])
+    }, [contentID])
 
     const handleRatingChange = (newRating) => {
         if (userRating.rating === 0) {
@@ -119,13 +117,13 @@ export default function PlacesToVisitPost() {
             <div className='w-3/4 mx-auto p-10 shadow-md bg-gray-100 rounded-3xl'>
                 <div className='flex flex-col md:flex-row items-center'>
                     {mainImage.pic ?
-                        <img src={mainImage.pic} alt={mainImage.alt} className='w-full h-auto max-w-md rounded-lg object-cover mb-4 md:mb-0 md:mr-4' />
+                        <img src={'data:image/jpeg;base64,' + mainImage.pic} alt={mainImage.alt} className='w-full h-auto max-w-md rounded-lg object-cover mb-4 md:mb-0 md:mr-4' />
                         :
                         null
                     }
                     <div className='text-center md:text-left'>
                         <h1 className='text-2xl md:text-4xl font-bold mb-2'>{data.title ? data.title : null}</h1>
-                        <p className='mb-2'><b>Address:</b><a href={data.link} target='_blank'>{data.map ? data.map.locationName : null}</a></p>
+                        <p className='mb-2'><b>Address:&nbsp;</b><a href={data.map_id?.link} target='_blank'>{data.map_id?.locationName}</a></p>
                         <p><b>Contact:</b> <a href="/mananapfallsSVCN">{data.contact ? data.contact : null}</a></p>
                     </div>
                 </div>
@@ -137,7 +135,7 @@ export default function PlacesToVisitPost() {
                 {/* Use the StarRating component */}
                 <StarRating totalStars={5} onRatingChange={handleRatingChange} initialStars={userRating} />
                 <p>{contentRating.rating} stars / {contentRating.votes} votes</p>
-                <CommentingSystem content={contentID} />
+                <CommentingSystem contentID={contentID} />
             </div>
             <BackToTop />
         </div>

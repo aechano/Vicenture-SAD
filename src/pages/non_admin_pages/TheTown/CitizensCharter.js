@@ -17,35 +17,19 @@ export default function CitizensCharter() {
     const [pdfWidth, setPdfWidth] = useState(800);
     const pdfRef = useRef(null);
     const [view, setView] = useState([])
+    const [loading, setLoading] = useState(false);
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
+        setLoading(true);
     }
-
-    // useEffect(() => {
-    //     const fetchPdfDimensions = async () => {
-    //         try {
-    //             const pdfPath = require("../../../res/pdf/citizenscharterfile.pdf");
-    //             const loadingTask = pdfjs.getDocument({ url: pdfPath });
-
-    //             const pdfDoc = await loadingTask.promise;
-    //             const firstPage = await pdfDoc.getPage(1);
-    //             const { width, height } = firstPage.getViewport({ scale: 1 });
-
-    //             setPdfDimensions({ width, height });
-    //         } catch (error) {
-    //             console.error('Error loading PDF:', error);
-    //         }
-    //     };
-
-    //     fetchPdfDimensions();
-    // }, []);
-
+    
     useEffect(() => {
         axios.get(API.viewCharter, {})
             .then((response) => response.data)
             .then((data) => {
                 var newItems = [];
+                console.log("Fetched data:", data);
                 console.log(data)
                 for (var item of data) {
                     const pdfName = item.pdfName;
@@ -55,12 +39,17 @@ export default function CitizensCharter() {
                         byteNumbers[i] = byteCharacters.charCodeAt(i);
                     }
                     const byteArray = new Uint8Array(byteNumbers);
-                    const blob = new Blob([byteArray], { type: 'application/pdf' });
+                    const blob = new Blob([byteArray], { type: 'application/pdf;base64' });
 
-                    const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf' });
+                    const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf;base64' });
                     newItems.push({ head: item.charterName, pdfView: file });
                 }
+                console.log("View state:", newItems);
                 setView(newItems);
+                setLoading(true);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
             });
     }, []);
 
@@ -167,10 +156,14 @@ export default function CitizensCharter() {
             </Banner>
             <div className="mx-auto max-w-4xl px-2 sm:px-6 lg:px-8 m-5 block grow">
                 <div className="pdf-container w-full" ref={pdfRef}>
-
-                    <Document file={view[pageNumber - 1]?.pdfView} onLoadSuccess={onDocumentLoadSuccess} className={'border-4'}>
-                        <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
-                    </Document>
+                    {console.log("Rendering view:", view)} {/* Check if view state is correct */}
+                    {loading ? (
+                        <Document file={view[0].pdfView} onLoadSuccess={onDocumentLoadSuccess} className={'border-4'}>
+                            <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
+                        </Document>
+                    ) : (
+                        <div>Loading...</div>
+                    )}
                 </div>
                 <div className="pdf-buttons">
                     <button onClick={handlePreviousPage} disabled={pageNumber === 1} className="pdf-button">

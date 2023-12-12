@@ -1,8 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { RiArrowLeftCircleFill, RiArrowRightCircleFill } from 'react-icons/ri';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/legacy/build/pdf.worker.min.js`;
 
 export default function Viewer({ view }) {
     const [selectedContent, setSelectedContent] = useState(view[0]);
@@ -25,12 +26,15 @@ export default function Viewer({ view }) {
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
-        setPageNumber(1);
+        // Ensure that the current page number is within the valid range
+        setPageNumber(prevPageNumber => Math.min(prevPageNumber, numPages));
     }
+    
 
-    function changePage(offSet) {
-        setPageNumber(prevPageNumber => prevPageNumber + offSet);
+    function changePage(offset) {
+        setPageNumber(prevPageNumber => Math.min(Math.max(prevPageNumber + offset, 1), numPages));
     }
+    
 
     function changePageBack() {
         changePage(-1);
@@ -106,7 +110,7 @@ export default function Viewer({ view }) {
                             <div className='rounded shadow-lg shadow-lgu-green'>
                                 <div className='flex justify-end w-full pt-6' ref={pdfRef}>
                                     <Document file={URL.createObjectURL(selectedContent.pdfView)} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto">
-                                        <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} />
+                                        <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} className="font-sans" />
                                     </Document>
                                 </div>
                                 <div className='flex justify-end border w-full mt-5 p-2'>

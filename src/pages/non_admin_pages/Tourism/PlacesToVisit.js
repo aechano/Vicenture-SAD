@@ -6,7 +6,7 @@ import TourismCards from '../../../components/TourismCards';
 import { useNavigate } from 'react-router';
 import BackToTop from '../../../components/BackToTop';
 import { NavLink } from 'react-router-dom';
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
@@ -18,7 +18,7 @@ export default function PlacesToVisit() {
     const currentPage = parseInt(page);
     const [search, setSearch] = useState('');
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [contents, setContents] = useState(null);
+    const [contents, setContents] = useState([]);
     const [showDropdown, setShowDropdown] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,7 +30,7 @@ export default function PlacesToVisit() {
         var jwt = Cookies.get("token");
         if (jwt) {
             var payload = jwtDecode(jwt);
-            setuserType(payload.accountType);
+            setuserType(payload.AccountType);
         }
     }, [])
 
@@ -97,58 +97,7 @@ export default function PlacesToVisit() {
             </Banner>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='flex items-center justify-center'>
-
-                    <form className="w-72 sm:w-96 md:w-7/12 my-auto p-2">
-                        <div class="relative">
-                            {/*SVG image of a magnifying glass*/}
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg
-                                    class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                    aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 20 20"
-                                >
-                                    <path
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                            </div>
-                            {/*Search input box*/}
-                            <input
-                                type="search"
-                                class="block w-full p-4 pl-10 text-sm text-gray-900 border border-lgu-green rounded-full bg-gray-100 focus:ring-lgu-green focus:border-lgu-green"
-                                placeholder="Search"
-                                value={search}
-                                onFocus={() => setShowDropdown(true)}
-                                onBlur={() => setShowDropdown(false)}
-                                onChange={(e) => {
-                                    setSearch(e.target.value)
-                                    setShowDropdown(false);
-                                }}
-                                required
-                                onKeyDown={handleKeyDown}
-                            />
-                            {showDropdown && (
-                                <div className="absolute mt-2 w-full bg-white border border-lgu-green rounded-md shadow-lg">
-                                    <ul>
-                                        {categories.map((category) => (
-                                            <li
-                                                key={category}
-                                                className="px-4 py-2 cursor-pointer hover:bg-gray-200"
-                                                onClick={() => handleCategoryClick(category)}
-                                            >
-                                                {category}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                    </form>
+                {/** INSERT SEARCHBAR HERE */}
                 </div>
                 {[USER_TYPES.LguSV, USER_TYPES.Admin].includes(userType) ?
                     <div className='w-fit rounded-full ms-5 my-2 float float-right'>
@@ -162,8 +111,8 @@ export default function PlacesToVisit() {
                     null
                 }
                 <div className='pt-12'>
-                    {contents ?
-                        contents?.map((content, index) => {
+                    {contents?.length > 0 ?
+                        contents.map((content, index) => {
                             return <TourismCards
                                 key={index}
                                 content={content}
@@ -187,7 +136,7 @@ export default function PlacesToVisit() {
                     }
                 </div>
 
-                <nav aria-label="Page navigation example">
+                <nav>
                     <ul className="list-style-none flex justify-center">
                         <li>
                             <button
@@ -267,8 +216,6 @@ export default function PlacesToVisit() {
                         </li>
                     </ul>
                 </nav>
-
-
             </div>
             <BackToTop />
         </>

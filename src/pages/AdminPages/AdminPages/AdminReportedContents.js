@@ -41,7 +41,7 @@ export default function AdminReportedContents() {
                                             return <Entry
                                                 key={index}
                                                 id={index + 1}
-                                                email={report.reported}
+                                                email={report.reported.email}
                                                 reason={report.reason}
                                                 context={report.context}
                                                 link={report.link}

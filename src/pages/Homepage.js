@@ -3,16 +3,20 @@ import Sections from "../components/Sections";
 import Banner from "../components/Banner";
 import BackToTop from "../components/BackToTop";
 import { NavLink, useLocation } from "react-router-dom";
-import { PATH_NAME, USER_TYPES } from "../Variables/GLOBAL_VARIABLE";
+import { PATH_NAME, USER_TYPES, API } from "../Variables/GLOBAL_VARIABLE";
 import CalendarModal from "../components/CalendarModal";
 import CarouselComponent from "../components/CarouselComponent";
 import ChatIcon from "../components/ChatIcon";
 import RevealOnScroll from './../components/RevealOnScroll';
 import SurveyIcon from "../components/SurveyIcon";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function Homepage({ userType, surveyShowing, setSurveyShowing }) {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [emergencyTitle, setEmergencyTitle] = useState("");
+    const [emergencyContent, setEmergencyContent] = useState("");
 
     const images = [
         require("./../res/img/0.png"),
@@ -21,8 +25,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
         require("./../res/img/3.png"),
         require("./../res/img/4.png"),
         require("./../res/img/5.png"),
-        require("./../res/img/6.png"),
-        // Add more image URLs as needed
+        require("./../res/img/6.png")
     ];
 
 
@@ -41,9 +44,24 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
         const intervalId = setInterval(() => {
             setCurrentDate(new Date());
         }, 1000); // Update every second
-
         return () => clearInterval(intervalId); // Cleanup on component unmount
     }, []);
+
+    useEffect(() => {
+        axios.get(API.viewAlert)
+            .then((response) => response.data)
+            .then((data) => {
+                console.log(data);
+                if (data?.length > 0) {
+                    setEmergencyTitle(data[data.length - 1].alertTitle);
+                    setEmergencyContent(data[data.length - 1].alertMessage);
+                } else {
+                    setEmergencyTitle("");
+                    setEmergencyContent("No Announcements");
+                }
+            })
+    }, [])
+
 
     const formattedDate = currentDate.toLocaleDateString(undefined, {
         month: 'long',
@@ -92,12 +110,13 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                                 <div className="border-b-2 border-[#0000002d] rounded-md bg-emergency px-6 py-3 text-white dark:text-neutral-50 font-bold text-center">
                                     Emergency
                                 </div>
+
                                 <div className="p-6">
                                     <h5 className="mb-2 text-xl font-medium leading-tight text-black">
-                                        Heavy Rainfall Warning
+                                        {emergencyTitle}
                                     </h5>
                                     <p className="text-base text-black overflow-y-scroll no-scrollbar h-40">
-                                        A "Heavy Rainfall Warning" has been issued, urging residents to exercise caution and take necessary precautions as intense precipitation is anticipated in the forecast.
+                                        {emergencyContent}
                                     </p>
                                 </div>
                             </div>
@@ -111,7 +130,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                                         <div className="text-5xl font-bold">{currentDate.getDate()}</div>
                                         <div className="text-sm">Current Day</div>
                                         <div className="text-lg mt-2">
-                                            {currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit'})}
+                                            {currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                                             <p className="text-sm mt-2">Click to See Events</p>
                                         </div>
                                     </div>

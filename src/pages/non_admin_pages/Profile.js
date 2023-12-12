@@ -1,37 +1,50 @@
-import React, { useState } from 'react';
-import { PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
+import React, { useEffect, useState } from 'react';
+import { API, PATH_NAME, USER_TYPES } from '../../Variables/GLOBAL_VARIABLE';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 export default function Profile() {
     const [userType, setUserType] = useState(USER_TYPES.Guest)
-    const navigate = useNavigate()
-    var token = Cookies.get("token");
-    if (token) {
-        var payload = jwtDecode(token);
-        setUserType(payload.accountType);
-    } else {
-        navigate(PATH_NAME.Home);
-    }
-    const user = {
-        email: payload.sub,
-        username: payload.Username,
-        businessSector: "Agriculture",
-        company: "Cargill Inc",
-        office: "Tourism Office",
-        position: "Head Officer"
-    };
-
+    const [user, setUser] = useState();
+    const navigate = useNavigate();
     const [newProfilePicture, setNewProfilePicture] = useState(null);
-    const [isTextClicked, setIsTextClicked] = useState(false); 
+    const [isTextClicked, setIsTextClicked] = useState(false);
     const [editing, setEditing] = useState(false);
-    const [newEmail, setNewEmail] = useState(user.email);
-    const [newUsername, setNewUsername] = useState(user.username);
-    const [newBusinessSector, setBusinessSector] = useState(user.businessSector);
-    const [newCompany, setCompany] = useState(user.company);
-    const [newOffice, setOffice] = useState(user.office);
-    const [newPosition, setPosition] = useState(user.position);
+    const [newEmail, setNewEmail] = useState();
+    const [newUsername, setNewUsername] = useState();
+    const [newBusinessSector, setBusinessSector] = useState();
+    const [newCompany, setCompany] = useState();
+    const [newOffice, setOffice] = useState();
+    const [newPosition, setPosition] = useState();
+    useEffect(() => {
+        var token = Cookies.get("token");
+        if (token) {
+            var payload = jwtDecode(token);
+            setUserType(payload.accountType);
+        } else {
+            navigate(PATH_NAME.Home);
+        }
+
+        setUser({
+            email: payload.sub,
+            username: payload.Username,
+            businessSector: "Agriculture",
+            company: "Cargill Inc",
+            office: "Tourism Office",
+            position: "Head Officer"
+        });
+    }, [])
+
+    useEffect(() => {
+        setNewEmail(user?.email);
+        setNewUsername(user?.username);
+        setBusinessSector(user?.businessSector);
+        setCompany(user?.company);
+        setOffice(user?.office);
+        setPosition(user?.position);
+    }, [user])
 
     const handleEditClick = () => {
         setEditing(true);
@@ -43,12 +56,12 @@ export default function Profile() {
     };
 
     const handleCancelClick = () => {
-        setNewEmail(user.email);
-        setNewUsername(user.username);
-        setBusinessSector(user.businessSector);
-        setCompany(user.company);
-        setOffice(user.office);
-        setPosition(user.position);
+        setNewEmail(user?.email);
+        setNewUsername(user?.username);
+        setBusinessSector(user?.businessSector);
+        setCompany(user?.company);
+        setOffice(user?.office);
+        setPosition(user?.position);
         setNewProfilePicture(null); // Reset the profile picture state
         setEditing(false);
         setIsTextClicked(false);
@@ -59,26 +72,36 @@ export default function Profile() {
         // You can use state (newEmail, newUsername, newProfilePicture) to send the updated data to the server
 
         // Example: Send new profile picture to the server
-        if (newProfilePicture) {
-            const formData = new FormData();
-            formData.append('profilePicture', newProfilePicture);
+        const formData = new FormData();
+        formData.append("profilePicture", newProfilePicture);
+        formData.append("username", newUsername);
 
-            fetch('/api/updateProfilePicture', {
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-                body: formData,
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response from the server
-                    console.log('Profile picture updated successfully:', data);
-                })
-                .catch(error => {
-                    console.error('Error updating profile picture:', error);
+        axios.post(API.updateProfile, formData, {
+            headers: {
+                "Authorization": `Bearer ${Cookies.get("token")}`,
+                'Content-Type': 'multipart/form-data'
+            },
+            withCredentials: true
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                Cookies.set("token", data.token);
+                Cookies.set("refresh", data.refreshToken);
+                window.dispatchEvent("cookies");
+                window.dispatchEvent("profilePicture");
+                var payload = jwtDecode(data.token);
+                setUser({
+                    email: payload.sub,
+                    username: payload.Username,
+                    businessSector: "Agriculture",
+                    company: "Cargill Inc",
+                    office: "Tourism Office",
+                    position: "Head Officer"
                 });
-        }
+            })
+            .catch(error => {
+                console.error(error);
+            });
 
         setEditing(false);
     };
@@ -129,6 +152,8 @@ export default function Profile() {
     const saveButtonStyle = {
         ...buttonStyle,
         marginLeft: '40px',
+        backgroundColor: '#AAA',
+        color: "#333"
     };
 
     return (
@@ -140,7 +165,7 @@ export default function Profile() {
                         <img
                             src={newProfilePicture ? URL.createObjectURL(newProfilePicture) : require("./../../res/img/icon.png")}
                             style={{ width: '100%', height: '100%', borderRadius: '50%' }}
-                            alt={user.username}
+                            alt={user?.username}
                         />
                         <div className={`items-center mb-4 mt-2 ${isTextClicked ? 'underline' : ''}`}
                             onClick={handleTextClick}
@@ -159,17 +184,13 @@ export default function Profile() {
                     )}
                 </div>
                 <div style={profileInfoStyle}>
-                    <div style={labelStyle}>Email:</div>
-                    {editing ? (
-                        <input
-                            type="text"
-                            value={newEmail}
-                            onChange={(e) => setNewEmail(e.target.value)}
-                            style={smallInputStyle}
-                        />
-                    ) : (
-                        <p style={detailStyle}>{newEmail}</p>
-                    )}
+                    {editing ?
+                        null
+                        :
+                        <>
+                            <div style={labelStyle}>Email:</div>
+                            <p style={detailStyle}>{newEmail}</p>
+                        </>}
                     <div style={labelStyle}>Username:</div>
                     {editing ? (
                         <input
@@ -213,8 +234,8 @@ export default function Profile() {
                 </div>
                 {editing ? (
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <button style={buttonStyle} onClick={handleCancelClick}>Cancel</button>
-                        <button style={saveButtonStyle} onClick={handleSaveClick}>Save Changes</button>
+                        <button style={buttonStyle} onClick={handleSaveClick}>Save Changes</button>
+                        <button style={saveButtonStyle} onClick={handleCancelClick}>Cancel</button>
                     </div>
                 ) : (
                     <button style={buttonStyle} onClick={handleEditClick}>Edit Profile</button>
