@@ -122,8 +122,8 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white mb-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-96 h-52"
-                                    src={require("../../../res/img/Hon-Mayor-Ma-Jhoanna-C-Ong.JPG")}
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialGirl.png")}
                                     alt="Hon. Mayor Ma. Jhoanna C. Ong"
                                 />
                             </div>
@@ -141,8 +141,8 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white mb-5 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-cover w-96 h-52"
-                                    src={require("../../../res/img/Hon-Vice-Mayor-Vivian-M-Villamor.JPG")}
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialGirl.png")}
                                     alt="Hon. Vice Mayor Vivian M. Villamor"
                                 />
                             </div>
@@ -164,9 +164,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Luisito-G-Bobis.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Luisito G. Bobis"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -182,9 +182,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Nestor-C-Gonzales.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Nestor C. Gonzales"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -200,9 +200,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Percival-K-Palma.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Percival K. Palma"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -221,9 +221,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Emmanuel-R-Opeda.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Emmanuel R. Opeda"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -239,9 +239,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Thamar-P-Belista.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialGirl.png")}
+                                    alt="Hon. Coun. Thamar P. Belista"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -257,9 +257,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Analet-G-Villamin.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialGirl.png")}
+                                    alt="Hon. Coun. Analet G. Villamin"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -278,9 +278,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Mercy-L-Magana.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialGirl.png")}
+                                    alt="Hon. Coun. Mercy L. Magana"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -296,9 +296,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Elmer-P-San-Juan.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Elmer P. San Juan"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -314,9 +314,9 @@ export default function ElectedOfficials() {
                         <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Alberto-E-Mera.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Albert E. Mera"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
@@ -334,9 +334,9 @@ export default function ElectedOfficials() {
                     <div className="block w-[18rem] rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] mx-2 m-2 border-2">
                             <div className="relative overflow-hidden aspect-w-3 aspect-h-4 flex justify-center items-center">
                                 <img
-                                    className="rounded-t-lg object-fill w-96 h-52"
-                                    src={require("../../../res/img/Hon-Councilor-Aldrin-R-Alarde.JPG")}
-                                    alt=""
+                                    className="rounded-t-lg object-cover w-52 h-52"
+                                    src={require("../../../res/img/tempOfficialBoy.png")}
+                                    alt="Hon. Coun. Aldrin R. Alarde"
                                 />
                             </div>
                             <div className="p-6 bg-lgu-lime rounded-bl-lg rounded-br-lg">
