@@ -29,6 +29,7 @@ import Profile from './pages/non_admin_pages/Profile';
 import Messaging from './pages/non_admin_pages/Messaging';
 import CitizensCharter from './pages/non_admin_pages/TheTown/CitizensCharter';
 import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
+import Awards from './pages/non_admin_pages/TheTown/Awards';
 import Transparency from './pages/non_admin_pages/Transparency';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
 import Offices_Add from './pages/lgu_sv_access/Offices_Add';
@@ -104,6 +105,7 @@ function App() {
                         <Route path={PATH_NAME.TheTown.Offices} element={<Offices />} />
                         <Route path={PATH_NAME.TheTown.CitizensCharter} element={<CitizensCharter />} />
                         <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials />} />
+                        <Route path={PATH_NAME.TheTown.Awards} element={<Awards />} />
 
                         <Route path={PATH_NAME.Tourism.SanVicente} element={<SanVicenteTourism />} />
                         <Route path={PATH_NAME.Tourism.OnlineForm} element={<OnlineForm />} />
