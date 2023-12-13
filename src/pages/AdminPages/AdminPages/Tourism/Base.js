@@ -10,7 +10,8 @@ export default function AdminTourismBase() {
         { name: "Activities", to: PATH_NAME.AdminPages.Activities }
     ]
     return (
-        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.Tourism
+        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.Tourism ||
+        location.pathname === PATH_NAME.AdminPages.ContentWriter + "/" + PATH_NAME.AdminPages.Tourism
             ?
             <Base contents={contents} title="Tourism" />
             :

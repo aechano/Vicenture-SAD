@@ -65,6 +65,7 @@ import AdminHomepageBase from './pages/AdminPages/AdminPages/Homepage/Base';
 import AdminBanner from './pages/AdminPages/AdminPages/Homepage/AdminBanner';
 import AdminEvents from './pages/AdminPages/AdminPages/Homepage/AdminEvents';
 import AdminAwards from './pages/AdminPages/AdminPages/Homepage/AdminAwards';
+import ContentWriter from './pages/AdminPages/ContentWriter';
 
 function App() {
     const [userType, setUserType] = useState(USER_TYPES.Guest);
@@ -178,8 +179,31 @@ function App() {
                             <Route path={PATH_NAME.AdminPages.Transparency} element={<AdminTransparency />} />
                             <Route path={PATH_NAME.AdminPages.ReportedContents} element={<AdminReportedContents />} />
                         </Route>
-
-                        <Route path='/debug' element={<Page403 />} />
+                        <Route path={PATH_NAME.AdminPages.ContentWriter} element={<ContentWriter />}>
+                            <Route path={PATH_NAME.AdminPages.Homepage} element={<AdminHomepageBase />}>
+                                <Route path={PATH_NAME.AdminPages.Banner} element={<AdminBanner />} />
+                                <Route path={PATH_NAME.AdminPages.Events} element={<AdminEvents />} />
+                                <Route path={PATH_NAME.AdminPages.Awards} element={<AdminAwards />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.TheTown} element={<AdminTheTownBase />} >
+                                <Route path={PATH_NAME.AdminPages.MunicipalityProfile} element={<AdminMunicipalityProfile />} />
+                                <Route path={PATH_NAME.AdminPages.ElectedOfficials} element={<AdminElectedOfficials />} />
+                                <Route path={PATH_NAME.AdminPages.CitizensCharter} element={<AdminCitizensCharter />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.Tourism} element={<AdminTourismBase />} >
+                                <Route path={PATH_NAME.AdminPages.PlacesToVisit} element={<AdminPlacesToVisit />} />
+                                <Route path={PATH_NAME.AdminPages.Activities} element={<AdminActivities />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.Invest} element={<AdminInvestBase />}>
+                                <Route path={PATH_NAME.AdminPages.InvestmentOpportunities} element={<AdminInvestmentOpportunities />} />
+                                <Route path={PATH_NAME.AdminPages.ReasonsToInvest} element={<AdminReasonsToInvest />} />
+                            </Route>
+                            <Route path={PATH_NAME.AdminPages.OnlineSurvey} element={<AdminOnlineSurvey />} />
+                            <Route path={PATH_NAME.AdminPages.GeneralArticles} element={<AdminGeneralArticles />} />
+                            <Route path={PATH_NAME.AdminPages.SportsTourismArticles} element={<AdminSportsTourismArticles/>} />
+                            <Route path={PATH_NAME.AdminPages.Transparency} element={<AdminTransparency />} />
+                        </Route>
+                        
                         <Route path='/*' element={<Page404 />} />
                     </Routes>
                 </Header>

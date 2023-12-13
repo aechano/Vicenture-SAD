@@ -10,7 +10,8 @@ export default function AdminInvestBase() {
         { name: "Reasons To Invest", to: PATH_NAME.AdminPages.ReasonsToInvest }
     ]
     return (
-        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.Invest
+        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.Invest ||
+        location.pathname === PATH_NAME.AdminPages.ContentWriter + "/" + PATH_NAME.AdminPages.Invest
             ?
             <Base contents={contents} title="Invest" />
             :

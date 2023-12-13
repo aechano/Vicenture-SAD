@@ -11,7 +11,8 @@ export default function AdminHomepageBase() {
         { name: "Awards", to: PATH_NAME.AdminPages.Awards }
     ]
     return (
-        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.Homepage
+        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.Homepage ||
+        location.pathname === PATH_NAME.AdminPages.ContentWriter + "/" + PATH_NAME.AdminPages.Homepage
             ?
             <Base contents={contents} title="Homepage" />
             :
