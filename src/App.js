@@ -66,6 +66,7 @@ import AdminBanner from './pages/AdminPages/AdminPages/Homepage/AdminBanner';
 import AdminEvents from './pages/AdminPages/AdminPages/Homepage/AdminEvents';
 import AdminAwards from './pages/AdminPages/AdminPages/Homepage/AdminAwards';
 import ContentWriter from './pages/AdminPages/ContentWriter';
+import ActivitiesContent from './pages/lgu_sv_access/ActivitiesContent';
 
 function App() {
     const [userType, setUserType] = useState(USER_TYPES.Guest);
@@ -149,6 +150,8 @@ function App() {
 
                         <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent />} />
                         <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent />} />
+                        <Route path={PATH_NAME.Tourism.ActivitiesContent + "/:method/:contentID"} element={<ActivitiesContent />} />
+                        <Route path={PATH_NAME.Tourism.ActivitiesContent + "/:method"} element={<ActivitiesContent />} />
                         <Route path={PATH_NAME.AddOffices} element={<Offices_Add userType={userType} />} />
 
                         <Route path={PATH_NAME.AdminPages.Admin} element={<Admin />}>

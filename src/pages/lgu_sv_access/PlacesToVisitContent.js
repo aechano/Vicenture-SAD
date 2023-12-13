@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { LguSvAddEditContent } from '../../components/LguSvAddEditContent';
+import LguSvAddEditContent from '../../components/LguSvAddEditContent';
 import { useParams } from 'react-router';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
@@ -24,13 +24,12 @@ export default function PlacesToVisitContent() {
         }
     }, []);
 
-    const initialCategories = ['Nature', 'Restaurants', 'Resorts', 'Cafe', 'Schools'];
     const { method, contentID } = useParams();
     const [isFound, setIsFound] = useState(true);
     const [showLink, setShowLink] = useState(null);
 
     // Define state for categories and a setter function
-    const [categories, setCategories] = useState(initialCategories);
+    const [categories, setCategories] = useState(['Nature', 'Restaurants', 'Resorts', 'Cafe', 'Schools']);
     const [content, setContent] = useState();
 
     useEffect(() => {
@@ -83,7 +82,7 @@ export default function PlacesToVisitContent() {
             <>
                 {
                     showLink ?
-                        <SavedPopup setShow={setShowLink} link={showLink}/>
+                        <SavedPopup setShow={setShowLink} link={showLink} />
                         :
                         null
                 }

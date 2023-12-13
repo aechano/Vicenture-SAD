@@ -56,6 +56,7 @@ const PATH_NAME = {
         Activities: "/tourism/activities",
         ActivitiesPost: "/tourism/activity",
         Content: "/tourism/places-to-visit/content",
+        ActivitiesContent: "/tourism/activities/content"
     },
 
     Invest: {

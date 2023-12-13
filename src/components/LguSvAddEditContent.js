@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { TiLocation } from 'react-icons/ti';
-import ChipsInputComponent from './ChipsInputComponent';
-import { ImEye } from 'react-icons/im'
-import { NavLink } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 
-function LguSvAddEditContent({ title, categories, setCategories, type, contentType, contentBody, onSave }) {
+export default function LguSvAddEditContent({ title, categories, setCategories, type, contentType, contentBody, onSave }) {
 
     const [selectedFile, setSelectedFile] = useState("No image chosen");
+    const [imageToShow, setImageToShow] = useState();
     const [showDropdown, setShowDropdown] = useState(false);
     const [newCategory, setNewCategory] = useState('');
 
@@ -65,13 +63,26 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
         }
     }
 
+    const handleFileSelect = (file) => {
+        setSelectedFile(file);
+        if (file) {
+            setSelectedFile(file);
+
+            // Read the file as a data URL
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setImageToShow(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
 
     return (
         <div className="flex flex-col items-center justify-center p-20 min-h-screen">
             <div className="mx-auto flex flex-col items-center w-full max-w-7xl mb-10 border-2 border-lgu-green rounded-2xl">
                 <div className="text-2xl font-bold bg-lgu-green text-white p-4 w-full rounded-tl-xl rounded-tr-xl">{title}</div>
                 <div className="w-48 h-48 border-4 border-lgu-green rounded-xl mb-2 mt-4">
-                    <img src={require("./../res/img/camera.png")} alt="camera icon" className="w-full h-full rounded-xl" />
+                    <img src={imageToShow ? imageToShow : require("./../res/img/camera.png")} alt="camera icon" className="w-full h-full rounded-xl" />
                 </div>
                 <div className='pb-2'>
                     <div className="flex flex-row items-center border-2 rounded-md border-lgu-green">
@@ -82,7 +93,7 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                             id="custom-input"
                             name='custom-input'
                             onChange={(e) => {
-                                setSelectedFile(e.target.files[0]);
+                                handleFileSelect(e.target.files[0]);
                             }}
                             hidden
                         />
@@ -97,7 +108,7 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
                         <label className="text-xs text-slate-500 pr-2">{selectedFile.name}</label>
                     </div>
                 </div>
-                <form onSubmit={(e)=>e.preventDefault()}>
+                <form onSubmit={(e) => e.preventDefault()}>
                     <div className='grid grid-cols-2 gap-5 mt-5'>
                         <div>
                             <div className="relative mb-6 mt-5 text-left" data-te-input-wrapper-init>
@@ -228,5 +239,3 @@ function LguSvAddEditContent({ title, categories, setCategories, type, contentTy
         </div>
     )
 }
-
-export { LguSvAddEditContent };

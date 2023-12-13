@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { HiDotsHorizontal } from 'react-icons/hi'
 import { AiOutlineComment, AiTwotoneStar } from 'react-icons/ai'
-import { NavLink } from 'react-router-dom';
-import { API, PATH_NAME, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
+import { API, USER_TYPES } from '../Variables/GLOBAL_VARIABLE';
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function TourismCards({ content, onClick, userType }) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -58,7 +58,10 @@ export default function TourismCards({ content, onClick, userType }) {
     }, []);
 
     const handleDelete = () => {
-        axios.post(API.ContentDelete(content.contentID), {});
+        axios.post(API.ContentDelete(content.contentID), {}, {
+            headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+            withCredentials: true
+        });
     }
 
     return (

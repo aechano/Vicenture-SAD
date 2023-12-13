@@ -38,7 +38,7 @@ const navigation = [
         ],
     },
     {
-        access: [USER_TYPES.Investor, USER_TYPES.LguSV, USER_TYPES.Admin],
+        access: [USER_TYPES.Investor, USER_TYPES.LguSV, USER_TYPES.Admin, USER_TYPES.ContentWriter],
         name: "Invest",
         href: PATH_NAME.Invest.Invest,
         subItems: [

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import LguSvAddEditContent from '../../../../components/LguSvAddEditContent';
+import LguSvAddEditContent from './../../components/LguSvAddEditContent';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { API, PATH_NAME, USER_TYPES } from '../../../../Variables/GLOBAL_VARIABLE';
-import Page403 from '../../../Accounts/ErrorPages/Page403';
-import { NavLink } from 'react-router-dom';
+import { API, PATH_NAME, USER_TYPES } from './../../Variables/GLOBAL_VARIABLE';
+import Page403 from './../Accounts/ErrorPages/Page403';
+import Page404 from './../Accounts/ErrorPages/Page404';
+import { NavLink, useParams } from 'react-router-dom';
 import { GiWaterfall } from 'react-icons/gi';
 import { jwtDecode } from 'jwt-decode';
 
-// Your main component or container component
-export default function AdminActivities() {
+export default function ActivitiesContent() {
 
     useEffect(() => {
         var jwt = Cookies.get("token");
@@ -23,10 +23,29 @@ export default function AdminActivities() {
         }
     }, []);
 
+    const { method, contentID } = useParams();
+    const [isFound, setIsFound] = useState(true);
     const [showLink, setShowLink] = useState(null);
 
     // Define state for categories and a setter function
-    const [categories, setCategories] = useState(['Nature', 'Restaurants', 'Resorts', 'Cafe', 'Schools']);
+    const [categories, setCategories] = useState(['Festival', 'Hiking', 'Exhibition']);
+    const [content, setContent] = useState();
+
+    useEffect(() => {
+        if (contentID) {
+            axios.get(API.GetContentID(contentID), {
+                headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+                withCredentials: true
+            })
+                .then((response) => response.data)
+                .then((data) => {
+                    if (!data) {
+                        setIsFound(false);
+                    }
+                    setContent(data);
+                });
+        }
+    }, [contentID])
 
     const handleSave = (data) => {
         if (!data) return;
@@ -43,7 +62,7 @@ export default function AdminActivities() {
         formData.append("locationLink", data.locationLink);
         formData.append("body", data.body);
         formData.append("type", "activities");
-
+        
         axios.post(API.Content("/upload"), formData, {
             headers: {
                 "Authorization": `Bearer ${Cookies.get("token")}`,
@@ -58,22 +77,26 @@ export default function AdminActivities() {
     }
 
     return (
-        <>
-            {
-                showLink ?
-                    <SavedPopup setShow={setShowLink} link={showLink} />
-                    :
-                    null
-            }
-            <LguSvAddEditContent
-                title={"Add Activities"}
-                categories={categories}
-                setCategories={setCategories}
-                type={"ADD"}
-                contentType="activities"
-                onSave={handleSave}
-            />
-        </>
+        isFound ?
+            <>
+                {
+                    showLink ?
+                        <SavedPopup setShow={setShowLink} link={showLink} />
+                        :
+                        null
+                }
+                <LguSvAddEditContent
+                    title={(method === "add" ? "Add" : "Edit") + " Activities"}
+                    categories={categories}
+                    setCategories={setCategories}
+                    type={method === "add" ? "ADD" : "EDIT"}
+                    contentType="places-to-visit"
+                    contentBody={contentID !== undefined ? content : undefined}
+                    onSave={handleSave}
+                />
+            </>
+            :
+            <Page404 />
     );
 }
 

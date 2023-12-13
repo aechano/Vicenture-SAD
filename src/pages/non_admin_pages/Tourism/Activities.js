@@ -103,7 +103,7 @@ export default function Activities() {
                 {[USER_TYPES.LguSV, USER_TYPES.Admin].includes(userType) ?
                     <div className='w-fit rounded-full ms-5 my-2 float float-right'>
                         <NavLink
-                            to={PATH_NAME.Tourism.Content + "/add"}
+                            to={PATH_NAME.Tourism.ActivitiesContent + "/add"}
                             className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
                             +&nbsp;&nbsp;&nbsp;Create A Post
                         </NavLink>
@@ -144,7 +144,7 @@ export default function Activities() {
                                 className={`relative block rounded px-3 py-1.5 text-lg text-black transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 dark:hover:text-white ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 onClick={() => {
                                     if (currentPage > 1) {
-                                        navigate('/tourism/places-to-visit/1')
+                                        navigate('/tourism/activities/1')
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
@@ -159,7 +159,7 @@ export default function Activities() {
                                     }`}
                                 onClick={() => {
                                     if (currentPage > 1) {
-                                        navigate(`/tourism/places-to-visit/${currentPage - 1}`)
+                                        navigate(`/tourism/activities/${currentPage - 1}`)
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
@@ -172,7 +172,7 @@ export default function Activities() {
                         {bottomPageNumbers.map((page, index) => (
                             <li key={index}>
                                 <NavLink
-                                    to={`/tourism/places-to-visit/${page}`}
+                                    to={`/tourism/activities/${page}`}
                                     onClick={() => {
                                         handlePageChange(page);
                                         window.scrollTo({ top: 0, left: 0 });
@@ -191,7 +191,7 @@ export default function Activities() {
                                     }`}
                                 onClick={() => {
                                     if (currentPage < totalPages) {
-                                        navigate(`/tourism/places-to-visit/${currentPage + 1}`);
+                                        navigate(`/tourism/activities/${currentPage + 1}`);
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
@@ -206,7 +206,7 @@ export default function Activities() {
                                     }`}
                                 onClick={() => {
                                     if (currentPage < totalPages) {
-                                        navigate(`/tourism/places-to-visit/${totalPages}`);
+                                        navigate(`/tourism/activities/${totalPages}`);
                                         window.scrollTo({ top: 0, left: 0 });
                                     }
                                 }}
