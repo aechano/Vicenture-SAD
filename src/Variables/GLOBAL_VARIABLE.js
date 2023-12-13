@@ -136,6 +136,10 @@ const API = {
     editSurvey: SERVER_ADDRESS + CONTENT_WRITER +"/edit-survey",
     getAllSurveys: SERVER_ADDRESS + PUBLIC + "/viewSurveys",
     addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
+    viewBanner: SERVER_ADDRESS + PUBLIC + "/view-banner",
+    addBanner: SERVER_ADDRESS + ADMIN + "/add-banner",
+    editBanner: SERVER_ADDRESS + ADMIN + "/edit-banner",
+    deleteBanner: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-banner/" + id },
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"
