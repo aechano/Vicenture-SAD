@@ -23,6 +23,7 @@ const navigation = [
             { name: 'Municipality Profile', href: PATH_NAME.TheTown.MunicipalityProfile },
             { name: 'Municipality Programs', href: PATH_NAME.TheTown.MunicipalityPrograms },
             { name: 'Elected Officials', href: PATH_NAME.TheTown.ElectedOfficials },
+            { name: 'Awards', href: PATH_NAME.TheTown.Awards},
             { name: 'Offices', href: PATH_NAME.TheTown.Offices },
             { name: 'Citizen\'s Charter', href: PATH_NAME.TheTown.CitizensCharter }
         ],
