@@ -29,12 +29,6 @@ export default function ForumsAndDiscussions() {
             category: "Tourism",
             icon: "",
             items: ["Falls", "Resorts", "Tour Guides"]
-        },
-        {
-            id: 4,
-            category: "Other",
-            icon: "",
-            items: ["Other1", "Other2", "Other3"]
         }
     ]
     const showChange = (category, value) => {
@@ -66,12 +60,12 @@ export default function ForumsAndDiscussions() {
             title: "Sharing My Notes When I Was in College Pt.2",
             body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
             bodyImgs: [
-                {src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt:"notes 1"},
-                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 2"},
-                {src: require("./../../res/debug_img/xenia_content_imgs2.png"), alt:"notes 3"},
-                {src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt:"notes 4"},
-                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 5"},
-                {src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt:"notes 6"}
+                { src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt: "notes 1" },
+                { src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt: "notes 2" },
+                { src: require("./../../res/debug_img/xenia_content_imgs2.png"), alt: "notes 3" },
+                { src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt: "notes 4" },
+                { src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt: "notes 5" },
+                { src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt: "notes 6" }
             ]
         },
         {
@@ -159,9 +153,9 @@ function DropDown({ show, setShow, category, items, icon }) {
         * setShow
         * category
         * items
-        * icon (unfinished)
         * 
     */
+    const navigate = useNavigate();
     return (
         <>
             <div className='px-10 mt-5 h-full w-full text-left justify-left flex content-start hover:bg-gray-100' onClick={() => setShow()}>
@@ -172,8 +166,12 @@ function DropDown({ show, setShow, category, items, icon }) {
             </div>
             {show ?
                 <div className='select-none text-lgu-green text-sm'>
-                    {items.map((items, index) => (
-                        <p className='px-14 hover:bg-gray-100' key={index}>{items}</p>
+                    {items.map((item, index) => (
+                        <p
+                            className='px-14 hover:bg-gray-100'
+                            key={index}
+                            onClick={() => navigate(PATH_NAME.ForumsAndDiscussions + "/" + encodeURIComponent(item.toLowerCase()))}
+                        >{item}</p>
                     ))
                     }
                 </div>
@@ -194,7 +192,7 @@ function Post({ content }) {
         <div
             className="drop-shadow-md rounded-3xl bg-gray-100 hover:bg-gray-200 p-5 mb-5 cursor-pointer"
             onClick={() => {
-                navigate(PATH_NAME.ForumsAndDiscussions + "/" + String(content.contentID));
+                navigate(PATH_NAME.ForumsAndDiscussionsPost + "/" + String(content.contentID));
                 window.scrollTo({ top: 0, left: 0 });
             }}>
             <table className="table-auto select-none">
@@ -235,7 +233,7 @@ function Post({ content }) {
                                                     src={img.src}
                                                     alt={img.alt}
                                                     className='w-40 h-40 m-2 shadow-md'
-                                                    
+
                                                 />
                                             )
                                         } else if (index === 3) {

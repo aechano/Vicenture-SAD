@@ -9,7 +9,7 @@ import { jwtDecode } from 'jwt-decode';
 import axios from 'axios';
 import { ProfanityChecker } from '../functionHelpers/ProfanityChecker';
 
-export default function CommentingSystem({ contentID }) {
+export default function CommentingSystem({ contentID, forumID }) {
     /** 
      * This component is used for content commenting systems.
      * Attribute:
@@ -32,13 +32,19 @@ export default function CommentingSystem({ contentID }) {
         } else {
             setAccountType(USER_TYPES.Guest);
         }
-        console.log(API.getComment(contentID));
-        axios.get(API.getComment(contentID), {})
-            .then((response) => response.data)
-            .then((data) => {
-                setComments(data);
-            })
-
+        if (contentID) {
+            axios.get(API.getComment(contentID), {})
+                .then((response) => response.data)
+                .then((data) => {
+                    setComments(data);
+                })
+        } else if (forumID) {
+            axios.get(API.getComment(forumID), {}) //change this to getting comments for forums
+                .then((response) => response.data)
+                .then((data) => {
+                    setComments(data);
+                })
+        }
         // set up filter
         setFilter(new ProfanityChecker());
     }, [])
