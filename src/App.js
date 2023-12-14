@@ -132,7 +132,7 @@ function App() {
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/*"} element={<ForumsAndDiscussions />} />
-                        <Route path={PATH_NAME.CreateForumPost} element={<CreateForumPost />} />
+                        <Route path={PATH_NAME.CreatePost} element={<CreateForumPost />} />
                         <Route path={PATH_NAME.ForumsAndDiscussionsPost + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
                         <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging />} />
