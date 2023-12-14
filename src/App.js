@@ -17,6 +17,7 @@ import Activities from './pages/non_admin_pages/Tourism/Activities';
 import Survey from './pages/non_admin_pages/Survey';
 import Articles, { ArticleContent } from './pages/non_admin_pages/Articles';
 import ForumsAndDiscussionsPost from './pages/non_admin_pages/ForumsAndDiscussionsPost';
+import CreateForumPost from './pages/non_admin_pages/CreateForumPost';
 import Offices from './pages/non_admin_pages/TheTown/Offices';
 import OtherInfo from './pages/non_admin_pages/TheTown/OtherInfo';
 import InvestmentOpportunities from './pages/non_admin_pages/Invest/InvestmentOpportunities';
@@ -131,6 +132,7 @@ function App() {
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/*"} element={<ForumsAndDiscussions />} />
+                        <Route path={PATH_NAME.CreateForumPost} element={<CreateForumPost />} />
                         <Route path={PATH_NAME.ForumsAndDiscussionsPost + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
                         <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging />} />
