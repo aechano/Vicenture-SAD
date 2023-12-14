@@ -18,15 +18,35 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     const [emergencyTitle, setEmergencyTitle] = useState("");
     const [emergencyContent, setEmergencyContent] = useState("");
 
-    const images = [
-        require("./../res/img/0.png"),
-        require("./../res/img/1.png"),
-        require("./../res/img/2.png"),
-        require("./../res/img/3.png"),
-        require("./../res/img/4.png"),
-        require("./../res/img/5.png"),
-        require("./../res/img/6.png")
-    ];
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        axios.get(API.viewBanner, {})
+            .then((response) => response.data)
+            .then((data) => {
+                var newItems = [];
+                for (var item of data) {
+                    const imageName = item.imgName; // Assuming there's a property like 'imageName' in your data
+                    const byteCharacters = atob(item.image); // Assuming there's a property like 'image' in your data
+
+                    // Convert base64 string to ArrayBuffer
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+
+                    // Create a Blob from the ArrayBuffer
+                    const blob = new Blob([byteArray], { type: 'image/*' }); // Change the type according to your image format
+
+                    // Create a File from the Blob
+                    const file = new File([blob], imageName || 'Image', { type: 'image/*' }); // Change the type accordingly
+
+                    newItems.push({ head: item.title, imageView: file });
+                }
+                setImages(newItems);
+            });
+    }, []);
 
 
     const openModal = () => {

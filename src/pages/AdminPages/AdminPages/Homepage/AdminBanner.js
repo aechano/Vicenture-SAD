@@ -50,37 +50,47 @@ function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selecte
 function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
 
     return (
-        <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
-            <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
-            <ul>
-                {items.length > 0 ?
-                    items.map((item, index) => (
-                        <li
-                            key={index}
-                            className="cursor-pointer text-black mb-2 w-full flex"
-                        >
-                            <span
-                                onClick={() => onItemSelected(item)}
-                                className='flex-1 hover:underline'>{item}</span>
-                            <span
-                                onClick={() => onItemRemove(item)}
-                                className='justify-right hover:text-red-500'>x</span>
-                        </li>
-                    ))
-                    :
-                    <li className='text-gray-600 py-10'>No items to show</li>
-                }
-            </ul>
+        <>
+            <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
+                <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
+                <ul>
+                    {items.length > 0 ?
+                        items.map((item, index) => (
+                            <li
+                                key={index}
+                                className="cursor-pointer text-black mb-2 w-full flex"
+                            >
+                                <span
+                                    onClick={() => onItemSelected(item)}
+                                    className='flex-1 hover:underline'>{item}</span>
+                                <span
+                                    onClick={() => onItemRemove(item)}
+                                    className='justify-right hover:text-red-500'>x</span>
+                            </li>
+                        ))
+                        :
+                        <li className='text-gray-600 py-10'>No items to show</li>
+                    }
+                </ul>
 
-            <div className='flex w-full justify-center'>
-                <button
-                    onClick={onAddItem}
-                    className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
-                >
-                    <FaPlus className='mr-1' /> Add
-                </button>
+                <div className='flex w-full justify-center'>
+                    <button
+                        onClick={onAddItem}
+                        className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
+                    >
+                        <FaPlus className='mr-1' /> Add
+                    </button>
+                </div>
+
+                <div className='mt-6'>
+                    <h1>WARNING:</h1>
+                    <p>
+                        Kindly ensure that the images you upload have dimensions of 1920x594. Appreciate your cooperation!
+                    </p>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 }
 
@@ -110,31 +120,31 @@ export default function AdminBanner() {
     }
 
     const handleItemSelected = (item) => {
-            for (var itemObject of items) {
-                if (itemObject.title === item) {
-                    setSelectedItem(itemObject);
-                    if (typeof itemObject.image === "object") {
-                        setSelectedFile(itemObject.image);
-                    } else {
-                        const ImageName = itemObject.imgName;
-                        const byteCharacters = atob(itemObject.image);
-                        const byteNumbers = new Array(byteCharacters.length);
-                        for (let i = 0; i < byteCharacters.length; i++) {
-                            byteNumbers[i] = byteCharacters.charCodeAt(i);
-                        }
-                        const byteArray = new Uint8Array(byteNumbers);
-                        const blob = new Blob([byteArray], { type: 'image/*' });
-
-                        // Create a File object from the Blob with the actual filename
-                        const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
-                        setSelectedFile(file);
+        for (var itemObject of items) {
+            if (itemObject.title === item) {
+                setSelectedItem(itemObject);
+                if (typeof itemObject.image === "object") {
+                    setSelectedFile(itemObject.image);
+                } else {
+                    const ImageName = itemObject.imgName;
+                    const byteCharacters = atob(itemObject.image);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
                     }
-                    // Set the selected file
-                    setCustomItemName(itemObject.title);
-                    switchMode('editing');
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'image/*' });
 
+                    // Create a File object from the Blob with the actual filename
+                    const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
+                    setSelectedFile(file);
                 }
+                // Set the selected file
+                setCustomItemName(itemObject.title);
+                switchMode('editing');
+
             }
+        }
     };
 
     useEffect(() => {
@@ -303,7 +313,7 @@ export default function AdminBanner() {
                                 className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    var id = selectedItem.profileID;
+                                    var id = selectedItem.bannerID;
                                     switchMode("");
                                     resetInputFields();
                                     axios.post(API.deleteBanner(id), {}, {
