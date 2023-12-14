@@ -4,83 +4,44 @@ import { PATH_NAME } from '../../../Variables/GLOBAL_VARIABLE';
 import BackToTop from '../../../components/BackToTop';
 import { useParams, Link, useNavigate, useLocation } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import { API } from '../../../Variables/GLOBAL_VARIABLE';
+import axios from 'axios';
 
 // ... (import statements remain unchanged)
 
 export default function Awards() {
 
-    var contents = [
-        {
-            id: 0,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'November 23, 2023 | Peace and Order Awardee Community',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
-        },
-        {
-            id: 1,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Drug Free Community Award',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+    const [value, setValue] = useState([]);
 
-        },
+    useEffect(() => {
+        axios.get(API.viewAward, {})
+            .then((response) => response.data)
+            .then((data) => {
+                var newItems = [];
+                for (var item of data) {
+                    const imageName = item.imgName; // Assuming there's a property like 'imageName' in your data
+                    const byteCharacters = atob(item.image); // Assuming there's a property like 'image' in your data
 
-        {
-            id: 2,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Zero Crime Rate',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+                    // Convert base64 string to ArrayBuffer
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
 
-        },
+                    // Create a Blob from the ArrayBuffer
+                    const blob = new Blob([byteArray], { type: 'image/*' }); // Change the type according to your image format
 
-        {
-            id: 3,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Awards 4',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
+                    // Create a File from the Blob
+                    const file = new File([blob], imageName || 'Image', { type: 'image/*' }); // Change the type accordingly
 
-        },
+                    const imageUrl = URL.createObjectURL(blob);
 
-        {
-            id: 4,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Awards 5',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
-
-        },
-
-        {
-            id: 5,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Awards 6',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
-
-        },
-
-        {
-            id: 6,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Awards 7',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
-
-        },
-
-        {
-            id: 7,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Awards 8',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
-
-        },
-
-        {
-            id: 8,
-            pic: require('../../../res/img/awards.jpg'),
-            title: 'Awards 9',
-            cont: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget felis ullamcorper, euismod neque ut, pellentesque purus. Nullam efficitur, elit id tincidunt tristique, turpis velit venenatis arcu, non finibus lectus tortor in libero. Quisque in ante eu dui hendrerit tristique. Vivamus eleifend diam eu eros sollicitudin, ac elementum urna convallis. Proin a dui eu ipsum hendrerit gravida. Integer in risus in tortor euismod auctor',
-
-        },
-
-    ];
+                    newItems.push({ id: item.awardsID, pic: imageUrl, title: item.awardTitle, cont: item.description});
+                }
+                setValue(newItems);
+            });
+    }, []);
 
     return (
         <>
@@ -100,7 +61,7 @@ export default function Awards() {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {contents.map((content, index) => (
+                    {value.map((content, index) => (
                         <div key={index} className="bg-white rounded overflow-hidden shadow-md p-4 mb-4">
                             <div
                                 className="w-full h-48 md:h-64"

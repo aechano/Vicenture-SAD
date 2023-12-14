@@ -1,27 +1,52 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, createRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import 'tailwindcss/tailwind.css'; // Assuming you have Tailwind CSS setup globally
+import { API } from "../Variables/GLOBAL_VARIABLE";
+import axios from "axios";
+import Cookies from "js-cookie";
 
 export default function CalendarModal({ isOpen, onRequestClose }) {
   const [selectedDate, setSelectedDate] = useState(null);
   const [eventModalOpen, setEventModalOpen] = useState(false);
-  const [eventTitle, setEventTitle] = useState("");
+  const [calendarEventTitle, setCalendarEventTitle] = useState("");
   const [events, setEvents] = useState([]); // State for managing events
 
   const [selectedEventDate, setSelectedEventDate] = useState(null);
+  const [dateEnd, setDateEnd] = useState(null);
   const [selectedEventDetails, setSelectedEventDetails] = useState(null);
   const [eventDetailsModalOpen, setEventDetailsModalOpen] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false); // State for tracking edit mode
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    axios.get(API.viewEvent, {})
+      .then((response) => response.data)
+      .then((data) => {
+        const formattedEvents = data.map(event => ({
+          title: event.eventTitle,
+          start: new Date(event.eventStart).toISOString(),
+          end: new Date(event.eventEnd).toISOString(),
+          allDay: true, // Assuming events are all-day
+          // You may need to include other properties depending on your data structure
+        }));
+
+        setEvents(formattedEvents);
+      });
+  }, []);
+
 
   const handleDateSelect = (selectInfo) => {
     console.log("Select Info:", selectInfo);
     const selectedDate = selectInfo.start;
+    console.log("Start: ", selectInfo.start)
+    console.log("End: ", selectInfo.end)
 
     if (selectedDate) {
       setSelectedDate(selectedDate);
       setSelectedEventDate(selectedDate);
+      setDateEnd(selectInfo.end);
       setEventModalOpen(true);
     } else {
       console.error("Selected date is null");
@@ -35,27 +60,47 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
   const handleCreateEvent = () => {
     // Update the events for the selected date
-    if (selectedEventDate && eventTitle) {
-      updateEvents(selectedEventDate, eventTitle);
+    if (selectedEventDate && calendarEventTitle) {
+      updateEvents(selectedEventDate, calendarEventTitle, dateEnd);
+
+      if (calendarRef.current) {
+        calendarRef.current.getApi().refetchEvents();
+      }
     }
 
     // After creating the event, close the event modal
     handleEventModalClose();
   };
 
-  const updateEvents = (date, title) => {
+  const updateEvents = (date, title, end) => {
+
+    const startTimestamp = new Date(date).getTime();
+    const endTimestamp = new Date(end).getTime();
+
     // Create a new event object with a unique identifier
     const newEvent = {
-      id: generateUniqueId(), // Use a function to generate a unique ID
-      title: title,
-      start: date,
+      //id: generateUniqueId(), 
+      eventTitle: title,
+      eventStart: startTimestamp,
+      eventEnd: endTimestamp,
       allDay: true, // Assuming events are all-day
     };
 
-    // Update the state with the new events
-    setEvents((prevEvents) => [...prevEvents, newEvent]);
+    axios.post(API.addEvent, newEvent, {
+      headers: {
+        'Authorization': `Bearer ${Cookies.get("token")}`,
+      },
+      withCredentials: true
+    })
+      .then((response) => response.data)
+      .then((data) => {
+        setEvents((prevEvents) => [...prevEvents, data]);
 
-    console.log("Updated events:", events); // Add this log statement
+        // Refetch events to update the calendar
+        if (calendarRef.current) {
+          calendarRef.current.getApi().refetchEvents();
+        }
+      });
   };
 
   // Function to generate a unique ID (you can use a library like `uuid` for this purpose)
@@ -67,7 +112,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
     // When an event is clicked, set the details and open the event details modal
     setSelectedEventDetails(clickInfo.event);
     setIsEditMode(false); // Reset edit mode when clicking on a new event
-    setEventTitle(""); // Clear the event title input
+    setCalendarEventTitle(""); // Clear the event title input
     setEventDetailsModalOpen(true);
   };
 
@@ -100,7 +145,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
       setIsEditMode(true);
 
       // Populate the input field with the current title of the selected event
-      setEventTitle(selectedEventDetails.title);
+      setCalendarEventTitle(selectedEventDetails.title);
       setEventDetailsModalOpen(true);
     };
 
@@ -109,12 +154,12 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
       if (selectedEventDetails) {
         const updatedEvents = events.map((event) =>
           event.id === selectedEventDetails.id
-            ? { ...event, title: eventTitle }
+            ? { ...event, title: calendarEventTitle }
             : event
         );
         setEvents(updatedEvents);
         setEventDetailsModalOpen(false);
-        setEventTitle("");
+        setCalendarEventTitle("");
         setIsEditMode(false);
       }
     };
@@ -131,8 +176,8 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 <input
                   type="text"
                   placeholder="Enter event title"
-                  value={eventTitle}
-                  onChange={(e) => setEventTitle(e.target.value)}
+                  value={calendarEventTitle}
+                  onChange={(e) => setCalendarEventTitle(e.target.value)}
                   className="w-full border p-2 rounded-md mb-4"
                   ref={inputRef}
                 />
@@ -222,16 +267,16 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <FullCalendar
+                    ref={calendarRef}
+                    key={events.length}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     initialView="dayGridMonth"
                     selectable={true}
                     select={handleDateSelect}
-                    events={events}  // Make sure to pass the events state to the FullCalendar component
-                    eventClick={handleEventClick} // Add eventClick prop
-                    // className="w-full md:w-1/2 lg:w-1/2 mx-auto max-w-7xl"
+                    events={events}
+                    eventClick={handleEventClick}
                     eventBackgroundColor="#2D5F2E"
                     eventBorderColor="#2D5F2E"
-
                   />
                 </div>
               </div>
@@ -250,8 +295,8 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
             <input
               type="text"
               placeholder="Enter event title"
-              value={eventTitle}
-              onChange={(e) => setEventTitle(e.target.value)}
+              value={calendarEventTitle}
+              onChange={(e) => setCalendarEventTitle(e.target.value)}
               className="w-full border p-2 rounded-md mb-4"
             />
             <div className="mt-4 flex justify-end">
