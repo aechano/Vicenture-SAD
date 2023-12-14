@@ -246,11 +246,10 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest, currentEma
                         <td></td> {/** Keep the cells below the image empty */}
                         <td className=''>{comment.comment}</td> {/** Display the first 400 characters of the body, trim it if it ends with a space, and add an ellipsis */}
                     </tr>
-                    <tr>
+                    {/**<tr>
                         <td></td>
                         <td>
                             <div className='flex mt-5'>
-                                {/** Up/Down voting system */}
                                 <div className='flex bg-lgu-yellow w-fit p-2 rounded-full select-none'>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                         className={'w-5 h-5 cursor-pointer bg-lgu-yellow rounded-full ' + (!isGuest ? 'hover:brightness-95 ' : '') + (vote === 1 ? 'brightness-90' : '')}
@@ -262,8 +261,8 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest, currentEma
                                         }}>
                                         <circle cx="12" cy="12" r="10" />
                                         <path d="M16 12l-4-4-4 4M12 16V9" />
-                                    </svg> {/** upvote icon */}
-                                    <p className='text-sm mx-2'>{initialVote + vote}</p> {/** vote count */}
+                                    </svg>
+                                    <p className='text-sm mx-2'>{initialVote + vote}</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" className={'w-5 h-5 cursor-pointer bg-lgu-yellow rounded-full ' + (!isGuest ? 'hover:brightness-95 ' : '') + (vote === -1 ? 'brightness-90' : '')} viewBox="0 0 24 24"
                                         fill="none" stroke="#000000" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"
                                         onClick={() => {
@@ -273,9 +272,8 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest, currentEma
                                         }}>
                                         <circle cx="12" cy="12" r="10" />
                                         <path d="M16 12l-4 4-4-4M12 8v7" />
-                                    </svg> {/** downvote icon */}
+                                    </svg> 
                                 </div>
-                                {/** Comment info display */}
                                 {
                                     !isGuest ?
                                         <div
@@ -305,7 +303,7 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest, currentEma
                                             <div className='p-2 ml-3 bg-lgu-yellow rounded-full select-none cursor-pointer'
                                                 onClick={() => {
                                                     setReplyBox(false);
-                                                    /** TODO: Save to database */
+                                                    TODO: Save to database
                                                 }}
                                             >Comment</div>
                                         </div>
@@ -314,8 +312,8 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest, currentEma
                                     null
                             }
                         </td>
-                    </tr>
-                    <tr>
+                    </tr> */}
+                    {/* <tr>
                         <td></td>
                         <td>
                             <div className='border-l-2 border-lgu-green'>
@@ -359,7 +357,7 @@ function Comment({ comment, revealReplies, setRevealReplies, isGuest, currentEma
                                 }
                             </div>
                         </td>
-                    </tr>
+                    </tr> */}
                 </tbody>
             </table>
         </div>
