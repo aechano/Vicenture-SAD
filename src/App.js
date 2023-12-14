@@ -91,7 +91,7 @@ function App() {
             <BrowserRouter>
                 <Header userType={userType}>
                     <Routes>
-                        <Route path={PATH_NAME.Home} element={<Homepage userType={userType} surveyShowing={surveyPopup} setSurveyShowing={setSurveyPopup}/>} />
+                        <Route path={PATH_NAME.Home} element={<Homepage userType={userType} surveyShowing={surveyPopup} setSurveyShowing={setSurveyPopup} />} />
 
                         <Route path={PATH_NAME.Accounts.SignIn} element={<SignIn />} />
                         <Route path={PATH_NAME.Accounts.SignUp.SignUp} element={<SignUp />} />
@@ -125,12 +125,13 @@ function App() {
                         <Route path={PATH_NAME.PrivacyPolicy} element={<PrivacyPolicy />} />
 
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
-                        <Route path={PATH_NAME.Articles} element={<Articles  />} />
+                        <Route path={PATH_NAME.Articles} element={<Articles />} />
                         <Route path={PATH_NAME.Articles + "/:page"} element={<Articles />} />
                         <Route path={PATH_NAME.ArticleContent} element={<ArticleContent />} />
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
-                        <Route path={PATH_NAME.ForumsAndDiscussions + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions + "/*"} element={<ForumsAndDiscussions />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussionsPost + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
                         <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging />} />
                         <Route path={PATH_NAME.Messages} element={<Messaging />} />
@@ -140,15 +141,11 @@ function App() {
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities + "/:page"} element={<InvestmentOpportunities userType={userType} />} />
                         <Route path={PATH_NAME.Invest.InvestmentOpportunitiesContent + "/:contentID"} element={<InvestmentOpportunitiesContent userType={userType} />} />
 
-
                         <Route path={PATH_NAME.Invest.ReasonsToInvest} element={<ReasonsToInvest userType={userType} />} />
                         <Route path={PATH_NAME.Invest.ReasonsToInvest + "/:page"} element={<ReasonsToInvest userType={userType} />} />
                         <Route path={PATH_NAME.Invest.ReasonsToInvestContent + "/:contentID"} element={<ReasonsToInvestContent userType={userType} />} />
 
-
-
                         <Route path={PATH_NAME.Invest.Invest + "/:type/:method/:contentID"} element={<AddEditReasonsToInvestContent userType={userType} />} />
-
 
                         <Route path={PATH_NAME.Tourism.Content + "/:method/:contentID"} element={<PlacesToVisitContent />} />
                         <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent />} />
@@ -179,7 +176,7 @@ function App() {
                             </Route>
                             <Route path={PATH_NAME.AdminPages.OnlineSurvey} element={<AdminOnlineSurvey />} />
                             <Route path={PATH_NAME.AdminPages.GeneralArticles} element={<AdminGeneralArticles />} />
-                            <Route path={PATH_NAME.AdminPages.SportsTourismArticles} element={<AdminSportsTourismArticles/>} />
+                            <Route path={PATH_NAME.AdminPages.SportsTourismArticles} element={<AdminSportsTourismArticles />} />
                             <Route path={PATH_NAME.AdminPages.Emergency} element={<AdminEmergency />} />
                             <Route path={PATH_NAME.AdminPages.Transparency} element={<AdminTransparency />} />
                             <Route path={PATH_NAME.AdminPages.ReportedContents} element={<AdminReportedContents />} />
@@ -205,10 +202,10 @@ function App() {
                             </Route>
                             <Route path={PATH_NAME.AdminPages.OnlineSurvey} element={<AdminOnlineSurvey />} />
                             <Route path={PATH_NAME.AdminPages.GeneralArticles} element={<AdminGeneralArticles />} />
-                            <Route path={PATH_NAME.AdminPages.SportsTourismArticles} element={<AdminSportsTourismArticles/>} />
+                            <Route path={PATH_NAME.AdminPages.SportsTourismArticles} element={<AdminSportsTourismArticles />} />
                             <Route path={PATH_NAME.AdminPages.Transparency} element={<AdminTransparency />} />
                         </Route>
-                        
+
                         <Route path='/*' element={<Page404 />} />
                     </Routes>
                 </Header>
