@@ -33,11 +33,10 @@ import ElectedOfficials from './pages/non_admin_pages/TheTown/ElectedOfficials';
 import Awards from './pages/non_admin_pages/TheTown/Awards';
 import Transparency from './pages/non_admin_pages/Transparency';
 import PlacesToVisitPost from './pages/non_admin_pages/Tourism/PlacesToVisitPost';
-import Offices_Add from './pages/lgu_sv_access/Offices_Add';
+import OfficesAdd from './pages/lgu_sv_access/OfficesAdd';
 import PlacesToVisitContent from './pages/lgu_sv_access/PlacesToVisitContent';
 import { useEffect, useState } from 'react';
 import Page404 from './pages/Accounts/ErrorPages/Page404';
-import Page403 from './pages/Accounts/ErrorPages/Page403';
 import Services from './pages/non_admin_pages/Services';
 import ActivitiesPost from './pages/non_admin_pages/Tourism/ActivitiesPost';
 import AddEditReasonsToInvestContent from './pages/lgu_sv_access/AddEditReasonsToInvestContent';
@@ -131,7 +130,7 @@ function App() {
                         <Route path={PATH_NAME.ArticleContent} element={<ArticleContent />} />
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
-                        <Route path={PATH_NAME.ForumsAndDiscussions + "/*"} element={<ForumsAndDiscussions />} />
+                        <Route path={PATH_NAME.ForumsAndDiscussions + "/:topic"} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.CreatePost} element={<CreateForumPost />} />
                         <Route path={PATH_NAME.ForumsAndDiscussionsPost + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
@@ -153,7 +152,7 @@ function App() {
                         <Route path={PATH_NAME.Tourism.Content + "/:method"} element={<PlacesToVisitContent />} />
                         <Route path={PATH_NAME.Tourism.ActivitiesContent + "/:method/:contentID"} element={<ActivitiesContent />} />
                         <Route path={PATH_NAME.Tourism.ActivitiesContent + "/:method"} element={<ActivitiesContent />} />
-                        <Route path={PATH_NAME.AddOffices} element={<Offices_Add userType={userType} />} />
+                        <Route path={PATH_NAME.AddOffices} element={<OfficesAdd userType={userType} />} />
 
                         <Route path={PATH_NAME.AdminPages.Admin} element={<Admin />}>
                             <Route path={PATH_NAME.AdminPages.Analytics} element={<Analytics />} />

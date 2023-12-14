@@ -5,7 +5,7 @@ import axios from "axios";
 import { API } from "../../Variables/GLOBAL_VARIABLE";
 import Cookies from "js-cookie";
 
-export default function Offices_Add() {
+export default function OfficesAdd() {
 
     const [Department, setDepartment] = useState('');
     const [Head, setHead] = useState('');

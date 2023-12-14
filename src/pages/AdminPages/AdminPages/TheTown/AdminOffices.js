@@ -1,9 +1,9 @@
 import React from 'react'
-import Offices_Add from '../../../lgu_sv_access/Offices_Add';
+import OfficesAdd from '../../../lgu_sv_access/OfficesAdd';
 
 function AdminOffices() {
     return (
-        <Offices_Add />
+        <OfficesAdd />
 
     );
 }
