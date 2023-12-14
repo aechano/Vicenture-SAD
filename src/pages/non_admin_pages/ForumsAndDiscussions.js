@@ -5,6 +5,9 @@ import Body from '../../classifiers/Body'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { timeAgo } from '../../functionHelpers/Time'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CreatePost from '../../components/CreatePost'
+
 
 export default function ForumsAndDiscussions() {
     /**
@@ -101,6 +104,7 @@ export default function ForumsAndDiscussions() {
     ]
     return (
         <>
+        
             <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen pt-10 ps-10 mt-20'> {/** This is the sidebar */}
                 <h1 className='text-lgu-green text-xl'>
                     Topics
@@ -126,10 +130,17 @@ export default function ForumsAndDiscussions() {
                     </Banner>
                     <Body className="mx-5">
                         <div className='w-fit rounded-full ms-5 my-10'>
-                            <NavLink className='bg-lgu-yellow text-black w-fit p-3 rounded-full'> {/** Button for Creating a post */}
-                                +&nbsp;&nbsp;&nbsp;Create A Post
+                        <NavLink to='/create-post' className='bg-lgu-yellow text-black w-fit p-3 rounded-full'>
+                            +&nbsp;&nbsp;&nbsp;Create A Post
                             </NavLink>
+
                         </div>
+                        {/*<Routes>
+                            <Route path='/forums-and-discussions' element={<ForumsAndDiscussions />} />
+                            <Route path='/create-post' element={<CreatePost />} />
+                        </Routes>
+                        </div>*/}
+
                         <div>
                             {
                                 contents.map((content, index) => {
