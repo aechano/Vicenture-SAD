@@ -15,6 +15,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
     const [selectedEventDate, setSelectedEventDate] = useState(null);
     const [dateEnd, setDateEnd] = useState(null);
+    const [eventSelected, setEventSelected] = useState(null);
     const [selectedEventDetails, setSelectedEventDetails] = useState(null);
     const [eventDetailsModalOpen, setEventDetailsModalOpen] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false); // State for tracking edit mode
@@ -25,6 +26,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
             .then((response) => response.data)
             .then((data) => {
                 const formattedEvents = data.map(event => ({
+                    id: event.eventsID,
                     title: event.eventTitle,
                     start: new Date(event.eventStart).toISOString(),
                     end: new Date(event.eventEnd).toISOString(),
@@ -114,17 +116,35 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
     };
 
     // Function to generate a unique ID (you can use a library like `uuid` for this purpose)
-    const generateUniqueId = () => {
-        return '_' + Math.random().toString(36).substr(2, 9);
-    };
+    // const generateEvent = () => {
+
+    //     for (var itemObject of events) {
+    //         if (itemObject.title === selectedEventDetails.title) {
+    //             setEventSelected(itemObject)
+    //         }
+    //     }
+    //     console.log("date: ", selectedEventDate)
+
+    // };
 
     const handleEventClick = (clickInfo) => {
         // When an event is clicked, set the details and open the event details modal
         setSelectedEventDetails(clickInfo.event);
         setIsEditMode(false); // Reset edit mode when clicking on a new event
         setCalendarEventTitle(""); // Clear the event title input
+
+        // Find and set the selected event in the events array
+        for (const itemObject of events) {
+            if (itemObject.title === clickInfo.event.title) {
+                setEventSelected(itemObject);
+                break; // Once found, break out of the loop
+            }
+        }
         setEventDetailsModalOpen(true);
+
     };
+
+
 
     const EventDetailsModal = () => {
         // Modal for displaying event details
@@ -138,15 +158,27 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
         }, [isEditMode]);
 
         const handleDeleteEvent = () => {
-            if (selectedEventDetails) {
-                // Filter out the selected event and update the events state
-                setEvents((prevEvents) =>
-                    prevEvents.filter((event) => event.id !== selectedEventDetails.id)
-                );
 
-                // Close the event details modal
-                setEventDetailsModalOpen(false);
-            }
+            var my_id = eventSelected.id;
+
+            axios.post(API.deleteEvent(my_id), {}, {
+                headers: {
+                    'Authorization': `Bearer ${Cookies.get("token")}`,
+                },
+                withCredentials: true
+            })
+                .then((response) => response.data)
+                .then((data) => {
+                    // Filter out the selected event and update the events state
+                    setEvents((prevEvents) =>
+                        prevEvents.filter((event) => event.id !== eventSelected.id)
+                    );
+
+                    // Close the event details modal
+                    setEventDetailsModalOpen(false);
+                    console.log(data);
+                });
+
         };
 
 
@@ -160,19 +192,37 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
         };
 
         const handleUpdateEvent = () => {
+            const newEvent = {
+                eventsID: eventSelected.id, // Use eventSelected consistently
+                eventTitle: calendarEventTitle,
+                eventStart: selectedEventDate,
+                eventEnd: dateEnd,
+                allDay: true,
+            };
+
             // Update the event details
-            if (selectedEventDetails) {
-                const updatedEvents = events.map((event) =>
-                    event.id === selectedEventDetails.id
-                        ? { ...event, title: calendarEventTitle }
-                        : event
-                );
-                setEvents(updatedEvents);
-                setEventDetailsModalOpen(false);
-                setCalendarEventTitle("");
-                setIsEditMode(false);
+            if (eventSelected) { // Use eventSelected consistently
+                axios.post(API.editEvent, newEvent, {
+                    headers: {
+                        'Authorization': `Bearer ${Cookies.get("token")}`,
+                    },
+                    withCredentials: true
+                })
+                    .then((response) => response.data)
+                    .then((data) => {
+                        const updatedEvents = events.map((event) =>
+                            event.id === eventSelected.id // Use eventSelected consistently
+                                ? { ...event, title: calendarEventTitle }
+                                : event
+                        );
+                        setEvents(updatedEvents);
+                        setEventDetailsModalOpen(false);
+                        setCalendarEventTitle("");
+                        setIsEditMode(false);
+                    });
             }
         };
+
 
         return (
             <div className="fixed inset-0 z-50 flex items-center justify-center">

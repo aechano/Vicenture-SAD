@@ -140,6 +140,7 @@ const API = {
     postSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/survey",
     editSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/edit-survey",
     getAllSurveys: SERVER_ADDRESS + PUBLIC + "/viewSurveys",
+    deleteSurvey: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-survey/" + id },
     addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
     viewBanner: SERVER_ADDRESS + PUBLIC + "/view-banner",
     addBanner: SERVER_ADDRESS + CONTENT_WRITER + "/add-banner",
@@ -151,6 +152,8 @@ const API = {
     deleteAward: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-award/" + id },
     addEvent: SERVER_ADDRESS + LGU + "/add-events",
     viewEvent: SERVER_ADDRESS + PUBLIC + "/view-events",
+    editEvent: SERVER_ADDRESS + LGU + "/edit-events",
+    deleteEvent: function (id) { return SERVER_ADDRESS + LGU + "/delete-events/" + id },
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

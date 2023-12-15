@@ -68,6 +68,7 @@ export default function AdminOnlineSurvey() {
 
     const [customItemName, setCustomItemName] = useState('');
     const [linkInput, setLinkInput] = useState('');
+    const [desc, setDesc] = useState('');
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [feedbackMessage, setFeedbackMessage] = useState('');
@@ -94,7 +95,7 @@ export default function AdminOnlineSurvey() {
                     setItems(data);
                     var newItemSidebarItems = [];
                     for (var survey of data) {
-                        newItemSidebarItems.push(survey.profileName);
+                        newItemSidebarItems.push(survey.title);
                     }
                     setItemSidebarItems(newItemSidebarItems);
                 }
@@ -117,6 +118,11 @@ export default function AdminOnlineSurvey() {
             return;
         }
 
+        if (desc.trim() === '') {
+            handleFeedbackMessage('Please enter a valid description.');
+            return;
+        }
+
         if (!linkInput) {
             handleFeedbackMessage('Please enter a valid URL.');
             return;
@@ -124,9 +130,10 @@ export default function AdminOnlineSurvey() {
 
         setItemSidebarItems([...itemSidebarItems, customItemName]);
 
-        axios.post(API.postSurvey,{
+        axios.post(API.postSurvey, {
             "title": customItemName,
-            "link": linkInput
+            "link": linkInput,
+            "description": desc
         }, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get('token')}`
@@ -149,11 +156,15 @@ export default function AdminOnlineSurvey() {
     const handleSaveEdit = () => {
         var hasChanges = false;
 
-        if (selectedItem.link !== linkInput) {
+        if (selectedItem && selectedItem.link !== linkInput) {
             hasChanges = true;
         }
-
-        if (selectedItem.title !== customItemName) {
+        
+        if (selectedItem && selectedItem.title !== customItemName) {
+            hasChanges = true;
+        }
+        
+        if (selectedItem && selectedItem.description !== desc) {
             hasChanges = true;
         }
 
@@ -162,13 +173,14 @@ export default function AdminOnlineSurvey() {
                 simpleSurveyID: selectedItem.simpleSurveyID,
                 title: customItemName,
                 link: linkInput,
+                description: desc
             };
-//Dito natapos
+
             axios.post(API.editSurvey, formData, {
                 headers: {
                     'Authorization': `Bearer ${Cookies.get('token')}`,
-                    'Content-Type': 'application/json',
                 },
+                withCredentials: true
             })
                 .then((response) => response.data)
                 .then((data) => {
@@ -180,7 +192,7 @@ export default function AdminOnlineSurvey() {
 
                     var newSidebarItems = [];
                     for (var item of itemSidebarItems) {
-                        newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+                        newSidebarItems.push(item === selectedItem.title ? customItemName : item);
                     }
                     setItemSidebarItems(newSidebarItems);
                 });
@@ -208,7 +220,7 @@ export default function AdminOnlineSurvey() {
     const handleEditItem = () => {
         if (customItemName.trim() !== '') {
             const updatedItems = itemSidebarItems.map((item) =>
-                item === selectedItem.profileName ? customItemName : item
+                item === selectedItem.title ? customItemName : item
             );
 
             setItemSidebarItems(updatedItems);
@@ -224,6 +236,7 @@ export default function AdminOnlineSurvey() {
     const resetInputFields = () => {
         setSelectedItem(null);
         setCustomItemName('');
+        setDesc('');
         setLinkInput('');
     };
 
@@ -233,10 +246,10 @@ export default function AdminOnlineSurvey() {
         for (var itemObject of items) {
             if (itemObject.title === item) {
                 setSelectedItem(itemObject);
-                setCustomItemName(item.title);
-                setLinkInput(item.link);
+                setCustomItemName(itemObject.title);  // Fixed the variable name here
+                setDesc(itemObject.description);
+                setLinkInput(itemObject.link);  // Fixed the variable name here
                 setFeedbackMessage('Item selected successfully!');
-                setRemoveItemModal(false); // Close the modal if it's open
                 switchMode('editing');
             }
         }
@@ -267,10 +280,10 @@ export default function AdminOnlineSurvey() {
                                 className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    var id = selectedItem.profileID;
+                                    var id = selectedItem.simpleSurveyID;
                                     switchMode('');
                                     resetInputFields();
-                                    axios.post(API.deleteProfile(id), {}, {
+                                    axios.post(API.deleteSurvey(id), {}, {
                                         headers: {
                                             'Authorization': `Bearer ${Cookies.get('token')}`,
                                             withCredentials: true,
@@ -278,8 +291,8 @@ export default function AdminOnlineSurvey() {
                                     })
                                         .then((response) => response.data)
                                         .then((data) => {
-                                            setItems((prevItems) => prevItems.filter((item) => item.profileID !== id));
-                                            setItemSidebarItems((prevItems) => prevItems.filter((item) => item !== selectedItem.profileName));
+                                            setItems((prevItems) => prevItems.filter((item) => item.title !== id));
+                                            setItemSidebarItems((prevItems) => prevItems.filter((item) => item !== selectedItem.title));
 
                                             console.log(data);
                                         });
@@ -328,7 +341,7 @@ export default function AdminOnlineSurvey() {
                     {/* Right side for link input and preview */}
                     <div className='w-3/4 p-4'>
                         <h2 className='text-2xl font-bold mb-2 mt-8'>
-                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.profileName : 'Item'}
+                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.title : 'Item'}
                         </h2>
                         {/* Input field for custom item name */}
                         <div className='flex'>
@@ -340,6 +353,18 @@ export default function AdminOnlineSurvey() {
                                 className='mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green'
                             />
                         </div>
+
+                        <div className='flex mt-4'>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                className="block mt-1 p-3 w-full text-sm text-gray-900 bg-transparent rounded-md border border-lgu-green dark:text-black"
+                                placeholder="Write your description..."
+                                value={desc}
+                                onChange={(e) => setDesc(e.target.value)}>
+                            </textarea>
+                        </div>
+
 
                         {/* Link Input */}
                         <LinkInput onChange={setLinkInput} value={linkInput} />
