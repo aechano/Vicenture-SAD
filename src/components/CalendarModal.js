@@ -40,10 +40,7 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
 
     const handleDateSelect = (selectInfo) => {
-        console.log("Select Info:", selectInfo);
         const selectedDate = selectInfo.start;
-        console.log("Start: ", selectInfo.start)
-        console.log("End: ", selectInfo.end)
 
         if (selectedDate) {
             setSelectedDate(selectedDate);
@@ -96,10 +93,6 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
         })
             .then((response) => response.data)
             .then((data) => {
-                console.log("new event")
-                console.log(newEvent);
-                console.log("data");
-                console.log(data);
                 const formattedData = { //reformatted the returned data into acceptable object for events
                     title: data.eventTitle,
                     start: new Date(data.eventStart).toISOString(),
@@ -114,18 +107,6 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 }
             });
     };
-
-    // Function to generate a unique ID (you can use a library like `uuid` for this purpose)
-    // const generateEvent = () => {
-
-    //     for (var itemObject of events) {
-    //         if (itemObject.title === selectedEventDetails.title) {
-    //             setEventSelected(itemObject)
-    //         }
-    //     }
-    //     console.log("date: ", selectedEventDate)
-
-    // };
 
     const handleEventClick = (clickInfo) => {
         // When an event is clicked, set the details and open the event details modal
@@ -176,7 +157,6 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
                     // Close the event details modal
                     setEventDetailsModalOpen(false);
-                    console.log(data);
                 });
 
         };
@@ -188,6 +168,8 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
 
             // Populate the input field with the current title of the selected event
             setCalendarEventTitle(selectedEventDetails.title);
+            setSelectedEventDate(selectedEventDetails.start);
+            setDateEnd(selectedEventDetails.end);
             setEventDetailsModalOpen(true);
         };
 
@@ -195,10 +177,11 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
             const newEvent = {
                 eventsID: eventSelected.id, // Use eventSelected consistently
                 eventTitle: calendarEventTitle,
-                eventStart: selectedEventDate,
-                eventEnd: dateEnd,
+                eventStart:new Date(selectedEventDate).getTime(),
+                eventEnd: new Date(dateEnd).getTime(),
                 allDay: true,
             };
+            console.log(newEvent);
 
             // Update the event details
             if (eventSelected) { // Use eventSelected consistently
