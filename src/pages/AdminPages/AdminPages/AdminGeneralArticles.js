@@ -1,191 +1,422 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaPlus } from 'react-icons/fa';
+import axios from 'axios';
+import { API } from '../../../Variables/GLOBAL_VARIABLE';
+import Cookies from 'js-cookie';
 
-export default function AdminGeneralArticles({ type }) {
-  const [selectedFile, setSelectedFile] = useState('No Image Chosen');
-  const [titleContent, setTitleContent] = useState('');
-  const [altDesc, setAltDesc] = useState('');
-  const [selectedTime, setSelectedTime] = useState(new Date());
-  const [selectedCategory, setSelectedCategory] = useState('');
+// FileUpload component for handling file upload and preview
+function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selectedFile, setSelectedFile }) {
+    const fileInputRef = useRef(null);
 
-  const handleTimeChange = (time) => {
-    setSelectedTime(time);
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+        onFileChange(file);
+    };
+
+    useEffect(() => {
+        setSelectedFile(initialSelectedFile ? initialSelectedFile : null);
+        fileInputRef.current.value = '';
+    }, [resetFileInput]);
+
+    return (
+        <div className="mt-4">
+            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                Upload File
+            </label>
+            <input
+                type="file"
+                id="file"
+                name="file"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                className="mt-1 p-2 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+            />
+
+            {selectedFile ?
+                <div className="mt-4">
+                    <p className="text-sm font-medium text-lgu-green">Selected File:</p>
+                    <p className="mt-2">{selectedFile.name}</p>
+                </div>
+                :
+                null
+            }
+        </div>
+    );
+}
+
+// ItemSidebar component for adding and selecting items
+function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
+
+    return (
+        <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
+            <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
+            <ul>
+                {items.length > 0 ?
+                    items.map((item, index) => (
+                        <li
+                            key={index}
+                            className="cursor-pointer text-black mb-2 w-full flex"
+                        >
+                            <span
+                                onClick={() => onItemSelected(item)}
+                                className='flex-1 hover:underline'>{item}</span>
+                            <span
+                                onClick={() => onItemRemove(item)}
+                                className='justify-right hover:text-red-500'>x</span>
+                        </li>
+                    ))
+                    :
+                    <li className='text-gray-600 py-10'>No items to show</li>
+                }
+            </ul>
+
+            <div className='flex w-full justify-center'>
+                <button
+                    onClick={onAddItem}
+                    className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
+                >
+                    <FaPlus className='mr-1' /> Add
+                </button>
+            </div>
+        </div>
+    );
+}
+
+
+export default function AdminGeneralArticles() {
+  const [itemSidebarItems, setItemSidebarItems] = useState();
+  const [items, setItems] = useState([]);
+
+  const [customItemName, setCustomItemName] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [resetFileInput, setResetFileInput] = useState(false);
+  const [removeItemModal, setRemoveItemModal] = useState(false);
+
+  const [isAdding, setIsAdding] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const switchMode = (mode) => {
+      setIsAdding(false);
+      setIsEditing(false);
+      if (mode === "adding") {
+          setIsAdding(true);
+      } else if (mode === "editing") {
+          setIsEditing(true);
+      }
+  }
+
+  const handleItemSelected = (item) => {
+      for (var itemObject of items) {
+          if (itemObject.profileName === item) {
+              setSelectedItem(itemObject);
+              if (typeof itemObject.pdf === "object") {
+                  setSelectedFile(itemObject.pdf);
+              } else {
+                  const pdfName = itemObject.pdfName;
+                  const byteCharacters = atob(itemObject.pdf);
+                  const byteNumbers = new Array(byteCharacters.length);
+                  for (let i = 0; i < byteCharacters.length; i++) {
+                      byteNumbers[i] = byteCharacters.charCodeAt(i);
+                  }
+                  const byteArray = new Uint8Array(byteNumbers);
+                  const blob = new Blob([byteArray], { type: 'application/pdf' });
+
+                  // Create a File object from the Blob with the actual filename
+                  const file = new File([blob], pdfName || 'default_filename.pdf', { type: 'application/pdf' });
+                  setSelectedFile(file);
+              }
+              // Set the selected file
+              setCustomItemName(itemObject.profileName);
+              switchMode('editing');
+
+          }
+      }
   };
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
+  useEffect(() => {
+      axios.get(API.viewMunProfile, {})
+          .then((response) => response.data)
+          .then((data) => {
+              console.log(data);
+              setItems(data);
+              var newItemSidebarItems = []
+              for (var profile of data) {
+                  newItemSidebarItems.push(profile.profileName)
+              }
+              setItemSidebarItems(newItemSidebarItems);
+          });
+  }, [])
+
+  const handleAddItem = () => {
+      resetInputFields();
+      switchMode('adding');
   };
 
-  const [isOpenCategory, setIsOpenCategory] = useState(false);
+  const handleSaveAdd = () => {
+      if (itemSidebarItems.includes(customItemName.trim())) {
+          handleFeedbackMessage(customItemName.trim() + ' already exists.');
+          return;
+      }
 
-  const toggleCategoryDropdown = () => {
-    setIsOpenCategory(!isOpenCategory);
+      if (customItemName.trim() === '') {
+          handleFeedbackMessage('Please enter a valid item name.');
+          return;
+      }
+
+      if (!selectedFile) {
+          handleFeedbackMessage('Please upload the necessary pdf file.');
+          return;
+      }
+
+      setItemSidebarItems([...itemSidebarItems, customItemName]);
+
+      const formData = new FormData();
+      formData.append('profileName', customItemName);
+      formData.append('pdf', selectedFile);
+      formData.append('pdfName', selectedFile.name);
+
+      axios.post(API.addMunProfile, formData, {
+          headers: {
+              'Authorization': `Bearer ${Cookies.get("token")}`,
+              'Content-Type': 'multipart/form-data', // Important for file uploads
+          }
+      })
+          .then((response) => response.data)
+          .then((data) => {
+              setItems([...items, data])
+          });
+      resetInputFields();
+      handleFeedbackMessage('Item added successfully!');
+  }
+
+  const handleSaveEdit = () => {
+      var hasChanges = false;
+      if (selectedItem.pdf === selectedFile) {
+          setSelectedFile(selectedItem.pdf);
+      } else {
+          hasChanges = true;
+      }
+      if (selectedItem.profileName !== customItemName) {
+          hasChanges = true;
+      }
+
+      if (hasChanges) {
+          // TODO: save to axios
+
+          const formData = new FormData();
+          formData.append('profileID', selectedItem.profileID);
+          formData.append('profileName', customItemName);
+          formData.append('pdf', selectedFile);
+          formData.append('pdfName', selectedFile.name);
+
+          axios.post(API.editProfile, formData, {
+              headers: {
+                  'Authorization': `Bearer ${Cookies.get("token")}`,
+                  'Content-Type': 'multipart/form-data', // Important for file uploads
+              }
+          })
+              .then((response) => response.data)
+              .then((data) => {
+                  var newItems = [];
+                  for (var item of items) {
+                      newItems.push(item.profileID === selectedItem.profileID ? data : item);
+                  }
+                  setItems(newItems);
+
+                  var newSidebarItems = [];
+                  for (var item of itemSidebarItems) {
+                      newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+                  }
+                  setItemSidebarItems(newSidebarItems);
+              });
+
+          handleFeedbackMessage('Changes saved!');
+          handleCancelMode();
+      } else {
+          handleFeedbackMessage('No changes available.');
+          handleCancelMode();
+      }
+  }
+
+  const handleCancelMode = () => {
+      switchMode("");
+      resetInputFields();
+  }
+
+  const handleFeedbackMessage = (message) => {
+      setFeedbackMessage(message);
+      setTimeout(() => {
+          setFeedbackMessage('');
+      }, 1000);
+  }
+
+  const handleEditItem = () => {
+      if (customItemName.trim() !== '') {
+
+          const updatedItems = itemSidebarItems.map((item) =>
+              item === selectedItem.profileName ? customItemName : item
+          );
+
+          setItemSidebarItems(updatedItems);
+          resetInputFields(); // Trigger file input reset
+
+          handleFeedbackMessage('Edited successfully!');
+      } else {
+          handleFeedbackMessage('Please enter a valid item name.');
+      }
   };
 
-  const selectCategory = (category) => {
-    setSelectedCategory(category);
-    setIsOpenCategory(false);
+  // Function to reset input fields and feedback message
+  const resetInputFields = () => {
+      setSelectedItem(null);
+      setCustomItemName('');
+      setSelectedFile(null);
+      setResetFileInput(!resetFileInput)
   };
 
   return (
-    <>
-      <div className="flex flex-col items-center justify-center p-20 min-h-screen">
-        <div className="mx-auto flex flex-col items-center w-full max-w-7xl mb-10 border-2 border-lgu-green rounded-2xl">
-          <div className="text-2xl font-bold bg-lgu-green text-white p-4 w-full rounded-tl-xl rounded-tr-xl">Add Article</div>
-          <div className="w-48 h-48 border-4 border-lgu-green rounded-xl mb-2 mt-4">
-            <img src={require("./../../../res/img/camera.png")} alt="camera icon" className="w-full h-full rounded-xl" />
-          </div>
-          <div className="pb-2">
-            <div className="flex flex-row items-center border-2 rounded-md border-lgu-green">
-              <input
-                multiple
-                type="file"
-                accept="image/png, image/jpeg"
-                id="custom-input"
-                name="custom-input"
-                onChange={(e) => {
-                  const selectedFiles = e.target.files;
-                  const fileCount = selectedFiles.length;
-                  const fileText = fileCount === 1 ? e.target.files[0].name : `${fileCount} files`;
-                  setSelectedFile(fileText);
-                }}
-                hidden
-              />
-              <label
-                htmlFor="custom-input"
-                className="block text-xs text-lgu-lime mr-4 py-2 px-4 rounded-sm rounded-tr-none rounded-br-none border-0 font-semibold bg-lgu-green hover:bg-green-900 cursor-pointer"
-              >
-                Add Image
-              </label>
-              <label className="text-xs text-slate-500 pr-2">{selectedFile}</label>
-            </div>
-          </div>
-          {/* form */}
-          <form>
-            <div className="grid grid-cols-2 gap-x-36 m-5 pt-10">
-              <div>
-                <h1 className="text-md font-bold pb-1 ml-1">Article Title</h1>
-                <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
-                  <input
-                    required
-                    type="text"
-                    className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                    id="content"
-                    placeholder="Title Content"
-                    value={titleContent}
-                    onChange={(e) => setTitleContent(e.target.value)}
-                  />
-                </div>
-
-                <h1 className="text-md font-bold pb-1">Alternative Description of Image</h1>
-                <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
-                  <input
-                    required
-                    type="text"
-                    className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                    id="alt"
-                    placeholder="Alternative Description of Image"
-                    value={altDesc}
-                    onChange={(e) => setAltDesc(e.target.value)}
-                  />
-                </div>
-              </div>
-              {/* second column */}
-              <div>
-                <h1 className="text-md font-bold pb-1">Select Date and Time</h1>
-                <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
-                  <div className="relative">
-                    <FontAwesomeIcon
-                      icon={faCalendar}
-                      className="absolute right-3 top-3 mt-2 text-lgu-green cursor-pointer"
-                      onClick={handleTimeChange}
-                    />
-                    <DatePicker
-                      selected={selectedTime}
-                      onChange={handleTimeChange}
-                      showTimeSelect
-                      timeFormat="HH:mm"
-                      timeIntervals={15}
-                      dateFormat="MMMM d, yyyy h:mm aa"
-                      className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400 cursor-pointer"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <h1 className="text-md font-bold pb-1">Select Article Category</h1>
-                  <div className="relative mb-6 mt-1 text-left" data-te-input-wrapper-init>
-                    <div className="relative">
-                      <div
-                        onClick={toggleCategoryDropdown}
-                        className="h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400 cursor-pointer flex justify-between items-center"
+      <>
+          {removeItemModal ?
+              <>
+                  {/* Modal Content */}
+                  <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-32 rounded-10 bg-lgu-green z-70'>
+                      {/* Close Button */}
+                      <button
+                          className='absolute top-0 right-0 p-2 text-white cursor-pointer'
+                          onClick={() => {
+                              console.log('Close button clicked');
+                              setRemoveItemModal(false);
+                          }}
                       >
-                        <span>{selectedCategory || 'Select Article Category'}</span>
-                        <svg
-                          className={`h-5 w-5 transition-transform transform ${isOpenCategory ? 'rotate-180' : 'rotate-0'}`}
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 11.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
+                          X
+                      </button>
+
+                      <p className='text-white p-4'>Remove item?</p>
+
+                      <div className='p-3 text-center'>
+                          {/* Yes Button */}
+                          <button
+                              className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
+                              onClick={(e) => {
+                                  e.stopPropagation();
+                                  var id = selectedItem.profileID;
+                                  switchMode("");
+                                  resetInputFields();
+                                  axios.post(API.deleteProfile(id), {}, {
+                                      headers: {
+                                          'Authorization': `Bearer ${Cookies.get("token")}`,
+                                          withCredentials: true
+                                      }
+                                  })
+                                      .then((response) => response.data)
+                                      .then((data) => {
+                                          setItems(prevItems => prevItems.filter(item => item.profileID !== id));
+                                          setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.profileName));
+
+                                          console.log(data)
+                                      });
+
+                                  handleFeedbackMessage('Item deleted successfully!');
+                                  setRemoveItemModal(false);
+                              }}
+                          >
+                              Yes
+                          </button>
+
+                          {/* No Button */}
+                          <button
+                              className='bg-red-500 text-white px-4 py-2 rounded'
+                              onClick={(e) => {
+                                  e.stopPropagation(); // Stop the event from propagating to the overlay
+                                  console.log('No button clicked');
+                                  // Add your logic for "No" button action here
+                                  setRemoveItemModal(false);
+                              }}
+                          >
+                              No
+                          </button>
                       </div>
-                    </div>
-                    {isOpenCategory && (
-                      <div className="origin-top-right absolute right-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                        <div className="py-1">
-                          {['General Articles', 'Sports Articles'].map((category, index) => (
-                            <div
-                              key={index}
-                              onClick={() => selectCategory(category)}
-                              className="flex justify-between items-center px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
-                            >
-                              <div>{category}</div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+
                   </div>
-                </div>
+              </>
 
+
+              :
+              null}
+          <div className="flex flex-col">
+              {/* Title */}
+              <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Articles</h1>
+
+              {/* Main content container */}
+              <div className="flex">
+                  {/* Item Sidebar */}
+                  <ItemSidebar
+                      items={itemSidebarItems}
+                      onItemSelected={handleItemSelected}
+                      onAddItem={handleAddItem}
+                      onItemRemove={(item) => {
+                          setRemoveItemModal(true);
+                          handleItemSelected(item);
+                      }}
+                      onEditItem={handleEditItem}
+                  />
+
+                  {/* Right side for file upload and preview */}
+                  <div className="w-3/4 p-4">
+                      <h2 className="text-2xl font-bold mb-2 mt-8">
+                          {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.profileName : 'Item'}
+                      </h2>
+                      {/* Input field for custom item name */}
+                      <div className="flex">
+                          <input
+                              type="text"
+                              value={customItemName}
+                              onChange={(e) => setCustomItemName(e.target.value)}
+                              placeholder={'Enter Item Name'}
+                              className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+                          />
+                      </div>
+
+                      {/* File Upload with Preview */}
+                      <div className="mt-4">
+                          <FileUpload
+                              onFileChange={setSelectedFile}
+                              resetFileInput={resetFileInput}
+                              selectedFile={selectedFile}
+                              setSelectedFile={setSelectedFile} />
+                      </div>
+
+                      {
+                          isAdding || isEditing ?
+                              <div className='mt-5 right-0 float-right'>
+                                  <button
+                                      onClick={isAdding ? handleSaveAdd : handleSaveEdit}
+                                      className='bg-lgu-green text-white px-6 py-3 rounded-lg'>
+                                      Save {isEditing ? " Changes" : ""}
+                                  </button>
+                                  <button
+                                      onClick={handleCancelMode}
+                                      className='ml-5 px-6 py-3 bg-gray-200 rounded-lg'>
+                                      Cancel
+                                  </button>
+                              </div>
+                              :
+                              null
+                      }
+
+                      {/* Feedback message */}
+                      {feedbackMessage ?
+                          <p className="text-sm text-lgu-green -500 mb-4">{feedbackMessage}</p>
+                          :
+                          null
+                      }
+                  </div>
               </div>
-            </div>
-            <h1 className="text-md font-bold pb-1 ml-2">Article Content</h1>
-            <div className="relative mb-3 mx-2">
-              <textarea
-                className="peer m-0 block h-80 w-full rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal leading-tight text-neutral-700 transition duration-200 ease-linear placeholder:text-gray-300 focus:border-primary focus:pb-[0.625rem] focus:pt-[1.625rem] focus:text-neutral-700 focus:outline-none peer-focus:text-primary dark:border-neutral-600 dark:text-black dark:focus:border-primary dark:peer-focus:text-primary [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
-                placeholder="Write the Article Content here..."
-              />
-            </div>
-            <div className='flex justify-between pb-5'>
-              <div className='flex'>
-                <div className="pr-2">
-                  <button type="submit" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                    {type === "ADD" ? "Save" : "Save Changes"}
-                  </button>
-                </div>
-                <div >
-                  <button type="submit"
-                    onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
-                    className="text-black bg-lgu-yellow hover:bg-yellow-300 focus:ring-1 focus:outline-none focus:ring-yellow-300 font-medium rounded-xl text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-lgu-yellow dark:hover-bg-yellow-100 dark:focus:ring-yellow-300">
-                    Cancel
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-
-
-    </>
+          </div>
+      </>
   );
 }
