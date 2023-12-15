@@ -6,7 +6,7 @@ import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { timeAgo } from '../../functionHelpers/Time'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CreatePost from '../../components/CreatePost'
+import CreateForumPost from './CreateForumPost'
 
 
 export default function ForumsAndDiscussions() {
@@ -102,6 +102,8 @@ export default function ForumsAndDiscussions() {
             bodyImgs: []
         },
     ]
+
+    const navigate = useNavigate();
     return (
         <>
         
@@ -130,11 +132,15 @@ export default function ForumsAndDiscussions() {
                     </Banner>
                     <Body className="mx-5">
                         <div className='w-fit rounded-full ms-5 my-10'>
-                        <NavLink to='/create-post' className='bg-lgu-yellow text-black w-fit p-3 rounded-full'>
-                            +&nbsp;&nbsp;&nbsp;Create A Post
-                            </NavLink>
+                        <button
+                                className='bg-lgu-yellow text-black w-fit p-3 rounded-full'
+                                onClick={() => navigate('/create-forum-post')}
+                            >
+                                +&nbsp;&nbsp;&nbsp;Create A Post
+                            </button>
 
                         </div>
+                        
                         {/*<Routes>
                             <Route path='/forums-and-discussions' element={<ForumsAndDiscussions />} />
                             <Route path='/create-post' element={<CreatePost />} />

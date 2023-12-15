@@ -75,7 +75,7 @@ const PATH_NAME = {
     Messages: "/message",
     PrivacyPolicy: "/privacy-policy",
     ForumsAndDiscussions: "/forums",
-    CreatePost: "/create-post",
+    CreatePost: "/create-forum-post",
     ForumsAndDiscussionsPost: "/forum",
     Survey: "/surveys",
     SampleSurvey: "/sample-survey",

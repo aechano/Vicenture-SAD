@@ -38,29 +38,65 @@ function CreateForumPost() {
     };
 
     return (
-        <div className='fixed top-0 left-0 z-40 w-full h-full bg-white'>
-            <h1>Create a Post</h1>
-            <form>
-                <label>Title:</label>
-                <input type='text' value={title} onChange={handleTitleChange} />
+        <div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-lgu-green to-lgu-lime'>
+            <div className='bg-lgu-green p-8 rounded shadow-lg w-full sm:w-96'>
+                <h1 className='text-2xl font-bold mb-4 text-white'>Create a Post</h1>
+                <form className='flex flex-col space-y-4'>
+                    <label className='text-sm text-white'>Title:</label>
+                    <input
+                        type='text'
+                        value={title}
+                        onChange={handleTitleChange}
+                        className='border p-2 rounded focus:outline-none focus:border-lgu-lime'
+                    />
 
-                <label>Description:</label>
-                <textarea value={description} onChange={handleDescriptionChange}></textarea>
+                    <label className='text-sm text-white'>Description:</label>
+                    <textarea
+                        value={description}
+                        onChange={handleDescriptionChange}
+                        className='border p-2 rounded focus:outline-none focus:border-lgu-lime'
+                    ></textarea>
 
-                <label>Images:</label>
-                <input type='file' multiple onChange={handleImageChange} />
+                    <label className='text-sm text-white'>Images:</label>
+                    <input
+                        type='file'
+                        multiple
+                        onChange={handleImageChange}
+                        className='border p-2 rounded focus:outline-none focus:border-lgu-lime'
+                    />
 
-                {/* Display selected images */}
-                {images.map((image, index) => (
-                    <img key={index} src={URL.createObjectURL(image)} alt={`Image ${index + 1}`} />
-                ))}
+                    {/* Display selected images */}
+                    <div className='flex space-x-2'>
+                        {images.map((image, index) => (
+                            <img
+                                key={index}
+                                src={URL.createObjectURL(image)}
+                                alt={`Image ${index + 1}`}
+                                className='w-16 h-16 object-cover rounded'
+                            />
+                        ))}
+                    </div>
 
-                <button type='button' onClick={handleSubmit}>Submit</button>
-                <button type='button' onClick={handleCancel}>Cancel</button>
-            </form>
+                    <div className='flex space-x-2 mt-4 ml-auto'>
+                        <button
+                            type='button'
+                            onClick={handleCancel}
+                            className='bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400'
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type='button'
+                            onClick={handleSubmit}
+                            className='bg-lgu-lime text-gray-700 py-2 px-4 rounded hover:bg-gray-400'
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
-
 }
 
 export default CreateForumPost;
