@@ -60,24 +60,37 @@ export default function Awards() {
             </Banner>
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    {value.map((content, index) => (
-                        <div key={index} className="bg-white rounded overflow-hidden shadow-md p-4 mb-4">
-                            <div
-                                className="w-full h-48 md:h-64"
-                                style={{
-                                    backgroundImage: `url(${content.pic})`,
-                                    backgroundSize: 'cover',
-                                }}
-                                alt={content.title}
-                            ></div>
-                            <div className="p-4">
-                                <p className="text-gray-900 font-bold text-xl mb-2">{content.title}</p>
-                                <p className="text-gray-700 text-base">{content.cont}</p>
+                {value.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        {value.map((content, index) => (
+                            <div key={index} className="bg-white rounded overflow-hidden shadow-md p-4 mb-4">
+                                <div
+                                    className="w-full h-48 md:h-64"
+                                    style={{
+                                        backgroundImage: `url(${content.pic})`,
+                                        backgroundSize: 'cover',
+                                    }}
+                                    alt={content.title}
+                                ></div>
+                                <div className="p-4">
+                                    <p className="text-gray-900 font-bold text-xl mb-2">{content.title}</p>
+                                    <p className="text-gray-700 text-base">{content.cont}</p>
+                                </div>
                             </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className='flex min-h-screen w-full justify-center'>
+                        <div className='w-fit'>
+                            <img
+                                src={require("../../../res/img/waterfall.png")}
+                                className='w-40 h-40 opacity-50 mt-32'
+                                alt="No Content Image"
+                            />
+                            <p className='mt-5 select-none'>No contents to show</p>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                )}
             </div>
             <BackToTop />
         </>

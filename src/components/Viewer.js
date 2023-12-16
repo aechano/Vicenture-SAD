@@ -29,12 +29,12 @@ export default function Viewer({ view }) {
         // Ensure that the current page number is within the valid range
         setPageNumber(prevPageNumber => Math.min(prevPageNumber, numPages));
     }
-    
+
 
     function changePage(offset) {
         setPageNumber(prevPageNumber => Math.min(Math.max(prevPageNumber + offset, 1), numPages));
     }
-    
+
 
     function changePageBack() {
         changePage(-1);
@@ -78,36 +78,38 @@ export default function Viewer({ view }) {
 
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5">
                 <div className='block md:flex space-x-5'>
-                    <div className={'w-full bg-lgu-yellow p-4 md:w-1/3 overflow-y-auto'}>
-                        <ul>
-                            {view.map((data, index) => (
-                                <li
-                                    key={index}
-                                    style={{
-                                        marginBottom: '1.5vw',
-                                        cursor: 'pointer',
-                                        textDecoration: selectedContentIndex === index ? 'underline' : 'none',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                    }}
-                                    onClick={() => handleContentClick(data, index)}
-                                >
-
-                                    {data.head}
-
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className='block grow'>
-                        <div className="flex items-center justify-between">
-                            <h1 className='pt-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent?.head}</h1>
-                            <button onClick={downloadPdf} className="cursor-pointer ml-3 bg-lgu-green text-lgu-lime hover:bg-lime-900 font-bold py-2 px-4 rounded">
-                                Download
-                            </button>
+                    {view.length > 0 && (
+                        <div className={'w-full bg-lgu-yellow p-4 md:w-1/3 overflow-y-auto'}>
+                            <ul>
+                                {view.map((data, index) => (
+                                    <li
+                                        key={index}
+                                        style={{
+                                            marginBottom: '1.5vw',
+                                            cursor: 'pointer',
+                                            textDecoration: selectedContentIndex === index ? 'underline' : 'none',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                        }}
+                                        onClick={() => handleContentClick(data, index)}
+                                    >
+                                        {data.head}
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                        {selectedContent && (
+                    )}
+                    <div className='block grow'>
+                        {selectedContent ? (
                             <div className='rounded shadow-lg shadow-lgu-green'>
+                                <div className='flex items-center justify-between'>
+                                    <h1 className='pt-5 mt-9 md:pt-0 text-left pb-5 text-2xl font-bold'>{selectedContent?.head}</h1>
+                                    {view.length > 0 && (
+                                        <button onClick={downloadPdf} className="cursor-pointer ml-3 bg-lgu-green text-lgu-lime hover:bg-lime-900 font-bold py-2 px-4 rounded">
+                                            Download
+                                        </button>
+                                    )}
+                                </div>
                                 <div className='flex justify-end w-full pt-6' ref={pdfRef}>
                                     <Document file={URL.createObjectURL(selectedContent.pdfView)} onLoadSuccess={onDocumentLoadSuccess} className="max-w-full h-auto">
                                         <Page pageNumber={pageNumber} renderTextLayer={false} width={pdfWidth} className="font-sans" />
@@ -137,7 +139,17 @@ export default function Viewer({ view }) {
                                     </button>
                                 </div>
                             </div>
-
+                        ) : (
+                            <div className='flex min-h-screen w-full justify-center'>
+                                <div className='w-fit'>
+                                    <img
+                                        src={require("../res/img/waterfall.png")}
+                                        className='w-40 h-40 opacity-50 mt-32'
+                                        alt="No Content Image"
+                                    />
+                                    <p className='mt-5 select-none'>No contents to show</p>
+                                </div>
+                            </div>
                         )}
                     </div>
                 </div>
