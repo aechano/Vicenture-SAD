@@ -162,7 +162,7 @@ export default function Header(props) {
                                                 />
                                                 
                                                 <img
-                                                className="h-20 w-auto ml-2 mt-4 hidden lg:block"
+                                                className="h-20 w-auto ml-2 mt-2 hidden lg:block"
                                                 src={require('./../res/img/finalheader.png')}
                                                 alt="header lgu"
                                                 />
