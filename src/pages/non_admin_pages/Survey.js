@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "../../components/Banner";
 import { NavLink } from "react-router-dom";
 import { Collapse } from "react-collapse";
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { PATH_NAME } from "../../Variables/GLOBAL_VARIABLE";
+import axios from "axios";
+import { API } from "../../Variables/GLOBAL_VARIABLE";
 
 export default function Survey() {
 
     const [open, setOpen] = useState(false);
+    const [contents, setContent] = useState([]);
+
     const toggle = (index) => {
         if (open === index) {
             setOpen(null);
@@ -16,36 +20,17 @@ export default function Survey() {
         }
     }
 
-    var contents = [
-
-        {
-            image: require("../../res/img/rain.png"),
-            title: "Heavy Rainfall Preparedness",
-            desc: "The 'Heavy Rainfall Preparedness' survey for San Vicente citizens aims to assess our community's readiness for heavy rainfall events, focusing on awareness, preparedness measures, and suggestions for improvement. Your insights are vital in enhancing disaster preparedness and ensuring the safety of all residents. Please participate through the provided online survey link or in-person at local events, and help us build a more resilient San Vicente. Thank you for your active participation.",
-            formLink: 'https://docs.google.com/forms/d/e/1FAIpQLSdB2MN7QlgJgQk1kv7WFV1Whyj2ZaF-Q1civkLPczcEjiYWPQ/viewform?fbclid=IwAR3AzEkYKTakR5dsSmsURd7QR52AwuA9lZeBxXl7PK4xv40mtWr6SCDPPgA',
-        },
-
-        {
-            image: require("../../res/img/rain.png"),
-            title: "Heavy Rainfall Preparedness",
-            desc: "The 'Heavy Rainfall Preparedness' survey for San Vicente citizens aims to assess our community's readiness for heavy rainfall events, focusing on awareness, preparedness measures, and suggestions for improvement. Your insights are vital in enhancing disaster preparedness and ensuring the safety of all residents. Please participate through the provided online survey link or in-person at local events, and help us build a more resilient San Vicente. Thank you for your active participation.",
-        },
-        {
-            image: require("../../res/img/rain.png"),
-            title: "Heavy Rainfall Preparedness",
-            desc: "The 'Heavy Rainfall Preparedness' survey for San Vicente citizens aims to assess our community's readiness for heavy rainfall events, focusing on awareness, preparedness measures, and suggestions for improvement. Your insights are vital in enhancing disaster preparedness and ensuring the safety of all residents. Please participate through the provided online survey link or in-person at local events, and help us build a more resilient San Vicente. Thank you for your active participation.",
-        },
-        {
-            image: require("../../res/img/rain.png"),
-            title: "Heavy Rainfall Preparedness",
-            desc: "The 'Heavy Rainfall Preparedness' survey for San Vicente citizens aims to assess our community's readiness for heavy rainfall events, focusing on awareness, preparedness measures, and suggestions for improvement. Your insights are vital in enhancing disaster preparedness and ensuring the safety of all residents. Please participate through the provided online survey link or in-person at local events, and help us build a more resilient San Vicente. Thank you for your active participation.",
-        },
-        {
-            image: require("../../res/img/rain.png"),
-            title: "Heavy Rainfall Preparedness",
-            desc: "The 'Heavy Rainfall Preparedness' survey for San Vicente citizens aims to assess our community's readiness for heavy rainfall events, focusing on awareness, preparedness measures, and suggestions for improvement. Your insights are vital in enhancing disaster preparedness and ensuring the safety of all residents. Please participate through the provided online survey link or in-person at local events, and help us build a more resilient San Vicente. Thank you for your active participation.",
-        },
-    ];
+    useEffect(() => {
+        axios.get(API.getAllSurveys, {})
+            .then((response) => response.data)
+            .then((data) => {
+                var newItems = [];
+                for (var item of data) {
+                    newItems.push({ id: item.simpleSurveyID, title: item.title, desc: item.description, formLink: item.link});
+                }
+                setContent(newItems);
+            });
+    }, []);
 
     var questions = [
         {
@@ -103,8 +88,7 @@ function Content({ content }) {
     return (
         <div className="m-3">
             <a href={content.formLink || PATH_NAME.SampleSurvey} target="_blank" className="flex flex-col items-center bg-white border border-gray-100 rounded-sm shadow md:flex-row md:mx-auto hover:bg-gray-100 dark:border-gray-200 dark:bg-gray-100 dark:hover:hover:bg-gray-200" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>
-                <img className="object-cover w-full h-96 md:h-auto md:w-48 rounded-sm m-3" src={content.image} alt="" />
-                <div className="flex flex-col justify-between p-4 leading-normal md:border-l-2 md:border-t-0 border-t-2 border-gray-500">
+                <div className="flex flex-col justify-between p-4 leading-normal border-gray-500">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-black text-left">{content.title}</h5>
                     <p className="mb-3 font-normal text-gray-700 dark-text-gray-400 text-left">{content.desc}</p>
                 </div>

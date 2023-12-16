@@ -18,15 +18,35 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     const [emergencyTitle, setEmergencyTitle] = useState("");
     const [emergencyContent, setEmergencyContent] = useState("");
 
-    const images = [
-        require("./../res/img/0.png"),
-        require("./../res/img/1.png"),
-        require("./../res/img/2.png"),
-        require("./../res/img/3.png"),
-        require("./../res/img/4.png"),
-        require("./../res/img/5.png"),
-        require("./../res/img/6.png")
-    ];
+    const [images, setImages] = useState([]);
+
+    useEffect(() => {
+        axios.get(API.viewBanner, {})
+            .then((response) => response.data)
+            .then((data) => {
+                var newItems = [];
+                for (var item of data) {
+                    const imageName = item.imgName; // Assuming there's a property like 'imageName' in your data
+                    const byteCharacters = atob(item.image); // Assuming there's a property like 'image' in your data
+
+                    // Convert base64 string to ArrayBuffer
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+
+                    // Create a Blob from the ArrayBuffer
+                    const blob = new Blob([byteArray], { type: 'image/*' }); // Change the type according to your image format
+
+                    // Create a File from the Blob
+                    const file = new File([blob], imageName || 'Image', { type: 'image/*' }); // Change the type accordingly
+
+                    newItems.push({ head: item.title, imageView: file });
+                }
+                setImages(newItems);
+            });
+    }, []);
 
 
     const openModal = () => {
@@ -391,7 +411,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                 alt="San Vicente Logo"
                 button="See All Awards"
                 arrow={true}
-                href="/the-town/about" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
+                href="/the-town/awards" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
                 Journey through the captivating tapestry of San Vicente, Camarines Norte, where time and culture intertwine to unveil a rich and enchanting tale. This hidden gem, with its roots dating back to the late 18th century, is a place of history, traditions, and breathtaking natural beauty. As you stroll through its historic streets, you'll be transported to an era of colonial architecture and cobblestone pathways, each telling a story of its own. San Vicente isn't just a location on a map; it's a living connection to the past, where the spirits of the ancestors seem to guide your way. This town embodies the enduring spirit of the Filipino people, celebrated through ancient festivals, rituals, and vibrant traditions that have thrived for generations. And the beauty of San Vicente's landscapes, from pristine coastlines meeting the Pacific's azure waters to lush mountains and untamed wilderness, will leave you in awe.
             </Sections>
 

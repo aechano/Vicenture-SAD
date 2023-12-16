@@ -12,7 +12,8 @@ export default function AdminTheTownBase() {
         { name: "Citizen Charter", to: PATH_NAME.AdminPages.CitizensCharter },
     ]
     return (
-        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.TheTown
+        location.pathname === PATH_NAME.AdminPages.Admin + "/" + PATH_NAME.AdminPages.TheTown ||
+        location.pathname === PATH_NAME.AdminPages.ContentWriter + "/" + PATH_NAME.AdminPages.TheTown
             ?
             <Base contents={contents} title="The Town" />
             :

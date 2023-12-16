@@ -10,7 +10,12 @@ const PATH_NAME = {
     },
     AdminPages: {
         Admin: "/admin",
+        ContentWriter: "/writer",
         Analytics: "analytics",
+        Homepage: "homepage",
+        Banner: "banner",
+        Awards: "awards",
+        Events: "events",
         TheTown: "the-town",
         MunicipalityProfile: "municipality-profile",
         ElectedOfficials: "elected-officials",
@@ -37,6 +42,7 @@ const PATH_NAME = {
         MunicipalityPrograms: "/the-town/programs",
         SportsContent: "/the-town/programs/:sportsID",
         ElectedOfficials: "/the-town/officials",
+        Awards: "/the-town/awards",
         Offices: "/the-town/offices",
         CitizensCharter: "/the-town/citizens-charter",
         History: "/history",
@@ -51,6 +57,7 @@ const PATH_NAME = {
         Activities: "/tourism/activities",
         ActivitiesPost: "/tourism/activity",
         Content: "/tourism/places-to-visit/content",
+        ActivitiesContent: "/tourism/activities/content"
     },
 
     Invest: {
@@ -68,6 +75,8 @@ const PATH_NAME = {
     Messages: "/message",
     PrivacyPolicy: "/privacy-policy",
     ForumsAndDiscussions: "/forums",
+    CreatePost: "/create-post",
+    ForumsAndDiscussionsPost: "/forum",
     Survey: "/surveys",
     SampleSurvey: "/sample-survey",
     Services: "/services",
@@ -83,6 +92,7 @@ const PUBLIC = "/api/v1/public"
 const LGU = "/api/v1/lgu"
 const AUTH = "/api/v1/auth"
 const ADMIN = "/api/v1/admin"
+const CONTENT_WRITER = "/api/v1/writer"
 const GENERAL = "/api/v1/general"
 const API = {
     SignUp: SERVER_ADDRESS + AUTH + "/signup",
@@ -99,25 +109,25 @@ const API = {
     contentRating: function (id) { return SERVER_ADDRESS + PUBLIC + "/contentRating/" + id },
     setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating",
     getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id },
-    addMunProfile: SERVER_ADDRESS + ADMIN + "/add-mun_profile",
-    viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile",
     publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
     analyticsWebpageVisit: SERVER_ADDRESS + PUBLIC + "/analytics/webpage_visit",
     analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
     reportGet: SERVER_ADDRESS + ADMIN + "/reported",
     report: SERVER_ADDRESS + GENERAL + "/reported",
     analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
-    deleteProfile: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-mun_profile/" + id },
-    editProfile: SERVER_ADDRESS + ADMIN + "/edit-mun_profile",
+    addMunProfile: SERVER_ADDRESS + CONTENT_WRITER + "/add-mun_profile",
+    viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile",
+    deleteProfile: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-mun_profile/" + id },
+    editProfile: SERVER_ADDRESS + CONTENT_WRITER + "/edit-mun_profile",
     viewTransparency: SERVER_ADDRESS + PUBLIC + "/view-transparency",
-    addTransparency: SERVER_ADDRESS + ADMIN + "/add-transparency",
-    editTransparency: SERVER_ADDRESS + ADMIN + "/edit-transparency",
-    deleteTransparency: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-transparency/" + id },
+    addTransparency: SERVER_ADDRESS + CONTENT_WRITER + "/add-transparency",
+    editTransparency: SERVER_ADDRESS + CONTENT_WRITER + "/edit-transparency",
+    deleteTransparency: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-transparency/" + id },
     viewCharter: SERVER_ADDRESS + PUBLIC + "/view-charter",
-    addCharter: SERVER_ADDRESS + ADMIN + "/add-charter",
-    editCharter: SERVER_ADDRESS + ADMIN + "/edit-charter",
-    deleteCharter: function (id) { return SERVER_ADDRESS + ADMIN + "/delete-charter/" + id },
-    addOfficials: SERVER_ADDRESS + ADMIN + "/add-officials",
+    addCharter: SERVER_ADDRESS + CONTENT_WRITER + "/add-charter",
+    editCharter: SERVER_ADDRESS + CONTENT_WRITER + "/edit-charter",
+    deleteCharter: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-charter/" + id },
+    addOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/add-officials",
     viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials",
     addAlert: SERVER_ADDRESS + ADMIN + "/add-alert",
     viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert",
@@ -125,10 +135,25 @@ const API = {
     getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
     getComment: function (id) { return SERVER_ADDRESS + PUBLIC + "/comments/" + id },
     postComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
+    deleteComment: function (id) { return SERVER_ADDRESS + GENERAL + "/comment/delete/" + id},
     reportContent: SERVER_ADDRESS + GENERAL + "/reported",
-    postSurvey: SERVER_ADDRESS + ADMIN + "/survey",
-    getAllSurveys: SERVER_ADDRESS + PUBLIC + "/surveys",
+    postSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/survey",
+    editSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/edit-survey",
+    getAllSurveys: SERVER_ADDRESS + PUBLIC + "/viewSurveys",
+    deleteSurvey: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-survey/" + id },
     addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
+    viewBanner: SERVER_ADDRESS + PUBLIC + "/view-banner",
+    addBanner: SERVER_ADDRESS + CONTENT_WRITER + "/add-banner",
+    editBanner: SERVER_ADDRESS + CONTENT_WRITER + "/edit-banner",
+    deleteBanner: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-banner/" + id },
+    viewAward: SERVER_ADDRESS + PUBLIC + "/view-awards",
+    addAward: SERVER_ADDRESS + CONTENT_WRITER + "/add-award",
+    editAward: SERVER_ADDRESS + CONTENT_WRITER + "/edit-award",
+    deleteAward: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-award/" + id },
+    addEvent: SERVER_ADDRESS + LGU + "/add-events",
+    viewEvent: SERVER_ADDRESS + PUBLIC + "/view-events",
+    editEvent: SERVER_ADDRESS + LGU + "/edit-events",
+    deleteEvent: function (id) { return SERVER_ADDRESS + LGU + "/delete-events/" + id },
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"
@@ -140,11 +165,13 @@ const USER_TYPES = {
     Tourist: "TOURIST",
     Investor: "INVESTOR",
     LguSV: "LGU",
+    ContentWriter: "CONTENT_WRITER",
     Admin: "ADMIN",
     EndUsers: ["SV_CITIZEN", "TOURIST", "INVESTOR", "GUEST"],
-    General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU", "ADMIN"]
+    General: ["SV_CITIZEN", "TOURIST", "INVESTOR", "LGU", "ADMIN", "CONTENT_WRITER"],
+    Writers: ["ADMIN", "CONTENT_WRITER"]
 }
-const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", PATH_NAME.AdminPages.Admin + "/*", ...PATH_NAME.Accounts.list];
+const NO_FOOTER = [PATH_NAME.ForumsAndDiscussions, PATH_NAME.Debug, PATH_NAME.Messages + "/*", PATH_NAME.AdminPages.Admin + "/*", PATH_NAME.AdminPages.ContentWriter + "/*", ...PATH_NAME.Accounts.list];
 const NO_HEADER = [PATH_NAME.Debug, ...PATH_NAME.Accounts.list];
 
 export { PATH_NAME, API, NO_FOOTER, NO_HEADER, USER_TYPES, SOCKET };

@@ -23,6 +23,7 @@ const navigation = [
             { name: 'Municipality Profile', href: PATH_NAME.TheTown.MunicipalityProfile },
             { name: 'Municipality Programs', href: PATH_NAME.TheTown.MunicipalityPrograms },
             { name: 'Elected Officials', href: PATH_NAME.TheTown.ElectedOfficials },
+            { name: 'Awards', href: PATH_NAME.TheTown.Awards},
             { name: 'Offices', href: PATH_NAME.TheTown.Offices },
             { name: 'Citizen\'s Charter', href: PATH_NAME.TheTown.CitizensCharter }
         ],
@@ -38,7 +39,7 @@ const navigation = [
         ],
     },
     {
-        access: [USER_TYPES.Investor, USER_TYPES.LguSV, USER_TYPES.Admin],
+        access: [USER_TYPES.Investor, USER_TYPES.LguSV, USER_TYPES.Admin, USER_TYPES.ContentWriter],
         name: "Invest",
         href: PATH_NAME.Invest.Invest,
         subItems: [
@@ -401,8 +402,15 @@ export default function Header(props) {
                     </Disclosure>
                     <div className='mt-20' />
                     {props.userType === USER_TYPES.Admin && adminHeader ?
-                        < div className="block w-full h-[50px] bg-lgu-yellow ps-5 pt-2">
+                        < div className="block w-full h-[50px] bg-lgu-yellow ps-5 pt-2 z-50">
                             <p className="select-none">You are logged in as an admin. <span className="text-lgu-green underline leading-[50px] cursor-pointer" onClick={() => navigate(PATH_NAME.AdminPages.Admin)}>Click here to go to admin dashboard</span>.</p>
+                        </div>
+                        :
+                        null
+                    }
+                    {props.userType === USER_TYPES.ContentWriter && adminHeader ?
+                        < div className="block w-full h-[50px] bg-lgu-yellow ps-5 pt-2 z-50">
+                            <p className="select-none">You are logged in as a Content Writer. <span className="text-lgu-green underline leading-[50px] cursor-pointer" onClick={() => navigate(PATH_NAME.AdminPages.ContentWriter)}>Click here to go to Content Writer dashboard</span>.</p>
                         </div>
                         :
                         null

@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { BsFillHousesFill } from 'react-icons/bs'
-import { FaChartBar, FaHome, FaScroll } from 'react-icons/fa'
+import { FaHome, FaScroll } from 'react-icons/fa'
 import { RiSurveyFill } from 'react-icons/ri'
-import { GiSiren } from 'react-icons/gi'
 import { TbCoins, TbTrees } from 'react-icons/tb'
-import { MdReport } from 'react-icons/md'
 import { GrArticle } from "react-icons/gr";
 import { Outlet, useLocation } from 'react-router'
 import Body from '../../classifiers/Body'
@@ -14,14 +12,14 @@ import Cookies from 'js-cookie'
 import Page403 from '../Accounts/ErrorPages/Page403'
 import { jwtDecode } from 'jwt-decode'
 
-export default function Admin() {
+export default function ContentWriter() {
     const [hasAuthority, setHasAuthority] = useState(false);
     const location = useLocation();
     useEffect(() => {
         var jwt = Cookies.get("token");
         if (jwt) {
             var payload = jwtDecode(jwt);
-            if (payload.AccountType !== USER_TYPES.Admin) {
+            if (payload.AccountType !== USER_TYPES.ContentWriter) {
                 setHasAuthority(false);
             } else {
                 setHasAuthority(true);
@@ -36,15 +34,11 @@ export default function Admin() {
             <>
                 <div className='fixed top-0 left-0 z-40 w-80 drop-shadow-md bg-white h-screen pt-10 ps-10 mt-20'> {/** This is the sidebar */}
                     <h1 className='text-lgu-green text-xl'>
-                        Admin Dashboard
+                        Content Writer Dashboard
                         <div className='w-11/12 h-1 bg-lgu-green rounded-full mt-5' /> {/** just a line below all the categories */}
                         <div className='overflow-y-auto max-h-[65vh]'>
                             <SidebarItems
-                                title={{ name: "Analytics", to: PATH_NAME.AdminPages.Analytics }}
-                                icon={<FaChartBar className='h-auto' />}
-                            />
-                            <SidebarItems
-                                title={{ name: "Homepage", to: PATH_NAME.AdminPages.Homepage }}
+                                title={{ name: "Homepage", to: PATH_NAME.AdminPages.Homepage }} /** OK */
                                 subtitles={[
                                     { name: "Banner", to: PATH_NAME.AdminPages.Banner },
                                     { name: "Events", to: PATH_NAME.AdminPages.Events },
@@ -53,17 +47,16 @@ export default function Admin() {
                                 icon={<FaHome className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "The Town", to: PATH_NAME.AdminPages.TheTown }}
+                                title={{ name: "The Town", to: PATH_NAME.AdminPages.TheTown }} /** OK */
                                 subtitles={[
                                     { name: "Municipality Profile", to: PATH_NAME.AdminPages.MunicipalityProfile },
                                     { name: "Elected Officials", to: PATH_NAME.AdminPages.ElectedOfficials },
-                                    { name: "Offices", to: PATH_NAME.AdminPages.Offices },
                                     { name: "Citizen Charter", to: PATH_NAME.AdminPages.CitizensCharter }
                                 ]}
                                 icon={<BsFillHousesFill className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "Tourism", to: PATH_NAME.AdminPages.Tourism }}
+                                title={{ name: "Tourism", to: PATH_NAME.AdminPages.Tourism }} /** OK */
                                 subtitles={[
                                     { name: "Places To Visit", to: PATH_NAME.AdminPages.PlacesToVisit },
                                     { name: "Activities", to: PATH_NAME.AdminPages.Activities }
@@ -71,7 +64,7 @@ export default function Admin() {
                                 icon={<TbTrees className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "Invest", to: PATH_NAME.AdminPages.Invest }}
+                                title={{ name: "Invest", to: PATH_NAME.AdminPages.Invest }} /** OK */
                                 subtitles={[
                                     { name: "Investment Opportunities", to: PATH_NAME.AdminPages.InvestmentOpportunities },
                                     { name: "Reasons To Invest", to: PATH_NAME.AdminPages.ReasonsToInvest }
@@ -79,24 +72,16 @@ export default function Admin() {
                                 icon={<TbCoins className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "Online Survey", to: PATH_NAME.AdminPages.OnlineSurvey }}
+                                title={{ name: "Online Survey", to: PATH_NAME.AdminPages.OnlineSurvey }} /** OK */
                                 icon={<RiSurveyFill className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "Articles", to: PATH_NAME.AdminPages.GeneralArticles }}
+                                title={{ name: "Articles", to: PATH_NAME.AdminPages.GeneralArticles }} /** OK */
                                 icon={<GrArticle className='h-auto' />}
                             />
                             <SidebarItems
-                                title={{ name: "Emergency", to: PATH_NAME.AdminPages.Emergency }}
-                                icon={<GiSiren className='h-auto' />}
-                            />
-                            <SidebarItems
-                                title={{ name: "Transparency", to: PATH_NAME.AdminPages.Transparency }}
+                                title={{ name: "Transparency", to: PATH_NAME.AdminPages.Transparency }} /** OK */
                                 icon={<FaScroll className='h-auto' />}
-                            />
-                            <SidebarItems
-                                title={{ name: "Reported Contents", to: PATH_NAME.AdminPages.ReportedContents }}
-                                icon={<MdReport className='h-auto' />}
                             />
                         </div>
                         <div className='w-11/12 h-1 bg-lgu-green rounded-full mt-5' /> {/** just a line below all the categories */}

@@ -73,16 +73,15 @@ export default function PlacesToVisitPost() {
         if (token) {
             var payload = jwtDecode(token);
             setEmail(payload.sub);
-        }
-
-        axios.get(API.getMyContentRating(contentID), {
-            headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
-            withCredentials: true
-        })
-            .then((response) => response.data)
-            .then((data) => {
-                setUserRating(data);
+            axios.get(API.getMyContentRating(contentID), {
+                headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+                withCredentials: true
             })
+                .then((response) => response.data)
+                .then((data) => {
+                    setUserRating(data);
+                })
+        }
     }, [contentID])
 
     const handleRatingChange = (newRating) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import axios from 'axios';
-import { API } from '../../../Variables/GLOBAL_VARIABLE';
+import { API } from '../../../../Variables/GLOBAL_VARIABLE';
 import Cookies from 'js-cookie';
 
 // FileUpload component for handling file upload and preview
@@ -25,6 +25,7 @@ function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selecte
                 Upload File
             </label>
             <input
+                accept='image/png, image/jpeg'
                 type="file"
                 id="file"
                 name="file"
@@ -49,47 +50,49 @@ function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selecte
 function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
 
     return (
-        <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
-            <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
-            <ul>
-                {items.length > 0 ?
-                    items.map((item, index) => (
-                        <li
-                            key={index}
-                            className="cursor-pointer text-black mb-2 w-full flex"
-                        >
-                            <span
-                                onClick={() => onItemSelected(item)}
-                                className='flex-1 hover:underline'>{item}</span>
-                            <span
-                                onClick={() => onItemRemove(item)}
-                                className='justify-right hover:text-red-500'>x</span>
-                        </li>
-                    ))
-                    :
-                    <li className='text-gray-600 py-10'>No items to show</li>
-                }
-            </ul>
+        <>
+            <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
+                <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
+                <ul>
+                    {items.length > 0 ?
+                        items.map((item, index) => (
+                            <li
+                                key={index}
+                                className="cursor-pointer text-black mb-2 w-full flex"
+                            >
+                                <span
+                                    onClick={() => onItemSelected(item)}
+                                    className='flex-1 hover:underline'>{item}</span>
+                                <span
+                                    onClick={() => onItemRemove(item)}
+                                    className='justify-right hover:text-red-500'>x</span>
+                            </li>
+                        ))
+                        :
+                        <li className='text-gray-600 py-10'>No items to show</li>
+                    }
+                </ul>
 
-            <div className='flex w-full justify-center'>
-                <button
-                    onClick={onAddItem}
-                    className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
-                >
-                    <FaPlus className='mr-1' /> Add
-                </button>
+                <div className='flex w-full justify-center'>
+                    <button
+                        onClick={onAddItem}
+                        className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
+                    >
+                        <FaPlus className='mr-1' /> Add
+                    </button>
+                </div>
             </div>
-        </div>
+        </>
+
     );
 }
-
-
-export default function AdminGeneralArticles() {
+export default function AdminAwards() {
     const [itemSidebarItems, setItemSidebarItems] = useState();
     const [items, setItems] = useState([]);
 
     const [customItemName, setCustomItemName] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [desc, setDesc] = useState('');
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [feedbackMessage, setFeedbackMessage] = useState('');
@@ -110,43 +113,43 @@ export default function AdminGeneralArticles() {
     }
 
     const handleItemSelected = (item) => {
-        // for (var itemObject of items) {
-        //     if (itemObject.awardTitle === item) {
-        //         setSelectedItem(itemObject);
-        //         if (typeof itemObject.image === "object") {
-        //             setSelectedFile(itemObject.image);
-        //         } else {
-        //             const ImageName = itemObject.imgName;
-        //             const byteCharacters = atob(itemObject.image);
-        //             const byteNumbers = new Array(byteCharacters.length);
-        //             for (let i = 0; i < byteCharacters.length; i++) {
-        //                 byteNumbers[i] = byteCharacters.charCodeAt(i);
-        //             }
-        //             const byteArray = new Uint8Array(byteNumbers);
-        //             const blob = new Blob([byteArray], { type: 'image/*' });
+        for (var itemObject of items) {
+            if (itemObject.awardTitle === item) {
+                setSelectedItem(itemObject);
+                if (typeof itemObject.image === "object") {
+                    setSelectedFile(itemObject.image);
+                } else {
+                    const ImageName = itemObject.imgName;
+                    const byteCharacters = atob(itemObject.image);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'image/*' });
 
-        //             // Create a File object from the Blob with the actual filename
-        //             const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
-        //             setSelectedFile(file);
-        //         }
-        //         // Set the selected file
-        //         setDesc(itemObject.description);
-        //         setCustomItemName(itemObject.awardTitle);
-        //         switchMode('editing');
+                    // Create a File object from the Blob with the actual filename
+                    const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
+                    setSelectedFile(file);
+                }
+                // Set the selected file
+                setDesc(itemObject.description);
+                setCustomItemName(itemObject.awardTitle);
+                switchMode('editing');
 
-        //     }
-        // }
+            }
+        }
     };
 
     useEffect(() => {
-        axios.get(API.viewMunProfile, {})
+        axios.get(API.viewAward, {})
             .then((response) => response.data)
             .then((data) => {
                 console.log(data);
                 setItems(data);
                 var newItemSidebarItems = []
-                for (var profile of data) {
-                    newItemSidebarItems.push(profile.profileName)
+                for (var award of data) {
+                    newItemSidebarItems.push(award.awardTitle)
                 }
                 setItemSidebarItems(newItemSidebarItems);
             });
@@ -168,6 +171,11 @@ export default function AdminGeneralArticles() {
             return;
         }
 
+        if (desc.trim() === '') {
+            handleFeedbackMessage('Please enter a valid description.');
+            return;
+        }
+
         if (!selectedFile) {
             handleFeedbackMessage('Please upload the necessary pdf file.');
             return;
@@ -176,11 +184,12 @@ export default function AdminGeneralArticles() {
         setItemSidebarItems([...itemSidebarItems, customItemName]);
 
         const formData = new FormData();
-        formData.append('profileName', customItemName);
-        formData.append('pdf', selectedFile);
-        formData.append('pdfName', selectedFile.name);
+        formData.append('awardTitle', customItemName);
+        formData.append('description', desc);
+        formData.append('image', selectedFile);
+        formData.append('imgName', selectedFile.name);
 
-        axios.post(API.addMunProfile, formData, {
+        axios.post(API.addAward, formData, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get("token")}`,
                 'Content-Type': 'multipart/form-data', // Important for file uploads
@@ -196,12 +205,15 @@ export default function AdminGeneralArticles() {
 
     const handleSaveEdit = () => {
         var hasChanges = false;
-        if (selectedItem.pdf === selectedFile) {
-            setSelectedFile(selectedItem.pdf);
+        if (selectedItem.image === selectedFile) {
+            setSelectedFile(selectedItem.image);
         } else {
             hasChanges = true;
         }
-        if (selectedItem.profileName !== customItemName) {
+        if (selectedItem.awardTitle !== customItemName) {
+            hasChanges = true;
+        }
+        if (selectedItem.description !== desc) {
             hasChanges = true;
         }
 
@@ -209,12 +221,13 @@ export default function AdminGeneralArticles() {
             // TODO: save to axios
 
             const formData = new FormData();
-            formData.append('profileID', selectedItem.profileID);
-            formData.append('profileName', customItemName);
-            formData.append('pdf', selectedFile);
-            formData.append('pdfName', selectedFile.name);
+            formData.append('awardsID', selectedItem.awardsID);
+            formData.append('awardTitle', customItemName);
+            formData.append('description', desc);
+            formData.append('image', selectedFile);
+            formData.append('imgName', selectedFile.name);
 
-            axios.post(API.editProfile, formData, {
+            axios.post(API.editAward, formData, {
                 headers: {
                     'Authorization': `Bearer ${Cookies.get("token")}`,
                     'Content-Type': 'multipart/form-data', // Important for file uploads
@@ -224,13 +237,13 @@ export default function AdminGeneralArticles() {
                 .then((data) => {
                     var newItems = [];
                     for (var item of items) {
-                        newItems.push(item.profileID === selectedItem.profileID ? data : item);
+                        newItems.push(item.awardsID === selectedItem.awardsID ? data : item);
                     }
                     setItems(newItems);
 
                     var newSidebarItems = [];
                     for (var item of itemSidebarItems) {
-                        newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+                        newSidebarItems.push(item === selectedItem.awardTitle ? customItemName : item);
                     }
                     setItemSidebarItems(newSidebarItems);
                 });
@@ -259,7 +272,7 @@ export default function AdminGeneralArticles() {
         if (customItemName.trim() !== '') {
 
             const updatedItems = itemSidebarItems.map((item) =>
-                item === selectedItem.profileName ? customItemName : item
+                item === selectedItem.awardTitle ? customItemName : item
             );
 
             setItemSidebarItems(updatedItems);
@@ -275,6 +288,7 @@ export default function AdminGeneralArticles() {
     const resetInputFields = () => {
         setSelectedItem(null);
         setCustomItemName('');
+        setDesc('');
         setSelectedFile(null);
         setResetFileInput(!resetFileInput)
     };
@@ -304,10 +318,10 @@ export default function AdminGeneralArticles() {
                                 className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    var id = selectedItem.profileID;
+                                    var id = selectedItem.awardsID;
                                     switchMode("");
                                     resetInputFields();
-                                    axios.post(API.deleteProfile(id), {}, {
+                                    axios.post(API.deleteAward(id), {}, {
                                         headers: {
                                             'Authorization': `Bearer ${Cookies.get("token")}`,
                                             withCredentials: true
@@ -315,8 +329,8 @@ export default function AdminGeneralArticles() {
                                     })
                                         .then((response) => response.data)
                                         .then((data) => {
-                                            setItems(prevItems => prevItems.filter(item => item.profileID !== id));
-                                            setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.profileName));
+                                            setItems(prevItems => prevItems.filter(item => item.awardTitle !== id));
+                                            setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.awardTitle));
 
                                             console.log(data)
                                         });
@@ -350,7 +364,7 @@ export default function AdminGeneralArticles() {
                 null}
             <div className="flex flex-col">
                 {/* Title */}
-                <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Articles</h1>
+                <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Awards and Recognition</h1>
 
                 {/* Main content container */}
                 <div className="flex">
@@ -369,7 +383,7 @@ export default function AdminGeneralArticles() {
                     {/* Right side for file upload and preview */}
                     <div className="w-3/4 p-4">
                         <h2 className="text-2xl font-bold mb-2 mt-8">
-                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.profileName : 'Item'}
+                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.awardTitle : 'Item'}
                         </h2>
                         {/* Input field for custom item name */}
                         <div className="flex">
@@ -381,6 +395,18 @@ export default function AdminGeneralArticles() {
                                 className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
                             />
                         </div>
+
+                        <div className='flex mt-4'>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                className="block mt-1 p-3 w-full text-sm text-gray-900 bg-transparent rounded-md border border-lgu-green dark:text-black"
+                                placeholder="Write your description..."
+                                value={desc}
+                                onChange={(e) => setDesc(e.target.value)}>
+                            </textarea>
+                        </div>
+
 
                         {/* File Upload with Preview */}
                         <div className="mt-4">

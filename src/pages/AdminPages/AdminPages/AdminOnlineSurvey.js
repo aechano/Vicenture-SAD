@@ -5,7 +5,7 @@ import { API } from '../../../Variables/GLOBAL_VARIABLE';
 import Cookies from 'js-cookie';
 
 // Link input
-function LinkInput({ onChange }) {
+function LinkInput({ onChange, value }) {
     return (
         <div className="mt-4">
             <label htmlFor="url" className="block text-sm font-medium text-lgu-green">
@@ -15,6 +15,7 @@ function LinkInput({ onChange }) {
                 type="text"
                 id="url"
                 name="url"
+                value={value}
                 placeholder="Enter URL"
                 onChange={(e) => onChange(e.target.value)}
                 className="mt-1 p-2 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
@@ -29,25 +30,31 @@ function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
         <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
             <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
             <ul>
-                {items.length > 0 ? (
-                    items.map((item) => (
-                        <li key={item?.simpleSurveyID} className="cursor-pointer text-black mb-2 w-full flex">
-                            <span onClick={() => onItemSelected(item)} className="flex-1 hover:underline">
-                                {item}
-                            </span>
+                {items.length > 0 ?
+                    items.map((item, index) => (
+                        <li
+                            key={index}
+                            className="cursor-pointer text-black mb-2 w-full flex"
+                        >
+                            <span
+                                onClick={() => onItemSelected(item)}
+                                className='flex-1 hover:underline'>{item}</span>
+                            <span
+                                onClick={() => onItemRemove(item)}
+                                className='justify-right hover:text-red-500'>x</span>
                         </li>
                     ))
-                ) : (
-                    <li className="text-gray-600 py-10">No items to show</li>
-                )}
+                    :
+                    <li className='text-gray-600 py-10'>No items to show</li>
+                }
             </ul>
 
-            <div className="flex w-full justify-center">
+            <div className='flex w-full justify-center'>
                 <button
                     onClick={onAddItem}
                     className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
                 >
-                    <FaPlus className="mr-1" /> Add
+                    <FaPlus className='mr-1' /> Add
                 </button>
             </div>
         </div>
@@ -61,6 +68,7 @@ export default function AdminOnlineSurvey() {
 
     const [customItemName, setCustomItemName] = useState('');
     const [linkInput, setLinkInput] = useState('');
+    const [desc, setDesc] = useState('');
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [feedbackMessage, setFeedbackMessage] = useState('');
@@ -86,8 +94,8 @@ export default function AdminOnlineSurvey() {
                 if (data !== null) {
                     setItems(data);
                     var newItemSidebarItems = [];
-                    for (var profile of data) {
-                        newItemSidebarItems.push(profile.profileName);
+                    for (var survey of data) {
+                        newItemSidebarItems.push(survey.title);
                     }
                     setItemSidebarItems(newItemSidebarItems);
                 }
@@ -110,6 +118,11 @@ export default function AdminOnlineSurvey() {
             return;
         }
 
+        if (desc.trim() === '') {
+            handleFeedbackMessage('Please enter a valid description.');
+            return;
+        }
+
         if (!linkInput) {
             handleFeedbackMessage('Please enter a valid URL.');
             return;
@@ -117,12 +130,15 @@ export default function AdminOnlineSurvey() {
 
         setItemSidebarItems([...itemSidebarItems, customItemName]);
 
-        const newItem = { title: customItemName, url: linkInput };
-
-        axios.post(API.postSurvey, newItem, {
+        axios.post(API.postSurvey, {
+            "title": customItemName,
+            "link": linkInput,
+            "description": desc
+        }, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get('token')}`
             },
+            withCredentials: true
         })
             .then((response) => response.data)
             .then((data) => {
@@ -140,38 +156,43 @@ export default function AdminOnlineSurvey() {
     const handleSaveEdit = () => {
         var hasChanges = false;
 
-        if (selectedItem.url !== linkInput) {
+        if (selectedItem && selectedItem.link !== linkInput) {
             hasChanges = true;
         }
-
-        if (selectedItem.title !== customItemName) {
+        
+        if (selectedItem && selectedItem.title !== customItemName) {
+            hasChanges = true;
+        }
+        
+        if (selectedItem && selectedItem.description !== desc) {
             hasChanges = true;
         }
 
         if (hasChanges) {
             const formData = {
-                profileID: selectedItem.profileID,
+                simpleSurveyID: selectedItem.simpleSurveyID,
                 title: customItemName,
-                url: linkInput,
+                link: linkInput,
+                description: desc
             };
 
-            axios.post(API.editProfile, formData, {
+            axios.post(API.editSurvey, formData, {
                 headers: {
                     'Authorization': `Bearer ${Cookies.get('token')}`,
-                    'Content-Type': 'application/json',
                 },
+                withCredentials: true
             })
                 .then((response) => response.data)
                 .then((data) => {
                     var newItems = [];
                     for (var item of items) {
-                        newItems.push(item.profileID === selectedItem.profileID ? data : item);
+                        newItems.push(item.simpleSurveyID === selectedItem.simpleSurveyID ? data : item);
                     }
                     setItems(newItems);
 
                     var newSidebarItems = [];
                     for (var item of itemSidebarItems) {
-                        newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+                        newSidebarItems.push(item === selectedItem.title ? customItemName : item);
                     }
                     setItemSidebarItems(newSidebarItems);
                 });
@@ -199,7 +220,7 @@ export default function AdminOnlineSurvey() {
     const handleEditItem = () => {
         if (customItemName.trim() !== '') {
             const updatedItems = itemSidebarItems.map((item) =>
-                item === selectedItem.profileName ? customItemName : item
+                item === selectedItem.title ? customItemName : item
             );
 
             setItemSidebarItems(updatedItems);
@@ -215,17 +236,23 @@ export default function AdminOnlineSurvey() {
     const resetInputFields = () => {
         setSelectedItem(null);
         setCustomItemName('');
+        setDesc('');
         setLinkInput('');
     };
 
     const handleItemSelected = (item) => {
         console.log('Item selected:', item);
 
-        setSelectedItem(item);
-        setCustomItemName(item.title);
-        setLinkInput(item.url);
-        setFeedbackMessage('Item selected successfully!');
-        setRemoveItemModal(false); // Close the modal if it's open
+        for (var itemObject of items) {
+            if (itemObject.title === item) {
+                setSelectedItem(itemObject);
+                setCustomItemName(itemObject.title);  // Fixed the variable name here
+                setDesc(itemObject.description);
+                setLinkInput(itemObject.link);  // Fixed the variable name here
+                setFeedbackMessage('Item selected successfully!');
+                switchMode('editing');
+            }
+        }
     };
 
     return (
@@ -253,10 +280,10 @@ export default function AdminOnlineSurvey() {
                                 className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    var id = selectedItem.profileID;
+                                    var id = selectedItem.simpleSurveyID;
                                     switchMode('');
                                     resetInputFields();
-                                    axios.post(API.deleteProfile(id), {}, {
+                                    axios.post(API.deleteSurvey(id), {}, {
                                         headers: {
                                             'Authorization': `Bearer ${Cookies.get('token')}`,
                                             withCredentials: true,
@@ -264,8 +291,8 @@ export default function AdminOnlineSurvey() {
                                     })
                                         .then((response) => response.data)
                                         .then((data) => {
-                                            setItems((prevItems) => prevItems.filter((item) => item.profileID !== id));
-                                            setItemSidebarItems((prevItems) => prevItems.filter((item) => item !== selectedItem.profileName));
+                                            setItems((prevItems) => prevItems.filter((item) => item.title !== id));
+                                            setItemSidebarItems((prevItems) => prevItems.filter((item) => item !== selectedItem.title));
 
                                             console.log(data);
                                         });
@@ -314,7 +341,7 @@ export default function AdminOnlineSurvey() {
                     {/* Right side for link input and preview */}
                     <div className='w-3/4 p-4'>
                         <h2 className='text-2xl font-bold mb-2 mt-8'>
-                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.profileName : 'Item'}
+                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.title : 'Item'}
                         </h2>
                         {/* Input field for custom item name */}
                         <div className='flex'>
@@ -327,8 +354,20 @@ export default function AdminOnlineSurvey() {
                             />
                         </div>
 
+                        <div className='flex mt-4'>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                className="block mt-1 p-3 w-full text-sm text-gray-900 bg-transparent rounded-md border border-lgu-green dark:text-black"
+                                placeholder="Write your description..."
+                                value={desc}
+                                onChange={(e) => setDesc(e.target.value)}>
+                            </textarea>
+                        </div>
+
+
                         {/* Link Input */}
-                        <LinkInput onChange={setLinkInput} />
+                        <LinkInput onChange={setLinkInput} value={linkInput} />
 
                         {isAdding || isEditing ? (
                             <div className='mt-5 right-0 float-right'>
