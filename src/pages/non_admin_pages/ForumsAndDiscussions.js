@@ -5,6 +5,8 @@ import Body from '../../classifiers/Body'
 import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { timeAgo } from '../../functionHelpers/Time'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CreateForumPost from './CreateForumPost'
 
 
 export default function ForumsAndDiscussions() {
@@ -115,6 +117,8 @@ export default function ForumsAndDiscussions() {
             bodyImgs: []
         },
     ]
+
+    const navigate = useNavigate();
     return (
         <>
 
@@ -148,6 +152,7 @@ export default function ForumsAndDiscussions() {
                             </NavLink>
 
                         </div>
+                        
                         {/*<Routes>
                             <Route path='/forums-and-discussions' element={<ForumsAndDiscussions />} />
                             <Route path='/create-post' element={<CreatePost />} />
