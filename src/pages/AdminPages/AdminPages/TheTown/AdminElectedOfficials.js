@@ -1,570 +1,530 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { API } from '../../../../Variables/GLOBAL_VARIABLE';
+import React, { useState, useEffect, useRef } from 'react';
+import { FaPlus } from 'react-icons/fa';
 import axios from 'axios';
+import { API } from '../../../../Variables/GLOBAL_VARIABLE';
 import Cookies from 'js-cookie';
 
 
-// Component for Layer 1 and Layer 2 content
-const Layer12Content = ({ name, position, number, file, comm, setName, setPosition, setNumber, setFile, setComm, onInputChange }) => (
 
+// FileUpload component for handling file upload and preview
+function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selectedFile, setSelectedFile }) {
+    const fileInputRef = useRef(null);
 
-    <div className='mt-10'>
-        <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-            Name
-        </label>
-        <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-            <input
-                required
-                type="text"
-                className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                id="name"
-                placeholder="John Doe"
-                value={name}
-                onChange={(e) => { setName(e.target.value); onInputChange() }}
-            />
-        </div>
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+        onFileChange(file);
+    };
 
-        <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-            Position
-        </label>
-        <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-            <input
-                required
-                type="text"
-                className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                id="pos"
-                placeholder="Position"
-                value={position}
-                onChange={(e) => { setPosition(e.target.value); onInputChange() }} />
-        </div>
-
-        <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-            Commitee
-        </label>
-        <div>
-            <textarea
-                id="messageDescription"
-                rows="6"
-                className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
-                placeholder="Please put a comma to indicate their individuality. For example: Health Officer, Community Awareness, Sanitary, Education"
-                value={comm}
-                onChange={(e) => { setComm(e.target.value); onInputChange() }}
-            />
-        </div>
-
-        <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-            Contact Number
-        </label>
-        <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-            <input
-                required
-                type="text"
-                className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                id="pos"
-                placeholder="09123456789"
-                value={number}
-                onChange={(e) => { setNumber(e.target.value); onInputChange() }} />
-        </div>
-
-        <label htmlFor="file" className="block text-sm font-medium text-lgu-green mb-5">
-            Upload File
-        </label>
-
-        <label className="flex items-center space-x-2">
-            <div className="relative">
-                <input
-                    type="file"
-                    onChange={(e) => setFile(e.target.files[0])}
-                    className="absolute left-0 opacity-0 cursor-pointer w-full h-full"
-                />
-                <button className="text-sm text-grey-500 bg-blue-50 text-blue-700 px-6 py-2 rounded-full hover:bg-amber-50 hover:text-amber-700">
-                    Choose a file
-                </button>
-            </div>
-            <span className="text-sm">{file.name || 'No file chosen'}</span>
-        </label>
-    </div>
-);
-
-function Layer34Content({ name, position, number, file, comm, setName, setPosition, setNumber, setFile, setComm, pageIndex, setPageIndex }) {
+    useEffect(() => {
+        setSelectedFile(initialSelectedFile ? initialSelectedFile : null);
+        fileInputRef.current.value = '';
+    }, [resetFileInput]);
 
     return (
-        <div className='mt-10'>
-            <div className='mt-10'>
-                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                    Name
-                </label>
-                <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-                    <input
-                        required
-                        type="text"
-                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                        id="name"
-                        placeholder="John Doe"
-                        value={name[pageIndex]}
-                        onChange={(e) => {
-                            var newNames = [...name]
-                            newNames[pageIndex] = e.target.value;
-                            setName(newNames);
-                        }} />
+        <div className="mt-4">
+            <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
+                Upload File
+            </label>
+            <input
+                accept='image/png, image/jpeg'
+                type="file"
+                id="file"
+                name="file"
+                onChange={handleFileChange}
+                ref={fileInputRef}
+                className="mt-1 p-2 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+            />
+
+            {selectedFile ?
+                <div className="mt-4">
+                    <p className="text-sm font-medium text-lgu-green">Selected File:</p>
+                    <p className="mt-2">{selectedFile.name}</p>
                 </div>
-
-                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                    Position
-                </label>
-                <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-                    <input
-                        required
-                        type="text"
-                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                        id="pos"
-                        placeholder="Position"
-                        value={position[pageIndex]}
-                        onChange={(e) => {
-                            var newPosition = [...position]
-                            newPosition[pageIndex] = e.target.value;
-                            setPosition(newPosition);
-                        }} />
-                </div>
-
-                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                    Commitee
-                </label>
-                <div>
-                    <textarea
-                        id="messageDescription"
-                        rows="6"
-                        className="block mt-1 mb-6 p-2.5 w-full text-sm text-gray-900 bg-transparent rounded border dark:placeholder-gray-400 dark:text-black"
-                        placeholder="Health Officer, Community Awareness, Sanitary, Education"
-                        value={comm[pageIndex]}
-                        onChange={(e) => {
-                            var newComm = [...comm]
-                            newComm[pageIndex] = e.target.value;
-                            setComm(newComm);
-                        }}
-                    />
-                </div>
-
-                <label htmlFor="file" className="block text-sm font-medium text-lgu-green">
-                    Contact Number
-                </label>
-                <div className="relative mb-6 mt-2 text-left" data-te-input-wrapper-init>
-                    <input
-                        required
-                        type="text"
-                        className="block h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400"
-                        id="pos"
-                        placeholder="09123456789"
-                        value={number[pageIndex]}
-                        onChange={(e) => {
-                            var newNumber = [...number]
-                            newNumber[pageIndex] = e.target.value;
-                            setNumber(newNumber);
-                        }} />
-                </div>
-
-                <label className="flex items-center space-x-2">
-                    <div className="relative">
-                        <input
-                            type="file"
-                            onChange={(e) => {
-                                const newFiles = [...file];
-                                newFiles[pageIndex] = e.target.files[0];
-                                setFile(newFiles);
-                                console.log(file);
-                            }}
-                            className="absolute left-0 opacity-0 cursor-pointer w-full h-full"
-                        />
-                        <button className="text-sm text-grey-500 bg-blue-50 text-blue-700 px-6 py-2 rounded-full hover:bg-amber-50 hover:text-amber-700">
-                            Choose a file
-                        </button>
-                    </div>
-                    <span className="text-sm">{file[pageIndex].name || 'No file chosen'}</span>
-                </label>
-
-            </div>
-            {/* Navigation for Layer 3 and Layer 4 */}
-            <div className="flex justify-between mt-4">
-                <button
-                    onClick={() => setPageIndex((prev) => Math.max(prev - 1, 0))}
-                    className="bg-lgu-green text-white px-4 py-2 rounded-md"
-                >
-                    Prev
-                </button>
-                <span>{pageIndex + 1}/3</span>
-                <button
-                    onClick={() => setPageIndex((prev) => Math.min(prev + 1, 2))}
-                    className="bg-lgu-green text-white px-4 py-2 rounded-md"
-                >
-                    Next
-                </button>
-            </div>
+                :
+                null
+            }
         </div>
     );
 }
 
+// ItemSidebar component for adding and selecting items
+function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem, layersCount }) {
+
+    return (
+        <>
+            <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
+                <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
+                <ul>
+                    {items.length > 0 ?
+                        items.map((item, index) => (
+                            <li
+                                key={index}
+                                className="cursor-pointer text-black mb-2 w-full flex"
+                            >
+                                <span
+                                    onClick={() => onItemSelected(item)}
+                                    className='flex-1 hover:underline'>{item}</span>
+                                <span
+                                    onClick={() => onItemRemove(item)}
+                                    className='justify-right hover:text-red-500'>x</span>
+                            </li>
+                        ))
+                        :
+                        <li className='text-gray-600 py-10'>No items to show</li>
+                    }
+                </ul>
+
+                <div className='flex w-full justify-center'>
+                    <button
+                        onClick={onAddItem}
+                        className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
+                    >
+                        <FaPlus className='mr-1' /> Add
+                    </button>
+                </div>
+            </div>
+        </>
+
+    );
+}
 export default function AdminElectedOfficials() {
-    const [selectedLayer, setSelectedLayer] = useState(null);
-    const [isOpen, setIsOpen] = useState(false);
+    const [itemSidebarItems, setItemSidebarItems] = useState();
+    const [items, setItems] = useState([]);
+    const [officialsCountPerLayer, setOfficialsCountPerLayer] = useState({});
 
-    // States for Layer 1
-    const [dbId1, setdbId1] = useState(-1);
-    const [name1, setName1] = useState('');
-    const [position1, setPosition1] = useState('');
-    const [number1, setNumber1] = useState('');
-    const [file1, setFile1] = useState('');
-    const [comm1, setComm1] = useState('');
+    const [customItemName, setCustomItemName] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [desc, setDesc] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [position, setPosition] = useState('');
+    const [contact, setContact] = useState('');
 
-    // States for Layer 2
-    const [dbId2, setdbId2] = useState(-1);
-    const [name2, setName2] = useState('');
-    const [position2, setPosition2] = useState('');
-    const [number2, setNumber2] = useState('');
-    const [file2, setFile2] = useState('');
-    const [comm2, setComm2] = useState('');
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [feedbackMessage, setFeedbackMessage] = useState('');
+    const [resetFileInput, setResetFileInput] = useState(false);
+    const [removeItemModal, setRemoveItemModal] = useState(false);
 
-    // States for Layer 3
-    const [dbId3, setdbId3] = useState(-1);
-    const [name3, setName3] = useState(['', '', '']);
-    const [position3, setPosition3] = useState(['', '', '']);
-    const [number3, setNumber3] = useState(['', '', '']);
-    const [file3, setFile3] = useState(['', '', '']);
-    const [comm3, setComm3] = useState(['', '', '']);
+    const [isAdding, setIsAdding] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
 
-    // States for Layer 4
-    const [dbId4, setdbId4] = useState(-1);
-    const [name4, setName4] = useState(['', '', '']);
-    const [position4, setPosition4] = useState(['', '', '']);
-    const [number4, setNumber4] = useState(['', '', '']);
-    const [file4, setFile4] = useState(['', '', '']);
-    const [comm4, setComm4] = useState(['', '', '']);
-
-    // States for Layer 5
-    const [dbId5, setdbId5] = useState(-1);
-    const [name5, setName5] = useState(['', '', '']);
-    const [position5, setPosition5] = useState(['', '', '']);
-    const [number5, setNumber5] = useState(['', '', '']);
-    const [file5, setFile5] = useState(['', '', '']);
-    const [comm5, setComm5] = useState(['', '', '']);
-
-    // States for Layer 6
-    const [dbId6, setdbId6] = useState(-1);
-    const [name6, setName6] = useState(['', '', '']);
-    const [position6, setPosition6] = useState(['', '', '']);
-    const [number6, setNumber6] = useState(['', '', '']);
-    const [file6, setFile6] = useState(['', '', '']);
-    const [comm6, setComm6] = useState(['', '', '']);
-
-    // States for Layer 7
-    const [dbId7, setdbId7] = useState(-1);
-    const [name7, setName7] = useState(['', '', '']);
-    const [position7, setPosition7] = useState(['', '', '']);
-    const [number7, setNumber7] = useState(['', '', '']);
-    const [file7, setFile7] = useState(['', '', '']);
-    const [comm7, setComm7] = useState(['', '', '']);
-
-
-    // Page index for Layer 3 and 4
-    const [pageIndex, setPageIndex] = useState(0);
-
-
-    const toggleDropdown = () => {
-        setIsOpen(!isOpen);
-    };
-
-    const handleSelectLayer = (layer) => {
-        setSelectedLayer(layer);
-        setIsOpen(false);
-        // Reset page index when a new layer is selected
-        setPageIndex(0);
-    };
-
-    const binaryToFile = (bin_file, filename) => {
-        const pdfName = filename;
-        const byteCharacters = atob(bin_file);
-        const byteNumbers = new Array(byteCharacters.length);
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
+    const switchMode = (mode) => {
+        setIsAdding(false);
+        setIsEditing(false);
+        if (mode === "adding") {
+            setIsAdding(true);
+        } else if (mode === "editing") {
+            setIsEditing(true);
         }
-        const byteArray = new Uint8Array(byteNumbers);
-        const blob = new Blob([byteArray], { type: 'application/png' });
-
-        return new File([blob], pdfName || 'default_filename.png', { type: 'application/png' });
     }
+
+    const handleItemSelected = (item) => {
+        for (var itemObject of items) {
+            if (itemObject.officialsName === item) {
+                setSelectedItem(itemObject);
+                if (typeof itemObject.image === "object") {
+                    setSelectedFile(itemObject.image);
+                } else {
+                    const ImageName = itemObject.imageName;
+                    const byteCharacters = atob(itemObject.image);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'image/*' });
+
+                    // Create a File object from the Blob with the actual filename
+                    const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
+                    setSelectedFile(file);
+                }
+                // Set the selected file
+                setDesc(itemObject.committee);
+                setSelectedCategory(itemObject.layer)
+                setPosition(itemObject.position)
+                setContact(itemObject.contactNumber)
+                setCustomItemName(itemObject.officialsName);
+                switchMode('editing');
+
+            }
+        }
+    };
 
     useEffect(() => {
         axios.get(API.viewOfficials, {})
             .then((response) => response.data)
             .then((data) => {
                 console.log(data);
-                for (var layer of data) {
-                    if (layer.layer === 1) {
-                        setdbId1(layer.officialsID);
-                        setName1(layer.officialsName);
-                        setPosition1(layer.position);
-                        setComm1(layer.committee);
-                        setNumber1(layer.contactNumber);
-                        setFile1(binaryToFile(layer.image, layer.imageName));
-                    } else if (layer.layer === 2) {
-                        setdbId2(layer.officialsID);
-                        setName2(layer.officialsName);
-                        setPosition2(layer.position);
-                        setComm2(layer.committee);
-                        setNumber2(layer.contactNumber);
-                        setFile2(binaryToFile(layer.image, layer.imageName));
-                    }
+                setItems(data);
+
+                const countPerLayer = data.reduce((acc, item) => {
+                    acc[item.layer] = (acc[item.layer] || 0) + 1;
+                    return acc;
+                }, {});
+
+                setOfficialsCountPerLayer(countPerLayer);
+                var newItemSidebarItems = [];
+                for (var officials of data) {
+                    newItemSidebarItems.push(officials.officialsName);
                 }
+
+                setItemSidebarItems(newItemSidebarItems);
             });
     }, [])
 
-    const getLayers = (layer) => {
-        switch (layer) {
-            case "layer 1":
-                return { name: name1, position: position1, number: number1, file: file1, comm: comm1, hasPages: false, layer: 1, imageName: file1.name };
-            case "layer 2":
-                return { name: name2, position: position2, number: number2, file: file2, comm: comm2, hasPages: false, layer: 2, imageName: file2.name };
-            case "layer 3":
-                return { name: name3, position: position3, number: number3, file: file3, comm: comm3, hasPages: true, layer: 3, imageName: file3.name };
-            case "layer 4":
-                return { name: name4, position: position4, number: number4, file: file4, comm: comm4, hasPages: true, layer: 4, imageName: file4.name };
-            case "layer 5":
-                return { name: name5, position: position5, number: number5, file: file5, comm: comm5, hasPages: true, layer: 5, imageName: file5.name };
-            case "layer 6":
-                return { name: name6, position: position6, number: number6, file: file6, comm: comm6, hasPages: true, layer: 6, imageName: file6.name };
-            case "layer 7":
-                return { name: name7, position: position7, number: number7, file: file7, comm: comm7, hasPages: true, layer: 7, imageName: file7.name };
-            default:
-                return {};
+    const handleAddItem = () => {
+        resetInputFields();
+        switchMode('adding');
+    };
+
+    const handleSaveAdd = () => {
+        if (itemSidebarItems.includes(customItemName.trim())) {
+            handleFeedbackMessage(customItemName.trim() + ' already exists.');
+            return;
+        }
+
+        if (customItemName.trim() === '') {
+            handleFeedbackMessage('Please enter a valid item name.');
+            return;
+        }
+
+        if (selectedCategory.trim() === '') {
+            handleFeedbackMessage('Please enter a valid layer.');
+            return;
+        }
+
+        if (position.trim() === '') {
+            handleFeedbackMessage('Please enter a valid position.');
+            return;
+        }
+
+        if (contact.trim() === '') {
+            handleFeedbackMessage('Please enter a valid contact.');
+            return;
+        }
+
+        if (desc.trim() === '') {
+            handleFeedbackMessage('Please enter a valid committee.');
+            return;
+        }
+
+        if (!selectedFile) {
+            handleFeedbackMessage('Please upload the necessary file.');
+            return;
+        }
+
+        setItemSidebarItems([...itemSidebarItems, customItemName]);
+
+        const formData = new FormData();
+        formData.append('officialsName', customItemName);
+        formData.append('layer', selectedCategory);
+        formData.append('position', position);
+        formData.append('contactNumber', contact);
+        formData.append('committee', desc);
+        formData.append('image', selectedFile);
+        formData.append('imageName', selectedFile.name);
+
+        axios.post(API.addOfficials, formData, {
+            headers: {
+                'Authorization': `Bearer ${Cookies.get("token")}`,
+                'Content-Type': 'multipart/form-data', // Important for file uploads
+            }
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                setItems([...items, data])
+            });
+        resetInputFields();
+        handleFeedbackMessage('Item added successfully!');
+    }
+
+    const handleSaveEdit = () => {
+        var hasChanges = false;
+        if (selectedItem.image === selectedFile) {
+            setSelectedFile(selectedItem.image);
+        } else {
+            hasChanges = true;
+        }
+        if (selectedItem.officialsName !== customItemName) {
+            hasChanges = true;
+        }
+        if (selectedItem.committee !== desc) {
+            hasChanges = true;
+        }
+
+        if (hasChanges) {
+            // TODO: save to axios
+
+            const formData = new FormData();
+            formData.append('officialsID', selectedItem.officialsID);
+            formData.append('officialsName', customItemName);
+            formData.append('layer', selectedCategory);
+            formData.append('position', position);
+            formData.append('contactNumber', contact);
+            formData.append('committee', desc);
+            formData.append('image', selectedFile);
+            formData.append('imageName', selectedFile.name);
+
+            axios.post(API.editOfficials, formData, {
+                headers: {
+                    'Authorization': `Bearer ${Cookies.get("token")}`,
+                    'Content-Type': 'multipart/form-data', // Important for file uploads
+                }
+            })
+                .then((response) => response.data)
+                .then((data) => {
+                    var newItems = [];
+                    for (var item of items) {
+                        newItems.push(item.officialsID === selectedItem.officialsID ? data : item);
+                    }
+                    setItems(newItems);
+
+                    var newSidebarItems = [];
+                    for (var item of itemSidebarItems) {
+                        newSidebarItems.push(item === selectedItem.officialsName ? customItemName : item);
+                    }
+                    setItemSidebarItems(newSidebarItems);
+                });
+
+            handleFeedbackMessage('Changes saved!');
+            handleCancelMode();
+        } else {
+            handleFeedbackMessage('No changes available.');
+            handleCancelMode();
         }
     }
 
-    const handleSaveClick = () => {
-        const { name, position, number, file, comm, hasPages, layer, imageName } = getLayers(selectedLayer);
-        if (hasPages) {
-            axios.post(API.addOfficials, {
-                "layer": layer,
-                "officialsName": name[pageIndex],
-                "position": position[pageIndex],
-                "committee": comm[pageIndex],
-                "contactNumber": number[pageIndex],
-                "image": file[pageIndex],
-                "imageName": imageName[pageIndex],
-                "page": pageIndex
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${Cookies.get("token")}`,
-                    'Content-Type': 'multipart/form-data'
-                },
-                withCredentials: true
-            })
+    const handleCancelMode = () => {
+        switchMode("");
+        resetInputFields();
+    }
+
+    const handleFeedbackMessage = (message) => {
+        setFeedbackMessage(message);
+        setTimeout(() => {
+            setFeedbackMessage('');
+        }, 1000);
+    }
+
+    const handleEditItem = () => {
+        if (customItemName.trim() !== '') {
+
+            const updatedItems = itemSidebarItems.map((item) =>
+                item === selectedItem.officialsName ? customItemName : item
+            );
+
+            setItemSidebarItems(updatedItems);
+            resetInputFields(); // Trigger file input reset
+
+            handleFeedbackMessage('Edited successfully!');
         } else {
-            axios.post(API.addOfficials, {
-                "layer": layer,
-                "officialsName": name,
-                "position": position,
-                "committee": comm,
-                "contactNumber": number,
-                "image": file,
-                "imageName": imageName
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${Cookies.get("token")}`,
-                    'Content-Type': 'multipart/form-data',
-                },
-                withCredentials: true
-            })
+            handleFeedbackMessage('Please enter a valid item name.');
         }
-        console.log("Already saved")
     };
 
-    // State to track whether any input has been entered
-    const [isDirty, setIsDirty] = useState(false);
-
-    // Function to handle input change and set isDirty to true
-    const handleInputChange = () => {
-        setIsDirty(true);
+    // Function to reset input fields and feedback message
+    const resetInputFields = () => {
+        setSelectedItem(null);
+        setCustomItemName('');
+        setDesc('');
+        setSelectedCategory('');
+        setPosition('');
+        setContact('');
+        setSelectedFile(null);
+        setResetFileInput(!resetFileInput)
     };
-
-    const layers = ["layer 1", "layer 2", "layer 3", "layer 4", "layer 5", "layer 6", "layer 7"];
 
     return (
-        <div className='ml-2'>
-            <h1 className="text-4xl font-bold mb-2 mt-8">Elected Officials</h1>
+        <>
+            {removeItemModal ?
+                <>
+                    {/* Modal Content */}
+                    <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-32 rounded-10 bg-lgu-green z-70'>
+                        {/* Close Button */}
+                        <button
+                            className='absolute top-0 right-0 p-2 text-white cursor-pointer'
+                            onClick={() => {
+                                console.log('Close button clicked');
+                                setRemoveItemModal(false);
+                            }}
+                        >
+                            X
+                        </button>
 
-            <div className='mt-10'>
-                <button
-                    type="button"
-                    onClick={toggleDropdown}
-                    className="h-14 rounded border border-1 w-80 bg-transparent px-3 py-[0.32rem] leading-[1.6] dark:text-black dark:placeholder-text-gray-400 placeholder-gray-400 flex justify-between items-center"
-                >
-                    <span>{selectedLayer || 'Select a layer'}</span>
-                    <svg
-                        className={`h-5 w-5 transition-transform transform ${isOpen ? 'rotate-180' : 'rotate-0'}`}
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                    >
-                        <path
-                            fillRule="evenodd"
-                            d="M5.293 7.293a1 1 0 011.414 0L10 11.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                            clipRule="evenodd"
-                        />
-                    </svg>
-                </button>
+                        <p className='text-white p-4'>Remove item?</p>
 
-                {isOpen && (
-                    <ul className="absolute mt-2 w-80 bg-white border rounded shadow-lg z-10">
-                        {layers.map((layer, index) => (
-                            <li
-                                key={index}
-                                onClick={() => handleSelectLayer(layer)}
-                                className="cursor-pointer py-2 px-4 hover:bg-gray-200"
-                            >
-                                {layer}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-
-                {selectedLayer && (
-                    <>
-                        {isDirty && (
+                        <div className='p-3 text-center'>
+                            {/* Yes Button */}
                             <button
-                                className="bg-lgu-green text-white px-4 py-2 rounded-md mt-4"
-                                onClick={handleSaveClick}
+                                className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    var id = selectedItem.officialsID;
+                                    switchMode("");
+                                    resetInputFields();
+                                    axios.post(API.deleteOfficials(id), {}, {
+                                        headers: {
+                                            'Authorization': `Bearer ${Cookies.get("token")}`,
+                                            withCredentials: true
+                                        }
+                                    })
+                                        .then((response) => response.data)
+                                        .then((data) => {
+                                            setItems(prevItems => prevItems.filter(item => item.officialsID !== id));
+                                            setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.officialsName));
+
+                                            console.log(data)
+                                        });
+
+                                    handleFeedbackMessage('Item deleted successfully!');
+                                    setRemoveItemModal(false);
+                                }}
                             >
-                                Save
+                                Yes
                             </button>
-                        )}
-                        {selectedLayer === "layer 1" && (
-                            <Layer12Content
-                                name={name1}
-                                position={position1}
-                                number={number1}
-                                file={file1}
-                                comm={comm1}
-                                setName={setName1}
-                                setPosition={setPosition1}
-                                onInputChange={handleInputChange}
-                                setNumber={setNumber1}
-                                setFile={setFile1}
-                                setComm={setComm1}
 
+                            {/* No Button */}
+                            <button
+                                className='bg-red-500 text-white px-4 py-2 rounded'
+                                onClick={(e) => {
+                                    e.stopPropagation(); // Stop the event from propagating to the overlay
+                                    console.log('No button clicked');
+                                    // Add your logic for "No" button action here
+                                    setRemoveItemModal(false);
+                                }}
+                            >
+                                No
+                            </button>
+                        </div>
+
+                    </div>
+                </>
+
+
+                :
+                null}
+            <div className="flex flex-col">
+                {/* Title */}
+                <h1 className="text-4xl font-bold mb-2 mt-8 ml-2">Elected Officials</h1>
+
+                {/* Main content container */}
+                <div className="flex">
+                    {/* Item Sidebar */}
+                    <ItemSidebar
+                        items={itemSidebarItems}
+                        onItemSelected={handleItemSelected}
+                        onAddItem={handleAddItem}
+                        onItemRemove={(item) => {
+                            setRemoveItemModal(true);
+                            handleItemSelected(item);
+                        }}
+                        onEditItem={handleEditItem}
+                        layersCount={officialsCountPerLayer}
+                    />
+
+                    {/* Right side for file upload and preview */}
+                    <div className="w-3/4 p-4">
+                        <h2 className="text-2xl font-bold mb-2 mt-8">
+                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.officialsName : 'Item'}
+                        </h2>
+                        {/* Input field for custom item name */}
+
+                        <div className="flex">
+                            <input
+                                type="text"
+                                value={customItemName}
+                                onChange={(e) => setCustomItemName(e.target.value)}
+                                placeholder={'Enter Item Name'}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
                             />
-                        )}
+                        </div>
 
-                        {selectedLayer === "layer 2" && (
-                            <Layer12Content
-                                name={name2}
-                                position={position2}
-                                number={number2}
-                                file={file2}
-                                comm={comm2}
-                                setName={setName2}
-                                setPosition={setPosition2}
-                                onInputChange={handleInputChange}
-                                setNumber={setNumber2}
-                                setFile={setFile2}
-                                setComm={setComm2}
+                        <div className="flex">
+                            <select
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+                            >
+                                <option value="" disabled>Select Category</option>
+                                {["Layer 1", "Layer 2", "Layer 3", "Layer 4", "Layer 5", "Layer 6"].map((layer) => (
+                                    <option
+                                        key={layer}
+                                        value={layer}
+                                        disabled={officialsCountPerLayer[layer] >= (layer === "Layer 1" || layer === "Layer 2" ? 1 : 3)}
+                                    >
+                                        {layer}
+                                    </option>
+                                ))}
+                            </select>
+                        </div> 
+
+                        <div className="flex">
+                            <input
+                                type="text"
+                                value={position}
+                                onChange={(e) => setPosition(e.target.value)}
+                                placeholder={'Enter Position'}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
                             />
-                        )}
+                        </div>
 
-                        {(selectedLayer === "layer 3") && (
-                            <Layer34Content
-                                name={name3}
-                                position={position3}
-                                number={number3}
-                                file={file3}
-                                comm={comm3}
-                                setName={setName3}
-                                setPosition={setPosition3}
-                                onInputChange={handleInputChange}
-                                setNumber={setNumber3}
-                                setFile={setFile3}
-                                pageIndex={pageIndex}
-                                setPageIndex={setPageIndex}
-                                setComm={setComm3}
+                        <div className='flex mt-4'>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                className="block mt-1 p-3 w-full text-sm text-gray-900 bg-transparent rounded-md border border-lgu-green dark:text-black"
+                                placeholder="Please seperate using comma. Example: Health Specialist, Nature Advocate, Tourism"
+                                value={desc}
+                                onChange={(e) => setDesc(e.target.value)}>
+                            </textarea>
+                        </div>
+
+                        <div className="flex">
+                            <input
+                                type="text"
+                                value={contact}
+                                onChange={(e) => setContact(e.target.value)}
+                                placeholder={'Enter Contact Number'}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
                             />
-                        )}
+                        </div>
 
-                        {(selectedLayer === "layer 4") && (
-                            <Layer34Content
-                                name={name4}
-                                position={position4}
-                                number={number4}
-                                file={file4}
-                                comm={comm4}
-                                setName={setName4}
-                                setPosition={setPosition4}
-                                setNumber={setNumber4}
-                                setFile={setFile4}
-                                pageIndex={pageIndex}
-                                setPageIndex={setPageIndex}
-                                setComm={setComm4}
-                                onInputChange={handleInputChange}
-                            />
-                        )}
+                        {/* File Upload with Preview */}
+                        <div className="mt-4">
+                            <FileUpload
+                                onFileChange={setSelectedFile}
+                                resetFileInput={resetFileInput}
+                                selectedFile={selectedFile}
+                                setSelectedFile={setSelectedFile} />
+                        </div>
 
-                        {(selectedLayer === "layer 5") && (
-                            <Layer34Content
-                                name={name5}
-                                position={position5}
-                                number={number5}
-                                file={file5}
-                                comm={comm5}
-                                setName={setName5}
-                                onInputChange={handleInputChange}
-                                setPosition={setPosition5}
-                                setNumber={setNumber5}
-                                setFile={setFile5}
-                                pageIndex={pageIndex}
-                                setPageIndex={setPageIndex}
-                                setComm={setComm5}
-                            />
-                        )}
+                        {
+                            isAdding || isEditing ?
+                                <div className='mt-5 right-0 float-right'>
+                                    <button
+                                        onClick={isAdding ? handleSaveAdd : handleSaveEdit}
+                                        className='bg-lgu-green text-white px-6 py-3 rounded-lg'>
+                                        Save {isEditing ? " Changes" : ""}
+                                    </button>
+                                    <button
+                                        onClick={handleCancelMode}
+                                        className='ml-5 px-6 py-3 bg-gray-200 rounded-lg'>
+                                        Cancel
+                                    </button>
+                                </div>
+                                :
+                                null
+                        }
 
-                        {(selectedLayer === "layer 6") && (
-                            <Layer34Content
-                                name={name6}
-                                position={position6}
-                                number={number6}
-                                file={file6}
-                                comm={comm6}
-                                setName={setName6}
-                                onInputChange={handleInputChange}
-                                setPosition={setPosition6}
-                                setNumber={setNumber6}
-                                setFile={setFile6}
-                                pageIndex={pageIndex}
-                                setPageIndex={setPageIndex}
-                                setComm={setComm6}
-                            />
-                        )}
-
-                        {(selectedLayer === "layer 7") && (
-                            <Layer34Content
-                                name={name7}
-                                position={position7}
-                                number={number7}
-                                file={file7}
-                                comm={comm7}
-                                setName={setName7}
-                                setPosition={setPosition7}
-                                setNumber={setNumber7}
-                                setFile={setFile7}
-                                pageIndex={pageIndex}
-                                setPageIndex={setPageIndex}
-                                setComm={setComm7}
-                                onInputChange={handleInputChange}
-                            />
-                        )}
-                    </>
-
-                )}
-
+                        {/* Feedback message */}
+                        {feedbackMessage ?
+                            <p className="text-sm text-lgu-green -500 mb-4">{feedbackMessage}</p>
+                            :
+                            null
+                        }
+                    </div>
+                </div>
             </div>
-        </div>
-
-
+        </>
     );
 }

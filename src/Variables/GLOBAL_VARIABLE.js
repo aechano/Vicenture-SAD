@@ -129,6 +129,9 @@ const API = {
     deleteCharter: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-charter/" + id },
     addOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/add-officials",
     viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials",
+    addOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/add-officials",
+    editOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/edit-officials",
+    deleteOfficials: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-officials/" + id },
     addAlert: SERVER_ADDRESS + ADMIN + "/add-alert",
     viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert",
     updateProfile: SERVER_ADDRESS + GENERAL + "/profile/edit",
@@ -161,6 +164,10 @@ const API = {
     publishForumPhotos: SERVER_ADDRESS + GENERAL + "/forums/publish/photos",
     getForum: function (topic) { return SERVER_ADDRESS + PUBLIC + "/getForums/" + topic },
     getForumWithID: function (id) { return SERVER_ADDRESS + PUBLIC + "/getForum/" + id },
+    addArticle: SERVER_ADDRESS + CONTENT_WRITER + "/add-article",
+    viewArticle: SERVER_ADDRESS + PUBLIC + "/view-article",
+    editArticle: SERVER_ADDRESS + CONTENT_WRITER + "/edit-article",
+    deleteArticle: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-article/" + id },
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

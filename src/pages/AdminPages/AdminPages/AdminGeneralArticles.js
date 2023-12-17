@@ -49,29 +49,25 @@ function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selecte
 function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
 
     return (
-        <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
-            <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
-            <ul>
-                {items.length > 0 ?
-                    items.map((item, index) => (
-                        <li
-                            key={index}
-                            className="cursor-pointer text-black mb-2 w-full flex"
-                        >
-                            <span
-                                onClick={() => onItemSelected(item)}
-                                className='flex-1 hover:underline'>{item}</span>
-                            <span
-                                onClick={() => onItemRemove(item)}
-                                className='justify-right hover:text-red-500'>x</span>
-                        </li>
-                    ))
-                    :
-                    <li className='text-gray-600 py-10'>No items to show</li>
-                }
-            </ul>
+        <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8 flex flex-col justify-between">
+            <div>
+                <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
+                <ul>
+                    {items.length > 0 ? (
+                        items.map((item, index) => (
+                            <li key={index} className="cursor-pointer text-black mb-2 w-full flex">
+                                <span onClick={() => onItemSelected(item)} className='flex-1 hover:underline'>{item}</span>
+                                <span onClick={() => onItemRemove(item)} className='justify-right hover:text-red-500'>x</span>
+                            </li>
+                        ))
+                    ) : (
+                        <li className='text-gray-600 py-10'>No items to show</li>
+                    )}
+                </ul>
+            </div>
 
             <div className='flex w-full justify-center'>
+                {/* "Add" button inside the lime background at the bottom */}
                 <button
                     onClick={onAddItem}
                     className={`mt-4 py-3 w-10/12 bg-lgu-green text-white rounded-md hover:bg-lgu-green focus:outline-none flex justify-center`}
@@ -80,6 +76,7 @@ function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
                 </button>
             </div>
         </div>
+
     );
 }
 
@@ -90,11 +87,21 @@ export default function AdminGeneralArticles() {
 
     const [customItemName, setCustomItemName] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [desc, setDesc] = useState('');
+    const [customDate, setCustomDate] = useState('');
+    const [customAlt, setCustomAlt] = useState('');
+
+    const [selectedCategory, setSelectedCategory] = useState(''); // 'general' or 'sports'
+
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+    };
 
     const [selectedItem, setSelectedItem] = useState(null);
     const [feedbackMessage, setFeedbackMessage] = useState('');
     const [resetFileInput, setResetFileInput] = useState(false);
     const [removeItemModal, setRemoveItemModal] = useState(false);
+
 
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
@@ -110,43 +117,46 @@ export default function AdminGeneralArticles() {
     }
 
     const handleItemSelected = (item) => {
-        // for (var itemObject of items) {
-        //     if (itemObject.awardTitle === item) {
-        //         setSelectedItem(itemObject);
-        //         if (typeof itemObject.image === "object") {
-        //             setSelectedFile(itemObject.image);
-        //         } else {
-        //             const ImageName = itemObject.imgName;
-        //             const byteCharacters = atob(itemObject.image);
-        //             const byteNumbers = new Array(byteCharacters.length);
-        //             for (let i = 0; i < byteCharacters.length; i++) {
-        //                 byteNumbers[i] = byteCharacters.charCodeAt(i);
-        //             }
-        //             const byteArray = new Uint8Array(byteNumbers);
-        //             const blob = new Blob([byteArray], { type: 'image/*' });
+        for (var itemObject of items) {
+            if (itemObject.articleTitle === item) {
+                setSelectedItem(itemObject);
+                if (typeof itemObject.image === "object") {
+                    setSelectedFile(itemObject.image);
+                } else {
+                    const ImageName = itemObject.imgName;
+                    const byteCharacters = atob(itemObject.image);
+                    const byteNumbers = new Array(byteCharacters.length);
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+                    const byteArray = new Uint8Array(byteNumbers);
+                    const blob = new Blob([byteArray], { type: 'image/*' });
 
-        //             // Create a File object from the Blob with the actual filename
-        //             const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
-        //             setSelectedFile(file);
-        //         }
-        //         // Set the selected file
-        //         setDesc(itemObject.description);
-        //         setCustomItemName(itemObject.awardTitle);
-        //         switchMode('editing');
+                    // Create a File object from the Blob with the actual filename
+                    const file = new File([blob], ImageName || 'Image', { type: 'image/*' });
+                    setSelectedFile(file);
+                }
+                // Set the selected file
+                setDesc(itemObject.contents);
+                setCustomItemName(itemObject.articleTitle);
+                setCustomDate(itemObject.timeStamps);
+                setCustomAlt(itemObject.alt);
+                setSelectedCategory(itemObject.tags);
+                switchMode('editing');
 
-        //     }
-        // }
+            }
+        }
     };
 
     useEffect(() => {
-        axios.get(API.viewMunProfile, {})
+        axios.get(API.viewArticle, {})
             .then((response) => response.data)
             .then((data) => {
                 console.log(data);
                 setItems(data);
                 var newItemSidebarItems = []
-                for (var profile of data) {
-                    newItemSidebarItems.push(profile.profileName)
+                for (var article of data) {
+                    newItemSidebarItems.push(article.articleTitle)
                 }
                 setItemSidebarItems(newItemSidebarItems);
             });
@@ -168,19 +178,38 @@ export default function AdminGeneralArticles() {
             return;
         }
 
+        if (desc.trim() === '') {
+            handleFeedbackMessage('Please enter a valid description.');
+            return;
+        }
+        
+        if (customDate.trim() === '') {
+            handleFeedbackMessage('Please enter a valid date.');
+            return;
+        }
+        
+        if (selectedCategory.trim() === '') {
+            handleFeedbackMessage('Please select a category.');
+            return;
+        }
+        
         if (!selectedFile) {
-            handleFeedbackMessage('Please upload the necessary pdf file.');
+            handleFeedbackMessage('Please upload the necessary file.');
             return;
         }
 
         setItemSidebarItems([...itemSidebarItems, customItemName]);
 
         const formData = new FormData();
-        formData.append('profileName', customItemName);
-        formData.append('pdf', selectedFile);
-        formData.append('pdfName', selectedFile.name);
+        formData.append('articleTitle', customItemName);
+        formData.append('timeStamps', customDate);
+        formData.append('alt', customAlt);
+        formData.append('contents', desc);
+        formData.append('tags', selectedCategory);
+        formData.append('image', selectedFile);
+        formData.append('imgName', selectedFile.name);
 
-        axios.post(API.addMunProfile, formData, {
+        axios.post(API.addArticle, formData, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get("token")}`,
                 'Content-Type': 'multipart/form-data', // Important for file uploads
@@ -196,12 +225,24 @@ export default function AdminGeneralArticles() {
 
     const handleSaveEdit = () => {
         var hasChanges = false;
-        if (selectedItem.pdf === selectedFile) {
-            setSelectedFile(selectedItem.pdf);
+        if (selectedItem.image === selectedFile) {
+            setSelectedFile(selectedItem.image);
         } else {
             hasChanges = true;
         }
-        if (selectedItem.profileName !== customItemName) {
+        if (selectedItem.articleTitle !== customItemName) {
+            hasChanges = true;
+        }
+        if (selectedItem.alt !== customAlt) {
+            hasChanges = true;
+        }
+        if (selectedItem.contents !== desc) {
+            hasChanges = true;
+        }
+        if (selectedItem.timeStamps !== customDate) {
+            hasChanges = true;
+        }
+        if (selectedItem.tags !== selectedCategory) {
             hasChanges = true;
         }
 
@@ -209,12 +250,16 @@ export default function AdminGeneralArticles() {
             // TODO: save to axios
 
             const formData = new FormData();
-            formData.append('profileID', selectedItem.profileID);
-            formData.append('profileName', customItemName);
-            formData.append('pdf', selectedFile);
-            formData.append('pdfName', selectedFile.name);
+            formData.append('articleID', selectedItem.articleID);
+            formData.append('articleTitle', customItemName);
+            formData.append('timeStamps', customDate);
+            formData.append('alt', customAlt);
+            formData.append('contents', desc);
+            formData.append('tags', selectedCategory);
+            formData.append('image', selectedFile);
+            formData.append('imgName', selectedFile.name);
 
-            axios.post(API.editProfile, formData, {
+            axios.post(API.editArticle, formData, {
                 headers: {
                     'Authorization': `Bearer ${Cookies.get("token")}`,
                     'Content-Type': 'multipart/form-data', // Important for file uploads
@@ -224,13 +269,13 @@ export default function AdminGeneralArticles() {
                 .then((data) => {
                     var newItems = [];
                     for (var item of items) {
-                        newItems.push(item.profileID === selectedItem.profileID ? data : item);
+                        newItems.push(item.articleID === selectedItem.articleID ? data : item);
                     }
                     setItems(newItems);
 
                     var newSidebarItems = [];
                     for (var item of itemSidebarItems) {
-                        newSidebarItems.push(item === selectedItem.profileName ? customItemName : item);
+                        newSidebarItems.push(item === selectedItem.articleTitle ? customItemName : item);
                     }
                     setItemSidebarItems(newSidebarItems);
                 });
@@ -259,7 +304,7 @@ export default function AdminGeneralArticles() {
         if (customItemName.trim() !== '') {
 
             const updatedItems = itemSidebarItems.map((item) =>
-                item === selectedItem.profileName ? customItemName : item
+                item === selectedItem.articleTitle ? customItemName : item
             );
 
             setItemSidebarItems(updatedItems);
@@ -276,6 +321,10 @@ export default function AdminGeneralArticles() {
         setSelectedItem(null);
         setCustomItemName('');
         setSelectedFile(null);
+        setCustomDate('');
+        setCustomAlt('');
+        setDesc('');
+        setSelectedCategory('');
         setResetFileInput(!resetFileInput)
     };
 
@@ -304,10 +353,10 @@ export default function AdminGeneralArticles() {
                                 className='bg-blue-500 text-white px-4 py-2 mr-2 rounded'
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    var id = selectedItem.profileID;
+                                    var id = selectedItem.articleID;
                                     switchMode("");
                                     resetInputFields();
-                                    axios.post(API.deleteProfile(id), {}, {
+                                    axios.post(API.deleteArticle(id), {}, {
                                         headers: {
                                             'Authorization': `Bearer ${Cookies.get("token")}`,
                                             withCredentials: true
@@ -315,8 +364,8 @@ export default function AdminGeneralArticles() {
                                     })
                                         .then((response) => response.data)
                                         .then((data) => {
-                                            setItems(prevItems => prevItems.filter(item => item.profileID !== id));
-                                            setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.profileName));
+                                            setItems(prevItems => prevItems.filter(item => item.articleID !== id));
+                                            setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.articleTitle));
 
                                             console.log(data)
                                         });
@@ -369,7 +418,7 @@ export default function AdminGeneralArticles() {
                     {/* Right side for file upload and preview */}
                     <div className="w-3/4 p-4">
                         <h2 className="text-2xl font-bold mb-2 mt-8">
-                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.profileName : 'Item'}
+                            {isAdding ? 'Add Custom Item' : isEditing ? 'Edit ' + selectedItem.articleTitle : 'Item'}
                         </h2>
                         {/* Input field for custom item name */}
                         <div className="flex">
@@ -380,6 +429,49 @@ export default function AdminGeneralArticles() {
                                 placeholder={'Enter Item Name'}
                                 className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
                             />
+                        </div>
+
+                        <div className="flex">
+                            <input
+                                type="date"
+                                value={customDate}
+                                onChange={(e) => setCustomDate(e.target.value)}
+                                placeholder={'Select Date'}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+                            />
+                        </div>
+
+                        <div className="flex">
+                            <input
+                                type="text"
+                                value={customAlt}
+                                onChange={(e) => setCustomAlt(e.target.value)}
+                                placeholder={'Enter Image Caption'}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+                            />
+                        </div>
+
+                        <div className="flex">
+                            <select
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
+                                className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
+                            >
+                                <option value="" disabled>Select Category</option>
+                                <option value="general">General Article</option>
+                                <option value="sports">Sports Article</option>
+                            </select>
+                        </div>
+
+                        <div className=''>
+                            <textarea
+                                id="message"
+                                rows="4"
+                                className="block mt-1 p-3 w-full text-sm text-gray-900 bg-transparent rounded-md border border-lgu-green dark:text-black"
+                                placeholder="Write your description..."
+                                value={desc}
+                                onChange={(e) => setDesc(e.target.value)}>
+                            </textarea>
                         </div>
 
                         {/* File Upload with Preview */}

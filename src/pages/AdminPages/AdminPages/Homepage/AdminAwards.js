@@ -177,7 +177,7 @@ export default function AdminAwards() {
         }
 
         if (!selectedFile) {
-            handleFeedbackMessage('Please upload the necessary pdf file.');
+            handleFeedbackMessage('Please upload the necessary file.');
             return;
         }
 
@@ -329,7 +329,7 @@ export default function AdminAwards() {
                                     })
                                         .then((response) => response.data)
                                         .then((data) => {
-                                            setItems(prevItems => prevItems.filter(item => item.awardTitle !== id));
+                                            setItems(prevItems => prevItems.filter(item => item.awardsID !== id));
                                             setItemSidebarItems(prevItems => prevItems.filter(item => item !== selectedItem.awardTitle));
 
                                             console.log(data)
