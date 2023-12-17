@@ -159,7 +159,8 @@ const API = {
     deleteForum: function (id) { return SERVER_ADDRESS + GENERAL + "/forums/delete/" + id },
     publishForum: SERVER_ADDRESS + GENERAL + "/forums/publish",
     publishForumPhotos: SERVER_ADDRESS + GENERAL + "/forums/publish/photos",
-    
+    getForum: function (topic) { return SERVER_ADDRESS + PUBLIC + "/getForums/" + topic },
+    getForumWithID: function (id) { return SERVER_ADDRESS + PUBLIC + "/getForum/" + id },
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

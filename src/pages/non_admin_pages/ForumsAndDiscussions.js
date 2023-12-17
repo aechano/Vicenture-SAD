@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import Banner from '../../components/Banner'
 import Body from '../../classifiers/Body'
-import { PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
+import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
 import { timeAgo } from '../../functionHelpers/Time'
+import axios from 'axios'
 
 
 export default function ForumsAndDiscussions() {
@@ -14,6 +15,7 @@ export default function ForumsAndDiscussions() {
     const [show, setShow] = useState({});
     const { topic } = useParams();
     const [selectedTopic, setSelectedTopic] = useState("all");
+    const [contents, setContents] = useState([]);
     var category = [
         {
             id: 1,
@@ -36,15 +38,20 @@ export default function ForumsAndDiscussions() {
     ]
 
     useEffect(() => {
+        console.log(topic);
         if (topic) {
             setSelectedTopic(decodeURIComponent(topic));
         } else {
             setSelectedTopic("all");
         }
-    }, [topic]);
+    }, []);
 
     useEffect(() => {
-        console.log(selectedTopic);
+        axios.get(API.getForum(selectedTopic), {})
+            .then((response) => response.data)
+            .then((data) => {
+                setContents(data);
+            })
     }, [selectedTopic]);
 
     const showChange = (category, value) => {
@@ -52,71 +59,12 @@ export default function ForumsAndDiscussions() {
     };
     useEffect(() => {
         category.map((category) => showChange(category.id, true));
+        axios.get(API.getForum(selectedTopic), {})
+            .then((response) => response.data)
+            .then((data) => {
+                setContents(data);
+            })
     }, []);
-    /**
-     * contents from users
-     */
-    var contents = [
-        {
-            contentID: 1002,
-            username: "Ghe3lo_",
-            userPFP: require("./../../res/debug_img/userpfp1.png"),
-            uploadTimestamp: Date.now() - 2 * 60 * 1000, // 1 second: 1000
-            topic: "Sports Tourism",
-            title: "Joining The LGU-SV Basketball Team",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: []
-        },
-        {
-            contentID: 1001,
-            username: "X3_nia",
-            userPFP: require("./../../res/debug_img/userpfp2.png"),
-            uploadTimestamp: Date.now() - 23 * 60 * 60 * 1000, // 1 second: 1000
-            topic: "Peer-to-peer Helping",
-            title: "Sharing My Notes When I Was in College Pt.2",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: [
-                { src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt: "notes 1" },
-                { src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt: "notes 2" },
-                { src: require("./../../res/debug_img/xenia_content_imgs2.png"), alt: "notes 3" },
-                { src: require("./../../res/debug_img/xenia_content_imgs1.png"), alt: "notes 4" },
-                { src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt: "notes 5" },
-                { src: require("./../../res/debug_img/xenia_content_imgs3.png"), alt: "notes 6" }
-            ]
-        },
-        {
-            contentID: 1000,
-            username: "J0si3x_x",
-            userPFP: require("./../../res/debug_img/userpfp4.png"),
-            uploadTimestamp: Date.now() - 24 * 60 * 60 * 1000, // 1 second: 1000
-            topic: "Falls",
-            title: "Reasons Why I Keep Visiting The Mananap Falls",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: []
-        },
-        {
-            contentID: 999,
-            username: "Fr4ncyyy",
-            userPFP: require("./../../res/debug_img/userpfp3.png"),
-            uploadTimestamp: Date.now() - 7 * 24 * 60 * 60 * 1000, // 1 second: 1000
-            topic: "Coaching",
-            title: "Nahire Ako Bilang Isang Coach ng LGU Sports Team!",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: []
-        },
-        {
-            contentID: 998,
-            username: "Th3Skyler08",
-            userPFP: require("./../../res/debug_img/userpfp5.png"),
-            uploadTimestamp: Date.now() - 3 * 4 * 7 * 24 * 60 * 60 * 1000, // 1 second: 1000
-            topic: "Resorts",
-            title: "Check Out My Resort Here in San Vicente; Check In Now!",
-            body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Metus vulputate eu scelerisque felis imperdiet proin fermentum. In cursus turpis massa tincidunt dui ut ornare lectus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Quam pellentesque nec nam aliquam sem et tortor consequat id. Arcu risus quis varius quam quisque id. Donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum. Quam id leo in vitae turpis massa sed elementum. Sed augue lacus viverra vitae congue eu consequat ac. Lectus urna duis convallis convallis tellus id interdum velit laoreet.",
-            bodyImgs: []
-        },
-    ]
-
-    const navigate = useNavigate();
     return (
         <>
 
@@ -150,17 +98,9 @@ export default function ForumsAndDiscussions() {
                             </NavLink>
 
                         </div>
-                        
-                        {/*<Routes>
-                            <Route path='/forums-and-discussions' element={<ForumsAndDiscussions />} />
-                            <Route path='/create-post' element={<CreatePost />} />
-                        </Routes>
-                        </div>*/}
-
                         <div>
                             {
                                 contents.map((content, index) => {
-                                    {/** Iterate through the contents and use Post component to display it */ }
                                     return <Post key={index} content={content} />
                                 })
                             }
@@ -227,14 +167,14 @@ function Post({ content }) {
                     <tr className=''>
                         <td className='w-16 h-16'> {/** Display the user pfp in the upperleft-most cell */}
                             <img
-                                src={content.userPFP}
-                                alt={"Profile picture of " + content.username}
+                                src={content.user.profilePicture ? 'data:image/jpeg;base64,' + content.user.profilePicture : require("./../../res/img/icon.png")}
+                                alt={"Profile picture of " + content.user.accountUsername}
                                 className='rounded-full w-10/12 h-10/12 mx-auto my-auto'
                             />
                         </td>
                         <td> {/** Display upload information beside the image such as: username, upload timestamp, and the topic */}
                             <div className='mb-2'>
-                                <p><span>{content.username}</span>&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(content.uploadTimestamp)}</span></p>
+                                <p><span>{content.user.accountUsername}</span>&nbsp;&nbsp;&nbsp;<span className='text-gray-500'>{timeAgo(content.uploadTimestamp)}</span></p>
                                 <p>{content.topic}</p>
                             </div>
                         </td>
