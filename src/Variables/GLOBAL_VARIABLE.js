@@ -135,7 +135,7 @@ const API = {
     getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
     getComment: function (id) { return SERVER_ADDRESS + PUBLIC + "/comments/" + id },
     postComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
-    deleteComment: function (id) { return SERVER_ADDRESS + GENERAL + "/comment/delete/" + id},
+    deleteComment: function (id) { return SERVER_ADDRESS + GENERAL + "/comment/delete/" + id },
     reportContent: SERVER_ADDRESS + GENERAL + "/reported",
     postSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/survey",
     editSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/edit-survey",
@@ -154,6 +154,12 @@ const API = {
     viewEvent: SERVER_ADDRESS + PUBLIC + "/view-events",
     editEvent: SERVER_ADDRESS + LGU + "/edit-events",
     deleteEvent: function (id) { return SERVER_ADDRESS + LGU + "/delete-events/" + id },
+
+    //Forums
+    deleteForum: function (id) { return SERVER_ADDRESS + GENERAL + "/forums/delete/" + id },
+    publishForum: SERVER_ADDRESS + GENERAL + "/forums/publish",
+    publishForumPhotos: SERVER_ADDRESS + GENERAL + "/forums/publish/photos",
+    
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"

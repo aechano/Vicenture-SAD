@@ -266,7 +266,7 @@ export default function Header(props) {
                                                                 <span className="sr-only">Open user menu</span>
                                                                 <img
                                                                     className="h-10 w-auto rounded-full"
-                                                                    src={require("../res/img/icon.png")}
+                                                                    src={profilePicture?"data:image/jpeg;base64,"+profilePicture:require("../res/img/icon.png")}
                                                                     alt=""
                                                                 />
                                                             </Menu.Button>

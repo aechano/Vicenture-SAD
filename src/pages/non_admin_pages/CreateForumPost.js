@@ -1,5 +1,10 @@
 // PostForm.js
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { API } from '../../Variables/GLOBAL_VARIABLE';
+import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 const CreateForumPost = () => {
     const [title, setTitle] = useState('');
@@ -8,6 +13,10 @@ const CreateForumPost = () => {
     const [fileNames, setFileNames] = useState([]);
     const [visibility, setVisibility] = useState('Category');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [topic, setTopic] = useState("");
+    const navigate = useNavigate();
+
+    const [userBasicData, setUserBasicData] = useState({ PFP: null, username: null })
 
     const visibilityOptions = ['Nature', 'Restaurant', 'Resorts'];
 
@@ -20,6 +29,28 @@ const CreateForumPost = () => {
     const handleDescriptionChange = (e) => {
         setDescription(e.target.value);
     };
+
+    useEffect(() => {
+        var jwt = Cookies.get("token");
+        if (jwt) {
+            var payload = jwtDecode(jwt);
+            axios.get(API.getProfilePFP, {
+                headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+                withCredentials: true
+            })
+                .then((response) => response.data)
+                .then((data) => {
+                    setUserBasicData({
+                        PFP: data, // Optionally, you may want to keep the raw binary data
+                        username: payload.Username
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                });
+        }
+    }, [])
+
 
     const handleImageChange = (e) => {
         const files = e.target.files;
@@ -52,19 +83,37 @@ const CreateForumPost = () => {
     };
 
     const handleSubmit = () => {
-        console.log('Title:', title);
-        console.log('Description:', description);
-        console.log('Images:', images);
-        console.log('File Names:', fileNames);
-
-        setTitle('');
-        setDescription('');
-        setImages([]);
-        setFileNames([]);
+        axios.post(API.publishForum, {
+            "topics": [topic],
+            "title": title,
+            "body": description
+        }, {
+            headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+            withCredentials: true
+        })
+            .then((response) => response.data)
+            .then((data) => {
+                const formData = new FormData();
+                images.forEach(image => {
+                    formData.append("images", image);
+                    formData.append("altTexts", image.name);
+                });
+                formData.append("forumID", data.contentID);
+                axios.post(API.publishForumPhotos, formData, {
+                    headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+                    withCredentials: true
+                })
+                    .then((response) => response.data)
+                    .then((data) => {
+                        console.log(data);
+                    })
+            })
+        // TODO: insert pop up "Upload success!" here.
+        navigate(-1);
     };
 
     const handleCancel = () => {
-        // Handle cancellation logic here
+        navigate(-1);
     };
 
     const handleVisibilityClick = () => {
@@ -77,16 +126,16 @@ const CreateForumPost = () => {
     };
 
     return (
-        <div className='min-h-screen flex items-center justify-center bg-gray-100'>
+        <div className='min-h-screen flex items-center justify-center bg-gray-100 m-20'>
             <div className='bg-lgu-green p-12 rounded shadow-md w-full md:w-2/3 lg:w-1/2'>
                 <div className='flex items-center space-x-4 mb-6'>
                     <img
-                        src="https://via.placeholder.com/40"
+                        src={userBasicData.PFP ? 'data:image/jpeg;base64,' + userBasicData.PFP : require("./../../res/img/icon.png")}
                         alt="User Avatar"
                         className="w-16 h-16 rounded-full"
                     />
                     <div className='flex flex-col'>
-                        <p className='text-white font-semibold text-lg'>User</p>
+                        <p className='text-white font-semibold text-lg'>{userBasicData.username ? userBasicData.username : "anonymous"}</p>
                         <div className='relative inline-block text-left'>
                             <button
                                 type="button"
@@ -116,7 +165,10 @@ const CreateForumPost = () => {
                                         {visibilityOptions.map((option) => (
                                             <button
                                                 key={option}
-                                                onClick={() => handleVisibilityChange(option)}
+                                                onClick={() => {
+                                                    handleVisibilityChange(option);
+                                                    setTopic(option);
+                                                }}
                                                 className="text-gray-700 block w-full text-left px-4 py-2 text-sm"
                                             >
                                                 {option}
@@ -143,7 +195,7 @@ const CreateForumPost = () => {
                         value={description}
                         onChange={handleDescriptionChange}
                         placeholder='Write something...'
-                        className='text-white border p-4 rounded-md focus:outline-none text-lg'
+                        className='border p-4 rounded-md h-[300px] focus:outline-none text-lg resize-none'
                     ></textarea>
 
                     <input
@@ -151,7 +203,7 @@ const CreateForumPost = () => {
                         multiple
                         onChange={handleImageChange}
                         className='text-white border p-4 rounded-md focus:outline-none text-lg'
-                        ref={fileInputRef} 
+                        ref={fileInputRef}
                     />
 
 
