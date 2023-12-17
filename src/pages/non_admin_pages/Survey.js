@@ -38,12 +38,12 @@ export default function Survey() {
             ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
         },
         {
-            quest: "How long will my response will be stored?",
-            ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
+            quest: "Will I receive any incentives for participating in the survey?",
+            ans: "To show our appreciation for your participation, you may be eligible for incentives. We value your input and want to thank you for taking the time to share your thoughts with us.",
         },
         {
-            quest: "How long will my response will be stored?",
-            ans: "We assure you that your answers to these surveys will be deleted from our database as soon as the data gathered is analyzed by the system. This data analysis will be done when the survey expires. ",
+            quest: "How will the survey results be used?",
+            ans: "The survey results will be used for research and analysis purposes only. Aggregated data will be reported, ensuring individual responses remain confidential.",
         },
     ]
 
