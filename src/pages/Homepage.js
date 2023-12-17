@@ -407,12 +407,12 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
             <Sections
                 left={true}
                 title="Awards and Recognitions"
-                src={require("./../res/img/logo.png")}
+                src={require("./../res/img/trophy.png")}
                 alt="San Vicente Logo"
                 button="See All Awards"
                 arrow={true}
                 href="/the-town/awards" onClick={() => window.scrollTo({ top: 0, left: 0 })}>
-                Journey through the captivating tapestry of San Vicente, Camarines Norte, where time and culture intertwine to unveil a rich and enchanting tale. This hidden gem, with its roots dating back to the late 18th century, is a place of history, traditions, and breathtaking natural beauty. As you stroll through its historic streets, you'll be transported to an era of colonial architecture and cobblestone pathways, each telling a story of its own. San Vicente isn't just a location on a map; it's a living connection to the past, where the spirits of the ancestors seem to guide your way. This town embodies the enduring spirit of the Filipino people, celebrated through ancient festivals, rituals, and vibrant traditions that have thrived for generations. And the beauty of San Vicente's landscapes, from pristine coastlines meeting the Pacific's azure waters to lush mountains and untamed wilderness, will leave you in awe.
+                San Vicente in Camarines Norte has become a beacon of commendation, earning recognition for its remarkable contributions and achievements. The community has garnered praise for its outstanding efforts and community development. These awards serve as a testament to the dedication and hard work of the residents and local authorities, turning San Vicente into a shining example of excellence. To uncover the full story behind these well-deserved recognitions, dive into local government updates, community announcements, and news outlets. It's in these narratives that the true essence of San Vicente's accomplishments comes to life, showcasing a community that's not just thriving but excelling on the stage of recognition.
             </Sections>
 
             {/* Tourism Section */}
