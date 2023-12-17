@@ -22,19 +22,19 @@ export default function Profile() {
         var token = Cookies.get("token");
         if (token) {
             var payload = jwtDecode(token);
+            console.log(payload)
             setUserType(payload.accountType);
+            setUser({
+                email: payload.sub,
+                username: payload.Username,
+                businessSector: "Agriculture",
+                company: "Cargill Inc",
+                office: "Tourism Office",
+                position: "Head Officer"
+            });
         } else {
             navigate(PATH_NAME.Home);
         }
-
-        setUser({
-            email: payload.sub,
-            username: payload.Username,
-            businessSector: "Agriculture",
-            company: "Cargill Inc",
-            office: "Tourism Office",
-            position: "Head Officer"
-        });
     }, [])
 
     useEffect(() => {
@@ -87,8 +87,8 @@ export default function Profile() {
             .then((data) => {
                 Cookies.set("token", data.token);
                 Cookies.set("refresh", data.refreshToken);
-                window.dispatchEvent("cookies");
-                window.dispatchEvent("profilePicture");
+                window.dispatchEvent(new Event("cookies"));
+                window.dispatchEvent(new Event("profilePicture"));
                 var payload = jwtDecode(data.token);
                 setUser({
                     email: payload.sub,
