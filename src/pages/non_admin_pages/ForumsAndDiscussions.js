@@ -99,10 +99,22 @@ export default function ForumsAndDiscussions() {
 
                         </div>
                         <div>
-                            {
+                            {contents.length > 0 ?
                                 contents.map((content, index) => {
                                     return <Post key={index} content={content} />
                                 })
+                                :
+                                <div className='flex top-24 bottom-0 right-0 left-80 h-screen justify-center'>
+                                    <div className='text-center'>
+                                        <img
+                                            className='w-40 h-40 opacity-50 mt-32'
+                                            src={require("./../../res/img/waterfall.png")}
+                                            alt='no post' />
+                                        <p className='mt-5 select-none'>
+                                            {"Start a Discussion"}
+                                        </p>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </Body>
