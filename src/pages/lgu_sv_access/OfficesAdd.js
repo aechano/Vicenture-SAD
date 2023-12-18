@@ -76,10 +76,10 @@ export default function OfficesAdd() {
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         if (selectedFile) {
-            setChart(selectedFile.name);
+            setChart(selectedFile);
+            console.log("File from onChange: ", selectedFile);
         }
     }
-
     // Function to trigger file input when image icon is clicked
     const triggerFileInput = () => {
         document.getElementById('fileInput').click();
@@ -127,6 +127,11 @@ export default function OfficesAdd() {
                 "image": null
             },
             {
+                "detailName": "Organizational Chart",
+                "detailContent": null,
+                "image": null
+            },
+            {
                 "detailName": "Mandate",
                 "detailContent": mandate,
                 "image": null
@@ -142,9 +147,9 @@ export default function OfficesAdd() {
                 "image": null
             },
         ];
-    
+
         const serviceList = [];  // Define serviceList outside of the map function
-    
+
         services.forEach((data) => {
             // Push each service object into serviceList
             serviceList.push({
@@ -154,29 +159,49 @@ export default function OfficesAdd() {
                 link: null,
             });
         });
-    
+
         axios.post(API.addOffice, {
             officeName: Department,
             address: "",
-            services: serviceList, 
-            office: listOffice,    
+            services: serviceList,
+            office: listOffice,
         }, {
             headers: {
                 'Authorization': `Bearer ${Cookies.get("token")}`,
                 'Content-Type': 'application/json',  // Specify content type for the request
             }
         })
-        .then((response) => response.data)
-        .then((data) => {
-            console.log(data);
-            console.log("Added Successfully!");
-        })
-        .catch((error) => {
-            console.error("Error adding office:", error);
-        });
+            .then((response) => response.data)
+            .then((data) => {
+                var id;
+                for (var detail of data.officeDetailID) {
+                    if (detail.detailName === "Organizational Chart") {
+                        id = detail.officeDetailID;
+                        break;
+                    }
+                }
+                if (id && chart) {
+                    const formData = new FormData();
+                    console.log(typeof chart);
+                    formData.append("img", chart);
+                    formData.append("attachTo", "office_details");
+                    formData.append("ID", id);
+                    axios.post(API.attachImage, formData, {
+                        headers: { "Authorization": `Bearer ${Cookies.get("token")}` },
+                        withCredentials: true
+                    })
+                        .then((response) => response.data)
+                        .then((data) => {
+                            console.log(data);
+                        });
+                }
+            })
+            .catch((error) => {
+                console.error("Error adding office:", error);
+            });
 
     };
-    
+
     return (
         <>
             <div className="flex flex-col items-center justify-center p-20 min-h-screen">
@@ -267,11 +292,10 @@ export default function OfficesAdd() {
                                     <div className="flex items-center h-14 rounded border border-1 w-80 bg-transparent">
                                         <input
                                             type="text"
-                                            className=" w-72 px-3 py-[0.32rem] leading-normal dark:text-black dark:placeholder-text-gray-400 truncate placeholder-gray-400 focus:outline-none focus:border-transparent"
+                                            className="w-72 px-3 py-[0.32rem] leading-normal dark:text-black dark:placeholder-text-gray-400 truncate placeholder-gray-400 focus:outline-none focus:border-transparent"
                                             id="chart"
                                             placeholder="Upload image here..."
-                                            value={chart}
-                                            onChange={(e) => setChart(e.target.value)}
+                                            value={chart} // Display file name if available
                                             readOnly // Make the input read-only to prevent manual input
                                         />
                                         <div

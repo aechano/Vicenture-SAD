@@ -82,7 +82,7 @@ const PATH_NAME = {
     Services: "/services",
     Debug: "/debug",
     Articles: "/articles",
-    ArticleContent: "/article/:articleID",
+    ArticleContent: "/article",
 
     AddOffices: "/the-town/offices/add-offices",
 }
@@ -145,6 +145,7 @@ const API = {
     getAllSurveys: SERVER_ADDRESS + PUBLIC + "/viewSurveys",
     deleteSurvey: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-survey/" + id },
     addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
+    attachImage: SERVER_ADDRESS + ADMIN + "/office/images",
     viewBanner: SERVER_ADDRESS + PUBLIC + "/view-banner",
     addBanner: SERVER_ADDRESS + CONTENT_WRITER + "/add-banner",
     editBanner: SERVER_ADDRESS + CONTENT_WRITER + "/edit-banner",
@@ -164,8 +165,11 @@ const API = {
     publishForumPhotos: SERVER_ADDRESS + GENERAL + "/forums/publish/photos",
     getForum: function (topic) { return SERVER_ADDRESS + PUBLIC + "/getForums/" + topic },
     getForumWithID: function (id) { return SERVER_ADDRESS + PUBLIC + "/getForum/" + id },
+
+    //Article
     addArticle: SERVER_ADDRESS + CONTENT_WRITER + "/add-article",
     viewArticle: SERVER_ADDRESS + PUBLIC + "/view-article",
+    viewArticleById: function (id) { return SERVER_ADDRESS + PUBLIC + "/view-article/" + id },
     editArticle: SERVER_ADDRESS + CONTENT_WRITER + "/edit-article",
     deleteArticle: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-article/" + id },
     getPageArticle: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-article/" + id },

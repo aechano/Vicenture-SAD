@@ -291,7 +291,7 @@ export default function Header(props) {
                                                                         </NavLink>
                                                                     )}
                                                                 </Menu.Item>
-                                                                <Menu.Item>
+                                                                {/* <Menu.Item>
                                                                     {({ active }) => (
                                                                         <NavLink
                                                                             to={PATH_NAME.Messages}
@@ -300,7 +300,7 @@ export default function Header(props) {
                                                                             Messages
                                                                         </NavLink>
                                                                     )}
-                                                                </Menu.Item>
+                                                                </Menu.Item> */}
                                                                 <Menu.Item>
                                                                     {({ active }) => (
                                                                         <NavLink

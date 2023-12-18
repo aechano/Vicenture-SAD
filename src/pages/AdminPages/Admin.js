@@ -47,7 +47,6 @@ export default function Admin() {
                                 title={{ name: "Homepage", to: PATH_NAME.AdminPages.Homepage }}
                                 subtitles={[
                                     { name: "Banner", to: PATH_NAME.AdminPages.Banner },
-                                    { name: "Events", to: PATH_NAME.AdminPages.Events },
                                     { name: "Awards", to: PATH_NAME.AdminPages.Awards }
                                 ]}
                                 icon={<FaHome className='h-auto' />}

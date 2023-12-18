@@ -127,15 +127,15 @@ function App() {
                         <Route path={PATH_NAME.Survey} element={<Survey />} />
                         <Route path={PATH_NAME.Articles} element={<Articles />} />
                         <Route path={PATH_NAME.Articles + "/:page"} element={<Articles />} />
-                        <Route path={PATH_NAME.ArticleContent} element={<ArticleContent />} />
+                        <Route path={PATH_NAME.ArticleContent + "/:articleID"} element={<ArticleContent />} />
 
                         <Route path={PATH_NAME.ForumsAndDiscussions} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.ForumsAndDiscussions + "/:topic"} element={<ForumsAndDiscussions />} />
                         <Route path={PATH_NAME.CreatePost} element={<CreateForumPost />} />
                         <Route path={PATH_NAME.ForumsAndDiscussionsPost + "/:forumID"} element={<ForumsAndDiscussionsPost />} />
 
-                        <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging />} />
-                        <Route path={PATH_NAME.Messages} element={<Messaging />} />
+                        {/* <Route path={PATH_NAME.Messages + "/:receiver"} element={<Messaging />} />
+                        <Route path={PATH_NAME.Messages} element={<Messaging />} /> */}
                         <Route path={PATH_NAME.Profile} element={<Profile />} />
 
                         <Route path={PATH_NAME.Invest.InvestmentOpportunities} element={<InvestmentOpportunities userType={userType} />} />

@@ -105,7 +105,7 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
 
             <div>
                 {/* Other components */}
-                <ChatIcon />
+                {/* <ChatIcon /> */}
                 {
                     surveyClose ?
                         null
