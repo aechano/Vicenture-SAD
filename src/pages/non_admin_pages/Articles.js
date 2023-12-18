@@ -10,6 +10,9 @@ export default function Articles() {
     const { page = 1 } = useParams();
     const currentPage = parseInt(page, 10);
 
+
+    
+
     var contents = [
         {
             id: 0,

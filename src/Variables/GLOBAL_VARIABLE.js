@@ -168,6 +168,8 @@ const API = {
     viewArticle: SERVER_ADDRESS + PUBLIC + "/view-article",
     editArticle: SERVER_ADDRESS + CONTENT_WRITER + "/edit-article",
     deleteArticle: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-article/" + id },
+    getPageArticle: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-article/" + id },
+
 }
 const SOCKET = {
     Messaging: SERVER_ADDRESS + "/ws"
