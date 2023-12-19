@@ -10,7 +10,7 @@ import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
 import ContactUs from './pages/non_admin_pages/ContactUs';
 import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
-import MunicipalityPrograms, { SportContent } from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
+import MunicipalityPrograms from './pages/non_admin_pages/TheTown/MunicipalityPrograms';
 import History from './pages/non_admin_pages/TheTown/History';
 import PlacesToVisit from './pages/non_admin_pages/Tourism/PlacesToVisit';
 import Activities from './pages/non_admin_pages/Tourism/Activities';
@@ -102,7 +102,6 @@ function App() {
                         <Route path={PATH_NAME.TheTown.OtherInfo} element={<OtherInfo />} />
                         <Route path={PATH_NAME.TheTown.MunicipalityProfile} element={<MunicipalityProfile />} />
                         <Route path={PATH_NAME.TheTown.MunicipalityPrograms} element={<MunicipalityPrograms />} />
-                        <Route path={PATH_NAME.TheTown.MunicipalityPrograms + "/:sportID"} element={<SportContent />} />
                         <Route path={PATH_NAME.TheTown.Offices} element={<Offices />} />
                         <Route path={PATH_NAME.TheTown.CitizensCharter} element={<CitizensCharter />} />
                         <Route path={PATH_NAME.TheTown.ElectedOfficials} element={<ElectedOfficials />} />

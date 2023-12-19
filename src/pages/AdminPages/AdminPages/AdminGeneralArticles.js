@@ -149,7 +149,7 @@ export default function AdminGeneralArticles() {
     };
 
     useEffect(() => {
-        axios.get(API.viewArticle, {})
+        axios.get(API.viewAllArticle, {})
             .then((response) => response.data)
             .then((data) => {
                 console.log(data);

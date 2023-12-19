@@ -168,7 +168,9 @@ const API = {
 
     //Article
     addArticle: SERVER_ADDRESS + CONTENT_WRITER + "/add-article",
+    viewAllArticle: SERVER_ADDRESS + PUBLIC + "/view-all-article",
     viewArticle: SERVER_ADDRESS + PUBLIC + "/view-article",
+    viewSportsArticle: SERVER_ADDRESS + PUBLIC + "/view-sports-article",
     viewArticleById: function (id) { return SERVER_ADDRESS + PUBLIC + "/view-article/" + id },
     editArticle: SERVER_ADDRESS + CONTENT_WRITER + "/edit-article",
     deleteArticle: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-article/" + id },
