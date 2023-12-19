@@ -39,7 +39,7 @@ export default function Articles() {
                 }
                 setContents(newItems);
             });
-    }, []);
+    }, []); 
 
     return (
         <>

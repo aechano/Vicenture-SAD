@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sections from "../components/Sections";
 import Banner from "../components/Banner";
 import BackToTop from "../components/BackToTop";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useParams, Link } from "react-router-dom";
 import { PATH_NAME, USER_TYPES, API } from "../Variables/GLOBAL_VARIABLE";
 import CalendarModal from "../components/CalendarModal";
 import CarouselComponent from "../components/CarouselComponent";
@@ -19,6 +19,20 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
     const [emergencyContent, setEmergencyContent] = useState("");
 
     const [images, setImages] = useState([]);
+
+    const [contents, setContents] = useState([]);
+
+    useEffect(() => {
+        axios.get(API.viewArticle, {})
+            .then((response) => response.data)
+            .then((data) => {
+                var newItems = [];
+                for (var item of data) {
+                    newItems.push({ id: item.articleID, title: item.articleTitle, cont: item.contents, date: item.timeStamps, caption: item.alt, tags: item.tags });
+                }
+                setContents(newItems);
+            });
+    }, []);
 
     useEffect(() => {
         axios.get(API.viewBanner, {})
@@ -168,39 +182,25 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
                     </div>
                     <div className="border-b-2 border-gray-900"></div>
                     <div className="flex flex-col mt-5 space-y-4 lg:space-y-0 lg:justify-between lg:flex-row">
-                        <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                            <NavLink to={PATH_NAME.Articles} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
-                                <div className="space-y-0.5">
-                                    <p className="text-lg text-black font-semibold">
-                                        Article Title
-                                    </p>
-                                    <p className="text-xs text-slate-500">
-                                        October 1, 2023 | 9:50 AM
-                                    </p>
-                                    <p class="text-black font-medium">
-                                        This is a one-sentence overview of the activity, which can be multi-line.
-                                    </p>
-                                </div>
-                                <p className="text-xs text-red-500"> Read more...</p>
-                            </NavLink>
-                        </div>
 
-                        <div className="py-8 px-8 lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                            <NavLink to={PATH_NAME.Articles} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
-                                <div className="space-y-0.5">
-                                    <p className="text-lg text-black font-semibold">
-                                        Article Title
-                                    </p>
-                                    <p className="text-xs text-slate-500">
-                                        October 1, 2023 | 9:50 AM
-                                    </p>
-                                    <p class="text-black font-medium">
-                                        This is a one-sentence overview of the activity, which can be multi-line.
-                                    </p>
-                                </div>
-                                <p className="text-xs text-red-500"> Read more...</p>
-                            </NavLink>
-                        </div>
+                        {contents.slice(0, 2).map((content, index) => (
+                            <div key={index} className="py-8 px-8 min-w-[384px] lg:max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                                <Link to={`/article/${content.id}`} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 text-left space-y-2 sm:text-left">
+                                    <div className="space-y-0.5">
+                                        <p className="text-lg text-black font-semibold">
+                                            {content.title}
+                                        </p>
+                                        <p className="text-xs text-slate-500">
+                                            {content.date}
+                                        </p>
+                                        <p className="text-black font-medium line-clamp-1">
+                                            {content.cont}
+                                        </p>
+                                    </div>
+                                    <p className="text-xs text-red-500"> Read more...</p>
+                                </Link>
+                            </div>
+                        ))}
 
                         <NavLink to={PATH_NAME.Articles} onClick={() => window.scrollTo({ top: 0, left: 0 })} className="transition-all duration-400 hover:scale-110 py-8 px-8 max-w-sm bg-lgu-yellow rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
                             <div className="text-center space-y-2 sm:text-left">
@@ -464,5 +464,88 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
             </Sections>
         </div>
 
+    );
+}
+
+
+export function ArticleContent() {
+    const { articleID } = useParams();
+    const [article, setArticle] = useState({
+        articleID: null,
+        articleTitle: null,
+        timeStamps: null,
+        alt: null,
+        contents: "",
+        tags: null,
+        image: null,
+        imgName: null
+    });
+
+
+    useEffect(() => {
+        axios.get(API.viewArticleById(articleID), {})
+            .then((response) => response.data)
+            .then((data) => {
+                console.log(data);
+                setArticle(data);
+            });
+    }, []);
+
+    // Split the content into paragraphs
+    const paragraphs = article.contents.split('\n').map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+    ));
+
+
+    return (
+
+        <>
+
+            <Banner
+                bannerType="common"
+                src={require('../res/img/mananap_falls.png')}
+                alt="Mananap Falls"
+                searchBar={true}
+                breadcrumbs={[
+                    { title: 'Home', to: PATH_NAME.Home },
+                    { title: 'Tourism' },
+                    { title: 'San Vicente Tourism', to: PATH_NAME.Tourism.SanVicente },
+                ]}
+            >
+                <p>Article</p>
+            </Banner>
+
+            <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 m-5'>
+                <div className='mb-10'>
+                    <h1 className='mt-10 mb-2 font-bold text-4xl'>{article.articleTitle}</h1>
+                    <p className='text-sm'>{article.timeStamps}</p>
+                </div>
+                <div>
+
+                    <img src={"data:image/jpeg;base64," + article.image} alt={article.alt} className='mx-auto rounded-md w-auto h-96' />
+                    <p className='text-sm text-gray-500 text-center pt-2'>{article.alt}</p>
+
+                </div>
+                {paragraphs.map((paragraph, index) => (
+                    <p key={index} className='leading-6 mt-8 text-justify indent-10'>
+                        {paragraph}
+                    </p>
+                ))}
+            </div>
+
+
+
+            {/* Media query for screens with a maximum width of 768px */}
+            <style>
+                {`
+                    @media (max-width: 768px) {
+                        p {
+                        word-wrap: break-word; /* Adjust text wrapping for smaller screens */
+                        }
+                    }
+                `}
+            </style>
+            <BackToTop />
+        </>
     );
 }
