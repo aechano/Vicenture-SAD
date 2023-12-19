@@ -50,13 +50,11 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
 
 
     const openModal = () => {
-        console.log("Opening modals");
         setModalOpen(true);
 
     };
 
     const closeModal = () => {
-        console.log("Closing modal");
         setModalOpen(false);
     };
 
@@ -71,7 +69,6 @@ export default function Homepage({ userType, surveyShowing, setSurveyShowing }) 
         axios.get(API.viewAlert)
             .then((response) => response.data)
             .then((data) => {
-                console.log(data);
                 if (data?.length > 0) {
                     setEmergencyTitle(data[data.length - 1].alertTitle);
                     setEmergencyContent(data[data.length - 1].alertMessage);

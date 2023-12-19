@@ -181,7 +181,6 @@ export default function CalendarModal({ isOpen, onRequestClose }) {
                 eventEnd: new Date(dateEnd).getTime(),
                 allDay: true,
             };
-            console.log(newEvent);
 
             // Update the event details
             if (eventSelected) { // Use eventSelected consistently

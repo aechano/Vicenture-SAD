@@ -6,6 +6,7 @@ import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from 'react-icons/rx';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
 import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 
 export default function SignIn() {
@@ -22,8 +23,17 @@ export default function SignIn() {
                 if (data == null) {
                     console.log("Sign in failed.")
                 } else {
-                    Cookies.set("token", data.token, {expires: 7});
-                    Cookies.set("refresh", data.refreshToken);
+                    // get token data
+                    var tokenPayload = jwtDecode(data.token);
+                    var rTokenPayload = jwtDecode(data.refreshToken);
+                    
+                    // calculate for expiration duration (days)
+                    var tokenExp = (tokenPayload.exp - tokenPayload.iat) / (60 * 60 * 24);
+                    var rTokenExp = (rTokenPayload.exp - rTokenPayload.iat) / (60 * 60 * 24);
+
+                    // save to cookies with set expiration dates
+                    Cookies.set("token", data.token, { expires: tokenExp });
+                    Cookies.set("refresh", data.refreshToken, { expires: rTokenExp });
                     window.dispatchEvent(new Event("cookies"));
                     var goTo = Cookies.get("PREVIOUS_LINK");
                     Cookies.remove("PREVIOUS_LINK");
@@ -34,10 +44,10 @@ export default function SignIn() {
     return (
         <section className="bg-gray-900 md:p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", backgroundSize: "cover", minHeight: "100vh" }}>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <a href="#" className="flex flex-col items-center mb-6  text-center md:text-2xl font-semibold text-white">
+                <NavLink to={PATH_NAME.Home} className="flex flex-col items-center mb-6  text-center md:text-2xl font-semibold text-white">
                     <img className="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
                     <span className='pt-3'>SAN VICENTE, CAMARINES NORTE</span>
-                </a>
+                </NavLink>
                 <div className="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
                     <NavLink
                         to={PATH_NAME.Home}

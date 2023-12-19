@@ -7,10 +7,10 @@ import { API, PATH_NAME } from '../../Variables/GLOBAL_VARIABLE';
 import { RxCross2 } from "react-icons/rx";
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'; // Import eye icons from react-icons/io
 import Cookies from 'js-cookie';
+import { jwtDecode } from 'jwt-decode';
 
 export default function SignUp() {
     const location = useLocation();
-    console.log(location);
     const [email, setEmail] = useState(location.state?.initialData ? location.state.initialData.email : null);
     const [username, setUsername] = useState(location.state?.initialData ? location.state.initialData.username : null);
     const [password, setPassword] = useState('');
@@ -91,8 +91,17 @@ export default function SignUp() {
                     if (data == null) {
                         console.log("Sign up failed.")
                     } else {
-                        Cookies.set("token", data.token, { expires: 7 });
-                        Cookies.set("refresh", data.refreshToken);
+                        // get token data
+                        var tokenPayload = jwtDecode(data.token);
+                        var rTokenPayload = jwtDecode(data.refreshToken);
+                        
+                        // calculate for expiration duration (days)
+                        var tokenExp = (tokenPayload.exp - tokenPayload.iat) / (60 * 60 * 24);
+                        var rTokenExp = (rTokenPayload.exp - rTokenPayload.iat) / (60 * 60 * 24);
+    
+                        // save to cookies with set expiration dates
+                        Cookies.set("token", data.token, { expires: tokenExp });
+                        Cookies.set("refresh", data.refreshToken, { expires: rTokenExp });
                         window.dispatchEvent(new Event("cookies"));
                         var goTo = Cookies.get("PREVIOUS_LINK");
                         Cookies.remove("PREVIOUS_LINK");
@@ -123,12 +132,12 @@ export default function SignUp() {
     }, []);
 
     return (
-        <section class="bg-gray-900 md:p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <a href="#" class="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
-                    <img class="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
+        <section className="bg-gray-900 md:p-20" style={{ backgroundImage: "url(" + require('../../res/img/try.jpg') + ")", backgroundRepeat: "no-repeat", backgroundPosition: "center bottom 0%", }}>
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <NavLink to={PATH_NAME.Home} className="flex flex-col items-center mb-6 text-2xl font-semibold text-white">
+                    <img className="w-20 h-20 mr-2" src={require("../../res/img/logo.png")} alt="logo" />
                     <span className='md:pt-3 text-center'>SAN VICENTE CAMARINES NORTE</span>
-                </a>
+                </NavLink>
                 <div className="w-full  rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 bg-lgu-green border-gray-700">
                     <div className="p-2 space-y-4 md:space-y-6 sm:p-4">
                         <NavLink
@@ -280,32 +289,32 @@ export default function SignUp() {
                                     </select>
                                 </div>
                             </div>
-                            <div class="flex flex-col items-start justify-center pl-12 space-y-2">
+                            <div className="flex flex-col items-start justify-center pl-12 space-y-2">
                                 <div className='flex'>
-                                    <div class="flex items-center h-5">
-                                        <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
+                                    <div className="flex items-center h-5">
+                                        <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
                                     </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
+                                    <div className="ml-3 text-sm">
+                                        <label for="terms" className="font-light text-gray-500 dark:text-gray-300">
                                             I've given consent for my information to be utilized for analytical purposes.
                                         </label>
                                     </div>
                                 </div>
                                 <div className='flex'>
-                                    <div class="flex items-center h-5">
-                                        <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
+                                    <div className="flex items-center h-5">
+                                        <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
                                     </div>
-                                    <div class="ml-3 text-sm">
-                                        <label for="terms" class="font-light text-gray-500 dark:text-gray-300">
+                                    <div className="ml-3 text-sm">
+                                        <label for="terms" className="font-light text-gray-500 dark:text-gray-300">
                                             I consented my data to be collected
                                         </label>
                                     </div>
                                 </div>
                                 <div className='flex'>
-                                    <div class="flex items-center h-5">
-                                        <input id="terms" aria-describedby="terms" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
+                                    <div className="flex items-center h-5">
+                                        <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
                                     </div>
-                                    <div class="ml-3 text-sm">
+                                    <div className="ml-3 text-sm">
                                         <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">
                                             I have already reviewed the{' '}
                                             <NavLink to={PATH_NAME.PrivacyPolicy} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
