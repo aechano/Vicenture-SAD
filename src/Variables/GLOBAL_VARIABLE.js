@@ -95,65 +95,95 @@ const ADMIN = "/api/v1/admin"
 const CONTENT_WRITER = "/api/v1/writer"
 const GENERAL = "/api/v1/general"
 const API = {
+    //User Profile
+    updateProfile: SERVER_ADDRESS + GENERAL + "/profile/edit",
+    getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
     SignUp: SERVER_ADDRESS + AUTH + "/signup",
     SignIn: SERVER_ADDRESS + AUTH + "/signin",
+    
+    //Feedbacks and Forms
     FeedbackPost: SERVER_ADDRESS + PUBLIC + "/feedback",
     FeedbackGet: SERVER_ADDRESS + ADMIN + "/get-feedback",
     TourismOnlineFormGet: SERVER_ADDRESS + LGU + "/tof",
     TourismOnlineFormPost: SERVER_ADDRESS + PUBLIC + "/tof",
+
+    //Contents
     Content: function (method) { return SERVER_ADDRESS + LGU + method },
     ContentDelete: function (id) { return SERVER_ADDRESS + LGU + "/delete/" + id },
     GetContentID: function (id) { return SERVER_ADDRESS + PUBLIC + "/getContent/" + id },
     GetContentCount: SERVER_ADDRESS + PUBLIC + "/getContent/count",
     GetContentPages: function (type, id) { return SERVER_ADDRESS + PUBLIC + "/getContent/" + type + "/" + id },
-    contentRating: function (id) { return SERVER_ADDRESS + PUBLIC + "/contentRating/" + id },
-    setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating",
-    getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id },
-    publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
+    
+    //Report
+    reportContent: SERVER_ADDRESS + GENERAL + "/reported",
+    reportGet: SERVER_ADDRESS + ADMIN + "/reported",
+    
+    // Analytics
     analyticsWebpageVisit: SERVER_ADDRESS + PUBLIC + "/analytics/webpage_visit",
     analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
-    reportGet: SERVER_ADDRESS + ADMIN + "/reported",
-    report: SERVER_ADDRESS + GENERAL + "/reported",
     analyticsGetAll: SERVER_ADDRESS + ADMIN + "/analytics",
+    
+    // Municipality Profile
     addMunProfile: SERVER_ADDRESS + CONTENT_WRITER + "/add-mun_profile",
     viewMunProfile: SERVER_ADDRESS + PUBLIC + "/view-mun_profile",
     deleteProfile: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-mun_profile/" + id },
     editProfile: SERVER_ADDRESS + CONTENT_WRITER + "/edit-mun_profile",
+    
+    //Transparency
     viewTransparency: SERVER_ADDRESS + PUBLIC + "/view-transparency",
     addTransparency: SERVER_ADDRESS + CONTENT_WRITER + "/add-transparency",
     editTransparency: SERVER_ADDRESS + CONTENT_WRITER + "/edit-transparency",
     deleteTransparency: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-transparency/" + id },
+    
+    //Charter
     viewCharter: SERVER_ADDRESS + PUBLIC + "/view-charter",
     addCharter: SERVER_ADDRESS + CONTENT_WRITER + "/add-charter",
     editCharter: SERVER_ADDRESS + CONTENT_WRITER + "/edit-charter",
     deleteCharter: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-charter/" + id },
+    
+    //Officials
     addOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/add-officials",
     viewOfficials: SERVER_ADDRESS + PUBLIC + "/view-officials",
     addOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/add-officials",
     editOfficials: SERVER_ADDRESS + CONTENT_WRITER + "/edit-officials",
     deleteOfficials: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-officials/" + id },
+    
+    //Alerts
     addAlert: SERVER_ADDRESS + ADMIN + "/add-alert",
     viewAlert: SERVER_ADDRESS + PUBLIC + "/view-alert",
-    updateProfile: SERVER_ADDRESS + GENERAL + "/profile/edit",
-    getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
+    
+    //Posts Engagements
     getComment: function (id) { return SERVER_ADDRESS + PUBLIC + "/comments/" + id },
     postComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
     deleteComment: function (id) { return SERVER_ADDRESS + GENERAL + "/comment/delete/" + id },
-    reportContent: SERVER_ADDRESS + GENERAL + "/reported",
+    contentRating: function (id) { return SERVER_ADDRESS + PUBLIC + "/contentRating/" + id },
+    setContentRating: SERVER_ADDRESS + GENERAL + "/contentRating",
+    getMyContentRating: function (id) { return SERVER_ADDRESS + GENERAL + "/myrating/" + id },
+    publishComment: SERVER_ADDRESS + GENERAL + "/comment/publish",
+    
+    //Surveys
     postSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/survey",
     editSurvey: SERVER_ADDRESS + CONTENT_WRITER + "/edit-survey",
     getAllSurveys: SERVER_ADDRESS + PUBLIC + "/viewSurveys",
     deleteSurvey: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-survey/" + id },
+    
+    //Offices
     addOffice: SERVER_ADDRESS + ADMIN + "/add-office",
     attachImage: SERVER_ADDRESS + ADMIN + "/office/images",
+    
+    //Banners
     viewBanner: SERVER_ADDRESS + PUBLIC + "/view-banner",
     addBanner: SERVER_ADDRESS + CONTENT_WRITER + "/add-banner",
     editBanner: SERVER_ADDRESS + CONTENT_WRITER + "/edit-banner",
     deleteBanner: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-banner/" + id },
+    
+    //Awards
     viewAward: SERVER_ADDRESS + PUBLIC + "/view-awards",
     addAward: SERVER_ADDRESS + CONTENT_WRITER + "/add-award",
     editAward: SERVER_ADDRESS + CONTENT_WRITER + "/edit-award",
     deleteAward: function (id) { return SERVER_ADDRESS + CONTENT_WRITER + "/delete-award/" + id },
+    
+    //Events
     addEvent: SERVER_ADDRESS + LGU + "/add-events",
     viewEvent: SERVER_ADDRESS + PUBLIC + "/view-events",
     editEvent: SERVER_ADDRESS + LGU + "/edit-events",
