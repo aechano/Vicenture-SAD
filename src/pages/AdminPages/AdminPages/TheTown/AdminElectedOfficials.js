@@ -450,13 +450,16 @@ export default function AdminElectedOfficials() {
                                     <option
                                         key={layer}
                                         value={layer}
-                                        disabled={officialsCountPerLayer[layer] >= (layer === "Layer 1" || layer === "Layer 2" ? 1 : 3)}
+                                        disabled={layer === "Layer 1" || layer === "Layer 2"
+                                            ? officialsCountPerLayer[layer] >= 1
+                                            : officialsCountPerLayer[layer] >= 3}
                                     >
                                         {layer}
                                     </option>
                                 ))}
                             </select>
-                        </div> 
+                        </div>
+
 
                         <div className="flex">
                             <input
