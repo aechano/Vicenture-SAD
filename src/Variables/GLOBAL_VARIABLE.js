@@ -100,6 +100,8 @@ const API = {
     getProfilePFP: SERVER_ADDRESS + GENERAL + "/profile/getPFP",
     SignUp: SERVER_ADDRESS + AUTH + "/signup",
     SignIn: SERVER_ADDRESS + AUTH + "/signin",
+    RefreshJWT: SERVER_ADDRESS + AUTH + "/refresh",
+
     
     //Feedbacks and Forms
     FeedbackPost: SERVER_ADDRESS + PUBLIC + "/feedback",

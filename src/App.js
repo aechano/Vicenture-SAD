@@ -6,7 +6,7 @@ import SignIn from './pages/Accounts/SignIn';
 import Homepage from './pages/Homepage';
 import SignUpInvestor from './pages/Accounts/SignUpDetails/SignUpInvestor';
 import ForumsAndDiscussions from './pages/non_admin_pages/ForumsAndDiscussions';
-import { PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
+import { API, PATH_NAME, USER_TYPES } from './Variables/GLOBAL_VARIABLE';
 import MunicipalityProfile from './pages/non_admin_pages/TheTown/MunicipalityProfile';
 import ContactUs from './pages/non_admin_pages/ContactUs';
 import AboutSanVicente from './pages/non_admin_pages/TheTown/AboutSanVicente';
@@ -68,6 +68,7 @@ import AdminEvents from './pages/AdminPages/AdminPages/Homepage/AdminEvents';
 import AdminAwards from './pages/AdminPages/AdminPages/Homepage/AdminAwards';
 import ContentWriter from './pages/AdminPages/ContentWriter';
 import ActivitiesContent from './pages/lgu_sv_access/ActivitiesContent';
+import axios from 'axios';
 
 function App() {
     const [userType, setUserType] = useState(USER_TYPES.Guest);
@@ -83,7 +84,38 @@ function App() {
         }
     }
 
-    useEffect(() => { updateUserType() }, []);
+    function refreshAccessToken() {
+        var jwt = Cookies.get("refresh");
+        if (jwt) {
+            axios.post(API.RefreshJWT, { token: jwt })
+                .then((response) => response.data)
+                .then((data) => {
+                    Cookies.remove("refresh");
+                    Cookies.remove("token");
+
+                    // get token data
+                    var tokenPayload = jwtDecode(data.token);
+                    var rTokenPayload = jwtDecode(data.refreshToken);
+                    
+                    // calculate for expiration duration (days)
+                    var tokenExp = (tokenPayload.exp - tokenPayload.iat) / (60 * 60 * 24);
+                    var rTokenExp = (rTokenPayload.exp - rTokenPayload.iat) / (60 * 60 * 24);
+
+                    // save to cookies with set expiration dates
+                    Cookies.set("token", data.token, { expires: tokenExp });
+                    Cookies.set("refresh", data.refreshToken, { expires: rTokenExp });
+                    window.dispatchEvent(new Event("cookies"));
+                })
+        } else {
+            // TODO: Popup to urge for sign in/up
+        }
+    }
+
+    useEffect(() => {
+        // website startup functions
+        updateUserType();
+        refreshAccessToken();
+    }, []);
     window.addEventListener('cookies', () => { updateUserType() });
 
     return (
