@@ -156,21 +156,22 @@ export default function AdminElectedOfficials() {
             .then((data) => {
                 console.log(data);
                 setItems(data);
-
+    
                 const countPerLayer = data.reduce((acc, item) => {
                     acc[item.layer] = (acc[item.layer] || 0) + 1;
                     return acc;
                 }, {});
-
+    
                 setOfficialsCountPerLayer(countPerLayer);
                 var newItemSidebarItems = [];
                 for (var officials of data) {
                     newItemSidebarItems.push(officials.officialsName);
                 }
-
+    
                 setItemSidebarItems(newItemSidebarItems);
             });
-    }, [])
+    }, [items, itemSidebarItems]); // Include relevant dependencies
+    
 
     const handleAddItem = () => {
         resetInputFields();
