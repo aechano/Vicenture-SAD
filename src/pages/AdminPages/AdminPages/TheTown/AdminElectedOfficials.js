@@ -5,7 +5,6 @@ import { API } from '../../../../Variables/GLOBAL_VARIABLE';
 import Cookies from 'js-cookie';
 
 
-
 // FileUpload component for handling file upload and preview
 function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selectedFile, setSelectedFile }) {
     const fileInputRef = useRef(null);
@@ -20,6 +19,7 @@ function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selecte
         setSelectedFile(initialSelectedFile ? initialSelectedFile : null);
         fileInputRef.current.value = '';
     }, [resetFileInput]);
+
 
     return (
         <div className="mt-4">
@@ -49,13 +49,13 @@ function FileUpload({ onFileChange, resetFileInput, initialSelectedFile, selecte
 }
 
 // ItemSidebar component for adding and selecting items
-function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem, layersCount }) {
-
+function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem }) {
     return (
         <>
             <div className="w-1/3 bg-lgu-lime p-4 ml-8 mt-8">
                 <h2 className="text-2xl font-bold mb-4 mt-4">Items</h2>
-                <ul>
+                {/* Apply overflow-y-auto class to the ul element and hide scrollbar */}
+                <ul className="overflow-y-auto max-h-48 no-scrollbar">
                     {items.length > 0 ?
                         items.map((item, index) => (
                             <li
@@ -83,11 +83,21 @@ function ItemSidebar({ items = [], onItemSelected, onItemRemove, onAddItem, laye
                         <FaPlus className='mr-1' /> Add
                     </button>
                 </div>
+
+                <div className='mt-6'>
+                    <h1>WARNING:</h1>
+                    <p>
+                        Kindly ensure that the images you upload have dimensions of 300x300 pixels. Appreciate your cooperation!
+                    </p>
+                    <p className='pt-2'>Please provide images with a file size below 16 megabytes. Thank you!</p>
+                </div>
             </div>
         </>
-
     );
 }
+
+
+
 export default function AdminElectedOfficials() {
     const [itemSidebarItems, setItemSidebarItems] = useState();
     const [items, setItems] = useState([]);
@@ -108,6 +118,15 @@ export default function AdminElectedOfficials() {
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
+    const handleContactChange = (e) => {
+        const inputValue = e.target.value;
+
+        // Check if the input is empty or a number with 11 digits or less
+        if (inputValue === '' || (/^\d+$/.test(inputValue) && inputValue.length <= 11)) {
+            setContact(inputValue);
+        }
+    };
+    
     const switchMode = (mode) => {
         setIsAdding(false);
         setIsEditing(false);
@@ -156,22 +175,22 @@ export default function AdminElectedOfficials() {
             .then((data) => {
                 console.log(data);
                 setItems(data);
-    
+
                 const countPerLayer = data.reduce((acc, item) => {
                     acc[item.layer] = (acc[item.layer] || 0) + 1;
                     return acc;
                 }, {});
-    
+
                 setOfficialsCountPerLayer(countPerLayer);
                 var newItemSidebarItems = [];
                 for (var officials of data) {
                     newItemSidebarItems.push(officials.officialsName);
                 }
-    
+
                 setItemSidebarItems(newItemSidebarItems);
             });
     }, [items, itemSidebarItems]); // Include relevant dependencies
-    
+
 
     const handleAddItem = () => {
         resetInputFields();
@@ -420,7 +439,6 @@ export default function AdminElectedOfficials() {
                             handleItemSelected(item);
                         }}
                         onEditItem={handleEditItem}
-                        layersCount={officialsCountPerLayer}
                     />
 
                     {/* Right side for file upload and preview */}
@@ -487,7 +505,7 @@ export default function AdminElectedOfficials() {
                             <input
                                 type="text"
                                 value={contact}
-                                onChange={(e) => setContact(e.target.value)}
+                                onChange={handleContactChange}
                                 placeholder={'Enter Contact Number'}
                                 className="mt-2 p-3 border border-lgu-green rounded-md w-full focus:outline-none focus:border-lgu-green"
                             />
